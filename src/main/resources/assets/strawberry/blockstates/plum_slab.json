@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "strawberry:block/plum_slab"
+    },
+    "type=double": {
+      "model": "strawberry:block/plum_planks"
+    },
+    "type=top": {
+      "model": "strawberry:block/plum_slab_top"
+    }
+  }
+}

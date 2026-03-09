@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/wall_inventory",
+  "textures": {
+    "wall": "strawberry:block/washed_andesite_bricks"
+  }
+}

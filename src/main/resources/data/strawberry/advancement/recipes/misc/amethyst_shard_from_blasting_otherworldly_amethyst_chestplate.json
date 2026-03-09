@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_otherworldly_amethyst_chestplate": {
+      "conditions": {
+        "items": [
+          {
+            "items": "strawberry:otherworldly_amethyst_chestplate"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "strawberry:amethyst_shard_from_blasting_otherworldly_amethyst_chestplate"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_otherworldly_amethyst_chestplate"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "strawberry:amethyst_shard_from_blasting_otherworldly_amethyst_chestplate"
+    ]
+  }
+}

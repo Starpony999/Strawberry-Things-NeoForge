@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "strawberry:block/cobbled_nightstone_slab"
+    },
+    "type=double": {
+      "model": "strawberry:block/cobbled_nightstone"
+    },
+    "type=top": {
+      "model": "strawberry:block/cobbled_nightstone_slab_top"
+    }
+  }
+}

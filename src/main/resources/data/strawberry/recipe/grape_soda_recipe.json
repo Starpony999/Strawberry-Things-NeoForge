@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "strawberry:grapes"
+    },
+    {
+      "item": "minecraft:sugar"
+    },
+    {
+      "item": "strawberry:soda_can"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "strawberry:grape_soda"
+  }
+}

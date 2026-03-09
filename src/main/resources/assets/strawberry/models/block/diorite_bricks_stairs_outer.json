@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/outer_stairs",
+  "textures": {
+    "bottom": "strawberry:block/diorite_bricks",
+    "side": "strawberry:block/diorite_bricks",
+    "top": "strawberry:block/diorite_bricks"
+  }
+}

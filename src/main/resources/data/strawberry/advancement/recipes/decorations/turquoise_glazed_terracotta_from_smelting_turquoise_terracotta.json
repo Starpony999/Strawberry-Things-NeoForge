@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "strawberry:turquoise_glazed_terracotta_from_smelting_turquoise_terracotta"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_turquoise_terracotta": {
+      "conditions": {
+        "items": [
+          {
+            "items": "strawberry:turquoise_terracotta"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_turquoise_terracotta"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "strawberry:turquoise_glazed_terracotta_from_smelting_turquoise_terracotta"
+    ]
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:smelting",
+  "category": "blocks",
+  "cookingtime": 200,
+  "experience": 0.1,
+  "group": "cerise_glazed_terracotta",
+  "ingredient": {
+    "item": "strawberry:cerise_terracotta"
+  },
+  "result": {
+    "id": "strawberry:cerise_glazed_terracotta"
+  }
+}

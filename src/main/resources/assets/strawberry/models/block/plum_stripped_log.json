@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "strawberry:block/plum_stripped_log_top",
+    "side": "strawberry:block/plum_stripped_log"
+  }
+}

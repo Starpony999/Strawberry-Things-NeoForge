@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/button_inventory",
+  "textures": {
+    "texture": "strawberry:block/cracked_nightstone_bricks"
+  }
+}

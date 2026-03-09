@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "strawberry:cracked_nightstone_bricks"
+  },
+  "result": {
+    "count": 1,
+    "id": "strawberry:cracked_nightstone_bricks_wall"
+  }
+}

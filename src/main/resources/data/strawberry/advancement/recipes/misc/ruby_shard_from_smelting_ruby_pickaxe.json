@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_ruby_pickaxe": {
+      "conditions": {
+        "items": [
+          {
+            "items": "strawberry:ruby_pickaxe"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "strawberry:ruby_shard_from_smelting_ruby_pickaxe"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_ruby_pickaxe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "strawberry:ruby_shard_from_smelting_ruby_pickaxe"
+    ]
+  }
+}

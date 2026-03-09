@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "strawberry:washed_cobblestone_bricks"
+  },
+  "result": {
+    "count": 1,
+    "id": "strawberry:washed_cobblestone_bricks_stairs"
+  }
+}

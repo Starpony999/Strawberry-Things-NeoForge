@@ -1,0 +1,37 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "strawberry:rose_quartz_shard"
+    },
+    {
+      "item": "strawberry:rose_quartz_shard"
+    },
+    {
+      "item": "strawberry:rose_quartz_shard"
+    },
+    {
+      "item": "strawberry:rose_quartz_shard"
+    },
+    {
+      "item": "strawberry:rose_quartz_shard"
+    },
+    {
+      "item": "strawberry:rose_quartz_shard"
+    },
+    {
+      "item": "strawberry:rose_quartz_shard"
+    },
+    {
+      "item": "strawberry:rose_quartz_shard"
+    },
+    {
+      "item": "strawberry:rose_quartz_shard"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "strawberry:rose_quartz"
+  }
+}

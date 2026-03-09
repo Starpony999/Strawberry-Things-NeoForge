@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "strawberry:diorite_bricks"
+    },
+    {
+      "tag": "strawberry:water_tag"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "strawberry:washed_diorite_bricks"
+  }
+}

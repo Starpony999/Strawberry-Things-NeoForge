@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "strawberry:block/sycamore_slab"
+    },
+    "type=double": {
+      "model": "strawberry:block/sycamore_planks"
+    },
+    "type=top": {
+      "model": "strawberry:block/sycamore_slab_top"
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab_top",
+  "textures": {
+    "bottom": "strawberry:block/aged_cobblestone",
+    "side": "strawberry:block/aged_cobblestone",
+    "top": "strawberry:block/aged_cobblestone"
+  }
+}

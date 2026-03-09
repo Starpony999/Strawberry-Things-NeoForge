@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "strawberry:cracked_grimstone_bricks"
+  },
+  "result": {
+    "count": 2,
+    "id": "strawberry:cracked_grimstone_bricks_slab"
+  }
+}

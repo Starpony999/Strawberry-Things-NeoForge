@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "strawberry:weathered_cobblestone_bricks_wall_from_weathered_cobblestone_bricks_stonecutting"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_weathered_cobblestone_bricks": {
+      "conditions": {
+        "items": [
+          {
+            "items": "strawberry:weathered_cobblestone_bricks"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_weathered_cobblestone_bricks"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "strawberry:weathered_cobblestone_bricks_wall_from_weathered_cobblestone_bricks_stonecutting"
+    ]
+  }
+}

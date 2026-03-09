@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "strawberry:lemon"
+    },
+    {
+      "item": "strawberry:lime"
+    },
+    {
+      "item": "minecraft:sugar"
+    },
+    {
+      "item": "strawberry:soda_can"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "strawberry:lemon_lime_soda"
+  }
+}

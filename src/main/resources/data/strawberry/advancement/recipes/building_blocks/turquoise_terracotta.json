@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_terracotta": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#strawberry:terracotta"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "strawberry:turquoise_terracotta"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_turquoise_dye": {
+      "conditions": {
+        "items": [
+          {
+            "items": "strawberry:turquoise_dye"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_turquoise_dye",
+      "has_terracotta"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "strawberry:turquoise_terracotta"
+    ]
+  }
+}

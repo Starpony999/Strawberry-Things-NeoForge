@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/stairs",
+  "textures": {
+    "bottom": "strawberry:block/andesite_bricks",
+    "side": "strawberry:block/andesite_bricks",
+    "top": "strawberry:block/andesite_bricks"
+  }
+}

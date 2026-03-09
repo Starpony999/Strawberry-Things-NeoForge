@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "strawberry:grimstone"
+  },
+  "result": {
+    "count": 1,
+    "id": "strawberry:grimstone_wall"
+  }
+}

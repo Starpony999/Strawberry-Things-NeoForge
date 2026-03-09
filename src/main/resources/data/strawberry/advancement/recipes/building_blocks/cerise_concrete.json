@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_cerise_dye": {
+      "conditions": {
+        "items": [
+          {
+            "items": "strawberry:cerise_dye"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_concrete": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#strawberry:concrete"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "strawberry:cerise_concrete"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_cerise_dye",
+      "has_concrete"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "strawberry:cerise_concrete"
+    ]
+  }
+}

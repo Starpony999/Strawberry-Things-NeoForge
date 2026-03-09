@@ -1,0 +1,54 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_amethyst_shard": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:amethyst_shard"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_enderthyst": {
+      "conditions": {
+        "items": [
+          {
+            "items": "strawberry:enderthyst"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_netherthyst": {
+      "conditions": {
+        "items": [
+          {
+            "items": "strawberry:netherthyst"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "strawberry:otherworldly_amethyst_from_left_enderthyst"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_amethyst_shard",
+      "has_enderthyst",
+      "has_netherthyst"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "strawberry:otherworldly_amethyst_from_left_enderthyst"
+    ]
+  }
+}

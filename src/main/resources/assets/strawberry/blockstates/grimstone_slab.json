@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "strawberry:block/grimstone_slab"
+    },
+    "type=double": {
+      "model": "strawberry:block/grimstone"
+    },
+    "type=top": {
+      "model": "strawberry:block/grimstone_slab_top"
+    }
+  }
+}

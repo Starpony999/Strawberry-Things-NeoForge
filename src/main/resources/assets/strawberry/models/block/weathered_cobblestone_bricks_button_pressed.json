@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/button_pressed",
+  "textures": {
+    "texture": "strawberry:block/weathered_cobblestone_bricks"
+  }
+}

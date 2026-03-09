@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "cookingtime": 200,
+  "experience": 0.25,
+  "group": "sapphire_shard_smeltables_1",
+  "ingredient": {
+    "item": "strawberry:sapphire_leggings"
+  },
+  "result": {
+    "id": "strawberry:sapphire_shard"
+  }
+}

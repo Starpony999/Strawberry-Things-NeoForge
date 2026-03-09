@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "strawberry:block/aged_cobblestone_slab"
+    },
+    "type=double": {
+      "model": "strawberry:block/aged_cobblestone"
+    },
+    "type=top": {
+      "model": "strawberry:block/aged_cobblestone_slab_top"
+    }
+  }
+}

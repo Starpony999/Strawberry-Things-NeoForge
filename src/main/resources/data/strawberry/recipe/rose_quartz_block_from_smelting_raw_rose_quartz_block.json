@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:smelting",
+  "category": "blocks",
+  "cookingtime": 400,
+  "experience": 0.9,
+  "group": "rose_quartz_smeltables_3",
+  "ingredient": {
+    "item": "strawberry:raw_rose_quartz_block"
+  },
+  "result": {
+    "id": "strawberry:rose_quartz_block"
+  }
+}

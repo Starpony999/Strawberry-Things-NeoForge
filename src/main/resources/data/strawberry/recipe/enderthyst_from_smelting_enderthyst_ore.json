@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "cookingtime": 200,
+  "experience": 0.25,
+  "group": "enderthyst_smeltables_1",
+  "ingredient": {
+    "item": "strawberry:enderthyst_ore"
+  },
+  "result": {
+    "id": "strawberry:enderthyst"
+  }
+}

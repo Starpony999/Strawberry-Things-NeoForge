@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:smelting",
+  "category": "blocks",
+  "cookingtime": 400,
+  "experience": 0.9,
+  "group": "gold_smeltables_3",
+  "ingredient": {
+    "item": "minecraft:raw_gold_block"
+  },
+  "result": {
+    "id": "minecraft:gold_block"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "strawberry:nightstone"
+  },
+  "result": {
+    "count": 1,
+    "id": "strawberry:cobbled_nightstone"
+  }
+}

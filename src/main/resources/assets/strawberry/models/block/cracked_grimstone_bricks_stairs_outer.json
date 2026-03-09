@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/outer_stairs",
+  "textures": {
+    "bottom": "strawberry:block/cracked_grimstone_bricks",
+    "side": "strawberry:block/cracked_grimstone_bricks",
+    "top": "strawberry:block/cracked_grimstone_bricks"
+  }
+}

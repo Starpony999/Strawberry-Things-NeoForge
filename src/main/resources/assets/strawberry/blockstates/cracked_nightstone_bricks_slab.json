@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "strawberry:block/cracked_nightstone_bricks_slab"
+    },
+    "type=double": {
+      "model": "strawberry:block/cracked_nightstone_bricks"
+    },
+    "type=top": {
+      "model": "strawberry:block/cracked_nightstone_bricks_slab_top"
+    }
+  }
+}

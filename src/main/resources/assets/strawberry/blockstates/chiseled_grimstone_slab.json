@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "strawberry:block/chiseled_grimstone_slab"
+    },
+    "type=double": {
+      "model": "strawberry:block/chiseled_grimstone"
+    },
+    "type=top": {
+      "model": "strawberry:block/chiseled_grimstone_slab_top"
+    }
+  }
+}

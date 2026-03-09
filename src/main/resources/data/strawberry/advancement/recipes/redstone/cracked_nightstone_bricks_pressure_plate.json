@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_cracked_nightstone_bricks": {
+      "conditions": {
+        "items": [
+          {
+            "items": "strawberry:cracked_nightstone_bricks"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "strawberry:cracked_nightstone_bricks_pressure_plate"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_cracked_nightstone_bricks"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "strawberry:cracked_nightstone_bricks_pressure_plate"
+    ]
+  }
+}

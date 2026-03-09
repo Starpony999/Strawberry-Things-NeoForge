@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "item": "strawberry:otherworldly_amethyst_block"
+  },
+  "base": {
+    "item": "strawberry:rose_quartz_sword"
+  },
+  "result": {
+    "count": 1,
+    "id": "strawberry:otherworldly_amethyst_sword"
+  },
+  "template": {
+    "item": "strawberry:shining_upgrade_smithing_template"
+  }
+}

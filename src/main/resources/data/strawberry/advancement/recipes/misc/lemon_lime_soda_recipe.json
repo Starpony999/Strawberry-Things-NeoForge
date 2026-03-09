@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_lemon": {
+      "conditions": {
+        "items": [
+          {
+            "items": "strawberry:lemon"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_soda_can": {
+      "conditions": {
+        "items": [
+          {
+            "items": "strawberry:soda_can"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "strawberry:lemon_lime_soda_recipe"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_lemon",
+      "has_soda_can"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "strawberry:lemon_lime_soda_recipe"
+    ]
+  }
+}

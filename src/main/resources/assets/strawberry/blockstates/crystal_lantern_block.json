@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "clicked=false": {
+      "model": "strawberry:block/crystal_lantern_block"
+    },
+    "clicked=true": {
+      "model": "strawberry:block/crystal_lantern_block_on"
+    }
+  }
+}

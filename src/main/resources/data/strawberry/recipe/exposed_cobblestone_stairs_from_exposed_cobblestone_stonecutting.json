@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "strawberry:exposed_cobblestone"
+  },
+  "result": {
+    "count": 1,
+    "id": "strawberry:exposed_cobblestone_stairs"
+  }
+}

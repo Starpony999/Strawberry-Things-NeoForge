@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "powered=false": {
+      "model": "strawberry:block/exposed_cobblestone_bricks_pressure_plate"
+    },
+    "powered=true": {
+      "model": "strawberry:block/exposed_cobblestone_bricks_pressure_plate_down"
+    }
+  }
+}

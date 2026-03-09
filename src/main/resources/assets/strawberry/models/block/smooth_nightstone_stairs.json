@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/stairs",
+  "textures": {
+    "bottom": "strawberry:block/smooth_nightstone",
+    "side": "strawberry:block/smooth_nightstone",
+    "top": "strawberry:block/smooth_nightstone"
+  }
+}

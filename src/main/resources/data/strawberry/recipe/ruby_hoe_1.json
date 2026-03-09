@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "A": {
+      "item": "strawberry:ruby"
+    },
+    "I": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    "AA",
+    " I",
+    " I"
+  ],
+  "result": {
+    "count": 1,
+    "id": "strawberry:ruby_hoe"
+  }
+}

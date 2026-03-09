@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "minecraft:amethyst_shard"
+    },
+    "E": {
+      "item": "strawberry:enderthyst"
+    },
+    "N": {
+      "item": "strawberry:netherthyst"
+    }
+  },
+  "pattern": [
+    "E ",
+    "NA"
+  ],
+  "result": {
+    "count": 1,
+    "id": "strawberry:otherworldly_amethyst"
+  }
+}

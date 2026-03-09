@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_cerise_terracotta": {
+      "conditions": {
+        "items": [
+          {
+            "items": "strawberry:cerise_terracotta"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "strawberry:cerise_glazed_terracotta_from_smelting_cerise_terracotta"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_cerise_terracotta"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "strawberry:cerise_glazed_terracotta_from_smelting_cerise_terracotta"
+    ]
+  }
+}

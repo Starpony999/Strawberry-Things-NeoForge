@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "cookingtime": 200,
+  "experience": 0.25,
+  "group": "diamond_shard_smeltables_1",
+  "ingredient": {
+    "item": "minecraft:diamond_hoe"
+  },
+  "result": {
+    "id": "strawberry:diamond_shard"
+  }
+}

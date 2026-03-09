@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "strawberry:block/plum_stripped_wood",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "strawberry:block/plum_stripped_wood"
+    },
+    "axis=z": {
+      "model": "strawberry:block/plum_stripped_wood",
+      "x": 90
+    }
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/button",
+  "textures": {
+    "texture": "strawberry:block/washed_granite_bricks"
+  }
+}

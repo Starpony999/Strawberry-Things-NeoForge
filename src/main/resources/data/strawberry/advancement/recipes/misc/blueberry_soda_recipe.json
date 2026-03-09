@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_blueberry": {
+      "conditions": {
+        "items": [
+          {
+            "items": "strawberry:blueberry"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_soda_can": {
+      "conditions": {
+        "items": [
+          {
+            "items": "strawberry:soda_can"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "strawberry:blueberry_soda_recipe"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_blueberry",
+      "has_soda_can"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "strawberry:blueberry_soda_recipe"
+    ]
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_cerise_stained_glass": {
+      "conditions": {
+        "items": [
+          {
+            "items": "strawberry:cerise_stained_glass"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "strawberry:cerise_stained_glass_pane_from_stained_glass"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_cerise_stained_glass"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "strawberry:cerise_stained_glass_pane_from_stained_glass"
+    ]
+  }
+}

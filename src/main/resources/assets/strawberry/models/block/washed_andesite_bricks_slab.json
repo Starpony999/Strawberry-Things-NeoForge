@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "bottom": "strawberry:block/washed_andesite_bricks",
+    "side": "strawberry:block/washed_andesite_bricks",
+    "top": "strawberry:block/washed_andesite_bricks"
+  }
+}

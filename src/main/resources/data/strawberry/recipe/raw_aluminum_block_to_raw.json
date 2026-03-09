@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "strawberry:raw_aluminum_block"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "id": "strawberry:raw_aluminum"
+  }
+}

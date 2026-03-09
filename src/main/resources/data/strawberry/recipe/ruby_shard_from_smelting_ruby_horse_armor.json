@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "cookingtime": 200,
+  "experience": 0.25,
+  "group": "ruby_shard_smeltables_1",
+  "ingredient": {
+    "item": "strawberry:ruby_horse_armor"
+  },
+  "result": {
+    "id": "strawberry:ruby_shard"
+  }
+}

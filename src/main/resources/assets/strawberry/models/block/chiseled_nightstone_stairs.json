@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/stairs",
+  "textures": {
+    "bottom": "strawberry:block/chiseled_nightstone",
+    "side": "strawberry:block/chiseled_nightstone",
+    "top": "strawberry:block/chiseled_nightstone"
+  }
+}

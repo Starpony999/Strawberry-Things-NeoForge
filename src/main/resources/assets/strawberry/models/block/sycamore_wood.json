@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "strawberry:block/sycamore_log",
+    "side": "strawberry:block/sycamore_log"
+  }
+}

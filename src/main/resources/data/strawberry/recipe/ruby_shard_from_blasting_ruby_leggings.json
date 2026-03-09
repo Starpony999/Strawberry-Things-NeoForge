@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:blasting",
+  "category": "misc",
+  "cookingtime": 100,
+  "experience": 0.25,
+  "group": "ruby_shard_smeltables_2",
+  "ingredient": {
+    "item": "strawberry:ruby_leggings"
+  },
+  "result": {
+    "id": "strawberry:ruby_shard"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "minecraft:cobblestone"
+    },
+    "D": {
+      "item": "minecraft:diamond"
+    },
+    "T": {
+      "item": "strawberry:simple_upgrade_smithing_template"
+    }
+  },
+  "pattern": [
+    "DTD",
+    "DBD",
+    "DDD"
+  ],
+  "result": {
+    "count": 1,
+    "id": "strawberry:simple_upgrade_smithing_template"
+  }
+}

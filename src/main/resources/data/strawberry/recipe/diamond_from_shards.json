@@ -1,0 +1,37 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "strawberry:diamond_shard"
+    },
+    {
+      "item": "strawberry:diamond_shard"
+    },
+    {
+      "item": "strawberry:diamond_shard"
+    },
+    {
+      "item": "strawberry:diamond_shard"
+    },
+    {
+      "item": "strawberry:diamond_shard"
+    },
+    {
+      "item": "strawberry:diamond_shard"
+    },
+    {
+      "item": "strawberry:diamond_shard"
+    },
+    {
+      "item": "strawberry:diamond_shard"
+    },
+    {
+      "item": "strawberry:diamond_shard"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "minecraft:diamond"
+  }
+}
