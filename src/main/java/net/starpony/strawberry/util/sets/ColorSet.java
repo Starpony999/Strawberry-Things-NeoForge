@@ -1,4 +1,4 @@
-package net.starpony.strawberry.sets;
+package net.starpony.strawberry.util.sets;
 
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.registries.DeferredBlock;

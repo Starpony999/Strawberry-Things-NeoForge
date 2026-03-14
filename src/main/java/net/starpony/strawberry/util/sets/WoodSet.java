@@ -1,6 +1,6 @@
-package net.starpony.strawberry.sets;
+package net.starpony.strawberry.util.sets;
 
-import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.*;
 import net.neoforged.neoforge.registries.DeferredBlock;
 
 public class WoodSet {
@@ -11,16 +11,16 @@ public class WoodSet {
     public final DeferredBlock<Block> wood;
     public final DeferredBlock<Block> strippedWood;
     public final DeferredBlock<Block> planks;
-    public final DeferredBlock<Block> leaves;
-    public final DeferredBlock<Block> sapling;
-    public final DeferredBlock<Block> stairs;
-    public final DeferredBlock<Block> slab;
-    public final DeferredBlock<Block> button;
-    public final DeferredBlock<Block> pressurePlate;
-    public final DeferredBlock<Block> fence;
-    public final DeferredBlock<Block> fenceGate;
-    public final DeferredBlock<Block> door;
-    public final DeferredBlock<Block> trapdoor;
+    public final DeferredBlock<LeavesBlock> leaves;
+    public final DeferredBlock<SaplingBlock> sapling;
+    public final DeferredBlock<StairBlock> stairs;
+    public final DeferredBlock<SlabBlock> slab;
+    public final DeferredBlock<ButtonBlock> button;
+    public final DeferredBlock<PressurePlateBlock> pressurePlate;
+    public final DeferredBlock<FenceBlock> fence;
+    public final DeferredBlock<FenceGateBlock> fenceGate;
+    public final DeferredBlock<DoorBlock> door;
+    public final DeferredBlock<TrapDoorBlock> trapdoor;
 
     public WoodSet(String name,
                    DeferredBlock<Block> log,
@@ -28,16 +28,16 @@ public class WoodSet {
                    DeferredBlock<Block> wood,
                    DeferredBlock<Block> strippedWood,
                    DeferredBlock<Block> planks,
-                   DeferredBlock<Block> leaves,
-                   DeferredBlock<Block> sapling,
-                   DeferredBlock<Block> stairs,
-                   DeferredBlock<Block> slab,
-                   DeferredBlock<Block> button,
-                   DeferredBlock<Block> pressurePlate,
-                   DeferredBlock<Block> fence,
-                   DeferredBlock<Block> fenceGate,
-                   DeferredBlock<Block> door,
-                   DeferredBlock<Block> trapdoor) {
+                   DeferredBlock<LeavesBlock> leaves,
+                   DeferredBlock<SaplingBlock> sapling,
+                   DeferredBlock<StairBlock> stairs,
+                   DeferredBlock<SlabBlock> slab,
+                   DeferredBlock<ButtonBlock> button,
+                   DeferredBlock<PressurePlateBlock> pressurePlate,
+                   DeferredBlock<FenceBlock> fence,
+                   DeferredBlock<FenceGateBlock> fenceGate,
+                   DeferredBlock<DoorBlock> door,
+                   DeferredBlock<TrapDoorBlock> trapdoor) {
 
         this.name = name;
         this.log = log;
@@ -81,43 +81,43 @@ public class WoodSet {
         return planks;
     }
 
-    public DeferredBlock<Block> getLeaves() {
+    public DeferredBlock<LeavesBlock> getLeaves() {
         return leaves;
     }
 
-    public DeferredBlock<Block> getSapling() {
+    public DeferredBlock<SaplingBlock> getSapling() {
         return sapling;
     }
 
-    public DeferredBlock<Block> getStairs() {
+    public DeferredBlock<StairBlock> getStairs() {
         return stairs;
     }
 
-    public DeferredBlock<Block> getSlab() {
+    public DeferredBlock<SlabBlock> getSlab() {
         return slab;
     }
 
-    public DeferredBlock<Block> getButton() {
+    public DeferredBlock<ButtonBlock> getButton() {
         return button;
     }
 
-    public DeferredBlock<Block> getPressurePlate() {
+    public DeferredBlock<PressurePlateBlock> getPressurePlate() {
         return pressurePlate;
     }
 
-    public DeferredBlock<Block> getFence() {
+    public DeferredBlock<FenceBlock> getFence() {
         return fence;
     }
 
-    public DeferredBlock<Block> getFenceGate() {
+    public DeferredBlock<FenceGateBlock > getFenceGate() {
         return fenceGate;
     }
 
-    public DeferredBlock<Block> getDoor() {
+    public DeferredBlock<DoorBlock> getDoor() {
         return door;
     }
 
-    public DeferredBlock<Block> getTrapdoor() {
+    public DeferredBlock<TrapDoorBlock> getTrapdoor() {
         return trapdoor;
     }
 }

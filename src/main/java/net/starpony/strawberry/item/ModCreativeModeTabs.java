@@ -1,5 +1,6 @@
 package net.starpony.strawberry.item;
 
+import net.minecraft.world.level.ItemLike;
 import net.starpony.strawberry.Strawberry;
 import net.starpony.strawberry.block.ModBlocks;
 import net.minecraft.core.registries.Registries;
@@ -9,6 +10,7 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredRegister;
+import net.starpony.strawberry.util.sets.SetUtils;
 
 import java.util.function.Supplier;
 
@@ -20,17 +22,18 @@ public class ModCreativeModeTabs {
             () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.TOILET_PAPER.get()))
                     .title(Component.translatable("creativetab.strawberry.strawberry_items"))
                     .displayItems((itemDisplayParameters, output) -> {
-                        //output.accept(ModItems.RUBY.getGem());
-                       // output.accept(ModItems.SAPPHIRE.getGem());
+                        output.accept(ModItems.RUBY.getGem());
+                        output.accept(ModItems.SAPPHIRE.getGem());
                         output.accept(ModItems.ALUMINUM_SCRAP);
                         output.accept(ModItems.ALUMINUM_INGOT);
                         output.accept(ModItems.RAW_ALUMINUM);
-                       // output.accept(ModItems.RUBY.getShard());
-                       // output.accept(ModItems.SAPPHIRE.getShard());
+                        output.accept(ModItems.NETHERITE_NUGGET);
+                        output.accept(ModItems.RUBY.getShard());
+                        output.accept(ModItems.SAPPHIRE.getShard());
                         output.accept(ModItems.DIAMOND_SHARD);
-                       // output.accept(ModItems.ROSE_QUARTZ.getShard());
+                        output.accept(ModItems.ROSE_QUARTZ.getShard());
                         output.accept(ModItems.THULITE_SHARD);
-                        //output.accept(ModItems.OTHERWORLDLY_AMETHYST.getGem());
+                        output.accept(ModItems.OTHERWORLDLY_AMETHYST.getGem());
                         output.accept(ModItems.NETHERTHYST);
                         output.accept(ModItems.ENDERTHYST);
                         output.accept(ModItems.RAW_ROSE_QUARTZ);
@@ -47,28 +50,28 @@ public class ModCreativeModeTabs {
                       //  output.accept(ModItems.SUNSET_VIBES_MUSIC_DISC);
                       //  output.accept(ModItems.STRAWBERRY);
                      //   output.accept(ModItems.BLUEBERRY);
-                     //   output.accept(ModItems.GRAPES);
+                        output.accept(ModItems.GRAPES);
                      //   output.accept(ModItems.GRAPE_SEEDS);
-                     //   output.accept(ModItems.ORANGE);
-                      //  output.accept(ModItems.LIME);
-                     //   output.accept(ModItems.LEMON);
-                     //   output.accept(ModItems.CAULIFLOWER);
+                        output.accept(ModItems.ORANGE);
+                        output.accept(ModItems.LIME);
+                        output.accept(ModItems.LEMON);
+                        output.accept(ModItems.CAULIFLOWER);
                      //   output.accept(ModItems.CAULIFLOWER_SEEDS);
                         output.accept(ModItems.SODA_CAN);
-                      //  output.accept(ModItems.STRAWBERRY_SODA);
-                      //  output.accept(ModItems.BLUEBERRY_SODA);
-                      //  output.accept(ModItems.GRAPE_SODA);
-                      //  output.accept(ModItems.ORANGE_SODA);
-                      //  output.accept(ModItems.LEMON_LIME_SODA);
-                      //  output.accept(ModItems.DIRT_SODA);
+                        output.accept(ModItems.STRAWBERRY_SODA);
+                        output.accept(ModItems.BLUEBERRY_SODA);
+                        output.accept(ModItems.GRAPE_SODA);
+                        output.accept(ModItems.ORANGE_SODA);
+                        output.accept(ModItems.LEMON_LIME_SODA);
+                        output.accept(ModItems.DIRT_SODA);
                       //  output.accept(ModDyes.CERISE_DYE);
                      //   output.accept(ModDyes.TURQUOISE_DYE);
 
                     }).build());
 
     public static final Supplier<CreativeModeTab> STRAWBERRY_BLOCK_TAB = CREATIVE_MODE_TAB.register("strawberry_blocks_tab",
-            () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModBlocks.THULITE_CRYSTAL_BLOCK))
-                    .withTabsBefore(ResourceLocation.fromNamespaceAndPath(Strawberry.MOD_ID, "strawberry_items_tab"))
+            () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModBlocks.WASHED_ANDESITE_BRICKS.block))
+                    //.withTabsBefore(ResourceLocation.fromNamespaceAndPath(Strawberry.MOD_ID, "strawberry_items_tab"))
                     .title(Component.translatable("creativetab.strawberry.strawberry_blocks"))
                     .displayItems((itemDisplayParameters, output) -> {
                         output.accept(ModBlocks.RUBY_BLOCK);
@@ -89,37 +92,38 @@ public class ModCreativeModeTabs {
                         output.accept(ModBlocks.NETHERTHYST_ORE);
                         output.accept(ModBlocks.RAW_ROSE_QUARTZ_BLOCK);
                         output.accept(ModBlocks.ROSE_QUARTZ_BLOCK);
+                        output.accept(ModBlocks.CRYSTAL_LANTERN_BLOCK);
 
-                      /*  SetUtils.addSimpleStoneSet(entries, ModBlocks.ANDESITE_BRICKS);
-                        SetUtils.addSimpleStoneSet(entries, ModBlocks.WASHED_ANDESITE_BRICKS);
-                        SetUtils.addSimpleStoneSet(entries, ModBlocks.DIORITE_BRICKS);
-                        SetUtils.addSimpleStoneSet(entries, ModBlocks.WASHED_DIORITE_BRICKS);
-                        SetUtils.addSimpleStoneSet(entries, ModBlocks.GRANITE_BRICKS);
-                        SetUtils.addSimpleStoneSet(entries, ModBlocks.WASHED_GRANITE_BRICKS);
-                        SetUtils.addSimpleStoneSet(entries, ModBlocks.WASHED_COBBLESTONE);
-                        SetUtils.addSimpleStoneSet(entries, ModBlocks.WASHED_COBBLESTONE_BRICKS);
-                        SetUtils.addSimpleStoneSet(entries, ModBlocks.WEATHERED_COBBLESTONE);
-                        SetUtils.addSimpleStoneSet(entries, ModBlocks.WEATHERED_COBBLESTONE_BRICKS);
-                        SetUtils.addSimpleStoneSet(entries, ModBlocks.AGED_COBBLESTONE);
-                        SetUtils.addSimpleStoneSet(entries, ModBlocks.AGED_COBBLESTONE_BRICKS);
-                        SetUtils.addSimpleStoneSet(entries, ModBlocks.EXPOSED_COBBLESTONE);
-                        SetUtils.addSimpleStoneSet(entries, ModBlocks.EXPOSED_COBBLESTONE_BRICKS);
+                        SetUtils.addSimpleStoneSet(output, ModBlocks.ANDESITE_BRICKS);
+                        SetUtils.addSimpleStoneSet(output, ModBlocks.WASHED_ANDESITE_BRICKS);
+                        SetUtils.addSimpleStoneSet(output, ModBlocks.DIORITE_BRICKS);
+                        SetUtils.addSimpleStoneSet(output, ModBlocks.WASHED_DIORITE_BRICKS);
+                        SetUtils.addSimpleStoneSet(output, ModBlocks.GRANITE_BRICKS);
+                        SetUtils.addSimpleStoneSet(output, ModBlocks.WASHED_GRANITE_BRICKS);
+                        SetUtils.addSimpleStoneSet(output, ModBlocks.WASHED_COBBLESTONE);
+                        SetUtils.addSimpleStoneSet(output, ModBlocks.WASHED_COBBLESTONE_BRICKS);
+                        SetUtils.addSimpleStoneSet(output, ModBlocks.WEATHERED_COBBLESTONE);
+                        SetUtils.addSimpleStoneSet(output, ModBlocks.WEATHERED_COBBLESTONE_BRICKS);
+                        SetUtils.addSimpleStoneSet(output, ModBlocks.AGED_COBBLESTONE);
+                        SetUtils.addSimpleStoneSet(output, ModBlocks.AGED_COBBLESTONE_BRICKS);
+                        SetUtils.addSimpleStoneSet(output, ModBlocks.EXPOSED_COBBLESTONE);
+                        SetUtils.addSimpleStoneSet(output, ModBlocks.EXPOSED_COBBLESTONE_BRICKS);
 
-                        SetUtils.addStoneSet(entries, ModBlocks.GRIMSTONE);
-                        SetUtils.addStoneSet(entries, ModBlocks.NIGHTSTONE);
+                        SetUtils.addStoneSet(output, ModBlocks.GRIMSTONE);
+                        SetUtils.addStoneSet(output, ModBlocks.NIGHTSTONE);
 
-                        SetUtils.addWoodSet(entries, ModBlocks.SYCAMORE);
-                        SetUtils.addWoodSet(entries, ModBlocks.PLUM);
+                       /* SetUtils.addWoodSet(output, ModBlocks.SYCAMORE);
+                        SetUtils.addWoodSet(output, ModBlocks.PLUM);
 
-                        SetUtils.addColorSet(entries, ModBlocks.CERISE);
-                        SetUtils.addColorSet(entries, ModBlocks.TURQUOISE); */
+                        SetUtils.addColorSet(output, ModBlocks.CERISE);
+                        SetUtils.addColorSet(output, ModBlocks.TURQUOISE); */
                     }).build());
     public static final Supplier<CreativeModeTab> STRAWBERRY_TOOLS_ARMOR_TAB = CREATIVE_MODE_TAB.register("strawberry_tools_armor_tab",
-            () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.FUSION_KEY.get()))
+            () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.CHISEL.get()))
                     .withTabsBefore(ResourceLocation.fromNamespaceAndPath(Strawberry.MOD_ID, "strawberry_blocks_tab"))
                     .title(Component.translatable("creativetab.strawberry.strawberry_tools_armor"))
                     .displayItems((itemDisplayParameters, output) -> {
-                      /*  output.accept(ModItems.SAPPHIRE.getSword());
+                        output.accept(ModItems.SAPPHIRE.getSword());
                         output.accept(ModItems.SAPPHIRE.getShovel());
                         output.accept(ModItems.SAPPHIRE.getPickaxe());
                         output.accept(ModItems.SAPPHIRE.getAxe());
@@ -167,12 +171,37 @@ public class ModCreativeModeTabs {
                      /* output.accept(ModItems.BUCKET_OF_MUD);
                         output.accept(ModItems.FISHING_ROD); */
                         output.accept(ModItems.FUSION_KEY);
-                   //   output.accept(ModItems.CHISEL);
+                        output.accept(ModItems.CHISEL);
                      /* output.accept(ModItems.SHEARS);
                         output.accept(ModItems.COMPASS);*/
                     }).build());
+    public static final Supplier<CreativeModeTab> STRAWBERRY_REDSTONE_TAB = CREATIVE_MODE_TAB.register("strawberry_redstone_tab",
+            () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.STRAWBERRY_REDSTONE.get()))
+                    .withTabsBefore(ResourceLocation.fromNamespaceAndPath(Strawberry.MOD_ID, "strawberry_blocks_tab"))
+                    .title(Component.translatable("creativetab.strawberry.strawberry_redstone"))
+                    .displayItems((itemDisplayParameters, output) -> {
+                        SetUtils.addSimpleRedStoneSet(output, ModBlocks.ANDESITE_BRICKS);
+                        SetUtils.addSimpleRedStoneSet(output, ModBlocks.WASHED_ANDESITE_BRICKS);
+                        SetUtils.addSimpleRedStoneSet(output, ModBlocks.DIORITE_BRICKS);
+                        SetUtils.addSimpleRedStoneSet(output, ModBlocks.WASHED_DIORITE_BRICKS);
+                        SetUtils.addSimpleRedStoneSet(output, ModBlocks.GRANITE_BRICKS);
+                        SetUtils.addSimpleRedStoneSet(output, ModBlocks.WASHED_GRANITE_BRICKS);
+                        SetUtils.addSimpleRedStoneSet(output, ModBlocks.WASHED_COBBLESTONE);
+                        SetUtils.addSimpleRedStoneSet(output, ModBlocks.WASHED_COBBLESTONE_BRICKS);
+                        SetUtils.addSimpleRedStoneSet(output, ModBlocks.WEATHERED_COBBLESTONE);
+                        SetUtils.addSimpleRedStoneSet(output, ModBlocks.WEATHERED_COBBLESTONE_BRICKS);
+                        SetUtils.addSimpleRedStoneSet(output, ModBlocks.AGED_COBBLESTONE);
+                        SetUtils.addSimpleRedStoneSet(output, ModBlocks.AGED_COBBLESTONE_BRICKS);
+                        SetUtils.addSimpleRedStoneSet(output, ModBlocks.EXPOSED_COBBLESTONE);
+                        SetUtils.addSimpleRedStoneSet(output, ModBlocks.EXPOSED_COBBLESTONE_BRICKS);
 
+                        SetUtils.addRedStoneSet(output, ModBlocks.GRIMSTONE);
+                        SetUtils.addRedStoneSet(output, ModBlocks.NIGHTSTONE);
 
+                       /* SetUtils.addRedWoodSet(output, ModBlocks.SYCAMORE);
+                        SetUtils.addRedWoodSet(output, ModBlocks.PLUM);*/
+
+                    }).build());
     public static void register(IEventBus eventBus) {
         CREATIVE_MODE_TAB.register(eventBus);
     }

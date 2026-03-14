@@ -7,14 +7,16 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.WoodType;
-import net.minecraft.world.level.material.PushReaction;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.starpony.strawberry.Strawberry;
-import net.starpony.strawberry.sets.*;
 import net.starpony.strawberry.item.ModItems;
+import net.starpony.strawberry.util.sets.SimpleStoneSet;
+import net.starpony.strawberry.util.sets.StoneSet;
+import net.starpony.strawberry.util.sets.WoodSet;
 
+import java.awt.*;
 import java.util.function.Supplier;
 
 public class ModBlocks {
@@ -49,10 +51,13 @@ public class ModBlocks {
     public static final DeferredBlock<Block> BLUEBERRY_BUSH = registerBlockWithoutItem("blueberry_bush", () -> new BlueberryBushBlock(BlockBehaviour.Properties.copy(Blocks.SWEET_BERRY_BUSH), ModItems.BLUEBERRY.get()));
 */
     // Special blocks
-    // public static final DeferredBlock<Block> CRYSTAL_LANTERN_BLOCK = registerBlock("crystal_lantern_block", () -> new CrystalLanternBlock(BlockBehaviour.Properties.of().strength(1f).requiresCorrectToolForDrops().lightLevel(state -> state.get(CrystalLanternBlock.CLICKED) ? 15 : 0)));
+    public static final DeferredBlock<Block> CRYSTAL_LANTERN_BLOCK = registerBlock("crystal_lantern_block",
+            () -> new CrystalLanternBlock(BlockBehaviour.Properties.of().strength(1f)
+                    .requiresCorrectToolForDrops()
+                    .lightLevel(state -> state.getValue(CrystalLanternBlock.CLICKED) ? 15 : 0)));
 
     // Sets
-  /*  public static final SimpleStoneSet ANDESITE_BRICKS = registerSimpleStoneSet("andesite_bricks");
+    public static final SimpleStoneSet ANDESITE_BRICKS = registerSimpleStoneSet("andesite_bricks");
     public static final SimpleStoneSet WASHED_ANDESITE_BRICKS = registerSimpleStoneSet("washed_andesite_bricks");
     public static final SimpleStoneSet DIORITE_BRICKS = registerSimpleStoneSet("diorite_bricks");
     public static final SimpleStoneSet WASHED_DIORITE_BRICKS = registerSimpleStoneSet("washed_diorite_bricks");
@@ -68,7 +73,7 @@ public class ModBlocks {
     public static final SimpleStoneSet EXPOSED_COBBLESTONE_BRICKS = registerSimpleStoneSet("exposed_cobblestone_bricks");
     public static final StoneSet GRIMSTONE = registerStoneSet("grimstone");
     public static final StoneSet NIGHTSTONE = registerStoneSet("nightstone");
-    public static final WoodSet SYCAMORE = registerWoodSet("sycamore", ModSaplingGenerators.SYCAMORE);
+   /* public static final WoodSet SYCAMORE = registerWoodSet("sycamore", ModSaplingGenerators.SYCAMORE);
     public static final WoodSet PLUM = registerWoodSet("plum", ModSaplingGenerators.PLUM);
 */
     // Registry helpers
@@ -77,35 +82,45 @@ public class ModBlocks {
     private static <T extends Block> DeferredBlock<T> registerBlockWithoutItem(String name, Supplier<T> block) {return BLOCKS.register(name, block);}
 
     // Set Methods
-  /*  private static SimpleStoneSet registerSimpleStoneSet(String name) {
+    private static SimpleStoneSet registerSimpleStoneSet(String name) {
         DeferredBlock<Block> base = registerBlock(name,
                 () -> new Block(BlockBehaviour.Properties.of()
                         .strength(3f)
                         .requiresCorrectToolForDrops()
                         .sound(SoundType.STONE)));
 
-        DeferredBlock<Block> stairs = registerBlock(name + "_stairs",
-                () -> new StairBlock(() -> base.get().defaultBlockState(),
+        DeferredBlock<StairBlock> stairs = registerBlock(name + "_stairs",
+                () -> new StairBlock(base.get().defaultBlockState(),
                         BlockBehaviour.Properties.of()
                                 .strength(3f)
                                 .requiresCorrectToolForDrops()
                                 .sound(SoundType.STONE)));
 
-        DeferredBlock<Block> slab = registerBlock(name + "_slab",
+        DeferredBlock<SlabBlock> slab = registerBlock(name + "_slab",
                 () -> new SlabBlock(BlockBehaviour.Properties.of()
                         .strength(2f)
                         .sound(SoundType.STONE)));
 
-        DeferredBlock<Block> wall = registerBlock(name + "_wall",
+        DeferredBlock<WallBlock> wall = registerBlock(name + "_wall",
                 () -> new WallBlock(BlockBehaviour.Properties.of()
                         .strength(3f)
                         .requiresCorrectToolForDrops()
                         .sound(SoundType.STONE)));
 
-        return new SimpleStoneSet(base, stairs, slab, wall);
-    }*/ //SimpleStoneSet
+         DeferredBlock<ButtonBlock> button = registerBlock(name + "_button",
+                () -> new ButtonBlock(BlockSetType.STONE, 30,
+                        BlockBehaviour.Properties.of()
+                                .noCollission()));
 
-   /* private static StoneSet registerStoneSet(String name) {
+        DeferredBlock<PressurePlateBlock> pressurePlate = registerBlock(name + "_pressure_plate",
+                () -> new PressurePlateBlock(BlockSetType.STONE, BlockBehaviour.Properties.of()
+                        .strength(2f)
+                        .requiresCorrectToolForDrops()));
+
+
+        return new SimpleStoneSet(base, stairs, slab, wall, button, pressurePlate);
+    }
+    private static StoneSet registerStoneSet(String name) {
         // Base stone
         DeferredBlock<Block> base = registerBlock(name,
                 () -> new Block(BlockBehaviour.Properties.of()
@@ -113,34 +128,32 @@ public class ModBlocks {
                         .requiresCorrectToolForDrops()
                         .sound(SoundType.STONE)));
 
-        DeferredBlock<Block> stairs = registerBlock(name + "_stairs",
-                () -> new StairBlock(() -> base.get().defaultBlockState(),
+        DeferredBlock<StairBlock> stairs = registerBlock(name + "_stairs",
+                () -> new StairBlock(base.get().defaultBlockState(),
                         BlockBehaviour.Properties.of()
                                 .strength(3f)
                                 .requiresCorrectToolForDrops()
                                 .sound(SoundType.STONE)));
 
-        DeferredBlock<Block> slab = registerBlock(name + "_slab",
+        DeferredBlock<SlabBlock> slab = registerBlock(name + "_slab",
                 () -> new SlabBlock(BlockBehaviour.Properties.of()
                         .strength(2f)
                         .sound(SoundType.STONE)));
 
-        DeferredBlock<Block> wall = registerBlock(name + "_wall",
+        DeferredBlock<WallBlock> wall = registerBlock(name + "_wall",
                 () -> new WallBlock(BlockBehaviour.Properties.of()
                         .strength(3f)
                         .requiresCorrectToolForDrops()
                         .sound(SoundType.STONE)));
 
-        DeferredBlock<Block> button = registerBlock(name + "_button",
+        DeferredBlock<ButtonBlock> button = registerBlock(name + "_button",
                 () -> new ButtonBlock(BlockSetType.STONE, 30,
                         BlockBehaviour.Properties.of().noCollission()));
 
-        DeferredBlock<Block> pressurePlate = registerBlock(name + "_pressure_plate",
-                () -> new PressurePlateBlock(BlockSetType.STONE, PushReaction.DESTROY,
-                        BlockBehaviour.Properties.of()
-                                .strength(3f)
-                                .requiresCorrectToolForDrops()
-                                .sound(SoundType.STONE)));
+        DeferredBlock<PressurePlateBlock> pressurePlate = registerBlock(name + "_pressure_plate",
+                () -> new PressurePlateBlock(BlockSetType.STONE, BlockBehaviour.Properties.of()
+                        .strength(3f)
+                        .requiresCorrectToolForDrops()));
 
         // Cobbled
         DeferredBlock<Block> cobbled = registerBlock("cobbled_" + name,
@@ -149,30 +162,30 @@ public class ModBlocks {
                         .requiresCorrectToolForDrops()
                         .sound(SoundType.STONE)));
 
-        DeferredBlock<Block> cobbledStairs = registerBlock("cobbled_" + name + "_stairs",
-                () -> new StairBlock(() -> cobbled.get().defaultBlockState(),
+        DeferredBlock<StairBlock> cobbledStairs = registerBlock("cobbled_" + name + "_stairs",
+                () -> new StairBlock(cobbled.get().defaultBlockState(),
                         BlockBehaviour.Properties.of()
                                 .strength(3f)
                                 .requiresCorrectToolForDrops()
                                 .sound(SoundType.STONE)));
 
-        DeferredBlock<Block> cobbledSlab = registerBlock("cobbled_" + name + "_slab",
+        DeferredBlock<SlabBlock> cobbledSlab = registerBlock("cobbled_" + name + "_slab",
                 () -> new SlabBlock(BlockBehaviour.Properties.of()
                         .strength(2f)
                         .sound(SoundType.STONE)));
 
-        DeferredBlock<Block> cobbledWall = registerBlock("cobbled_" + name + "_wall",
+        DeferredBlock<WallBlock> cobbledWall = registerBlock("cobbled_" + name + "_wall",
                 () -> new WallBlock(BlockBehaviour.Properties.of()
                         .strength(3f)
                         .requiresCorrectToolForDrops()
                         .sound(SoundType.STONE)));
 
-        DeferredBlock<Block> cobbledButton = registerBlock("cobbled_" + name + "_button",
+        DeferredBlock<ButtonBlock> cobbledButton = registerBlock("cobbled_" + name + "_button",
                 () -> new ButtonBlock(BlockSetType.STONE, 30,
                         BlockBehaviour.Properties.of().noCollission()));
 
-        DeferredBlock<Block> cobbledPressurePlate = registerBlock("cobbled_" + name + "_pressure_plate",
-                () -> new PressurePlateBlock(BlockSetType.STONE, PushReaction.DESTROY,
+        DeferredBlock<PressurePlateBlock> cobbledPressurePlate = registerBlock("cobbled_" + name + "_pressure_plate",
+                () -> new PressurePlateBlock(BlockSetType.STONE,
                         BlockBehaviour.Properties.of()
                                 .strength(3f)
                                 .requiresCorrectToolForDrops()
@@ -185,30 +198,30 @@ public class ModBlocks {
                         .requiresCorrectToolForDrops()
                         .sound(SoundType.STONE)));
 
-        DeferredBlock<Block> chiseledStairs = registerBlock("chiseled_" + name + "_stairs",
-                () -> new StairBlock(() -> chiseled.get().defaultBlockState(),
+        DeferredBlock<StairBlock> chiseledStairs = registerBlock("chiseled_" + name + "_stairs",
+                () -> new StairBlock(chiseled.get().defaultBlockState(),
                         BlockBehaviour.Properties.of()
                                 .strength(3f)
                                 .requiresCorrectToolForDrops()
                                 .sound(SoundType.STONE)));
 
-        DeferredBlock<Block> chiseledSlab = registerBlock("chiseled_" + name + "_slab",
+        DeferredBlock<SlabBlock> chiseledSlab = registerBlock("chiseled_" + name + "_slab",
                 () -> new SlabBlock(BlockBehaviour.Properties.of()
                         .strength(2f)
                         .sound(SoundType.STONE)));
 
-        DeferredBlock<Block> chiseledWall = registerBlock("chiseled_" + name + "_wall",
+        DeferredBlock<WallBlock> chiseledWall = registerBlock("chiseled_" + name + "_wall",
                 () -> new WallBlock(BlockBehaviour.Properties.of()
                         .strength(3f)
                         .requiresCorrectToolForDrops()
                         .sound(SoundType.STONE)));
 
-        DeferredBlock<Block> chiseledButton = registerBlock("chiseled_" + name + "_button",
+        DeferredBlock<ButtonBlock> chiseledButton = registerBlock("chiseled_" + name + "_button",
                 () -> new ButtonBlock(BlockSetType.STONE, 30,
                         BlockBehaviour.Properties.of().noCollission()));
 
-        DeferredBlock<Block> chiseledPressurePlate = registerBlock("chiseled_" + name + "_pressure_plate",
-                () -> new PressurePlateBlock(BlockSetType.STONE, PushReaction.DESTROY,
+        DeferredBlock<PressurePlateBlock> chiseledPressurePlate = registerBlock("chiseled_" + name + "_pressure_plate",
+                () -> new PressurePlateBlock(BlockSetType.STONE,
                         BlockBehaviour.Properties.of()
                                 .strength(3f)
                                 .requiresCorrectToolForDrops()
@@ -221,30 +234,30 @@ public class ModBlocks {
                         .requiresCorrectToolForDrops()
                         .sound(SoundType.STONE)));
 
-        DeferredBlock<Block> bricksStairs = registerBlock(name + "_bricks_stairs",
-                () -> new StairBlock(() -> bricks.get().defaultBlockState(),
+        DeferredBlock<StairBlock> bricksStairs = registerBlock(name + "_bricks_stairs",
+                () -> new StairBlock(bricks.get().defaultBlockState(),
                         BlockBehaviour.Properties.of()
                                 .strength(3f)
                                 .requiresCorrectToolForDrops()
                                 .sound(SoundType.STONE)));
 
-        DeferredBlock<Block> bricksSlab = registerBlock(name + "_bricks_slab",
+        DeferredBlock<SlabBlock> bricksSlab = registerBlock(name + "_bricks_slab",
                 () -> new SlabBlock(BlockBehaviour.Properties.of()
                         .strength(2f)
                         .sound(SoundType.STONE)));
 
-        DeferredBlock<Block> bricksWall = registerBlock(name + "_bricks_wall",
+        DeferredBlock<WallBlock> bricksWall = registerBlock(name + "_bricks_wall",
                 () -> new WallBlock(BlockBehaviour.Properties.of()
                         .strength(3f)
                         .requiresCorrectToolForDrops()
                         .sound(SoundType.STONE)));
 
-        DeferredBlock<Block> bricksButton = registerBlock(name + "_bricks_button",
+        DeferredBlock<ButtonBlock> bricksButton = registerBlock(name + "_bricks_button",
                 () -> new ButtonBlock(BlockSetType.STONE, 30,
                         BlockBehaviour.Properties.of().noCollission()));
 
-        DeferredBlock<Block> bricksPressurePlate = registerBlock(name + "_bricks_pressure_plate",
-                () -> new PressurePlateBlock(BlockSetType.STONE, PushReaction.DESTROY,
+        DeferredBlock<PressurePlateBlock> bricksPressurePlate = registerBlock(name + "_bricks_pressure_plate",
+                () -> new PressurePlateBlock(BlockSetType.STONE,
                         BlockBehaviour.Properties.of()
                                 .strength(3f)
                                 .requiresCorrectToolForDrops()
@@ -257,30 +270,30 @@ public class ModBlocks {
                         .requiresCorrectToolForDrops()
                         .sound(SoundType.STONE)));
 
-        DeferredBlock<Block> crackedBricksStairs = registerBlock("cracked_" + name + "_bricks_stairs",
-                () -> new StairBlock(() -> crackedBricks.get().defaultBlockState(),
+        DeferredBlock<StairBlock> crackedBricksStairs = registerBlock("cracked_" + name + "_bricks_stairs",
+                () -> new StairBlock(crackedBricks.get().defaultBlockState(),
                         BlockBehaviour.Properties.of()
                                 .strength(3f)
                                 .requiresCorrectToolForDrops()
                                 .sound(SoundType.STONE)));
 
-        DeferredBlock<Block> crackedBricksSlab = registerBlock("cracked_" + name + "_bricks_slab",
+        DeferredBlock<SlabBlock> crackedBricksSlab = registerBlock("cracked_" + name + "_bricks_slab",
                 () -> new SlabBlock(BlockBehaviour.Properties.of()
                         .strength(2f)
                         .sound(SoundType.STONE)));
 
-        DeferredBlock<Block> crackedBricksWall = registerBlock("cracked_" + name + "_bricks_wall",
+        DeferredBlock<WallBlock> crackedBricksWall = registerBlock("cracked_" + name + "_bricks_wall",
                 () -> new WallBlock(BlockBehaviour.Properties.of()
                         .strength(3f)
                         .requiresCorrectToolForDrops()
                         .sound(SoundType.STONE)));
 
-        DeferredBlock<Block> crackedBricksButton = registerBlock("cracked_" + name + "_bricks_button",
+        DeferredBlock<ButtonBlock> crackedBricksButton = registerBlock("cracked_" + name + "_bricks_button",
                 () -> new ButtonBlock(BlockSetType.STONE, 30,
                         BlockBehaviour.Properties.of().noCollission()));
 
-        DeferredBlock<Block> crackedBricksPressurePlate = registerBlock("cracked_" + name + "_bricks_pressure_plate",
-                () -> new PressurePlateBlock(BlockSetType.STONE, PushReaction.DESTROY,
+        DeferredBlock<PressurePlateBlock> crackedBricksPressurePlate = registerBlock("cracked_" + name + "_bricks_pressure_plate",
+                () -> new PressurePlateBlock(BlockSetType.STONE,
                         BlockBehaviour.Properties.of()
                                 .strength(3f)
                                 .requiresCorrectToolForDrops()
@@ -293,30 +306,30 @@ public class ModBlocks {
                         .requiresCorrectToolForDrops()
                         .sound(SoundType.STONE)));
 
-        DeferredBlock<Block> smoothStairs = registerBlock("smooth_" + name + "_stairs",
-                () -> new StairBlock(() -> smooth.get().defaultBlockState(),
+        DeferredBlock<StairBlock> smoothStairs = registerBlock("smooth_" + name + "_stairs",
+                () -> new StairBlock(smooth.get().defaultBlockState(),
                         BlockBehaviour.Properties.of()
                                 .strength(3f)
                                 .requiresCorrectToolForDrops()
                                 .sound(SoundType.STONE)));
 
-        DeferredBlock<Block> smoothSlab = registerBlock("smooth_" + name + "_slab",
+        DeferredBlock<SlabBlock> smoothSlab = registerBlock("smooth_" + name + "_slab",
                 () -> new SlabBlock(BlockBehaviour.Properties.of()
                         .strength(2f)
                         .sound(SoundType.STONE)));
 
-        DeferredBlock<Block> smoothWall = registerBlock("smooth_" + name + "_wall",
+        DeferredBlock<WallBlock> smoothWall = registerBlock("smooth_" + name + "_wall",
                 () -> new WallBlock(BlockBehaviour.Properties.of()
                         .strength(3f)
                         .requiresCorrectToolForDrops()
                         .sound(SoundType.STONE)));
 
-        DeferredBlock<Block> smoothButton = registerBlock("smooth_" + name + "_button",
+        DeferredBlock<ButtonBlock> smoothButton = registerBlock("smooth_" + name + "_button",
                 () -> new ButtonBlock(BlockSetType.STONE, 30,
                         BlockBehaviour.Properties.of().noCollission()));
 
-        DeferredBlock<Block> smoothPressurePlate = registerBlock("smooth_" + name + "_pressure_plate",
-                () -> new PressurePlateBlock(BlockSetType.STONE, PushReaction.DESTROY,
+        DeferredBlock<PressurePlateBlock> smoothPressurePlate = registerBlock("smooth_" + name + "_pressure_plate",
+                () -> new PressurePlateBlock(BlockSetType.STONE,
                         BlockBehaviour.Properties.of()
                                 .strength(3f)
                                 .requiresCorrectToolForDrops()
@@ -331,9 +344,9 @@ public class ModBlocks {
                 crackedBricks, crackedBricksStairs, crackedBricksSlab, crackedBricksWall, crackedBricksButton, crackedBricksPressurePlate,
                 smooth, smoothStairs, smoothSlab, smoothWall, smoothButton, smoothPressurePlate
         );
-    } */ //StoneSet
+    }
 
-   /* private static WoodSet registerWoodSet(String name, SaplingGenerator generator) {
+    /*private static WoodSet registerWoodSet(String name, SaplingGenerator generator) {
         DeferredBlock<Block> log = registerBlock(name + "_log",
                 () -> new PillarBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LOG)));
 
@@ -349,36 +362,36 @@ public class ModBlocks {
         DeferredBlock<Block> planks = registerBlock(name + "_planks",
                 () -> new Block(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)));
 
-        DeferredBlock<Block> leaves = registerBlock(name + "_leaves",
+        DeferredBlock<LeavesBlock> leaves = registerBlock(name + "_leaves",
                 () -> new LeavesBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LEAVES)));
 
-        DeferredBlock<Block> sapling = registerBlock(name + "_sapling",
+        DeferredBlock<SaplingBlock> sapling = registerBlock(name + "_sapling",
                 () -> new SaplingBlock(generator, BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING)));
 
-        DeferredBlock<Block> stairs = registerBlock(name + "_stairs",
-                () -> new StairsBlock(planks.get().defaultBlockState(),
+        DeferredBlock<StairBlock> stairs = registerBlock(name + "_stairs",
+                () -> new StairBlock(planks.get().defaultBlockState(),
                         BlockBehaviour.Properties.copy(Blocks.OAK_STAIRS)));
 
-        DeferredBlock<Block> slab = registerBlock(name + "_slab",
+        DeferredBlock<SlabBlock> slab = registerBlock(name + "_slab",
                 () -> new SlabBlock(BlockBehaviour.Properties.copy(Blocks.OAK_SLAB)));
 
-        DeferredBlock<Block> button = registerBlock(name + "_button",
+        DeferredBlock<ButtonBlock> button = registerBlock(name + "_button",
                 () -> new ButtonBlock(BlockSetType.OAK, 30, BlockBehaviour.Properties.copy(Blocks.OAK_BUTTON).noCollission()));
 
-        DeferredBlock<Block> pressurePlate = registerBlock(name + "_pressure_plate",
-                () -> new PressurePlateBlock(BlockSetType.OAK, PushReaction.DESTROY, BlockBehaviour.Properties.copy(Blocks.OAK_PRESSURE_PLATE)));
+        DeferredBlock<PressurePlateBlock> pressurePlate = registerBlock(name + "_pressure_plate",
+                () -> new PressurePlateBlock(BlockSetType.OAK, BlockBehaviour.Properties.copy(Blocks.OAK_PRESSURE_PLATE)));
 
-        DeferredBlock<Block> fence = registerBlock(name + "_fence",
+        DeferredBlock<FenceBlock> fence = registerBlock(name + "_fence",
                 () -> new FenceBlock(BlockBehaviour.Properties.copy(Blocks.OAK_FENCE)));
 
-        DeferredBlock<Block> fenceGate = registerBlock(name + "_fence_gate",
+        DeferredBlock<FenceGateBlock> fenceGate = registerBlock(name + "_fence_gate",
                 () -> new FenceGateBlock(WoodType.OAK, BlockBehaviour.Properties.copy(Blocks.OAK_FENCE_GATE)));
 
-        DeferredBlock<Block> door = registerBlock(name + "_door",
+        DeferredBlock<DoorBlock> door = registerBlock(name + "_door",
                 () -> new DoorBlock(BlockSetType.OAK, BlockBehaviour.Properties.copy(Blocks.OAK_DOOR).noOcclusion()));
 
-        DeferredBlock<Block> trapdoor = registerBlock(name + "_trapdoor",
-                () -> new TrapdoorBlock(BlockSetType.OAK, BlockBehaviour.Properties.copy(Blocks.OAK_TRAPDOOR).noOcclusion()));
+        DeferredBlock<TrapDoorBlock> trapdoor = registerBlock(name + "_trapdoor",
+                () -> new TrapDoorBlock(BlockSetType.OAK, BlockBehaviour.Properties.copy(Blocks.OAK_TRAPDOOR).noOcclusion()));
 
         return new WoodSet(name, log, strippedLog, wood, strippedWood, planks, leaves, sapling,
                 stairs, slab, button, pressurePlate, fence, fenceGate, door, trapdoor);
