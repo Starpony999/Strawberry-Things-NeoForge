@@ -24,7 +24,7 @@ public class ModArmorItem extends ArmorItem {
                                     new MobEffectInstance(MobEffects.WATER_BREATHING, 400, 1, false, false)))
                     .put(ModArmorMaterials.RUBY_ARMOR_MATERIAL,
                             List.of(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 400, 2, false, false),
-                                    new MobEffectInstance(ModEffects, 400, 2, false, false)))
+                                    new MobEffectInstance(ModEffects.DRAGONS_GRACE, 400, 2, false, false)))
 
                     .build();
 
