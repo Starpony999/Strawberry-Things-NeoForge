@@ -1,6 +1,7 @@
 package net.starpony.strawberry;
 
 import net.starpony.strawberry.block.ModBlocks;
+import net.starpony.strawberry.effect.ModEffects;
 import net.starpony.strawberry.item.ModCreativeModeTabs;
 import net.starpony.strawberry.item.ModItems;
 import net.starpony.strawberry.item.ModArmorMaterials;
@@ -38,6 +39,7 @@ public class Strawberry {
         ModArmorMaterials.register(modEventBus);
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
+        ModEffects.register(modEventBus);
 
 
         // Register the item to a creative tab
