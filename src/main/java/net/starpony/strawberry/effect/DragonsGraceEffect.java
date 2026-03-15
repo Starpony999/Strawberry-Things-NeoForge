@@ -18,7 +18,7 @@ public class DragonsGraceEffect extends MobEffect {
 
     @Override
     public boolean applyEffectTick(LivingEntity livingEntity, int amplifier) {
-        // Force-extinguish every tick to remove burning visuals in first and third person.
+        // Keep fire state cleared while effect is active.
         livingEntity.setRemainingFireTicks(0);
         livingEntity.clearFire();
 
@@ -26,38 +26,32 @@ public class DragonsGraceEffect extends MobEffect {
             return true;
         }
 
-        // Use the actual swimming pose/state while in lava and sprinting.
         boolean shouldSwim = player.isSprinting() && !player.isPassenger();
         player.setSwimming(shouldSwim);
 
+        if (!shouldSwim) {
+            return true;
+        }
+
+        // Use vanilla-style input acceleration while in fluid.
+        Vec3 movementInput = new Vec3(player.xxa, 0.0D, player.zza);
+        if (movementInput.lengthSqr() > 0.0001D) {
+            player.moveRelative(0.02F + (0.005F * amplifier), movementInput);
+        }
+
         Vec3 velocity = player.getDeltaMovement();
 
-        if (shouldSwim) {
-            // Apply input-driven acceleration like fluid swimming.
-            Vec3 movementInput = new Vec3(player.xxa, 0.0D, player.zza);
-            if (movementInput.lengthSqr() > 0.0001D) {
-                player.moveRelative(0.035F + amplifier * 0.01F, movementInput);
-                velocity = player.getDeltaMovement();
-            }
-
-            // Add forward propulsion based on look direction while moving forward.
-            if (player.zza > 0.0F) {
-                Vec3 look = player.getLookAngle();
-                double forwardForce = 0.055D + (amplifier * 0.015D);
-                velocity = velocity.add(look.x * forwardForce, look.y * forwardForce * 0.12D, look.z * forwardForce);
-            }
+        // Vertical control uses swim look angle and sneak-to-dive; no passive upward float.
+        if (player.zza > 0.0F) {
+            Vec3 look = player.getLookAngle();
+            velocity = velocity.add(0.0D, look.y * 0.03D, 0.0D);
         }
-
-        // Vertical controls: crouch dives, otherwise slight buoyancy to avoid hard sinking.
         if (player.isShiftKeyDown()) {
-            velocity = velocity.add(0.0D, -0.045D, 0.0D);
-        } else if (velocity.y < 0.0D) {
-            velocity = velocity.add(0.0D, 0.03D, 0.0D);
+            velocity = velocity.add(0.0D, -0.04D, 0.0D);
         }
 
-        // Counteract heavy lava drag while preserving some fluid feel.
-        double horizontalScale = shouldSwim ? 1.12D : 1.04D;
-        velocity = new Vec3(velocity.x * horizontalScale, velocity.y, velocity.z * horizontalScale);
+        // Lava still feels thicker than water, but not unusably so.
+        velocity = velocity.multiply(0.91D, 0.90D, 0.91D);
 
         player.setDeltaMovement(velocity);
         player.hasImpulse = true;
