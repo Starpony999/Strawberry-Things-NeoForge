@@ -64,6 +64,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.ORANGE_SODA);
                         output.accept(ModItems.LEMON_LIME_SODA);
                         output.accept(ModItems.DIRT_SODA);
+                        output.accept(ModItems.LEMONADE);
                       //  output.accept(ModDyes.CERISE_DYE);
                      //   output.accept(ModDyes.TURQUOISE_DYE);
 

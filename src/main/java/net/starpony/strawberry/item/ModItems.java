@@ -9,6 +9,7 @@ import net.starpony.strawberry.Strawberry;
 /*import net.starpony.strawberry.block.ModBlocks;
 import net.starpony.strawberry.item.custom.HammerItem;
 import net.starpony.strawberry.item.custom.SodaItem;*/
+import net.starpony.strawberry.item.custom.BottleItem;
 import net.starpony.strawberry.item.custom.ChiselItem;
 import net.starpony.strawberry.item.custom.FuelItem;
 import net.starpony.strawberry.item.custom.HammerItem;
@@ -64,6 +65,7 @@ public class ModItems {
     public static final DeferredItem<Item> GRAPE_SODA = ITEMS.register("grape_soda", () -> new SodaItem(new Item.Properties().stacksTo(1).food(ModFoodProperties.GRAPE_SODA)));
     public static final DeferredItem<Item> BLUEBERRY_SODA = ITEMS.register("blueberry_soda", () -> new SodaItem(new Item.Properties().stacksTo(1).food(ModFoodProperties.BLUEBERRY_SODA)));
     public static final DeferredItem<Item> ORANGE_SODA = ITEMS.register("orange_soda", () -> new SodaItem(new Item.Properties().stacksTo(1).food(ModFoodProperties.ORANGE_SODA)));
+    public static final DeferredItem<Item> LEMONADE = ITEMS.register("lemonade", () -> new BottleItem(new Item.Properties().stacksTo(1).food(ModFoodProperties.LEMONADE)));
 
     // Individual GemSet Items
     public static final DeferredItem<Item> ROSE_QUARTZ_HAMMER = ITEMS.register("rose_quartz_hammer", () -> new HammerItem(ModToolTiers.ROSE_QUARTZ, new Item.Properties()));

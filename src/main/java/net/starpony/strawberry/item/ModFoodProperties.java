@@ -42,6 +42,9 @@ public class ModFoodProperties {
     public static final FoodProperties ORANGE_SODA = new FoodProperties.Builder()
             .nutrition(4).saturationModifier(0.5f).build();
 
+    public static final FoodProperties LEMONADE = new FoodProperties.Builder()
+            .nutrition(4).saturationModifier(0.3f).build();
+
     public static final FoodProperties DIRT_SODA = new FoodProperties.Builder()
             .nutrition(3).saturationModifier(0.25f)
             .effect(() -> new MobEffectInstance(MobEffects.CONFUSION, 1200, 2), 1f)
