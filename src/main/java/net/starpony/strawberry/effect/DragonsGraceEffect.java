@@ -25,27 +25,36 @@ public class DragonsGraceEffect extends MobEffect {
             return true;
         }
 
-        // Allow full swim mode in lava while sprinting.
-        player.setSwimming(player.isSprinting());
+        boolean isTryingToSwim = player.isSprinting() && player.zza > 0.0F;
+        player.setSwimming(isTryingToSwim);
 
-        Vec3 currentVelocity = player.getDeltaMovement();
+        Vec3 velocity = player.getDeltaMovement();
 
-        // Buoyancy and directional control similar to water swimming.
-        double verticalBoost = currentVelocity.y < 0.0D ? 0.05D : 0.02D;
-        float pitch = player.getXRot();
-        double pitchInfluence = -pitch / 90.0D * 0.04D;
+        // Add true forward propulsion while sprint-swimming so lava feels like water swimming.
+        if (isTryingToSwim) {
+            Vec3 look = player.getLookAngle();
+            double forwardForce = 0.06D + (amplifier * 0.015D);
+            double verticalControl = 0.04D;
+            velocity = velocity.add(
+                    look.x * forwardForce,
+                    look.y * forwardForce * verticalControl,
+                    look.z * forwardForce
+            );
+        }
 
-        // Slight horizontal boost to offset lava drag.
-        double horizontalBoost = 1.15D;
-        Vec3 boostedVelocity = new Vec3(
-                currentVelocity.x * horizontalBoost,
-                currentVelocity.y + verticalBoost + pitchInfluence,
-                currentVelocity.z * horizontalBoost
-        );
+        // Buoyancy and vertical control.
+        if (player.isShiftKeyDown()) {
+            velocity = velocity.add(0.0D, -0.04D, 0.0D); // dive
+        } else if (velocity.y < 0.0D) {
+            velocity = velocity.add(0.0D, 0.03D, 0.0D); // avoid sinking like a rock
+        }
 
-        player.setDeltaMovement(boostedVelocity);
+        // Counteract lava drag a bit so movement remains responsive.
+        double horizontalDampReduction = isTryingToSwim ? 1.08D : 1.02D;
+        velocity = new Vec3(velocity.x * horizontalDampReduction, velocity.y, velocity.z * horizontalDampReduction);
+
+        player.setDeltaMovement(velocity);
         player.hasImpulse = true;
-
         return true;
     }
 }
