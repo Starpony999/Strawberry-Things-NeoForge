@@ -23,9 +23,9 @@ public class ModTrimMaterials {
     public static final ResourceKey<TrimMaterial> ROSE_QUARTZ =
             ResourceKey.create(Registries.TRIM_MATERIAL, ResourceLocation.fromNamespaceAndPath(Strawberry.MOD_ID, "rose_quartz"));
     public static final ResourceKey<TrimMaterial> OTHERWORLDLY_AMETHYST =
-            ResourceKey.create(Registries.TRIM_MATERIAL, ResourceLocation.fromNamespaceAndPath(Strawberry.MOD_ID, "other_worldly_amethyst"));
+            ResourceKey.create(Registries.TRIM_MATERIAL, ResourceLocation.fromNamespaceAndPath(Strawberry.MOD_ID, "otherworldly_amethyst"));
     public static final ResourceKey<TrimMaterial> ALUMINUM =
-            ResourceKey.create(Registries.TRIM_MATERIAL, ResourceLocation.fromNamespaceAndPath(Strawberry.MOD_ID, "other_worldly_amethyst"));
+            ResourceKey.create(Registries.TRIM_MATERIAL, ResourceLocation.fromNamespaceAndPath(Strawberry.MOD_ID, "aluminum_ingot"));
 
 
     public static void bootstrap(BootstrapContext<TrimMaterial> context) {
