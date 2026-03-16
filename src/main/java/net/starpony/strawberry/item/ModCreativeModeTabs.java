@@ -37,11 +37,11 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.NETHERTHYST);
                         output.accept(ModItems.ENDERTHYST);
                         output.accept(ModItems.RAW_ROSE_QUARTZ);
-                        //output.accept(ModItems.ROSE_QUARTZ.getGem());
-                        //output.accept(ModItems.COVER_SMITHING_TEMPLATE);
-                        //output.accept(ModItems.STARS_SMITHING_TEMPLATE);
-                        //output.accept(ModItems.SHINING_UPGRADE_SMITHING_TEMPLATE);
-                        //output.accept(ModItems.SIMPLE_UPGRADE_SMITHING_TEMPLATE);
+                        output.accept(ModItems.ROSE_QUARTZ.getGem());
+                        output.accept(ModItems.COVER_SMITHING_TEMPLATE);
+                        output.accept(ModItems.STARS_SMITHING_TEMPLATE);
+                        output.accept(ModItems.SHINING_UPGRADE_SMITHING_TEMPLATE);
+                        output.accept(ModItems.SIMPLE_UPGRADE_SMITHING_TEMPLATE);
                         output.accept(ModItems.CRYSTAL_LANTERN);
                         output.accept(ModItems.REDSTONE_LANTERN);
                         output.accept(ModItems.SMALL_LIGHT);
@@ -120,7 +120,7 @@ public class ModCreativeModeTabs {
                         SetUtils.addColorSet(output, ModBlocks.TURQUOISE); */
                     }).build());
     public static final Supplier<CreativeModeTab> STRAWBERRY_TOOLS_ARMOR_TAB = CREATIVE_MODE_TAB.register("strawberry_tools_armor_tab",
-            () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.CHISEL.get()))
+            () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.RUBY.getPickaxe().get()))
                     .withTabsBefore(ResourceLocation.fromNamespaceAndPath(Strawberry.MOD_ID, "strawberry_blocks_tab"))
                     .title(Component.translatable("creativetab.strawberry.strawberry_tools_armor"))
                     .displayItems((itemDisplayParameters, output) -> {
@@ -169,6 +169,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.OTHERWORLDLY_AMETHYST.getLeggings());
                         output.accept(ModItems.OTHERWORLDLY_AMETHYST.getBoots());
                         output.accept(ModItems.OTHERWORLDLY_AMETHYST.getHorseArmor());
+                        output.accept(ModItems.NETHERITE_HORSE_ARMOR);
                      /* output.accept(ModItems.BUCKET_OF_MUD);
                         output.accept(ModItems.FISHING_ROD); */
                         output.accept(ModItems.FUSION_KEY);

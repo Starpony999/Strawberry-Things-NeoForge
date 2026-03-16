@@ -1,6 +1,7 @@
 package net.starpony.strawberry.item;
 
 import net.minecraft.core.Holder;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.*;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;
@@ -67,7 +68,13 @@ public class ModItems {
     // Individual GemSet Items
     public static final DeferredItem<Item> ROSE_QUARTZ_HAMMER = ITEMS.register("rose_quartz_hammer", () -> new HammerItem(ModToolTiers.ROSE_QUARTZ, new Item.Properties()));
     public static final DeferredItem<Item> OTHERWORLDLY_AMETHYST_HAMMER = ITEMS.register("otherworldly_amethyst_hammer", () -> new HammerItem(ModToolTiers.OTHERWORLDLY_AMETHYST, new Item.Properties()));
-   // public static final DeferredItem<Item> NETHERITE_HORSE_ARMOR = ITEMS.register("netherite_horse_armor", () -> new AnimalArmorItem(ArmorMaterials.NETHERITE, AnimalArmorItem.Type.EQUESTRIAN, false, new Item.Properties().stacksTo(1)));
+    public static final DeferredItem<ArmorItem> NETHERITE_HORSE_ARMOR = ITEMS.register("netherite_horse_armor", () -> new AnimalArmorItem(ArmorMaterials.NETHERITE, AnimalArmorItem.BodyType.EQUESTRIAN, false, new Item.Properties().stacksTo(1)));
+
+    //Smithing
+    public static final DeferredItem<Item> COVER_SMITHING_TEMPLATE = ITEMS.register("cover_armor_trim_smithing_template", () -> SmithingTemplateItem.createArmorTrimTemplate(ResourceLocation.fromNamespaceAndPath(Strawberry.MOD_ID, "cover")));
+    public static final DeferredItem<Item> STARS_SMITHING_TEMPLATE = ITEMS.register("stars_armor_trim_smithing_template", () -> SmithingTemplateItem.createArmorTrimTemplate(ResourceLocation.fromNamespaceAndPath(Strawberry.MOD_ID, "stars")));
+    public static final DeferredItem<Item> SHINING_UPGRADE_SMITHING_TEMPLATE = ITEMS.register("shining_upgrade_smithing_template", SmithingTemplateItem::createNetheriteUpgradeTemplate);
+    public static final DeferredItem<Item> SIMPLE_UPGRADE_SMITHING_TEMPLATE = ITEMS.register("simple_upgrade_smithing_template", SmithingTemplateItem::createNetheriteUpgradeTemplate);
 
     //Registry Helpers
     public static GemSet registerGemSet(String name, Tier toolMaterial, Holder armorMaterial, boolean withShard) {
@@ -103,7 +110,8 @@ public class ModItems {
                         new Item.Properties().durability(ArmorItem.Type.BOOTS.getDurability(19))));
 
         DeferredItem<ArmorItem> horseArmor = ITEMS.register(lower + "_horse_armor",
-                () -> new AnimalArmorItem(armorMaterial, AnimalArmorItem.BodyType.EQUESTRIAN, true, new Item.Properties().stacksTo(1)));
+                () -> new AnimalArmorItem(armorMaterial, AnimalArmorItem.BodyType.EQUESTRIAN, false,
+                        new Item.Properties().stacksTo(1)));
 
         DeferredItem<Item> gem = ITEMS.register(lower,
                 () -> new Item(new Item.Properties()));

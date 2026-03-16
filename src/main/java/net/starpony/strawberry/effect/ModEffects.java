@@ -16,11 +16,7 @@ public class ModEffects {
             DeferredRegister.create(BuiltInRegistries.MOB_EFFECT, Strawberry.MOD_ID);
 
     public static final DeferredHolder<MobEffect, MobEffect> DRAGONS_GRACE = MOB_EFFECTS.register("dragons_grace",
-            () -> new DragonsGraceEffect(MobEffectCategory.BENEFICIAL, 0xFF4500)
-                    .addAttributeModifier(Attributes.MOVEMENT_SPEED,
-                            ResourceLocation.fromNamespaceAndPath(Strawberry.MOD_ID,
-                                    "dragons_grace"), -0.25f,
-                            AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL));
+            () -> new DragonsGraceEffect(MobEffectCategory.BENEFICIAL, 0xFF4500));
 
 
     public static void register(IEventBus eventBus) {
