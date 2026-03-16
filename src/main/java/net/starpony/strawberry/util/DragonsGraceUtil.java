@@ -7,10 +7,10 @@ import net.starpony.strawberry.effect.ModEffects;
 public class DragonsGraceUtil {
 
     public static boolean hasDragonsGrace(Entity entity) {
-        if (!(entity instanceof Player player)) {
+        if (!(entity instanceof Player player) || !ModEffects.DRAGONS_GRACE.isBound()) {
             return false;
-        } else {
+        }
             return player.hasEffect(ModEffects.DRAGONS_GRACE);
         }
     }
-}
+

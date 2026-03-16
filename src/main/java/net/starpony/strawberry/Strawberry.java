@@ -2,6 +2,7 @@ package net.starpony.strawberry;
 
 import net.starpony.strawberry.block.ModBlocks;
 import net.starpony.strawberry.item.ModCreativeModeTabs;
+import net.starpony.strawberry.effect.ModEffects;
 import net.starpony.strawberry.item.ModItems;
 import net.starpony.strawberry.item.ModArmorMaterials;
 import org.slf4j.Logger;
@@ -36,6 +37,7 @@ public class Strawberry {
         NeoForge.EVENT_BUS.register(this);
         ModCreativeModeTabs.register(modEventBus);
         ModArmorMaterials.register(modEventBus);
+        ModEffects.register(modEventBus);
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
 
