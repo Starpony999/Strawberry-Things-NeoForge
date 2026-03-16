@@ -1,29 +1,30 @@
 package net.starpony.strawberry.mixin;
 
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.registry.tag.FluidTags;
+import net.minecraft.tags.FluidTags;
+import net.minecraft.world.entity.player.Player;
 import net.starpony.strawberry.util.DragonsGraceUtil;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(PlayerEntity.class)
+@Mixin(Player.class)
 public abstract class PlayerSprintInLavaMixin {
 
-    @Inject(method = "tickMovement", at = @At("TAIL"))
-    private void enableSprintInLava(CallbackInfo ci) {
-        PlayerEntity player = (PlayerEntity)(Object)this;
+    @Inject(method = "tick", at = @At("TAIL"))
+    private void strawberry$enableSprintInLava(CallbackInfo ci) {
+        Player player = (Player)(Object)this;
+
         if (!DragonsGraceUtil.hasDragonsGrace(player)) return;
 
-        boolean inLava = player.getWorld()
-                .getFluidState(player.getBlockPos())
-                .isIn(FluidTags.LAVA);
-        boolean movingForward = player.forwardSpeed > 0;
+        boolean inLava = player.level()
+                .getFluidState(player.blockPosition())
+                .is(FluidTags.LAVA);
+
+        boolean movingForward = player.zza > 0;
 
         if (inLava && movingForward) {
-            // use the LivingEntity invoker
-            ((LivingEntitySprintAccessor)player).callSetSprinting(true);
+            player.setSprinting(true);
         }
     }
 }

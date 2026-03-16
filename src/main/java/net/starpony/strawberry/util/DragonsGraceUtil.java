@@ -10,7 +10,7 @@ public class DragonsGraceUtil {
         if (!(entity instanceof Player player)) {
             return false;
         } else {
-            return player.hasStatusEffect(ModEffects.DRAGONS_GRACE);
+            return player.hasEffect(ModEffects.DRAGONS_GRACE);
         }
     }
 }

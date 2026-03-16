@@ -1,0 +1,20 @@
+{
+  "required": true,
+  "package": "net.starpony.strawberry.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "EntityAccessor",
+    "EntityFluidMixin",
+    "EntitySwimmingAccessor",
+    "EntitySwimmingMixin",
+    "LivingEntitySprintAccessor",
+    "MixinBackgroundRenderer",
+    "PlayerIsSwimmingMixin",
+    "PlayerSprintInLavaMixin",
+    "ScreenEffectRendererMixin"
+  ],
+  "client": [],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

@@ -1,0 +1,31 @@
+modLoader="javafml"
+loaderVersion="[4,)"
+license="CC0-1.0"
+
+[[mods]]
+modId="strawberry"
+version="${version}"
+displayName="strawberry"
+description="This is a flavorful upgrade to Vanilla!"
+logoFile="assets/strawberry/icon.png"
+authors="Starpony999, RalfiShores"
+
+[[mods.entrypoints.main]]
+value="net.starpony.strawberry.Strawberry"
+
+[[mixins]]
+config="strawberry.mixins.json"
+
+[[dependencies.strawberry]]
+modId="neoforge"
+mandatory=true
+versionRange="[21,)"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.strawberry]]
+modId="minecraft"
+mandatory=true
+versionRange="[1.21.1]"
+ordering="NONE"
+side="BOTH"
