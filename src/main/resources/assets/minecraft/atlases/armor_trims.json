@@ -40,10 +40,10 @@
         "trims/entity/humanoid_leggings/flow",
         "trims/entity/humanoid/bolt",
         "trims/entity/humanoid_leggings/bolt",
-        "strawberry:trims/entity/humanoid/cover",
-        "strawberry:trims/entity/humanoid_leggings/cover",
-        "strawberry:trims/entity/humanoid/stars",
-        "strawberry:trims/entity/humanoid_leggings/stars"
+        "strawberry:trims/models/armor/cover",
+        "strawberry:trims/models/armor/cover_leggings",
+        "strawberry:trims/models/armor/stars",
+        "strawberry:trims/models/armor/stars_leggings"
       ],
       "palette_key": "trims/color_palettes/trim_palette",
       "permutations": {
