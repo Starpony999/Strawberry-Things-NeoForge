@@ -9,11 +9,8 @@ import net.starpony.strawberry.Strawberry;
 /*import net.starpony.strawberry.block.ModBlocks;
 import net.starpony.strawberry.item.custom.HammerItem;
 import net.starpony.strawberry.item.custom.SodaItem;*/
+import net.starpony.strawberry.item.custom.*;
 import net.starpony.strawberry.item.custom.BottleItem;
-import net.starpony.strawberry.item.custom.ChiselItem;
-import net.starpony.strawberry.item.custom.FuelItem;
-import net.starpony.strawberry.item.custom.HammerItem;
-import net.starpony.strawberry.item.custom.SodaItem;
 import net.starpony.strawberry.util.sets.GemSet;
 
 public class ModItems {
@@ -93,16 +90,16 @@ public class ModItems {
                 () -> new HoeItem(toolMaterial, new Item.Properties()));
 
         DeferredItem<ArmorItem> helmet = ITEMS.register(lower + "_helmet",
-                () -> new ArmorItem(armorMaterial, ArmorItem.Type.HELMET,
+                () -> new ModArmorItem(armorMaterial, ArmorItem.Type.HELMET,
                         new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(19))));
         DeferredItem<ArmorItem> chestplate = ITEMS.register(lower + "_chestplate",
-                () -> new ArmorItem(armorMaterial, ArmorItem.Type.CHESTPLATE,
+                () -> new ModArmorItem(armorMaterial, ArmorItem.Type.CHESTPLATE,
                         new Item.Properties().durability(ArmorItem.Type.CHESTPLATE.getDurability(19))));
         DeferredItem<ArmorItem> leggings = ITEMS.register(lower + "_leggings",
-                (          () -> new ArmorItem(armorMaterial, ArmorItem.Type.LEGGINGS,
+                (          () -> new ModArmorItem(armorMaterial, ArmorItem.Type.LEGGINGS,
                         new Item.Properties().durability(ArmorItem.Type.LEGGINGS.getDurability(19)))));
         DeferredItem<ArmorItem> boots = ITEMS.register(lower + "_boots",
-                () -> new ArmorItem(armorMaterial, ArmorItem.Type.BOOTS,
+                () -> new ModArmorItem(armorMaterial, ArmorItem.Type.BOOTS,
                         new Item.Properties().durability(ArmorItem.Type.BOOTS.getDurability(19))));
 
         DeferredItem<ArmorItem> horseArmor = ITEMS.register(lower + "_horse_armor",

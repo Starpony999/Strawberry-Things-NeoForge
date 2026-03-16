@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(Player.class)
 public abstract class EntitySwimmingMixin {
 
-    @Inject(method = "updateSwimming", at = @At("HEAD"))
+    @Inject(method = "updateSwimming", at = @At("TAIL"))
     private void onUpdateSwimming(CallbackInfo ci) {
         Player player = (Player)(Object) this;
 
