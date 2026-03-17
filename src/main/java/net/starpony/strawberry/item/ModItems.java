@@ -12,6 +12,7 @@ import net.starpony.strawberry.item.custom.HammerItem;
 import net.starpony.strawberry.item.custom.SodaItem;*/
 import net.starpony.strawberry.item.custom.*;
 import net.starpony.strawberry.item.custom.BottleItem;
+import net.starpony.strawberry.sound.ModSounds;
 import net.starpony.strawberry.util.sets.GemSet;
 
 public class ModItems {
@@ -44,6 +45,8 @@ public class ModItems {
     public static final DeferredItem<Item> SMALL_LIGHT = ITEMS.register("small_light", () -> new Item(new Item.Properties()));
     public static final DeferredItem<Item> REDSTONE_LANTERN = ITEMS.register("redstone_lantern", () -> new Item(new Item.Properties()));
     public static final DeferredItem<Item> STRAWBERRY_REDSTONE = ITEMS.register("strawberry_redstone", () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> SUNSET_VIBES_MUSIC_DISC = ITEMS.register("sunset_vibes_music_disc", () -> new Item(new Item.Properties().jukeboxPlayable(ModSounds.SUNSET_VIBES_KEY).stacksTo(1)));
+
 
     // Food
     public static final DeferredItem<Item> CAULIFLOWER = ITEMS.register("cauliflower", () -> new Item(new Item.Properties().food(ModFoodProperties.CAULIFLOWER)));

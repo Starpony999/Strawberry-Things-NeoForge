@@ -47,7 +47,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.SMALL_LIGHT);
                         output.accept(ModItems.TOILET_PAPER);
                         output.accept(ModItems.BRIQUETTE);
-                      //  output.accept(ModItems.SUNSET_VIBES_MUSIC_DISC);
+                        output.accept(ModItems.SUNSET_VIBES_MUSIC_DISC);
                       //  output.accept(ModItems.STRAWBERRY);
                      //   output.accept(ModItems.BLUEBERRY);
                         output.accept(ModItems.GRAPES);
