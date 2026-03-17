@@ -5,6 +5,8 @@ import net.starpony.strawberry.item.ModCreativeModeTabs;
 import net.starpony.strawberry.effect.ModEffects;
 import net.starpony.strawberry.item.ModItems;
 import net.starpony.strawberry.item.ModArmorMaterials;
+import net.starpony.strawberry.potion.ModPotions;
+import net.starpony.strawberry.sound.ModSounds;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -38,6 +40,8 @@ public class Strawberry {
         ModCreativeModeTabs.register(modEventBus);
         ModArmorMaterials.register(modEventBus);
         ModEffects.register(modEventBus);
+        ModPotions.register(modEventBus);
+        ModSounds.register(modEventBus);
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
 

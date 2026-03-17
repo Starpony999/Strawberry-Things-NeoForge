@@ -1,0 +1,11 @@
+{
+"asset_id": "strawberry:still_life",
+  "height": 2,
+  "width": 2,
+  "author": {
+    "translate": "painting.strawberry.still_life.author"
+  },
+  "title": {
+    "translate": "painting.strawberry.still_life.title"
+  }
+}

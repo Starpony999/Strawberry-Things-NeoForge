@@ -1,0 +1,11 @@
+{
+"asset_id": "strawberry:lost_shoe",
+  "height": 2,
+  "width": 2,
+  "author": {
+    "translate": "painting.strawberry.lost_shoe.author"
+  },
+  "title": {
+    "translate": "painting.strawberry.lost_shoe.title"
+  }
+}

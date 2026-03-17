@@ -51,12 +51,12 @@ public class ModCreativeModeTabs {
                       //  output.accept(ModItems.STRAWBERRY);
                      //   output.accept(ModItems.BLUEBERRY);
                         output.accept(ModItems.GRAPES);
-                     //   output.accept(ModItems.GRAPE_SEEDS);
+                        output.accept(ModItems.GRAPE_SEEDS);
                         output.accept(ModItems.ORANGE);
                         output.accept(ModItems.LIME);
                         output.accept(ModItems.LEMON);
                         output.accept(ModItems.CAULIFLOWER);
-                     //   output.accept(ModItems.CAULIFLOWER_SEEDS);
+                        output.accept(ModItems.CAULIFLOWER_SEEDS);
                         output.accept(ModItems.SODA_CAN);
                         output.accept(ModItems.STRAWBERRY_SODA);
                         output.accept(ModItems.BLUEBERRY_SODA);

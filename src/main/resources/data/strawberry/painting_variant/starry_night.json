@@ -1,0 +1,11 @@
+{
+"asset_id": "strawberry:starry_night",
+  "height": 3,
+  "width": 4,
+  "author": {
+    "translate": "painting.strawberry.starry_night.author"
+  },
+  "title": {
+    "translate": "painting.strawberry.starry_night.title"
+  }
+}

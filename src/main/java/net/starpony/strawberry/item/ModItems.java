@@ -10,6 +10,7 @@ import net.starpony.strawberry.Strawberry;
 /*import net.starpony.strawberry.block.ModBlocks;
 import net.starpony.strawberry.item.custom.HammerItem;
 import net.starpony.strawberry.item.custom.SodaItem;*/
+import net.starpony.strawberry.block.ModBlocks;
 import net.starpony.strawberry.item.custom.*;
 import net.starpony.strawberry.item.custom.BottleItem;
 import net.starpony.strawberry.sound.ModSounds;
@@ -50,12 +51,12 @@ public class ModItems {
 
     // Food
     public static final DeferredItem<Item> CAULIFLOWER = ITEMS.register("cauliflower", () -> new Item(new Item.Properties().food(ModFoodProperties.CAULIFLOWER)));
-  //  public static final DeferredItem<Item> CAULIFLOWER_SEEDS = ITEMS.register("cauliflower_seeds", () -> new BlockItem(ModBlocks.CAULIFLOWER_CROP.get(), new Item.Properties()));
+    public static final DeferredItem<Item> CAULIFLOWER_SEEDS = ITEMS.register("cauliflower_seeds", () -> new BlockItem(ModBlocks.CAULIFLOWER_CROP.get(), new Item.Properties()));
   //  public static final DeferredItem<Item> STRAWBERRY = ITEMS.register("strawberry", () -> new BlockItem(ModBlocks.STRAWBERRY_BUSH.get(), new Item.Properties().food(ModFoodProperties.STRAWBERRY)));
     public static final DeferredItem<Item> LIME = ITEMS.register("lime", () -> new Item(new Item.Properties().food(ModFoodProperties.LIME)));
     public static final DeferredItem<Item> LEMON = ITEMS.register("lemon", () -> new Item(new Item.Properties().food(ModFoodProperties.LEMON)));
     public static final DeferredItem<Item> GRAPES = ITEMS.register("grapes", () -> new Item(new Item.Properties().food(ModFoodProperties.GRAPES)));
-  //  public static final DeferredItem<Item> GRAPE_SEEDS = ITEMS.register("grape_seeds", () -> new BlockItem(ModBlocks.GRAPE_CROP.get(), new Item.Properties()));
+    public static final DeferredItem<Item> GRAPE_SEEDS = ITEMS.register("grape_seeds", () -> new BlockItem(ModBlocks.GRAPE_CROP.get(), new Item.Properties()));
   //  public static final DeferredItem<Item> BLUEBERRY = ITEMS.register("blueberry", () -> new BlockItem(ModBlocks.BLUEBERRY_BUSH.get(), new Item.Properties().food(ModFoodProperties.BLUEBERRY)));
     public static final DeferredItem<Item> ORANGE = ITEMS.register("orange", () -> new Item(new Item.Properties().food(ModFoodProperties.ORANGE)));
 

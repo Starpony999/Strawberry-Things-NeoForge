@@ -1,0 +1,11 @@
+{
+"asset_id": "strawberry:ringleader",
+  "height": 2,
+  "width": 1,
+  "author": {
+    "translate": "painting.strawberry.ringleader.author"
+  },
+  "title": {
+    "translate": "painting.strawberry.ringleader.title"
+  }
+}
