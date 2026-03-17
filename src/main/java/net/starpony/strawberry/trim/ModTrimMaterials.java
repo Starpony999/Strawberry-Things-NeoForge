@@ -24,7 +24,7 @@ public class ModTrimMaterials {
             ResourceKey.create(Registries.TRIM_MATERIAL, ResourceLocation.fromNamespaceAndPath(Strawberry.MOD_ID, "rose_quartz"));
     public static final ResourceKey<TrimMaterial> OTHERWORLDLY_AMETHYST =
             ResourceKey.create(Registries.TRIM_MATERIAL, ResourceLocation.fromNamespaceAndPath(Strawberry.MOD_ID, "otherworldly_amethyst"));
-    public static final ResourceKey<TrimMaterial> ALUMINUM =
+    public static final ResourceKey<TrimMaterial> ALUMINUM_INGOT =
             ResourceKey.create(Registries.TRIM_MATERIAL, ResourceLocation.fromNamespaceAndPath(Strawberry.MOD_ID, "aluminum_ingot"));
 
 
@@ -33,7 +33,7 @@ public class ModTrimMaterials {
         register(context, SAPPHIRE, ModItems.SAPPHIRE.getGem().get(), Style.EMPTY.withColor(TextColor.parseColor("#031CFC").getOrThrow()), 0.9F);
         register(context, ROSE_QUARTZ, ModItems.ROSE_QUARTZ.getGem().get(), Style.EMPTY.withColor(TextColor.parseColor("#d5a6bd").getOrThrow()), 0.5F);
         register(context, OTHERWORLDLY_AMETHYST, ModItems.OTHERWORLDLY_AMETHYST.getGem().get(), Style.EMPTY.withColor(TextColor.parseColor("#9e65c4").getOrThrow()), 1.0F);
-        register(context, ALUMINUM, ModItems.ALUMINUM_INGOT.get(), Style.EMPTY.withColor(TextColor.parseColor("#bcbcbc").getOrThrow()), 0.2F);
+        register(context, ALUMINUM_INGOT, ModItems.ALUMINUM_INGOT.get(), Style.EMPTY.withColor(TextColor.parseColor("#bcbcbc").getOrThrow()), 0.2F);
     }
 
     private static void register(BootstrapContext<TrimMaterial> context, ResourceKey<TrimMaterial> trimKey, Item item,

@@ -64,7 +64,8 @@
         "sapphire": "strawberry:trims/color_palettes/sapphire",
         "ruby": "strawberry:trims/color_palettes/ruby",
         "rose_quartz": "strawberry:trims/color_palettes/rose_quartz",
-        "otherworldly_amethyst": "strawberry:trims/color_palettes/otherworldly_amethyst"
+        "otherworldly_amethyst": "strawberry:trims/color_palettes/otherworldly_amethyst",
+        "aluminum_ingot": "strawberry:trims/color_palettes/aluminum_ingot"
       }
     }
   ]
