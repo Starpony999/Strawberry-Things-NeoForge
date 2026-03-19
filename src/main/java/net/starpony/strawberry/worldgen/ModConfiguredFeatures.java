@@ -34,6 +34,7 @@ public class ModConfiguredFeatures {
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> SYCAMORE_KEY = registerKey("sycamore");
     public static final ResourceKey<ConfiguredFeature<?, ?>> PLUM_KEY = registerKey("plum");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> BLOODWOOD_KEY = registerKey("bloodwood");
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> STRAWBERRY_BUSH_KEY = registerKey("strawberry_bush");
     public static final ResourceKey<ConfiguredFeature<?, ?>> BLUEBERRY_BUSH_KEY = registerKey("blueberry_bush");
@@ -89,6 +90,19 @@ public class ModConfiguredFeatures {
                 ),
                 new TwoLayersFeatureSize(1, 0, 2)   // trunk/foliage size shaping
         ).build());
+
+        register(context, BLOODWOOD_KEY, Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
+                BlockStateProvider.simple(ModBlocks.BLOODWOOD.getLog().get()),
+                new StraightTrunkPlacer(7, 2, 0),
+                BlockStateProvider.simple(ModBlocks.BLOODWOOD.getWartBlock().get()),
+                new BlobFoliagePlacer(
+                        ConstantInt.of(2),  // radius
+                        ConstantInt.of(0),  // offset
+                        3                               // height
+                ),
+                new TwoLayersFeatureSize(1, 0, 2))   // trunk/foliage size shaping
+                        .dirt(BlockStateProvider.simple(ModBlocks.NIGHTSTONE.getBase().get()))
+                .build());
 
 
 

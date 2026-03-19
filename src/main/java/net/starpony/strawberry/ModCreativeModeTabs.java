@@ -1,7 +1,5 @@
-package net.starpony.strawberry.item;
+package net.starpony.strawberry;
 
-import net.minecraft.world.level.ItemLike;
-import net.starpony.strawberry.Strawberry;
 import net.starpony.strawberry.block.ModBlocks;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
@@ -10,6 +8,7 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredRegister;
+import net.starpony.strawberry.item.ModItems;
 import net.starpony.strawberry.util.sets.SetUtils;
 
 import java.util.function.Supplier;
@@ -113,10 +112,11 @@ public class ModCreativeModeTabs {
                         SetUtils.addStoneSet(output, ModBlocks.GRIMSTONE);
                         SetUtils.addStoneSet(output, ModBlocks.NIGHTSTONE);
 
-                       /* SetUtils.addWoodSet(output, ModBlocks.SYCAMORE);
+                        SetUtils.addWoodSet(output, ModBlocks.SYCAMORE);
                         SetUtils.addWoodSet(output, ModBlocks.PLUM);
+                        SetUtils.addNightmareWoodSet(output, ModBlocks.BLOODWOOD);
 
-                        SetUtils.addColorSet(output, ModBlocks.CERISE);
+                        /*SetUtils.addColorSet(output, ModBlocks.CERISE);
                         SetUtils.addColorSet(output, ModBlocks.TURQUOISE); */
                     }).build());
     public static final Supplier<CreativeModeTab> STRAWBERRY_TOOLS_ARMOR_TAB = CREATIVE_MODE_TAB.register("strawberry_tools_armor_tab",
@@ -200,8 +200,9 @@ public class ModCreativeModeTabs {
                         SetUtils.addRedStoneSet(output, ModBlocks.GRIMSTONE);
                         SetUtils.addRedStoneSet(output, ModBlocks.NIGHTSTONE);
 
-                       /* SetUtils.addRedWoodSet(output, ModBlocks.SYCAMORE);
-                        SetUtils.addRedWoodSet(output, ModBlocks.PLUM);*/
+                        SetUtils.addRedWoodSet(output, ModBlocks.SYCAMORE);
+                        SetUtils.addRedWoodSet(output, ModBlocks.PLUM);
+                        SetUtils.addRedWoodSet(output, ModBlocks.BLOODWOOD);
 
                     }).build());
     public static void register(IEventBus eventBus) {

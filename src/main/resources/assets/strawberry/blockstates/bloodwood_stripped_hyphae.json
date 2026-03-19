@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "strawberry:block/bloodwood_stripped_hyphae",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "strawberry:block/bloodwood_stripped_hyphae"
+    },
+    "axis=z": {
+      "model": "strawberry:block/bloodwood_stripped_hyphae",
+      "x": 90
+    }
+  }
+}

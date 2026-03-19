@@ -3,6 +3,7 @@ package net.starpony.strawberry.util.sets;
 import net.minecraft.world.level.block.*;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.starpony.strawberry.block.ModFlammableRotatedPillarBlock;
+import net.starpony.strawberry.block.ModNonFlammableRotatedPillarBlock;
 
 public class WoodSet {
 
@@ -13,6 +14,7 @@ public class WoodSet {
     public final DeferredBlock<Block> strippedWood;
     public final DeferredBlock<Block> planks;
     public final DeferredBlock<LeavesBlock> leaves;
+    public final DeferredBlock<NetherWartBlock> wartBlock;
     public final DeferredBlock<Block> sapling;
     public final DeferredBlock<StairBlock> stairs;
     public final DeferredBlock<SlabBlock> slab;
@@ -30,6 +32,7 @@ public class WoodSet {
                    DeferredBlock<Block> strippedWood,
                    DeferredBlock<Block> planks,
                    DeferredBlock<LeavesBlock> leaves,
+                   DeferredBlock<NetherWartBlock> wartBlock,
                    DeferredBlock<Block> sapling,
                    DeferredBlock<StairBlock> stairs,
                    DeferredBlock<SlabBlock> slab,
@@ -47,6 +50,7 @@ public class WoodSet {
         this.strippedWood = strippedWood;
         this.planks = planks;
         this.leaves = leaves;
+        this.wartBlock = wartBlock;
         this.sapling = sapling;
         this.stairs = stairs;
         this.slab = slab;
@@ -59,6 +63,8 @@ public class WoodSet {
 
         ModFlammableRotatedPillarBlock.registerStrippable(log, strippedLog);
         ModFlammableRotatedPillarBlock.registerStrippable(wood, strippedWood);
+        ModNonFlammableRotatedPillarBlock.registerStrippable(log, strippedLog);
+        ModNonFlammableRotatedPillarBlock.registerStrippable(wood, strippedWood);
 
     }
 
@@ -88,6 +94,10 @@ public class WoodSet {
 
     public DeferredBlock<LeavesBlock> getLeaves() {
         return leaves;
+    }
+
+    public DeferredBlock<NetherWartBlock> getWartBlock() {
+        return wartBlock;
     }
 
     public DeferredBlock<Block> getSapling() {

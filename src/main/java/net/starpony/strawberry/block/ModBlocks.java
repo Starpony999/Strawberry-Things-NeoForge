@@ -85,6 +85,7 @@ public class ModBlocks {
     public static final StoneSet NIGHTSTONE = registerStoneSet("nightstone");
     public static final WoodSet SYCAMORE = registerWoodSet("sycamore", ModTreeGrowers.SYCAMORE);
     public static final WoodSet PLUM = registerWoodSet("plum", ModTreeGrowers.PLUM);
+    public static final WoodSet BLOODWOOD = registerNightmareWoodSet("bloodwood", ModTreeGrowers.BLOODWOOD);
 
     // Registry helpers
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {DeferredBlock<T> deferred = BLOCKS.register(name, block);registerBlockItem(name, deferred);return deferred;}
@@ -433,10 +434,59 @@ public class ModBlocks {
         DeferredBlock<TrapDoorBlock> trapdoor = registerBlock(name + "_trapdoor",
                 () -> new TrapDoorBlock(BlockSetType.OAK, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_TRAPDOOR).noOcclusion()));
 
-        return new WoodSet(name, log, strippedLog, wood, strippedWood, planks, leaves, sapling,
+        return new WoodSet(name, log, strippedLog, wood, strippedWood, planks, leaves, null, sapling,
                 stairs, slab, button, pressurePlate, fence, fenceGate, door, trapdoor);
     }  //Wood Set
+    private static WoodSet registerNightmareWoodSet(String name, TreeGrower grower) {
+        DeferredBlock<Block> log = registerBlock(name + "_stem",
+                () -> new ModNonFlammableRotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.WARPED_STEM)));
 
+        DeferredBlock<Block> strippedLog = registerBlock(name + "_stripped_stem",
+                () -> new ModNonFlammableRotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_WARPED_STEM)));
+
+        DeferredBlock<Block> wood = registerBlock(name + "_hyphae",
+                () -> new ModNonFlammableRotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.WARPED_HYPHAE)));
+
+        DeferredBlock<Block> strippedWood = registerBlock(name + "_stripped_hyphae",
+                () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_WARPED_HYPHAE)));
+
+        DeferredBlock<Block> planks = registerBlock(name + "_planks",
+                () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.WARPED_PLANKS)));
+
+        DeferredBlock<NetherWartBlock> wartBlock = registerBlock(name + "_wart_block",
+                () -> new NetherWartBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.WARPED_WART_BLOCK)) );
+
+        DeferredBlock<Block> sapling = registerBlock(name + "_fungus",
+                () -> new ModSaplingBlock(grower, BlockBehaviour.Properties.ofFullCopy(Blocks.WARPED_FUNGUS), ModBlocks.NIGHTSTONE.base));
+
+        DeferredBlock<StairBlock> stairs = registerBlock(name + "_stairs",
+                () -> new StairBlock(planks.get().defaultBlockState(),
+                        BlockBehaviour.Properties.ofFullCopy(Blocks.WARPED_STAIRS)));
+
+        DeferredBlock<SlabBlock> slab = registerBlock(name + "_slab",
+                () -> new SlabBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.WARPED_SLAB)));
+
+        DeferredBlock<ButtonBlock> button = registerBlock(name + "_button",
+                () -> new ButtonBlock(BlockSetType.WARPED, 30, BlockBehaviour.Properties.ofFullCopy(Blocks.WARPED_BUTTON).noCollission()));
+
+        DeferredBlock<PressurePlateBlock> pressurePlate = registerBlock(name + "_pressure_plate",
+                () -> new PressurePlateBlock(BlockSetType.WARPED, BlockBehaviour.Properties.ofFullCopy(Blocks.WARPED_PRESSURE_PLATE)));
+
+        DeferredBlock<FenceBlock> fence = registerBlock(name + "_fence",
+                () -> new FenceBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.WARPED_FENCE)));
+
+        DeferredBlock<FenceGateBlock> fenceGate = registerBlock(name + "_fence_gate",
+                () -> new FenceGateBlock(WoodType.WARPED, BlockBehaviour.Properties.ofFullCopy(Blocks.WARPED_FENCE_GATE)));
+
+        DeferredBlock<DoorBlock> door = registerBlock(name + "_door",
+                () -> new DoorBlock(BlockSetType.WARPED, BlockBehaviour.Properties.ofFullCopy(Blocks.WARPED_DOOR).noOcclusion()));
+
+        DeferredBlock<TrapDoorBlock> trapdoor = registerBlock(name + "_trapdoor",
+                () -> new TrapDoorBlock(BlockSetType.WARPED, BlockBehaviour.Properties.ofFullCopy(Blocks.WARPED_TRAPDOOR).noOcclusion()));
+
+        return new WoodSet(name, log, strippedLog, wood, strippedWood, planks, null, wartBlock, sapling,
+                stairs, slab, button, pressurePlate, fence, fenceGate, door, trapdoor);
+    }  //Wood Set for Nightmare Dimension
     public static void register(IEventBus eventBus) {
         BLOCKS.register(eventBus);
     }

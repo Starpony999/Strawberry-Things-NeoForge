@@ -1,5 +1,7 @@
 package net.starpony.strawberry.worldgen;
 
+import net.minecraft.data.worldgen.placement.PlacementUtils;
+import net.minecraft.data.worldgen.placement.VegetationPlacements;
 import net.minecraft.world.level.levelgen.VerticalAnchor;
 import net.minecraft.world.level.levelgen.placement.HeightRangePlacement;
 import net.starpony.strawberry.Strawberry;
@@ -52,15 +54,15 @@ public class ModPlacedFeatures {
                 ModOrePlacement.modifiersWithCount(5,
                         HeightRangePlacement.triangle(VerticalAnchor.absolute(-40), VerticalAnchor.absolute(120))));
 
-      /*  register(context, SYCAMORE_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.SYCAMORE_KEY),
-                VegetationPlacedFeatures.treeModifiersWithWouldSurvive(
-                        PlacedFeatures.createCountExtraModifier(2, 0.1f, 2), ModBlocks.SYCAMORE.sapling));
+        register(context, SYCAMORE_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.SYCAMORE_KEY),
+                VegetationPlacements.treePlacement(
+                        PlacementUtils.countExtra(2, 0.1f, 2), ModBlocks.SYCAMORE.sapling.get()));
         register(context, PLUM_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.PLUM_KEY),
-                VegetationPlacedFeatures.treeModifiersWithWouldSurvive(
-                        PlacedFeatures.createCountExtraModifier(2, 0.1f, 2), ModBlocks.PLUM.sapling));
+                VegetationPlacements.treePlacement(
+                        PlacementUtils.countExtra(2, 0.1f, 2), ModBlocks.PLUM.sapling.get()));
 
 
-
+/*
         register(context, STRAWBERRY_BUSH_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.STRAWBERRY_BUSH_KEY),
                 RarityFilterPlacementModifier.of(32), SquarePlacementModifier.of(), PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of());
         register(context, BLUEBERRY_BUSH_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.BLUEBERRY_BUSH_KEY),

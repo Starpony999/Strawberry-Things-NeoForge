@@ -1,7 +1,6 @@
 package net.starpony.strawberry;
 
 import net.starpony.strawberry.block.ModBlocks;
-import net.starpony.strawberry.item.ModCreativeModeTabs;
 import net.starpony.strawberry.effect.ModEffects;
 import net.starpony.strawberry.item.ModItems;
 import net.starpony.strawberry.item.ModArmorMaterials;
@@ -78,6 +77,9 @@ public class Strawberry {
                 ItemBlockRenderTypes.setRenderLayer(ModBlocks.GRAPE_CROP.get(), RenderType.cutout());
                 ItemBlockRenderTypes.setRenderLayer(ModBlocks.STRAWBERRY_BUSH.get(), RenderType.cutout());
                 ItemBlockRenderTypes.setRenderLayer(ModBlocks.BLUEBERRY_BUSH.get(), RenderType.cutout());
+                ItemBlockRenderTypes.setRenderLayer(ModBlocks.SYCAMORE.sapling.get(), RenderType.cutout());
+                ItemBlockRenderTypes.setRenderLayer(ModBlocks.PLUM.sapling.get(), RenderType.cutout());
+                ItemBlockRenderTypes.setRenderLayer(ModBlocks.BLOODWOOD.sapling.get(), RenderType.cutout());
             });
         }
     }

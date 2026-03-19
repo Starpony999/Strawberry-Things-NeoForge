@@ -2,6 +2,7 @@ package net.starpony.strawberry.worldgen;
 
 import net.minecraft.core.HolderSet;
 import net.minecraft.tags.BiomeTags;
+import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.neoforged.neoforge.common.world.BiomeModifiers;
 import net.starpony.strawberry.Strawberry;
@@ -19,6 +20,9 @@ public class ModBiomeModifiers {
     public static final ResourceKey<BiomeModifier> ADD_NETHERTHYST_ORE = registerKey("add_netherthyst_ore");
     public static final ResourceKey<BiomeModifier> ADD_ENDERTHYST_ORE = registerKey("add_enderthyst_ore");
     public static final ResourceKey<BiomeModifier> END_ROSE_QUARTZ_ORE = registerKey("add_end_rose_quartz_ore");
+
+    public static final ResourceKey<BiomeModifier> ADD_TREE_SYCAMORE = registerKey("add_tree_sycamore");
+    public static final ResourceKey<BiomeModifier> ADD_TREE_PLUM = registerKey("add_tree_plum");
 
     public static void bootstrap(BootstrapContext<BiomeModifier> context) {
         var placedFeatures = context.lookup(Registries.PLACED_FEATURE);
@@ -57,7 +61,15 @@ public class ModBiomeModifiers {
                 HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.END_ROSE_QUARTZ_ORE_PLACED_KEY)),
                 GenerationStep.Decoration.UNDERGROUND_ORES));
 
+         context.register(ADD_TREE_SYCAMORE, new BiomeModifiers.AddFeaturesBiomeModifier(
+                 HolderSet.direct(biomes.getOrThrow(Biomes.FOREST), biomes.getOrThrow(Biomes.WINDSWEPT_FOREST)),
+                 HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.SYCAMORE_PLACED_KEY)),
+                 GenerationStep.Decoration.VEGETAL_DECORATION));
 
+        context.register(ADD_TREE_PLUM, new BiomeModifiers.AddFeaturesBiomeModifier(
+                HolderSet.direct(biomes.getOrThrow(Biomes.SAVANNA), biomes.getOrThrow(Biomes.SAVANNA_PLATEAU), biomes.getOrThrow(Biomes.WINDSWEPT_SAVANNA)),
+                HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.PLUM_PLACED_KEY)),
+                GenerationStep.Decoration.VEGETAL_DECORATION));
     }
 
 

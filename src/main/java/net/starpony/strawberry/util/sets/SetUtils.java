@@ -72,6 +72,30 @@ public class SetUtils {
         output.accept(woodSet.getDoor());
         output.accept(woodSet.getTrapdoor());
     }
+    public static void addNightmareWoodSet(CreativeModeTab.Output output, WoodSet woodSet) {
+        // Logs and wood
+        output.accept(woodSet.getLog());
+        output.accept(woodSet.getStrippedLog());
+        output.accept(woodSet.getWood());
+        output.accept(woodSet.getStrippedWood());
+
+        // Planks, leaves, sapling
+        output.accept(woodSet.getPlanks());
+        output.accept(woodSet.getWartBlock());
+        output.accept(woodSet.getSapling());
+
+        // Block variants
+        output.accept(woodSet.getStairs());
+        output.accept(woodSet.getSlab());
+        output.accept(woodSet.getButton());
+        output.accept(woodSet.getPressurePlate());
+
+        // Fences and doors
+        output.accept(woodSet.getFence());
+        output.accept(woodSet.getFenceGate());
+        output.accept(woodSet.getDoor());
+        output.accept(woodSet.getTrapdoor());
+    }
     public static void addRedStoneSet(CreativeModeTab.Output output, StoneSet stone) {
         output.accept(stone.getButton());
         output.accept(stone.getPressurePlate());
