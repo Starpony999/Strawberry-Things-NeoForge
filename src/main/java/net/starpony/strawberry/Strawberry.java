@@ -76,6 +76,8 @@ public class Strawberry {
             event.enqueueWork(() -> {
                 ItemBlockRenderTypes.setRenderLayer(ModBlocks.CAULIFLOWER_CROP.get(), RenderType.cutout());
                 ItemBlockRenderTypes.setRenderLayer(ModBlocks.GRAPE_CROP.get(), RenderType.cutout());
+                ItemBlockRenderTypes.setRenderLayer(ModBlocks.STRAWBERRY_BUSH.get(), RenderType.cutout());
+                ItemBlockRenderTypes.setRenderLayer(ModBlocks.BLUEBERRY_BUSH.get(), RenderType.cutout());
             });
         }
     }

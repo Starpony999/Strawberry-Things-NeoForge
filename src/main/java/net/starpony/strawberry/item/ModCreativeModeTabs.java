@@ -48,8 +48,8 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.TOILET_PAPER);
                         output.accept(ModItems.BRIQUETTE);
                         output.accept(ModItems.SUNSET_VIBES_MUSIC_DISC);
-                      //  output.accept(ModItems.STRAWBERRY);
-                     //   output.accept(ModItems.BLUEBERRY);
+                        output.accept(ModItems.STRAWBERRY);
+                        output.accept(ModItems.BLUEBERRY);
                         output.accept(ModItems.GRAPES);
                         output.accept(ModItems.GRAPE_SEEDS);
                         output.accept(ModItems.ORANGE);

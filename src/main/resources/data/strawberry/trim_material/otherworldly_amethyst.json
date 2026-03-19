@@ -1,9 +1,0 @@
-{
-  "asset_name": "otherworldly_amethyst",
-  "description": {
-    "color": "#9e65c4",
-    "translate": "trim_material.strawberry.otherworldly_amethyst"
-  },
-  "ingredient": "strawberry:otherworldly_amethyst",
-  "item_model_index": 1.0
-}

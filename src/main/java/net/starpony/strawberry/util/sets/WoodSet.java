@@ -2,6 +2,7 @@ package net.starpony.strawberry.util.sets;
 
 import net.minecraft.world.level.block.*;
 import net.neoforged.neoforge.registries.DeferredBlock;
+import net.starpony.strawberry.block.ModFlammableRotatedPillarBlock;
 
 public class WoodSet {
 
@@ -12,7 +13,7 @@ public class WoodSet {
     public final DeferredBlock<Block> strippedWood;
     public final DeferredBlock<Block> planks;
     public final DeferredBlock<LeavesBlock> leaves;
-    public final DeferredBlock<SaplingBlock> sapling;
+    public final DeferredBlock<Block> sapling;
     public final DeferredBlock<StairBlock> stairs;
     public final DeferredBlock<SlabBlock> slab;
     public final DeferredBlock<ButtonBlock> button;
@@ -29,7 +30,7 @@ public class WoodSet {
                    DeferredBlock<Block> strippedWood,
                    DeferredBlock<Block> planks,
                    DeferredBlock<LeavesBlock> leaves,
-                   DeferredBlock<SaplingBlock> sapling,
+                   DeferredBlock<Block> sapling,
                    DeferredBlock<StairBlock> stairs,
                    DeferredBlock<SlabBlock> slab,
                    DeferredBlock<ButtonBlock> button,
@@ -55,6 +56,10 @@ public class WoodSet {
         this.fenceGate = fenceGate;
         this.door = door;
         this.trapdoor = trapdoor;
+
+        ModFlammableRotatedPillarBlock.registerStrippable(log.get(), strippedLog.get());
+        ModFlammableRotatedPillarBlock.registerStrippable(wood.get(), strippedWood.get());
+
     }
 
     public String getName() {
@@ -85,7 +90,7 @@ public class WoodSet {
         return leaves;
     }
 
-    public DeferredBlock<SaplingBlock> getSapling() {
+    public DeferredBlock<Block> getSapling() {
         return sapling;
     }
 

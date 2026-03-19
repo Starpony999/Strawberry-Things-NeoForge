@@ -1,10 +1,15 @@
 package net.starpony.strawberry.block;
 
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.grower.TreeGrower;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.WoodType;
 import net.neoforged.bus.api.IEventBus;
@@ -15,6 +20,7 @@ import net.starpony.strawberry.item.ModItems;
 import net.starpony.strawberry.util.sets.SimpleStoneSet;
 import net.starpony.strawberry.util.sets.StoneSet;
 import net.starpony.strawberry.util.sets.WoodSet;
+import net.starpony.strawberry.worldgen.tree.ModTreeGrowers;
 
 import java.awt.*;
 import java.util.function.Supplier;
@@ -49,9 +55,11 @@ public class ModBlocks {
             () -> new CauliflowerCropBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.WHEAT)));
     public static final DeferredBlock<Block> GRAPE_CROP = registerBlockWithoutItem("grape_crop",
             () -> new GrapeCropBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.WHEAT)));
- /*   public static final DeferredBlock<Block> STRAWBERRY_BUSH = registerBlockWithoutItem("strawberry_bush", () -> new StrawberryBushBlock(BlockBehaviour.Properties.copy(Blocks.SWEET_BERRY_BUSH), ModItems.STRAWBERRY.get()));
-    public static final DeferredBlock<Block> BLUEBERRY_BUSH = registerBlockWithoutItem("blueberry_bush", () -> new BlueberryBushBlock(BlockBehaviour.Properties.copy(Blocks.SWEET_BERRY_BUSH), ModItems.BLUEBERRY.get()));
-*/
+    public static final DeferredBlock<Block> STRAWBERRY_BUSH = registerBlockWithoutItem("strawberry_bush",
+            () -> new StrawberryBushBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SWEET_BERRY_BUSH)));
+    public static final DeferredBlock<Block> BLUEBERRY_BUSH = registerBlockWithoutItem("blueberry_bush",
+            () -> new BlueberryBushBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SWEET_BERRY_BUSH)));
+
     // Special blocks
     public static final DeferredBlock<Block> CRYSTAL_LANTERN_BLOCK = registerBlock("crystal_lantern_block",
             () -> new CrystalLanternBlock(BlockBehaviour.Properties.of().strength(1f)
@@ -75,9 +83,9 @@ public class ModBlocks {
     public static final SimpleStoneSet EXPOSED_COBBLESTONE_BRICKS = registerSimpleStoneSet("exposed_cobblestone_bricks");
     public static final StoneSet GRIMSTONE = registerStoneSet("grimstone");
     public static final StoneSet NIGHTSTONE = registerStoneSet("nightstone");
-   /* public static final WoodSet SYCAMORE = registerWoodSet("sycamore", ModSaplingGenerators.SYCAMORE);
-    public static final WoodSet PLUM = registerWoodSet("plum", ModSaplingGenerators.PLUM);
-*/
+    public static final WoodSet SYCAMORE = registerWoodSet("sycamore", ModTreeGrowers.SYCAMORE);
+    public static final WoodSet PLUM = registerWoodSet("plum", ModTreeGrowers.PLUM);
+
     // Registry helpers
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {DeferredBlock<T> deferred = BLOCKS.register(name, block);registerBlockItem(name, deferred);return deferred;}
     private static <T extends Block> void registerBlockItem(String name, DeferredBlock<T> block) {ModItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));}
@@ -348,56 +356,86 @@ public class ModBlocks {
         );
     }
 
-    /*private static WoodSet registerWoodSet(String name, SaplingGenerator generator) {
+    private static WoodSet registerWoodSet(String name, TreeGrower grower) {
         DeferredBlock<Block> log = registerBlock(name + "_log",
-                () -> new PillarBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LOG)));
+                () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LOG)));
 
         DeferredBlock<Block> strippedLog = registerBlock(name + "_stripped_log",
-                () -> new PillarBlock(BlockBehaviour.Properties.copy(Blocks.STRIPPED_OAK_LOG)));
+                () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_OAK_LOG)));
 
         DeferredBlock<Block> wood = registerBlock(name + "_wood",
-                () -> new PillarBlock(BlockBehaviour.Properties.copy(Blocks.OAK_WOOD)));
+                () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_WOOD)));
 
         DeferredBlock<Block> strippedWood = registerBlock(name + "_stripped_wood",
-                () -> new PillarBlock(BlockBehaviour.Properties.copy(Blocks.STRIPPED_OAK_WOOD)));
+                () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_OAK_WOOD)));
 
         DeferredBlock<Block> planks = registerBlock(name + "_planks",
-                () -> new Block(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)));
+                () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS)) {
+                    @Override
+                    public boolean isFlammable(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+                        return true;
+                    }
+
+                    @Override
+                    public int getFlammability(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+                        return 20;
+                    }
+
+                    @Override
+                    public int getFireSpreadSpeed(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+                        return 5;
+                    }
+                });
 
         DeferredBlock<LeavesBlock> leaves = registerBlock(name + "_leaves",
-                () -> new LeavesBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LEAVES)));
+                () -> new LeavesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LEAVES)) {
+                    @Override
+                    public boolean isFlammable(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+                        return true;
+                    }
 
-        DeferredBlock<SaplingBlock> sapling = registerBlock(name + "_sapling",
-                () -> new SaplingBlock(generator, BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING)));
+                    @Override
+                    public int getFlammability(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+                        return 60;
+                    }
+
+                    @Override
+                    public int getFireSpreadSpeed(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+                        return 30;
+                    }
+                });
+
+        DeferredBlock<Block> sapling = registerBlock(name + "_sapling",
+                () -> new SaplingBlock(grower, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SAPLING)));
 
         DeferredBlock<StairBlock> stairs = registerBlock(name + "_stairs",
                 () -> new StairBlock(planks.get().defaultBlockState(),
-                        BlockBehaviour.Properties.copy(Blocks.OAK_STAIRS)));
+                        BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_STAIRS)));
 
         DeferredBlock<SlabBlock> slab = registerBlock(name + "_slab",
-                () -> new SlabBlock(BlockBehaviour.Properties.copy(Blocks.OAK_SLAB)));
+                () -> new SlabBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SLAB)));
 
         DeferredBlock<ButtonBlock> button = registerBlock(name + "_button",
-                () -> new ButtonBlock(BlockSetType.OAK, 30, BlockBehaviour.Properties.copy(Blocks.OAK_BUTTON).noCollission()));
+                () -> new ButtonBlock(BlockSetType.OAK, 30, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_BUTTON).noCollission()));
 
         DeferredBlock<PressurePlateBlock> pressurePlate = registerBlock(name + "_pressure_plate",
-                () -> new PressurePlateBlock(BlockSetType.OAK, BlockBehaviour.Properties.copy(Blocks.OAK_PRESSURE_PLATE)));
+                () -> new PressurePlateBlock(BlockSetType.OAK, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PRESSURE_PLATE)));
 
         DeferredBlock<FenceBlock> fence = registerBlock(name + "_fence",
-                () -> new FenceBlock(BlockBehaviour.Properties.copy(Blocks.OAK_FENCE)));
+                () -> new FenceBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_FENCE)));
 
         DeferredBlock<FenceGateBlock> fenceGate = registerBlock(name + "_fence_gate",
-                () -> new FenceGateBlock(WoodType.OAK, BlockBehaviour.Properties.copy(Blocks.OAK_FENCE_GATE)));
+                () -> new FenceGateBlock(WoodType.OAK, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_FENCE_GATE)));
 
         DeferredBlock<DoorBlock> door = registerBlock(name + "_door",
-                () -> new DoorBlock(BlockSetType.OAK, BlockBehaviour.Properties.copy(Blocks.OAK_DOOR).noOcclusion()));
+                () -> new DoorBlock(BlockSetType.OAK, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_DOOR).noOcclusion()));
 
         DeferredBlock<TrapDoorBlock> trapdoor = registerBlock(name + "_trapdoor",
-                () -> new TrapDoorBlock(BlockSetType.OAK, BlockBehaviour.Properties.copy(Blocks.OAK_TRAPDOOR).noOcclusion()));
+                () -> new TrapDoorBlock(BlockSetType.OAK, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_TRAPDOOR).noOcclusion()));
 
         return new WoodSet(name, log, strippedLog, wood, strippedWood, planks, leaves, sapling,
                 stairs, slab, button, pressurePlate, fence, fenceGate, door, trapdoor);
-    } */ //Wood Set
+    }  //Wood Set
 
     public static void register(IEventBus eventBus) {
         BLOCKS.register(eventBus);
