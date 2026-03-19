@@ -14,17 +14,18 @@ import net.minecraft.world.level.block.Block;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.function.Supplier;
 
 public class ModFlammableRotatedPillarBlock extends RotatedPillarBlock {
 
 
-    private static final Map<Block, Block> STRIPPED_MAP = new HashMap<>();
+    private static final Map<Supplier<? extends Block>, Supplier<? extends Block>> STRIPPED_MAP = new HashMap<>();
 
     public ModFlammableRotatedPillarBlock(Properties properties) {
         super(properties);
     }
 
-    public static void registerStrippable(Block original, Block stripped) {
+    public static void registerStrippable(Supplier<? extends Block> original, Supplier<? extends Block> stripped) {
         STRIPPED_MAP.put(original, stripped);
     }
 
@@ -47,9 +48,10 @@ public class ModFlammableRotatedPillarBlock extends RotatedPillarBlock {
     public @Nullable BlockState getToolModifiedState(BlockState state, UseOnContext context,
                                                      ItemAbility itemAbility, boolean simulate) {
         if (context.getItemInHand().getItem() instanceof AxeItem) {
-            Block stripped = STRIPPED_MAP.get(state.getBlock());
-            if (stripped != null) {
-                return stripped.defaultBlockState().setValue(AXIS, state.getValue(AXIS));
+            for (Map.Entry<Supplier<? extends Block>, Supplier<? extends Block>> entry : STRIPPED_MAP.entrySet()) {
+                if (entry.getKey().get() == state.getBlock()) {
+                    return entry.getValue().get().defaultBlockState().setValue(AXIS, state.getValue(AXIS));
+                }
             }
         }
 
