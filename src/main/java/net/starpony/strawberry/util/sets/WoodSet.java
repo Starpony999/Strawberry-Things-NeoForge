@@ -57,8 +57,8 @@ public class WoodSet {
         this.door = door;
         this.trapdoor = trapdoor;
 
-        ModFlammableRotatedPillarBlock.registerStrippable(log.get(), strippedLog.get());
-        ModFlammableRotatedPillarBlock.registerStrippable(wood.get(), strippedWood.get());
+        ModFlammableRotatedPillarBlock.registerStrippable(log, strippedLog);
+        ModFlammableRotatedPillarBlock.registerStrippable(wood, strippedWood);
 
     }
 
