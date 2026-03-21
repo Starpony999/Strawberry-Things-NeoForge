@@ -24,6 +24,9 @@ public class ModBiomeModifiers {
     public static final ResourceKey<BiomeModifier> ADD_TREE_SYCAMORE = registerKey("add_tree_sycamore");
     public static final ResourceKey<BiomeModifier> ADD_TREE_PLUM = registerKey("add_tree_plum");
 
+    public static final ResourceKey<BiomeModifier> ADD_STRAWBERRY_BUSH = registerKey("add_strawberry_berry_bush");
+    public static final ResourceKey<BiomeModifier> ADD_BLUEBERRY_BUSH = registerKey("add_blueberry_berry_bush");
+
     public static void bootstrap(BootstrapContext<BiomeModifier> context) {
         var placedFeatures = context.lookup(Registries.PLACED_FEATURE);
         var biomes = context.lookup(Registries.BIOME);
@@ -70,6 +73,23 @@ public class ModBiomeModifiers {
                 HolderSet.direct(biomes.getOrThrow(Biomes.SAVANNA), biomes.getOrThrow(Biomes.SAVANNA_PLATEAU), biomes.getOrThrow(Biomes.WINDSWEPT_SAVANNA)),
                 HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.PLUM_PLACED_KEY)),
                 GenerationStep.Decoration.VEGETAL_DECORATION));
+
+        context.register(ADD_STRAWBERRY_BUSH, new BiomeModifiers.AddFeaturesBiomeModifier(
+                HolderSet.direct(
+                        biomes.getOrThrow(Biomes.CHERRY_GROVE),
+                        biomes.getOrThrow(Biomes.BIRCH_FOREST)
+                ),
+                HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.STRAWBERRY_BUSH_PLACED_KEY)),
+                GenerationStep.Decoration.VEGETAL_DECORATION));
+
+        context.register(ADD_BLUEBERRY_BUSH, new BiomeModifiers.AddFeaturesBiomeModifier(
+                HolderSet.direct(
+                        biomes.getOrThrow(Biomes.TAIGA),
+                        biomes.getOrThrow(Biomes.OLD_GROWTH_PINE_TAIGA)
+                ),
+                HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.BLUEBERRY_BUSH_PLACED_KEY)),
+                GenerationStep.Decoration.VEGETAL_DECORATION));
+
     }
 
 

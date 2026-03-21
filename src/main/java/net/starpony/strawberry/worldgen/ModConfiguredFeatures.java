@@ -1,9 +1,12 @@
 package net.starpony.strawberry.worldgen;
 
+import net.minecraft.data.worldgen.features.FeatureUtils;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.SweetBerryBushBlock;
 import net.minecraft.world.level.levelgen.feature.configurations.OreConfiguration;
+import net.minecraft.world.level.levelgen.feature.configurations.SimpleBlockConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
 import net.minecraft.world.level.levelgen.feature.featuresize.TwoLayersFeatureSize;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.BlobFoliagePlacer;
@@ -71,11 +74,11 @@ public class ModConfiguredFeatures {
 
         register(context, SYCAMORE_KEY, Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
                 BlockStateProvider.simple(ModBlocks.SYCAMORE.getLog().get()),
-                new StraightTrunkPlacer(5,2,2),
+                new StraightTrunkPlacer(5, 2, 2),
                 BlockStateProvider.simple(ModBlocks.SYCAMORE.getLeaves().get()),
                 new BlobFoliagePlacer(ConstantInt.of(2), ConstantInt.of(0), 3),
 
-                new TwoLayersFeatureSize(1,0,2))
+                new TwoLayersFeatureSize(1, 0, 2))
                 //.dirtProvider(BlockStateProvider.of(Blocks.DIRT))
                 .build());
 
@@ -101,22 +104,20 @@ public class ModConfiguredFeatures {
                         3                               // height
                 ),
                 new TwoLayersFeatureSize(1, 0, 2))   // trunk/foliage size shaping
-                        .dirt(BlockStateProvider.simple(ModBlocks.NIGHTSTONE.getBase().get()))
+                .dirt(BlockStateProvider.simple(ModBlocks.NIGHTSTONE.getBase().get()))
                 .build());
 
 
-
-        /* register(context, STRAWBERRY_BUSH_KEY, Feature.RANDOM_PATCH,
-                ConfiguredFeatures.createRandomPatchFeatureConfig(Feature.SIMPLE_BLOCK,
-                        new SimpleBlockFeatureConfig(BlockStateProvider.of(ModBlocks.STRAWBERRY_BUSH
-                                .getDefaultState().with(SweetBerryBushBlock.AGE, 3))),
+        register(context, STRAWBERRY_BUSH_KEY, Feature.RANDOM_PATCH,
+                FeatureUtils.simplePatchConfiguration(Feature.SIMPLE_BLOCK,
+                        new SimpleBlockConfiguration(BlockStateProvider.simple(ModBlocks.STRAWBERRY_BUSH.get()
+                                .defaultBlockState().setValue(SweetBerryBushBlock.AGE, 3))),
                         List.of(Blocks.GRASS_BLOCK)));
         register(context, BLUEBERRY_BUSH_KEY, Feature.RANDOM_PATCH,
-                ConfiguredFeatures.createRandomPatchFeatureConfig(Feature.SIMPLE_BLOCK,
-                        new SimpleBlockFeatureConfig(BlockStateProvider.of(ModBlocks.BLUEBERRY_BUSH
-                                .getDefaultState().with(SweetBerryBushBlock.AGE, 3))),
+                FeatureUtils.simplePatchConfiguration(Feature.SIMPLE_BLOCK,
+                        new SimpleBlockConfiguration(BlockStateProvider.simple(ModBlocks.BLUEBERRY_BUSH.get()
+                                .defaultBlockState().setValue(SweetBerryBushBlock.AGE, 3))),
                         List.of(Blocks.GRASS_BLOCK)));
-                        }*/
     }
 
 
