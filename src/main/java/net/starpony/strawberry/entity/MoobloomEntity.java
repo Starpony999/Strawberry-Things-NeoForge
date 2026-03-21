@@ -1,12 +1,16 @@
 package net.starpony.strawberry.entity;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -16,9 +20,13 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ItemUtils;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.SuspiciousStewItem;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
+import net.starpony.strawberry.effect.ModEffects;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 public class MoobloomEntity extends Animal {
     private static final EntityDimensions BABY_DIMENSIONS = EntityType.MOOSHROOM.getDimensions().scale(0.5F).withEyeHeight(0.665F);
@@ -102,12 +110,36 @@ public class MoobloomEntity extends Animal {
         ItemStack itemstack = player.getItemInHand(hand);
         if (itemstack.is(Items.BOWL) && !this.isBaby()) {
             player.playSound(SoundEvents.COW_MILK, 1.0F, 1.0F);
-            ItemStack itemstack1 = ItemUtils.createFilledResult(itemstack, player, Items.SUSPICIOUS_STEW.getDefaultInstance());
-            player.setItemInHand(hand, itemstack1);
+            ItemStack stew = Items.SUSPICIOUS_STEW.getDefaultInstance();
+            MobEffectInstance effect = getRandomEffect();
+            SuspiciousStewItem.saveMobEffect(stew, effect.getEffect(), effect.getDuration());
+            ItemStack result = ItemUtils.createFilledResult(itemstack, player, stew);
+            player.setItemInHand(hand, result);
+
             return InteractionResult.sidedSuccess(this.level().isClientSide);
         } else {
             return super.mobInteract(player, hand);
         }
+    }
+
+    private MobEffectInstance getRandomEffect() {
+        List<MobEffect> effects = List.of(
+                MobEffects.FIRE_RESISTANCE,
+                MobEffects.BLINDNESS,
+                MobEffects.SATURATION,
+                MobEffects.JUMP,
+                MobEffects.POISON,
+                MobEffects.REGENERATION,
+                MobEffects.NIGHT_VISION,
+                MobEffects.WEAKNESS,
+                MobEffects.WITHER,
+                ModEffects.DRAGONS_GRACE
+        );
+
+        MobEffect randomEffect = effects.get(this.random.nextInt(effects.size()));
+        int duration = 200 + this.random.nextInt(600); // 10-40 seconds
+
+        return new MobEffectInstance(randomEffect, duration);
     }
 
     @Nullable

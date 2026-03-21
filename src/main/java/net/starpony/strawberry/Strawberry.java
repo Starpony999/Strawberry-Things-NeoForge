@@ -1,8 +1,10 @@
 package net.starpony.strawberry;
 
+import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.starpony.strawberry.block.ModBlocks;
 import net.starpony.strawberry.effect.ModEffects;
 import net.starpony.strawberry.entity.ModEntities;
+import net.starpony.strawberry.entity.client.MoobloomRenderer;
 import net.starpony.strawberry.item.ModItems;
 import net.starpony.strawberry.item.ModArmorMaterials;
 import net.starpony.strawberry.potion.ModPotions;
@@ -82,6 +84,7 @@ public class Strawberry {
                 ItemBlockRenderTypes.setRenderLayer(ModBlocks.SYCAMORE.sapling.get(), RenderType.cutout());
                 ItemBlockRenderTypes.setRenderLayer(ModBlocks.PLUM.sapling.get(), RenderType.cutout());
                 ItemBlockRenderTypes.setRenderLayer(ModBlocks.BLOODWOOD.sapling.get(), RenderType.cutout());
+                EntityRenderers.register(ModEntities.MOOBLOOM.get(), MoobloomRenderer::new);
             });
         }
     }

@@ -66,6 +66,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.LEMONADE);
                       //  output.accept(ModDyes.CERISE_DYE);
                      //   output.accept(ModDyes.TURQUOISE_DYE);
+                        output.accept(ModItems.MOOBLOOM_SPAWN_EGG);
 
                     }).build());
 

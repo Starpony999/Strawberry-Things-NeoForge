@@ -4,6 +4,7 @@ import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.*;
 import net.neoforged.bus.api.IEventBus;
+import net.neoforged.neoforge.common.DeferredSpawnEggItem;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.starpony.strawberry.Strawberry;
@@ -11,6 +12,7 @@ import net.starpony.strawberry.Strawberry;
 import net.starpony.strawberry.item.custom.HammerItem;
 import net.starpony.strawberry.item.custom.SodaItem;*/
 import net.starpony.strawberry.block.ModBlocks;
+import net.starpony.strawberry.entity.ModEntities;
 import net.starpony.strawberry.item.custom.*;
 import net.starpony.strawberry.item.custom.BottleItem;
 import net.starpony.strawberry.sound.ModSounds;
@@ -48,6 +50,9 @@ public class ModItems {
     public static final DeferredItem<Item> STRAWBERRY_REDSTONE = ITEMS.register("strawberry_redstone", () -> new Item(new Item.Properties()));
     public static final DeferredItem<Item> SUNSET_VIBES_MUSIC_DISC = ITEMS.register("sunset_vibes_music_disc", () -> new Item(new Item.Properties().jukeboxPlayable(ModSounds.SUNSET_VIBES_KEY).stacksTo(1)));
 
+    // Spawn Eggs
+    public static final DeferredItem<Item> MOOBLOOM_SPAWN_EGG = ITEMS.register("moobloom_spawn_egg", () -> new DeferredSpawnEggItem(ModEntities.MOOBLOOM, 0xECE000, 0xD6D6D6,
+            new Item.Properties()));
 
     // Food
     public static final DeferredItem<Item> CAULIFLOWER = ITEMS.register("cauliflower", () -> new Item(new Item.Properties().food(ModFoodProperties.CAULIFLOWER)));
