@@ -1,0 +1,59 @@
+{
+  "temperature": 0.3,
+  "downfall": 0.0,
+  "has_precipitation": false,
+
+  "effects": {
+    "fog_color": 7340032,
+    "mood_sound": {
+      "sound": "minecraft:ambient.crimson_forest.loop",
+      "tick_delay": 6000,
+      "block_search_extent": 8,
+      "offset": 2.0
+    }
+  },
+
+  "carvers": [
+    "minecraft:cave",
+    "minecraft:cave_extra_underground"
+  ],
+
+  "features": [
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [
+      "minecraft:ore_iron_small",
+      "minecraft:ore_coal_lower"
+    ],
+    [],
+    [
+      "minecraft:spring_water"
+    ],
+    [
+      //"strawberry:blood_root_patches",
+      //"strawberry:bloodwood_trees",
+      "minecraft:patch_snow",
+      "minecraft:glow_lichen"
+    ],
+    []
+  ],
+
+  "spawn_costs": {},
+
+  "spawners": {
+    "monster": [
+      { "type": "minecraft:enderman", "weight": 20, "minCount": 1, "maxCount": 3 },
+      { "type": "minecraft:stray", "weight": 40, "minCount": 2, "maxCount": 4 }
+    ],
+    "creature": [],
+    "ambient": [],
+    "misc": [],
+    "water_creature": [],
+    "water_ambient": [],
+    "underground_water_creature": []
+  }
+}

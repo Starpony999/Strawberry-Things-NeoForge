@@ -1,0 +1,59 @@
+{
+  "temperature": 0.0,
+  "downfall": 0.0,
+  "has_precipitation": false,
+
+  "effects": {
+    "fog_color": 2302743,
+    "mood_sound": {
+      "sound": "minecraft:ambient.soul_sand_valley.loop",
+      "tick_delay": 6000,
+      "block_search_extent": 8,
+      "offset": 2.0
+    }
+  },
+
+  "carvers": [
+    "minecraft:cave",
+    "minecraft:cave_extra_underground",
+    "minecraft:canyon"
+  ],
+
+  "features": [
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [
+      "minecraft:ore_coal_lower"
+    ],
+    [],
+    [
+      "minecraft:spring_water"
+    ],
+    [
+      //"strawberry:shadow_sand_patches",
+     // "strawberry:bone_piles",
+      "minecraft:blue_ice",
+      "minecraft:glowstone"
+    ],
+    []
+  ],
+
+  "spawn_costs": {},
+
+  "spawners": {
+    "monster": [
+      { "type": "minecraft:stray", "weight": 80, "minCount": 2, "maxCount": 4 },
+      { "type": "minecraft:enderman", "weight": 15, "minCount": 1, "maxCount": 3 }
+    ],
+    "creature": [],
+    "ambient": [],
+    "misc": [],
+    "water_creature": [],
+    "water_ambient": [],
+    "underground_water_creature": []
+  }
+}
