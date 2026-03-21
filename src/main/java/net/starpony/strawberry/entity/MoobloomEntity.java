@@ -1,7 +1,8 @@
 package net.starpony.strawberry.entity;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.registries.Registries;
+import net.minecraft.core.Holder;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
@@ -9,7 +10,6 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffect;
-import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -20,7 +20,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ItemUtils;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.SuspiciousStewItem;
+import net.minecraft.world.item.component.SuspiciousStewEffects;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.starpony.strawberry.effect.ModEffects;
@@ -111,8 +111,8 @@ public class MoobloomEntity extends Animal {
         if (itemstack.is(Items.BOWL) && !this.isBaby()) {
             player.playSound(SoundEvents.COW_MILK, 1.0F, 1.0F);
             ItemStack stew = Items.SUSPICIOUS_STEW.getDefaultInstance();
-            MobEffectInstance effect = getRandomEffect();
-            SuspiciousStewItem.saveMobEffect(stew, effect.getEffect(), effect.getDuration());
+            SuspiciousStewEffects.Entry effect = getRandomEffect();
+            stew.set(DataComponents.SUSPICIOUS_STEW_EFFECTS, SuspiciousStewEffects.EMPTY.withEffectAdded(effect));
             ItemStack result = ItemUtils.createFilledResult(itemstack, player, stew);
             player.setItemInHand(hand, result);
 
@@ -122,8 +122,8 @@ public class MoobloomEntity extends Animal {
         }
     }
 
-    private MobEffectInstance getRandomEffect() {
-        List<MobEffect> effects = List.of(
+    private SuspiciousStewEffects.Entry getRandomEffect() {
+        List<Holder<MobEffect>> effects = List.of(
                 MobEffects.FIRE_RESISTANCE,
                 MobEffects.BLINDNESS,
                 MobEffects.SATURATION,
@@ -136,10 +136,10 @@ public class MoobloomEntity extends Animal {
                 ModEffects.DRAGONS_GRACE
         );
 
-        MobEffect randomEffect = effects.get(this.random.nextInt(effects.size()));
+        Holder<MobEffect> randomEffect = effects.get(this.random.nextInt(effects.size()));
         int duration = 200 + this.random.nextInt(600); // 10-40 seconds
 
-        return new MobEffectInstance(randomEffect, duration);
+        return new SuspiciousStewEffects.Entry(randomEffect, duration);
     }
 
     @Nullable
