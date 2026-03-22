@@ -23,7 +23,6 @@ import net.starpony.strawberry.util.sets.StoneSet;
 import net.starpony.strawberry.util.sets.WoodSet;
 import net.starpony.strawberry.worldgen.tree.ModTreeGrowers;
 
-import java.awt.*;
 import java.util.function.Supplier;
 
 public class ModBlocks {
@@ -367,25 +366,37 @@ public class ModBlocks {
         );
     }
     private static ColorSet registerColorSet(String name) {
-        DeferredBlock<Block> concrete = BLOCKS.register(name + "_concrete",
+        DyeColor dyeColor = getClosestDyeColor(name);
+
+        DeferredBlock<Block> concrete = registerBlock(name + "_concrete",
                 () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_CONCRETE)));
-        DeferredBlock<Block> concretePowder = BLOCKS.register(name + "_concrete_powder",
+        DeferredBlock<Block> concretePowder = registerBlock(name + "_concrete_powder",
                 () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_CONCRETE_POWDER)));
-        DeferredBlock<Block> terracotta = BLOCKS.register(name + "_terracotta",
+        DeferredBlock<Block> terracotta = registerBlock(name + "_terracotta",
                 () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.TERRACOTTA)));
-        DeferredBlock<Block> glazedTerracotta = BLOCKS.register(name + "_glazed_terracotta",
+        DeferredBlock<Block> glazedTerracotta = registerBlock(name + "_glazed_terracotta",
                 () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_GLAZED_TERRACOTTA)));
-        DeferredBlock<Block> wool = BLOCKS.register(name + "_wool",
+        DeferredBlock<Block> wool = registerBlock(name + "_wool",
                 () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_WOOL)));
-        DeferredBlock<Block> stainedGlass = BLOCKS.register(name + "_stained_glass",
-                () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_STAINED_GLASS)));
-        DeferredBlock<Block> stainedGlassPane = BLOCKS.register(name + "_stained_glass_pane",
-                () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_STAINED_GLASS_PANE)));
-        DeferredBlock<Block> carpet = BLOCKS.register(name + "_carpet",
-                () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_CARPET)));
+        DeferredBlock<StainedGlassBlock> stainedGlass = registerBlock(name + "_stained_glass",
+                () -> new StainedGlassBlock(dyeColor, BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_STAINED_GLASS)));
+        DeferredBlock<StainedGlassPaneBlock> stainedGlassPane = registerBlock(name + "_stained_glass_pane",
+                () -> new StainedGlassPaneBlock(dyeColor, BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_STAINED_GLASS_PANE)));
+        DeferredBlock<CarpetBlock> carpet = registerBlock(name + "_carpet",
+                () -> new CarpetBlock(dyeColor, BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_CARPET)));
 
         return new ColorSet(name, concrete, concretePowder, terracotta, glazedTerracotta, wool,
                 stainedGlass, stainedGlassPane, carpet);
+    }
+
+    private static DyeColor getClosestDyeColor(String name) {
+        return switch (name) {
+            case "cerise" -> DyeColor.MAGENTA;
+            case "turquoise" -> DyeColor.CYAN;
+            case "indigo" -> DyeColor.BLUE;
+            case "lavender" -> DyeColor.LIGHT_BLUE;
+            default -> DyeColor.WHITE;
+        };
     }
     private static WoodSet registerWoodSet(String name, TreeGrower grower) {
         DeferredBlock<Block> log = registerBlock(name + "_log",

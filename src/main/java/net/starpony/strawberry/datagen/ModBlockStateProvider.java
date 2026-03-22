@@ -272,7 +272,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         // Stained glass
         blockItem(set.getStainedGlass());
         glassPaneBlock(
-                (StainedGlassPaneBlock) set.getStainedGlassPane().get(),
+                set.getStainedGlassPane().get(),
                 set.getName() + "_stained_glass_pane", // registry name as string
                 blockTexture(set.getStainedGlass().get()),      // pane texture
                 modLoc("block/" + set.getName() + "_stained_glass_pane_top") // edge texture

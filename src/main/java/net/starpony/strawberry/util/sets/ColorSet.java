@@ -1,6 +1,9 @@
 package net.starpony.strawberry.util.sets;
 
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.CarpetBlock;
+import net.minecraft.world.level.block.StainedGlassBlock;
+import net.minecraft.world.level.block.StainedGlassPaneBlock;
 import net.neoforged.neoforge.registries.DeferredBlock;
 
 public class ColorSet {
@@ -10,9 +13,9 @@ public class ColorSet {
     public final DeferredBlock<Block> terracotta;
     public final DeferredBlock<Block> glazedTerracotta;
     public final DeferredBlock<Block> wool;
-    public final DeferredBlock<Block> stainedGlass;
-    public final DeferredBlock<Block> stainedGlassPane;
-    public final DeferredBlock<Block> carpet;
+    public final DeferredBlock<StainedGlassBlock> stainedGlass;
+    public final DeferredBlock<StainedGlassPaneBlock> stainedGlassPane;
+    public final DeferredBlock<CarpetBlock> carpet;
 
     public ColorSet(String name,
                     DeferredBlock<Block> concrete,
@@ -20,9 +23,9 @@ public class ColorSet {
                     DeferredBlock<Block> terracotta,
                     DeferredBlock<Block> glazedTerracotta,
                     DeferredBlock<Block> wool,
-                    DeferredBlock<Block> stainedGlass,
-                    DeferredBlock<Block> stainedGlassPane,
-                    DeferredBlock<Block> carpet) {
+                    DeferredBlock<StainedGlassBlock> stainedGlass,
+                    DeferredBlock<StainedGlassPaneBlock> stainedGlassPane,
+                    DeferredBlock<CarpetBlock> carpet) {
         this.name = name;
         this.concrete = concrete;
         this.concretePowder = concretePowder;
@@ -58,15 +61,15 @@ public class ColorSet {
         return wool;
     }
 
-    public DeferredBlock<Block> getStainedGlass() {
+    public DeferredBlock<StainedGlassBlock> getStainedGlass() {
         return stainedGlass;
     }
 
-    public DeferredBlock<Block> getStainedGlassPane() {
+    public DeferredBlock<StainedGlassPaneBlock> getStainedGlassPane() {
         return stainedGlassPane;
     }
 
-    public DeferredBlock<Block> getCarpet() {
+    public DeferredBlock<CarpetBlock> getCarpet() {
         return carpet;
     }
 }
