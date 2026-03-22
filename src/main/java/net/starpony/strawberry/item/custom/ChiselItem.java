@@ -23,14 +23,25 @@ import java.util.List;
 import java.util.Map;
 
 public class ChiselItem extends Item {
-    private static final Map<Block, Block> CHISEL_MAP =
+    private static final Map<Block, Block> CHISEL_MAP_STONE =
             Map.of(
                     Blocks.STONE, Blocks.STONE_BRICKS,
+                    Blocks.STONE_BRICKS, Blocks.CRACKED_STONE_BRICKS,
+                    Blocks.CRACKED_STONE_BRICKS, Blocks.CHISELED_STONE_BRICKS,
+                    Blocks.CHISELED_STONE_BRICKS, Blocks.MOSSY_STONE_BRICKS,
+                    Blocks.MOSSY_STONE_BRICKS, Blocks.STONE,
                     Blocks.END_STONE, Blocks.END_STONE_BRICKS,
-                    Blocks.DEEPSLATE, Blocks.DEEPSLATE_BRICKS,
-                    Blocks.GOLD_BLOCK, Blocks.IRON_BLOCK,
-                    Blocks.IRON_BLOCK, Blocks.STONE,
-                    Blocks.NETHERRACK, ModBlocks.RUBY_BLOCK.get()
+                    Blocks.END_STONE_BRICKS, Blocks.END_STONE
+            );
+    private static final Map<Block, Block> CHISEL_MAP_DEEPSLATE =
+            Map.of(
+                    Blocks.DEEPSLATE, Blocks.POLISHED_DEEPSLATE,
+                    Blocks.POLISHED_DEEPSLATE, Blocks.DEEPSLATE_BRICKS,
+                    Blocks.DEEPSLATE_BRICKS, Blocks.CRACKED_DEEPSLATE_BRICKS,
+                    Blocks.CRACKED_DEEPSLATE_BRICKS, Blocks.DEEPSLATE_TILES,
+                    Blocks.DEEPSLATE_TILES, Blocks.CRACKED_DEEPSLATE_TILES,
+                    Blocks.CRACKED_DEEPSLATE_TILES, Blocks.CHISELED_DEEPSLATE,
+                    Blocks.CHISELED_DEEPSLATE, Blocks.DEEPSLATE
             );
 
     public ChiselItem(Properties properties) {
@@ -42,9 +53,17 @@ public class ChiselItem extends Item {
         Level level = context.getLevel();
         Block clickedBlock = level.getBlockState(context.getClickedPos()).getBlock();
 
-        if(CHISEL_MAP.containsKey(clickedBlock)) {
-            if(!level.isClientSide()) {
-                level.setBlockAndUpdate(context.getClickedPos(), CHISEL_MAP.get(clickedBlock).defaultBlockState());
+        Block resultBlock = null;
+
+        if (CHISEL_MAP_STONE.containsKey(clickedBlock)) {
+            resultBlock = CHISEL_MAP_STONE.get(clickedBlock);
+        } else if (CHISEL_MAP_DEEPSLATE.containsKey(clickedBlock)) {
+            resultBlock = CHISEL_MAP_DEEPSLATE.get(clickedBlock);
+        }
+
+        if (resultBlock != null) {
+            if (!level.isClientSide()) {
+                level.setBlockAndUpdate(context.getClickedPos(), resultBlock.defaultBlockState());
 
                 context.getItemInHand().hurtAndBreak(1, ((ServerLevel) level), context.getPlayer(),
                         item -> context.getPlayer().onEquippedItemBroken(item, EquipmentSlot.MAINHAND));

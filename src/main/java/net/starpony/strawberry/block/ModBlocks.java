@@ -17,6 +17,7 @@ import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.starpony.strawberry.Strawberry;
 import net.starpony.strawberry.item.ModItems;
+import net.starpony.strawberry.util.sets.ColorSet;
 import net.starpony.strawberry.util.sets.SimpleStoneSet;
 import net.starpony.strawberry.util.sets.StoneSet;
 import net.starpony.strawberry.util.sets.WoodSet;
@@ -60,11 +61,16 @@ public class ModBlocks {
     public static final DeferredBlock<Block> BLUEBERRY_BUSH = registerBlockWithoutItem("blueberry_bush",
             () -> new BlueberryBushBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SWEET_BERRY_BUSH)));
 
-    // Special blocks
+    // Lanterns
     public static final DeferredBlock<Block> CRYSTAL_LANTERN_BLOCK = registerBlock("crystal_lantern_block",
             () -> new CrystalLanternBlock(BlockBehaviour.Properties.of().strength(1f)
                     .requiresCorrectToolForDrops()
                     .lightLevel(state -> state.getValue(CrystalLanternBlock.CLICKED) ? 15 : 0)));
+    public static final DeferredBlock<Block> REDSTONE_LANTERN = registerBlock("redstone_lantern",
+            () -> new RedstoneLanternBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LANTERN).lightLevel(state -> 15)));
+    public static final DeferredBlock<Block> CRYSTAL_LANTERN = registerBlock("crystal_lantern",
+            () -> new ColoredLanternBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LANTERN).lightLevel(state -> 15)));
+
 
     // Sets
     public static final SimpleStoneSet ANDESITE_BRICKS = registerSimpleStoneSet("andesite_bricks");
@@ -86,6 +92,10 @@ public class ModBlocks {
     public static final WoodSet SYCAMORE = registerWoodSet("sycamore", ModTreeGrowers.SYCAMORE);
     public static final WoodSet PLUM = registerWoodSet("plum", ModTreeGrowers.PLUM);
     public static final WoodSet BLOODWOOD = registerNightmareWoodSet("bloodwood", ModTreeGrowers.BLOODWOOD);
+    public static final ColorSet CERISE = registerColorSet("cerise");
+    public static final ColorSet TURQUOISE = registerColorSet("turquoise");
+    public static final ColorSet INDIGO = registerColorSet("indigo");
+    public static final ColorSet LAVENDER = registerColorSet("lavender");
 
     // Registry helpers
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {DeferredBlock<T> deferred = BLOCKS.register(name, block);registerBlockItem(name, deferred);return deferred;}
@@ -356,7 +366,27 @@ public class ModBlocks {
                 smooth, smoothStairs, smoothSlab, smoothWall, smoothButton, smoothPressurePlate
         );
     }
+    private static ColorSet registerColorSet(String name) {
+        DeferredBlock<Block> concrete = BLOCKS.register(name + "_concrete",
+                () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_CONCRETE)));
+        DeferredBlock<Block> concretePowder = BLOCKS.register(name + "_concrete_powder",
+                () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_CONCRETE_POWDER)));
+        DeferredBlock<Block> terracotta = BLOCKS.register(name + "_terracotta",
+                () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.TERRACOTTA)));
+        DeferredBlock<Block> glazedTerracotta = BLOCKS.register(name + "_glazed_terracotta",
+                () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_GLAZED_TERRACOTTA)));
+        DeferredBlock<Block> wool = BLOCKS.register(name + "_wool",
+                () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_WOOL)));
+        DeferredBlock<Block> stainedGlass = BLOCKS.register(name + "_stained_glass",
+                () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_STAINED_GLASS)));
+        DeferredBlock<Block> stainedGlassPane = BLOCKS.register(name + "_stained_glass_pane",
+                () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_STAINED_GLASS_PANE)));
+        DeferredBlock<Block> carpet = BLOCKS.register(name + "_carpet",
+                () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_CARPET)));
 
+        return new ColorSet(name, concrete, concretePowder, terracotta, glazedTerracotta, wool,
+                stainedGlass, stainedGlassPane, carpet);
+    }
     private static WoodSet registerWoodSet(String name, TreeGrower grower) {
         DeferredBlock<Block> log = registerBlock(name + "_log",
                 () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LOG)));
@@ -388,7 +418,7 @@ public class ModBlocks {
                     }
                 });
 
-        DeferredBlock<LeavesBlock> leaves = registerBlock(name + "_leaves",
+        DeferredBlock<Block> leaves = registerBlock(name + "_leaves",
                 () -> new LeavesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LEAVES)) {
                     @Override
                     public boolean isFlammable(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
