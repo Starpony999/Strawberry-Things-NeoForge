@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "#minecraft:is_overworld",
+  "features": "strawberry:sapphire_ore_stone_placed",
+  "step": "underground_ores"
+}

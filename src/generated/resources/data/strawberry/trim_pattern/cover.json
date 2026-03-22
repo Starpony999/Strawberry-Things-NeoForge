@@ -1,0 +1,8 @@
+{
+  "asset_id": "strawberry:cover",
+  "decal": false,
+  "description": {
+    "translate": "trim_pattern.strawberry.cover"
+  },
+  "template_item": "strawberry:cover_armor_trim_smithing_template"
+}

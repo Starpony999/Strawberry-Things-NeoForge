@@ -1,0 +1,8 @@
+{
+  "asset_id": "strawberry:stars",
+  "decal": false,
+  "description": {
+    "translate": "trim_pattern.strawberry.stars"
+  },
+  "template_item": "strawberry:stars_armor_trim_smithing_template"
+}

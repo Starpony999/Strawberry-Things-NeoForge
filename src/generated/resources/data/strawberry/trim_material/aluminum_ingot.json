@@ -1,0 +1,9 @@
+{
+  "asset_name": "aluminum_ingot",
+  "description": {
+    "color": "#BCBCBC",
+    "translate": "trim_material.strawberry.aluminum_ingot"
+  },
+  "ingredient": "strawberry:aluminum_ingot",
+  "item_model_index": 0.2
+}
