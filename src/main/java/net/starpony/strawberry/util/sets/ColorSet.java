@@ -1,6 +1,7 @@
 package net.starpony.strawberry.util.sets;
 
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.StainedGlassPaneBlock;
 import net.neoforged.neoforge.registries.DeferredBlock;
 
 public class ColorSet {
@@ -11,7 +12,7 @@ public class ColorSet {
     public final DeferredBlock<Block> glazedTerracotta;
     public final DeferredBlock<Block> wool;
     public final DeferredBlock<Block> stainedGlass;
-    public final DeferredBlock<Block> stainedGlassPane;
+    public final DeferredBlock<StainedGlassPaneBlock> stainedGlassPane;
     public final DeferredBlock<Block> carpet;
 
     public ColorSet(String name,
@@ -21,7 +22,7 @@ public class ColorSet {
                     DeferredBlock<Block> glazedTerracotta,
                     DeferredBlock<Block> wool,
                     DeferredBlock<Block> stainedGlass,
-                    DeferredBlock<Block> stainedGlassPane,
+                    DeferredBlock<StainedGlassPaneBlock> stainedGlassPane,
                     DeferredBlock<Block> carpet) {
         this.name = name;
         this.concrete = concrete;
@@ -62,7 +63,7 @@ public class ColorSet {
         return stainedGlass;
     }
 
-    public DeferredBlock<Block> getStainedGlassPane() {
+    public DeferredBlock<StainedGlassPaneBlock> getStainedGlassPane() {
         return stainedGlassPane;
     }
 

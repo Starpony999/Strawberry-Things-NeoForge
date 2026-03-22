@@ -84,6 +84,12 @@ public class Strawberry {
                 ItemBlockRenderTypes.setRenderLayer(ModBlocks.SYCAMORE.sapling.get(), RenderType.cutout());
                 ItemBlockRenderTypes.setRenderLayer(ModBlocks.PLUM.sapling.get(), RenderType.cutout());
                 ItemBlockRenderTypes.setRenderLayer(ModBlocks.BLOODWOOD.sapling.get(), RenderType.cutout());
+                ItemBlockRenderTypes.setRenderLayer(ModBlocks.CERISE.getStainedGlass().get(), RenderType.translucent());
+                ItemBlockRenderTypes.setRenderLayer(ModBlocks.CERISE.getStainedGlassPane().get(), RenderType.translucent());
+                ItemBlockRenderTypes.setRenderLayer(ModBlocks.CERISE.getCarpet().get(), RenderType.cutout());
+                ItemBlockRenderTypes.setRenderLayer(ModBlocks.TURQUOISE.getStainedGlass().get(), RenderType.translucent());
+                ItemBlockRenderTypes.setRenderLayer(ModBlocks.TURQUOISE.getStainedGlassPane().get(), RenderType.translucent());
+                ItemBlockRenderTypes.setRenderLayer(ModBlocks.TURQUOISE.getCarpet().get(), RenderType.cutout());
                 EntityRenderers.register(ModEntities.MOOBLOOM.get(), MoobloomRenderer::new);
             });
         }

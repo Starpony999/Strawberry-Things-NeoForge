@@ -4,6 +4,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.*;
@@ -17,12 +18,12 @@ import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.starpony.strawberry.Strawberry;
 import net.starpony.strawberry.item.ModItems;
+import net.starpony.strawberry.util.sets.ColorSet;
 import net.starpony.strawberry.util.sets.SimpleStoneSet;
 import net.starpony.strawberry.util.sets.StoneSet;
 import net.starpony.strawberry.util.sets.WoodSet;
 import net.starpony.strawberry.worldgen.tree.ModTreeGrowers;
 
-import java.awt.*;
 import java.util.function.Supplier;
 
 public class ModBlocks {
@@ -86,6 +87,8 @@ public class ModBlocks {
     public static final WoodSet SYCAMORE = registerWoodSet("sycamore", ModTreeGrowers.SYCAMORE);
     public static final WoodSet PLUM = registerWoodSet("plum", ModTreeGrowers.PLUM);
     public static final WoodSet BLOODWOOD = registerNightmareWoodSet("bloodwood", ModTreeGrowers.BLOODWOOD);
+    public static final ColorSet CERISE = registerColorSet("cerise", DyeColor.RED);
+    public static final ColorSet TURQUOISE = registerColorSet("turquoise", DyeColor.CYAN);
 
     // Registry helpers
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {DeferredBlock<T> deferred = BLOCKS.register(name, block);registerBlockItem(name, deferred);return deferred;}
@@ -93,6 +96,34 @@ public class ModBlocks {
     private static <T extends Block> DeferredBlock<T> registerBlockWithoutItem(String name, Supplier<T> block) {return BLOCKS.register(name, block);}
 
     // Set Methods
+    private static ColorSet registerColorSet(String name, DyeColor dyeColor) {
+        DeferredBlock<Block> concrete = registerBlock(name + "_concrete",
+                () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_CONCRETE)));
+
+        DeferredBlock<Block> concretePowder = registerBlock(name + "_concrete_powder",
+                () -> new ConcretePowderBlock(concrete.get(), BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_CONCRETE_POWDER)));
+
+        DeferredBlock<Block> terracotta = registerBlock(name + "_terracotta",
+                () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_TERRACOTTA)));
+
+        DeferredBlock<Block> glazedTerracotta = registerBlock(name + "_glazed_terracotta",
+                () -> new GlazedTerracottaBlock(dyeColor, BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_GLAZED_TERRACOTTA)));
+
+        DeferredBlock<Block> wool = registerBlock(name + "_wool",
+                () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_WOOL)));
+
+        DeferredBlock<Block> stainedGlass = registerBlock(name + "_stained_glass",
+                () -> new StainedGlassBlock(dyeColor, BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_STAINED_GLASS)));
+
+        DeferredBlock<StainedGlassPaneBlock> stainedGlassPane = registerBlock(name + "_stained_glass_pane",
+                () -> new StainedGlassPaneBlock(dyeColor, BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_STAINED_GLASS_PANE)));
+
+        DeferredBlock<Block> carpet = registerBlock(name + "_carpet",
+                () -> new CarpetBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_CARPET)));
+
+        return new ColorSet(name, concrete, concretePowder, terracotta, glazedTerracotta, wool, stainedGlass, stainedGlassPane, carpet);
+    }
+
     private static SimpleStoneSet registerSimpleStoneSet(String name) {
         DeferredBlock<Block> base = registerBlock(name,
                 () -> new Block(BlockBehaviour.Properties.of()

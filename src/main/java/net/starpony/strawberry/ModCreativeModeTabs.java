@@ -117,8 +117,8 @@ public class ModCreativeModeTabs {
                         SetUtils.addWoodSet(output, ModBlocks.PLUM);
                         SetUtils.addNightmareWoodSet(output, ModBlocks.BLOODWOOD);
 
-                        /*SetUtils.addColorSet(output, ModBlocks.CERISE);
-                        SetUtils.addColorSet(output, ModBlocks.TURQUOISE); */
+                        SetUtils.addColorSet(output, ModBlocks.CERISE);
+                        SetUtils.addColorSet(output, ModBlocks.TURQUOISE);
                     }).build());
     public static final Supplier<CreativeModeTab> STRAWBERRY_TOOLS_ARMOR_TAB = CREATIVE_MODE_TAB.register("strawberry_tools_armor_tab",
             () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.RUBY.getPickaxe().get()))
