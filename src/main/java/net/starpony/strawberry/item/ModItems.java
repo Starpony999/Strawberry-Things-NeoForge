@@ -43,10 +43,8 @@ public class ModItems {
     public static final DeferredItem<Item> BRIQUETTE = ITEMS.register("briquette", () -> new FuelItem(new Item.Properties(), 1600));
     public static final DeferredItem<Item> FUSION_KEY = ITEMS.register("fusion_key", () -> new Item(new Item.Properties()));
     public static final DeferredItem<Item> SODA_CAN = ITEMS.register("soda_can", () -> new Item(new Item.Properties()));
-    public static final DeferredItem<Item> CRYSTAL_LANTERN = ITEMS.register("crystal_lantern", () -> new Item(new Item.Properties()));
     public static final DeferredItem<Item> TOILET_PAPER = ITEMS.register("toilet_paper", () -> new Item(new Item.Properties()));
     public static final DeferredItem<Item> SMALL_LIGHT = ITEMS.register("small_light", () -> new Item(new Item.Properties()));
-    public static final DeferredItem<Item> REDSTONE_LANTERN = ITEMS.register("redstone_lantern", () -> new Item(new Item.Properties()));
     public static final DeferredItem<Item> STRAWBERRY_REDSTONE = ITEMS.register("strawberry_redstone", () -> new Item(new Item.Properties()));
     public static final DeferredItem<Item> SUNSET_VIBES_MUSIC_DISC = ITEMS.register("sunset_vibes_music_disc", () -> new Item(new Item.Properties().jukeboxPlayable(ModSounds.SUNSET_VIBES_KEY).stacksTo(1)));
 

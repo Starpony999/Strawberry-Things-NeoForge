@@ -41,8 +41,8 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.STARS_SMITHING_TEMPLATE);
                         output.accept(ModItems.SHINING_UPGRADE_SMITHING_TEMPLATE);
                         output.accept(ModItems.SIMPLE_UPGRADE_SMITHING_TEMPLATE);
-                        output.accept(ModItems.CRYSTAL_LANTERN);
-                        output.accept(ModItems.REDSTONE_LANTERN);
+                        output.accept(ModBlocks.CRYSTAL_LANTERN);
+                        output.accept(ModBlocks.REDSTONE_LANTERN);
                         output.accept(ModItems.SMALL_LIGHT);
                         output.accept(ModItems.TOILET_PAPER);
                         output.accept(ModItems.BRIQUETTE);
