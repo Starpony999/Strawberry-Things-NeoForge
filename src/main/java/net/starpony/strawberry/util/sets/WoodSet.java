@@ -14,7 +14,7 @@ public class WoodSet {
     public final DeferredBlock<Block> strippedWood;
     public final DeferredBlock<Block> planks;
     public final DeferredBlock<Block> leaves;
-    public final DeferredBlock<NetherWartBlock> wartBlock;
+    public final DeferredBlock<Block> wartBlock;
     public final DeferredBlock<Block> sapling;
     public final DeferredBlock<StairBlock> stairs;
     public final DeferredBlock<SlabBlock> slab;
@@ -32,7 +32,7 @@ public class WoodSet {
                    DeferredBlock<Block> strippedWood,
                    DeferredBlock<Block> planks,
                    DeferredBlock<Block> leaves,
-                   DeferredBlock<NetherWartBlock> wartBlock,
+                   DeferredBlock<Block> wartBlock,
                    DeferredBlock<Block> sapling,
                    DeferredBlock<StairBlock> stairs,
                    DeferredBlock<SlabBlock> slab,
@@ -96,7 +96,7 @@ public class WoodSet {
         return leaves;
     }
 
-    public DeferredBlock<NetherWartBlock> getWartBlock() {
+    public DeferredBlock<Block> getWartBlock() {
         return wartBlock;
     }
 

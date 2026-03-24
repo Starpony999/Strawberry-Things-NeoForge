@@ -489,7 +489,7 @@ public class ModBlocks {
         DeferredBlock<Block> planks = registerBlock(name + "_planks",
                 () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.WARPED_PLANKS)));
 
-        DeferredBlock<NetherWartBlock> wartBlock = registerBlock(name + "_wart_block",
+        DeferredBlock<Block> wartBlock = registerBlock(name + "_wart_block",
                 () -> new NetherWartBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.WARPED_WART_BLOCK)) );
 
         DeferredBlock<Block> sapling = registerBlock(name + "_fungus",
