@@ -50,10 +50,10 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockWithItem(ModBlocks.ROSE_QUARTZ_BLOCK);
         blockWithItem(ModBlocks.HELLSHROOM_LIGHT);
         blockWithItem(ModBlocks.BUDDING_THULITE_CRYSTAL_BLOCK);
-        blockWithItem(ModBlocks.SMALL_THULITE_BUD);
-        blockWithItem(ModBlocks.MEDIUM_THULITE_BUD);
-        blockWithItem(ModBlocks.LARGE_THULITE_BUD);
-        blockWithItem(ModBlocks.THULITE_CLUSTER);
+        thuliteClusterBlock(ModBlocks.SMALL_THULITE_BUD, "small_amethyst_bud");
+        thuliteClusterBlock(ModBlocks.MEDIUM_THULITE_BUD, "medium_amethyst_bud");
+        thuliteClusterBlock(ModBlocks.LARGE_THULITE_BUD, "large_amethyst_bud");
+        thuliteClusterBlock(ModBlocks.THULITE_CLUSTER, "amethyst_cluster");
 
         blockWithItem(ModBlocks.GNEISS);
         blockWithItem(ModBlocks.SCHIST);
@@ -314,5 +314,41 @@ public class ModBlockStateProvider extends BlockStateProvider {
     }
     private void blockItem(DeferredBlock<?> deferredBlock, String appendix) {
         simpleBlockItem(deferredBlock.get(), new ModelFile.UncheckedModelFile("strawberry:block/" + deferredBlock.getId().getPath() + appendix));
+    }
+
+    private void thuliteClusterBlock(DeferredBlock<Block> block, String parentModel) {
+        String name = BuiltInRegistries.BLOCK.getKey(block.get()).getPath();
+        ModelFile model = models().withExistingParent(name, mcLoc("block/" + parentModel))
+                .texture("amethyst", modLoc("block/thulite_crystal_block"))
+                .renderType("cutout");
+
+        getVariantBuilder(block.get()).forAllStates(state -> {
+            Direction direction = state.getValue(AmethystClusterBlock.FACING);
+            return ConfiguredModel.builder()
+                    .modelFile(model)
+                    .rotationX(getXRotation(direction))
+                    .rotationY(getYRotation(direction))
+                    .build();
+        });
+
+        simpleBlockItem(block.get(), model);
+    }
+
+    private int getXRotation(Direction direction) {
+        return switch (direction) {
+            case DOWN -> 180;
+            case UP -> 0;
+            default -> 90;
+        };
+    }
+
+    private int getYRotation(Direction direction) {
+        return switch (direction) {
+            case NORTH -> 0;
+            case SOUTH -> 180;
+            case WEST -> 270;
+            case EAST -> 90;
+            default -> 0;
+        };
     }
 }
