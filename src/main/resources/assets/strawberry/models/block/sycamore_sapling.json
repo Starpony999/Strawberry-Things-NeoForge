@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/cross",
-  "textures": {
-    "cross": "strawberry:block/sycamore_sapling"
-  }
-}

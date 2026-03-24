@@ -10,11 +10,11 @@ public class GemSet {
     private final DeferredItem<Item> gem;
     private final DeferredItem<Item> shard;
 
-    private final DeferredItem<HoeItem> hoe;
-    private final DeferredItem<AxeItem> axe;
-    private final DeferredItem<PickaxeItem> pickaxe;
-    private final DeferredItem<SwordItem> sword;
-    private final DeferredItem<ShovelItem> shovel;
+    private final DeferredItem<Item> hoe;
+    private final DeferredItem<Item> axe;
+    private final DeferredItem<Item> pickaxe;
+    private final DeferredItem<Item> sword;
+    private final DeferredItem<Item> shovel;
 
     private final DeferredItem<ArmorItem> helmet;
     private final DeferredItem<ArmorItem> chestplate;
@@ -26,11 +26,11 @@ public class GemSet {
             String name,
             DeferredItem<Item> gem,
             DeferredItem<Item> shard,
-            DeferredItem<HoeItem> hoe,
-            DeferredItem<AxeItem> axe,
-            DeferredItem<PickaxeItem> pickaxe,
-            DeferredItem<SwordItem> sword,
-            DeferredItem<ShovelItem> shovel,
+            DeferredItem<Item> hoe,
+            DeferredItem<Item> axe,
+            DeferredItem<Item> pickaxe,
+            DeferredItem<Item> sword,
+            DeferredItem<Item> shovel,
             DeferredItem<ArmorItem> helmet,
             DeferredItem<ArmorItem> chestplate,
             DeferredItem<ArmorItem> leggings,
@@ -67,23 +67,23 @@ public class GemSet {
         return shard;
     }
 
-    public DeferredItem<HoeItem> getHoe() {
+    public DeferredItem<Item> getHoe() {
         return hoe;
     }
 
-    public DeferredItem<AxeItem> getAxe() {
+    public DeferredItem<Item> getAxe() {
         return axe;
     }
 
-    public DeferredItem<PickaxeItem> getPickaxe() {
+    public DeferredItem<Item> getPickaxe() {
         return pickaxe;
     }
 
-    public DeferredItem<SwordItem> getSword() {
+    public DeferredItem<Item> getSword() {
         return sword;
     }
 
-    public DeferredItem<ShovelItem> getShovel() {
+    public DeferredItem<Item> getShovel() {
         return shovel;
     }
 

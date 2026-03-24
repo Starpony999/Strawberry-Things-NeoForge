@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/outer_stairs",
-  "textures": {
-    "bottom": "strawberry:block/smooth_grimstone",
-    "side": "strawberry:block/smooth_grimstone",
-    "top": "strawberry:block/smooth_grimstone"
-  }
-}

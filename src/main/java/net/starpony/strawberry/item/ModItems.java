@@ -38,6 +38,12 @@ public class ModItems {
     public static final GemSet ROSE_QUARTZ = registerGemSet("rose_quartz", ModToolTiers.ROSE_QUARTZ, ModArmorMaterials.ROSE_QUARTZ_ARMOR_MATERIAL, true);
     public static final GemSet OTHERWORLDLY_AMETHYST = registerGemSet("otherworldly_amethyst", ModToolTiers.OTHERWORLDLY_AMETHYST, ModArmorMaterials.OTHERWORLDLY_AMETHYST_ARMOR_MATERIAL, false);
 
+    //Dyes
+    public static final DeferredItem<Item> CERISE_DYE = ITEMS.register("cerise_dye", () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> TURQUOISE_DYE = ITEMS.register("turquoise_dye", () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> INDIGO_DYE = ITEMS.register("indigo_dye", () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> LAVENDER_DYE = ITEMS.register("lavender_dye", () -> new Item(new Item.Properties()));
+
     // MISC
     public static final DeferredItem<Item> CHISEL = ITEMS.register("chisel", () -> new ChiselItem(new Item.Properties().durability(32)));
     public static final DeferredItem<Item> BRIQUETTE = ITEMS.register("briquette", () -> new FuelItem(new Item.Properties(), 1600));
@@ -88,19 +94,19 @@ public class ModItems {
 
         String lower = name.toLowerCase();
 
-        DeferredItem<SwordItem> sword = ITEMS.register(lower + "_sword",
+        DeferredItem<Item> sword = ITEMS.register(lower + "_sword",
                 () -> new SwordItem(toolMaterial, new Item.Properties()));
 
-        DeferredItem<PickaxeItem> pickaxe = ITEMS.register(lower + "_pickaxe",
+        DeferredItem<Item> pickaxe = ITEMS.register(lower + "_pickaxe",
                 () -> new PickaxeItem(toolMaterial, new Item.Properties()));
 
-        DeferredItem<ShovelItem> shovel = ITEMS.register(lower + "_shovel",
+        DeferredItem<Item> shovel = ITEMS.register(lower + "_shovel",
                 () -> new ShovelItem(toolMaterial, new Item.Properties()));
 
-        DeferredItem<AxeItem> axe = ITEMS.register(lower + "_axe",
+        DeferredItem<Item> axe = ITEMS.register(lower + "_axe",
                 () -> new AxeItem(toolMaterial, new Item.Properties()));
 
-        DeferredItem<HoeItem> hoe = ITEMS.register(lower + "_hoe",
+        DeferredItem<Item> hoe = ITEMS.register(lower + "_hoe",
                 () -> new HoeItem(toolMaterial, new Item.Properties()));
 
         DeferredItem<ArmorItem> helmet = ITEMS.register(lower + "_helmet",

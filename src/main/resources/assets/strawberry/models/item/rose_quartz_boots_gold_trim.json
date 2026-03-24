@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "strawberry:item/rose_quartz_boots",
-    "layer1": "minecraft:trims/items/boots_trim_gold"
-  }
-}

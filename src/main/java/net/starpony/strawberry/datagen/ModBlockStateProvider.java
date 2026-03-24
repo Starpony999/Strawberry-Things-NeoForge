@@ -2,6 +2,7 @@ package net.starpony.strawberry.datagen;
 
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.neoforged.neoforge.client.model.generators.MultiPartBlockStateBuilder;
 import net.starpony.strawberry.Strawberry;
 import net.starpony.strawberry.block.*;
@@ -33,6 +34,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockWithItem(ModBlocks.ALUMINUM_BLOCK);
         blockWithItem(ModBlocks.ALUMINUM_ORE);
         blockWithItem(ModBlocks.RAW_ALUMINUM_BLOCK);
+        blockWithItem(ModBlocks.RUBY_BLOCK);
         blockWithItem(ModBlocks.RUBY_ORE);
         blockWithItem(ModBlocks.SAPPHIRE_ORE);
         blockWithItem(ModBlocks.DEEPSLATE_RUBY_ORE);
@@ -46,6 +48,9 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockWithItem(ModBlocks.NETHERTHYST_ORE);
         blockWithItem(ModBlocks.RAW_ROSE_QUARTZ_BLOCK);
         blockWithItem(ModBlocks.ROSE_QUARTZ_BLOCK);
+
+        blockWithItem(ModBlocks.GNEISS);
+        blockWithItem(ModBlocks.SCHIST);
 
         registerSimpleStoneSet(ModBlocks.WASHED_DIORITE_BRICKS);
         registerSimpleStoneSet(ModBlocks.DIORITE_BRICKS);
@@ -76,58 +81,71 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
         customLamp();
 
-        makeCrop(((CropBlock) ModBlocks.CAULIFLOWER_CROP.get()), "cauliflower_crop_stage", "cauliflower_crop_stage");
-        makeCrop(((CropBlock) ModBlocks.GRAPE_CROP.get()), "grape_crop_stage", "grape_crop_stage");
-        makeBush(((SweetBerryBushBlock) ModBlocks.STRAWBERRY_BUSH.get()), "strawberry_bush_stage", "strawberry_bush_stage");
+        makeCrop(ModBlocks.CAULIFLOWER_CROP.get(), "cauliflower_stage_", "cauliflower_");
+        makeCrop(ModBlocks.GRAPE_CROP.get(), "grape_stage_", "grape_");
+
         makeBush(((SweetBerryBushBlock) ModBlocks.BLUEBERRY_BUSH.get()), "blueberry_bush_stage", "blueberry_bush_stage");
     }
 
 //Bushes
-    public void makeBush(SweetBerryBushBlock block, String modelName, String textureName) {
-        Function<BlockState, ConfiguredModel[]> function = state -> states(state, modelName, textureName);
+public void makeBush(SweetBerryBushBlock block, String modelName, String textureName) {
+    getVariantBuilder(block).forAllStates(state -> {
+        int age = state.getValue(SweetBerryBushBlock.AGE);
 
-        getVariantBuilder(block).forAllStates(function);
-    }
-    private ConfiguredModel[] states(BlockState state, String modelName, String textureName) {
-        ConfiguredModel[] models = new ConfiguredModel[1];
-        models[0] = new ConfiguredModel(models().cross(modelName + state.getValue(StrawberryBushBlock.AGE),
-                ResourceLocation.fromNamespaceAndPath(Strawberry.MOD_ID, "block/" + textureName + state.getValue(StrawberryBushBlock.AGE))).renderType("cutout"));
-        models[0] = new ConfiguredModel(models().cross(modelName + state.getValue(BlueberryBushBlock.AGE),
-                ResourceLocation.fromNamespaceAndPath(Strawberry.MOD_ID, "block/" + textureName + state.getValue(BlueberryBushBlock.AGE))).renderType("cutout"));
-        return models;
-    }
+        ConfiguredModel model = new ConfiguredModel(
+                models().cross(modelName + age,
+                        ResourceLocation.fromNamespaceAndPath(Strawberry.MOD_ID, "block/" + textureName + age)
+                ).renderType("cutout")
+        );
+
+        return new ConfiguredModel[]{ model };
+    });
+}
 //Crops
-    public void makeCrop(CropBlock block, String modelName, String textureName) {
-        Function<BlockState, ConfiguredModel[]> function = state -> states(state, block, modelName, textureName);
+public void makeCrop(CropBlock block, String modelName, String textureName) {
+    Function<BlockState, ConfiguredModel[]> function = state -> {
+        IntegerProperty ageProp = getAgeProperty(block);
+        int age = state.getValue(ageProp);
 
-        getVariantBuilder(block).forAllStates(function);
-    }
-    private ConfiguredModel[] states(BlockState state, CropBlock block, String modelName, String textureName) {
-        ConfiguredModel[] models = new ConfiguredModel[1];
-        models[0] = new ConfiguredModel(models().crop(modelName + state.getValue(((CauliflowerCropBlock) block).getAgeProperty()),
-                ResourceLocation.fromNamespaceAndPath(Strawberry.MOD_ID, "block/" + textureName + state.getValue(((CauliflowerCropBlock) block).getAgeProperty()))).renderType("cutout"));
-        models[0] = new ConfiguredModel(models().crop(modelName + state.getValue(((GrapeCropBlock) block).getAgeProperty()),
-                ResourceLocation.fromNamespaceAndPath(Strawberry.MOD_ID, "block/" + textureName + state.getValue(((GrapeCropBlock) block).getAgeProperty()))).renderType("cutout"));
+        ConfiguredModel model = new ConfiguredModel(
+                models().crop(modelName + age,
+                        ResourceLocation.fromNamespaceAndPath(Strawberry.MOD_ID, "block/" + textureName + age)
+                ).renderType("cutout")
+        );
 
-        return models;
+        return new ConfiguredModel[]{ model };
+    };
+
+    getVariantBuilder(block).forAllStates(function);
+}
+
+
+    private IntegerProperty getAgeProperty(CropBlock block) {
+        try {
+            // Uses reflection to call getAgeProperty() on any subclass
+            return (IntegerProperty) block.getClass().getMethod("getAgeProperty").invoke(block);
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to get age property for crop block: " + block, e);
+        }
     }
 //Lamp
     private void customLamp() {
         getVariantBuilder(ModBlocks.CRYSTAL_LANTERN_BLOCK.get()).forAllStates(state -> {
             if(state.getValue(CrystalLanternBlock.CLICKED)) {
-                return new ConfiguredModel[]{new ConfiguredModel(models().cubeAll("crystal_lantern_on",
-                        ResourceLocation.fromNamespaceAndPath(Strawberry.MOD_ID, "block/" + "crystal_lantern_on")))};
+                return new ConfiguredModel[]{new ConfiguredModel(models().cubeAll("crystal_lantern_block_on",
+                        ResourceLocation.fromNamespaceAndPath(Strawberry.MOD_ID, "block/" + "crystal_lantern_block_on")))};
             } else {
-                return new ConfiguredModel[]{new ConfiguredModel(models().cubeAll("crystal_lantern_off",
-                        ResourceLocation.fromNamespaceAndPath(Strawberry.MOD_ID, "block/" + "crystal_lantern_off")))};
+                return new ConfiguredModel[]{new ConfiguredModel(models().cubeAll("crystal_lantern_block_off",
+                        ResourceLocation.fromNamespaceAndPath(Strawberry.MOD_ID, "block/" + "crystal_lantern_block_off")))};
             }
         });
 
-        simpleBlockItem(ModBlocks.CRYSTAL_LANTERN_BLOCK.get(), models().cubeAll("crystal_lantern_on",
-                ResourceLocation.fromNamespaceAndPath(Strawberry.MOD_ID, "block/" + "crystal_lantern_on")));
+        simpleBlockItem(ModBlocks.CRYSTAL_LANTERN_BLOCK.get(), models().cubeAll("crystal_lantern_block_on",
+                ResourceLocation.fromNamespaceAndPath(Strawberry.MOD_ID, "block/" + "crystal_lantern_block_on")));
     }
  //Utils
     public void registerSimpleStoneSet(SimpleStoneSet set) {
+        simpleBlock(set.getStone().get(), cubeAll(set.getStone().get()));
         blockItem(set.getStone());
         stairsBlock(set.getStairs().get(), blockTexture(set.getStone().get()));
         blockItem(set.getStairs());
@@ -140,47 +158,31 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockItem(set.getWall());
     }
     public void registerWoodSet(WoodSet set) {
-        // Logs & Wood
         logBlock((RotatedPillarBlock) set.getLog().get());
         axisBlock((RotatedPillarBlock) set.getWood().get(), blockTexture(set.getLog().get()), blockTexture(set.getLog().get()));
-
         logBlock((RotatedPillarBlock) set.getStrippedLog().get());
         axisBlock((RotatedPillarBlock) set.getStrippedWood().get(), blockTexture(set.getStrippedLog().get()), blockTexture(set.getStrippedLog().get()));
-
         blockItem(set.getLog());
         blockItem(set.getWood());
         blockItem(set.getStrippedLog());
         blockItem(set.getStrippedWood());
-
-        // Planks
         blockWithItem(set.getPlanks());
-
-        // Leaves & Saplings
         leavesBlock(set.getLeaves());
         saplingBlock(set.getSapling());
-
-        // Stairs, Slabs, Buttons, Pressure Plates
         stairsBlock(set.getStairs().get(), blockTexture(set.getPlanks().get()));
         slabBlock(set.getSlab().get(), blockTexture(set.getPlanks().get()), blockTexture(set.getPlanks().get()));
         buttonBlock(set.getButton().get(), blockTexture(set.getPlanks().get()));
         pressurePlateBlock(set.getPressurePlate().get(), blockTexture(set.getPlanks().get()));
-
-        // Fences & Gates
         fenceBlock(set.getFence().get(), blockTexture(set.getPlanks().get()));
         fenceGateBlock(set.getFenceGate().get(), blockTexture(set.getPlanks().get()));
-
-        // Doors & Trapdoors
         doorBlockWithRenderType(set.getDoor().get(),
                 modLoc("block/" + set.getName() + "_door_bottom"),
                 modLoc("block/" + set.getName() + "_door_top"),
                 "cutout");
-
         trapdoorBlockWithRenderType(set.getTrapdoor().get(),
                 modLoc("block/" + set.getName() + "_trapdoor"),
                 true,
                 "cutout");
-
-        // Block Items for all interactive blocks
         blockItem(set.getStairs());
         blockItem(set.getSlab());
         blockItem(set.getPressurePlate());
@@ -220,6 +222,12 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockItem(set.getTrapdoor(), "_bottom");
     }
     public void registerFullStoneSet(StoneSet set) {
+        simpleBlockWithItem(set.getBase().get(), cubeAll(set.getBase().get()));
+        simpleBlockWithItem(set.getCobbled().get(), cubeAll(set.getCobbled().get()));
+        simpleBlockWithItem(set.getChiseled().get(), cubeAll(set.getChiseled().get()));
+        simpleBlockWithItem(set.getBricks().get(), cubeAll(set.getBricks().get()));
+        simpleBlockWithItem(set.getCrackedBricks().get(), cubeAll(set.getCrackedBricks().get()));
+        simpleBlockWithItem(set.getSmooth().get(), cubeAll(set.getSmooth().get()));
         // Helper method for one stone variant
         Consumer<StoneVariant> registerVariant = variant -> {
             stairsBlock(variant.stairs.get(), blockTexture(variant.base.get()));
@@ -262,21 +270,18 @@ public class ModBlockStateProvider extends BlockStateProvider {
         }
     }
     public void registerColorSet(ColorSet set) {
-        // Solid blocks
         blockItem(set.getConcrete());
         blockItem(set.getConcretePowder());
         blockItem(set.getTerracotta());
         blockItem(set.getGlazedTerracotta());
         blockItem(set.getWool());
-
-        // Stained glass
         blockItem(set.getStainedGlass());
         glassPaneBlock(
                 (StainedGlassPaneBlock) set.getStainedGlassPane().get(),
-                set.getName() + "_stained_glass_pane", // registry name as string
-                blockTexture(set.getStainedGlass().get()),      // pane texture
-                modLoc("block/" + set.getName() + "_stained_glass_pane_top") // edge texture
+                blockTexture(set.getStainedGlass().get()),
+                blockTexture(set.getStainedGlass().get())
         );
+
         simpleBlock(set.getCarpet().get(), models().carpet(set.getName() + "_carpet", blockTexture(set.getWool().get())));
     }
     private void saplingBlock(DeferredBlock<Block> blockRegistryObject) {
@@ -288,41 +293,12 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 models().singleTexture(BuiltInRegistries.BLOCK.getKey(blockRegistryObject.get()).getPath(), ResourceLocation.parse("minecraft:block/leaves"),
                         "all", blockTexture(blockRegistryObject.get())).renderType("cutout"));
     }
-    public void glassPaneBlock(StainedGlassPaneBlock block, String name, ResourceLocation paneTexture, ResourceLocation edgeTexture) {
-        ModelFile noSide = this.models().withExistingParent(name + "_noside", modLoc("block/template_glass_pane_noside"))
-                .texture("pane", paneTexture);
-        ModelFile noSideAlt = this.models().withExistingParent(name + "_noside_alt", modLoc("block/template_glass_pane_noside_alt"))
-                .texture("pane", paneTexture);
-        ModelFile post = this.models().withExistingParent(name + "_post", modLoc("block/template_glass_pane_post"))
-                .texture("pane", paneTexture)
-                .texture("edge", edgeTexture);
-        ModelFile side = this.models().withExistingParent(name + "_side", modLoc("block/template_glass_pane_side"))
-                .texture("pane", paneTexture)
-                .texture("edge", edgeTexture);
-        ModelFile sideAlt = this.models().withExistingParent(name + "_side_alt", modLoc("block/template_glass_pane_side_alt"))
-                .texture("pane", paneTexture)
-                .texture("edge", edgeTexture);
-
-        MultiPartBlockStateBuilder builder = getMultipartBuilder(block);
-        builder.part().modelFile(post).addModel().end();
-
-        for (Direction dir : Direction.Plane.HORIZONTAL) {
-            boolean alt = dir == Direction.SOUTH;
-
-            builder.part()
-                    .modelFile(!alt && dir != Direction.WEST ? side : sideAlt)
-                    .rotationY(dir.getAxis() == Direction.Axis.X ? 90 : 0)
-                    .addModel()
-                    .condition(PipeBlock.PROPERTY_BY_DIRECTION.get(dir), true)
-                    .end();
-
-            builder.part()
-                    .modelFile(!alt && dir != Direction.EAST ? noSide : noSideAlt)
-                    .rotationY(dir == Direction.WEST ? 270 : (dir == Direction.SOUTH ? 90 : 0))
-                    .addModel()
-                    .condition(PipeBlock.PROPERTY_BY_DIRECTION.get(dir), false)
-                    .end();
-        }
+    public void glassPaneBlock(StainedGlassPaneBlock block, ResourceLocation paneTexture, ResourceLocation edgeTexture) {
+        paneBlock(
+                (IronBarsBlock) block,
+                paneTexture,
+                edgeTexture
+        );
     }
     private void blockWithItem(DeferredBlock<?> deferredBlock) {
         simpleBlockWithItem(deferredBlock.get(), cubeAll(deferredBlock.get()));

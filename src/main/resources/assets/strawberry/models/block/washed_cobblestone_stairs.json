@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/stairs",
-  "textures": {
-    "bottom": "strawberry:block/washed_cobblestone",
-    "side": "strawberry:block/washed_cobblestone",
-    "top": "strawberry:block/washed_cobblestone"
-  }
-}

@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab_top",
-  "textures": {
-    "bottom": "strawberry:block/weathered_cobblestone_bricks",
-    "side": "strawberry:block/weathered_cobblestone_bricks",
-    "top": "strawberry:block/weathered_cobblestone_bricks"
-  }
-}

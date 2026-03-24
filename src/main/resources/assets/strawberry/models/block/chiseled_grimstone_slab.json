@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab",
-  "textures": {
-    "bottom": "strawberry:block/chiseled_grimstone",
-    "side": "strawberry:block/chiseled_grimstone",
-    "top": "strawberry:block/chiseled_grimstone"
-  }
-}

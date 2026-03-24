@@ -4,6 +4,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.*;
@@ -38,6 +39,8 @@ public class ModBlocks {
     public static final DeferredBlock<Block> ROSE_QUARTZ_BLOCK = registerBlock("rose_quartz_block", () -> new Block(BlockBehaviour.Properties.of().strength(5f).requiresCorrectToolForDrops().sound(SoundType.METAL)));
     public static final DeferredBlock<Block> THULITE_CRYSTAL_BLOCK = registerBlock("thulite_crystal_block", () -> new Block(BlockBehaviour.Properties.of().strength(1.5f).requiresCorrectToolForDrops().sound(SoundType.AMETHYST)));
     public static final DeferredBlock<Block> OTHERWORLDLY_AMETHYST_BLOCK = registerBlock("otherworldly_amethyst_block", () -> new Block(BlockBehaviour.Properties.of().strength(50f).requiresCorrectToolForDrops().sound(SoundType.AMETHYST)));
+    public static final DeferredBlock<Block> GNEISS = registerBlock("gneiss", () -> new Block(BlockBehaviour.Properties.of().strength(1.25f).requiresCorrectToolForDrops().sound(SoundType.BASALT)));
+    public static final DeferredBlock<Block> SCHIST = registerBlock("schist", () -> new Block(BlockBehaviour.Properties.of().strength(0.75f).requiresCorrectToolForDrops().sound(SoundType.CALCITE)));
 
     // Ores
     public static final DeferredBlock<Block> ALUMINUM_ORE = registerBlock("aluminum_ore", () -> new DropExperienceBlock(UniformInt.of(1, 3), BlockBehaviour.Properties.of().strength(3f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
@@ -52,9 +55,9 @@ public class ModBlocks {
     public static final DeferredBlock<Block> NETHERTHYST_ORE = registerBlock("netherthyst_ore", () -> new Block(BlockBehaviour.Properties.of().strength(30f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
 
     // Crops
-    public static final DeferredBlock<Block> CAULIFLOWER_CROP = BLOCKS.register("cauliflower_crop",
+    public static final DeferredBlock<CropBlock> CAULIFLOWER_CROP = BLOCKS.register("cauliflower_crop",
             () -> new CauliflowerCropBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.WHEAT)));
-    public static final DeferredBlock<Block> GRAPE_CROP = registerBlockWithoutItem("grape_crop",
+    public static final DeferredBlock<CropBlock> GRAPE_CROP = registerBlockWithoutItem("grape_crop",
             () -> new GrapeCropBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.WHEAT)));
     public static final DeferredBlock<Block> STRAWBERRY_BUSH = registerBlockWithoutItem("strawberry_bush",
             () -> new StrawberryBushBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SWEET_BERRY_BUSH)));
@@ -87,15 +90,18 @@ public class ModBlocks {
     public static final SimpleStoneSet AGED_COBBLESTONE_BRICKS = registerSimpleStoneSet("aged_cobblestone_bricks");
     public static final SimpleStoneSet EXPOSED_COBBLESTONE = registerSimpleStoneSet("exposed_cobblestone");
     public static final SimpleStoneSet EXPOSED_COBBLESTONE_BRICKS = registerSimpleStoneSet("exposed_cobblestone_bricks");
+
     public static final StoneSet GRIMSTONE = registerStoneSet("grimstone");
     public static final StoneSet NIGHTSTONE = registerStoneSet("nightstone");
+
     public static final WoodSet SYCAMORE = registerWoodSet("sycamore", ModTreeGrowers.SYCAMORE);
     public static final WoodSet PLUM = registerWoodSet("plum", ModTreeGrowers.PLUM);
     public static final WoodSet BLOODWOOD = registerNightmareWoodSet("bloodwood", ModTreeGrowers.BLOODWOOD);
-    public static final ColorSet CERISE = registerColorSet("cerise");
-    public static final ColorSet TURQUOISE = registerColorSet("turquoise");
-    public static final ColorSet INDIGO = registerColorSet("indigo");
-    public static final ColorSet LAVENDER = registerColorSet("lavender");
+
+    public static final ColorSet CERISE = registerColorSet("cerise", DyeColor.RED);
+    public static final ColorSet TURQUOISE = registerColorSet("turquoise", DyeColor.CYAN);
+    public static final ColorSet INDIGO = registerColorSet("indigo", DyeColor.BLUE);
+    public static final ColorSet LAVENDER = registerColorSet("lavender", DyeColor.PURPLE);
 
     // Registry helpers
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {DeferredBlock<T> deferred = BLOCKS.register(name, block);registerBlockItem(name, deferred);return deferred;}
@@ -366,7 +372,7 @@ public class ModBlocks {
                 smooth, smoothStairs, smoothSlab, smoothWall, smoothButton, smoothPressurePlate
         );
     }
-    private static ColorSet registerColorSet(String name) {
+    private static ColorSet registerColorSet(String name, DyeColor dyeColor) {
         DeferredBlock<Block> concrete = BLOCKS.register(name + "_concrete",
                 () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_CONCRETE)));
         DeferredBlock<Block> concretePowder = BLOCKS.register(name + "_concrete_powder",
@@ -378,9 +384,9 @@ public class ModBlocks {
         DeferredBlock<Block> wool = BLOCKS.register(name + "_wool",
                 () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_WOOL)));
         DeferredBlock<Block> stainedGlass = BLOCKS.register(name + "_stained_glass",
-                () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_STAINED_GLASS)));
+                () -> new StainedGlassBlock(dyeColor, BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_STAINED_GLASS)));
         DeferredBlock<Block> stainedGlassPane = BLOCKS.register(name + "_stained_glass_pane",
-                () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_STAINED_GLASS_PANE)));
+                () -> new StainedGlassPaneBlock(dyeColor, BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_STAINED_GLASS_PANE)));
         DeferredBlock<Block> carpet = BLOCKS.register(name + "_carpet",
                 () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_CARPET)));
 
