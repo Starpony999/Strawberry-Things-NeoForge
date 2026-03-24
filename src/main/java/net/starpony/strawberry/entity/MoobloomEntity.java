@@ -30,7 +30,7 @@ import java.util.List;
 
 public class MoobloomEntity extends Animal {
     private static final EntityDimensions BABY_DIMENSIONS = EntityType.MOOSHROOM.getDimensions().scale(0.5F).withEyeHeight(0.665F);
-    public static final AnimationState idleAnimationState = new AnimationState();
+    private final AnimationState idleAnimationState = new AnimationState();
     private int idleAnimationTimeout = 0;
 
     public MoobloomEntity(EntityType<? extends Animal> entityType, Level level) {

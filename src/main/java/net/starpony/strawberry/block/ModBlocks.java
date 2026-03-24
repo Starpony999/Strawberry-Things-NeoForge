@@ -49,10 +49,18 @@ public class ModBlocks {
 
     public static final DeferredBlock<Block> THULITE_CRYSTAL_BLOCK = registerBlock("thulite_crystal_block", () -> new Block(BlockBehaviour.Properties.of().strength(1.5f).requiresCorrectToolForDrops().sound(SoundType.AMETHYST)));
     public static final DeferredBlock<Block> BUDDING_THULITE_CRYSTAL_BLOCK = registerBlock("budding_thulite_crystal_block", () -> new BuddingThuliteBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_PINK).randomTicks().strength(1.5F).sound(SoundType.AMETHYST).requiresCorrectToolForDrops().pushReaction(PushReaction.DESTROY)));
-    public static final DeferredBlock<Block> THULITE_CLUSTER = registerBlock("thulite_cluster", () -> new  AmethystClusterBlock(7.0F, 3.0F, BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_PINK).forceSolidOn().noOcclusion().sound(SoundType.AMETHYST_CLUSTER).strength(1.5F).lightLevel(p_152632_ -> 5).pushReaction(PushReaction.DESTROY)));
-    public static final DeferredBlock<Block> LARGE_THULITE_BUD = registerBlock("large_thulite_bud", () -> new AmethystClusterBlock(5.0F, 3.0F, BlockBehaviour.Properties.of().sound(SoundType.MEDIUM_AMETHYST_BUD).lightLevel(p_152629_ -> 4)));
-    public static final DeferredBlock<Block> MEDIUM_THULITE_BUD = registerBlock("medium_thulite_bud", () -> new AmethystClusterBlock(4.0F, 3.0F, BlockBehaviour.Properties.of().sound(SoundType.LARGE_AMETHYST_BUD).lightLevel(p_152617_ -> 2)));
-    public static final DeferredBlock<Block> SMALL_THULITE_BUD = registerBlock("small_thulite_bud", () -> new AmethystClusterBlock(3.0F, 4.0F, BlockBehaviour.Properties.of().sound(SoundType.SMALL_AMETHYST_BUD).lightLevel(p_187409_ -> 1)));
+    public static final DeferredBlock<Block> THULITE_CLUSTER = registerBlock("thulite_cluster",
+            () -> new AmethystClusterBlock(7.0F, 3.0F, BlockBehaviour.Properties.ofFullCopy(Blocks.AMETHYST_CLUSTER)
+                    .mapColor(MapColor.COLOR_PINK)));
+    public static final DeferredBlock<Block> LARGE_THULITE_BUD = registerBlock("large_thulite_bud",
+            () -> new AmethystClusterBlock(5.0F, 3.0F, BlockBehaviour.Properties.ofFullCopy(Blocks.LARGE_AMETHYST_BUD)
+                    .mapColor(MapColor.COLOR_PINK)));
+    public static final DeferredBlock<Block> MEDIUM_THULITE_BUD = registerBlock("medium_thulite_bud",
+            () -> new AmethystClusterBlock(4.0F, 3.0F, BlockBehaviour.Properties.ofFullCopy(Blocks.MEDIUM_AMETHYST_BUD)
+                    .mapColor(MapColor.COLOR_PINK)));
+    public static final DeferredBlock<Block> SMALL_THULITE_BUD = registerBlock("small_thulite_bud",
+            () -> new AmethystClusterBlock(3.0F, 4.0F, BlockBehaviour.Properties.ofFullCopy(Blocks.SMALL_AMETHYST_BUD)
+                    .mapColor(MapColor.COLOR_PINK)));
     // Ores
     public static final DeferredBlock<Block> ALUMINUM_ORE = registerBlock("aluminum_ore", () -> new DropExperienceBlock(UniformInt.of(1, 3), BlockBehaviour.Properties.of().strength(3f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
     public static final DeferredBlock<Block> DEEPSLATE_ALUMINUM_ORE = registerBlock("deepslate_aluminum_ore", () -> new DropExperienceBlock(UniformInt.of(2, 4), BlockBehaviour.Properties.of().strength(4.5f).requiresCorrectToolForDrops().sound(SoundType.DEEPSLATE)));
