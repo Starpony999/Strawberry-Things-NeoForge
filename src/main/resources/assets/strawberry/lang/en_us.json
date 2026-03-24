@@ -3,9 +3,11 @@
   "item.strawberry.chisel": "Chisel",
   "item.strawberry.fusion_key": "Fusion Key",
   "item.strawberry.crystal_lantern": "Crystal Lantern",
+  "block.strawberry.crystal_lantern": "Crystal Lantern",
   "item.strawberry.toilet_paper": "Toilet Paper",
   "item.strawberry.small_light": "Small Light",
   "item.strawberry.redstone_lantern": "Redstone Lantern",
+  "block.strawberry.redstone_lantern": "Redstone Lantern",
   "item.strawberry.cover_armor_trim": "Cover Smithing Template",
   "item.strawberry.stars_armor_trim": "Stars Smithing Template",
   "item.strawberry.shining_upgrade_smithing_template": "Shining Upgrade Smithing Template",
@@ -28,6 +30,7 @@
   "item.strawberry.cauliflower_seeds": "Cauliflower Seeds",
   "item.strawberry.cauliflower": "Cauliflower",
   "block.strawberry.cauliflower_crop": "Cauliflower Seeds",
+  "item.strawberry.lemonade": "Lemonade",
 
 
   "item.strawberry.dirt_soda": "Dirt Soda",
@@ -609,6 +612,10 @@
   "block.strawberry.indigo_wool": "Indigo Wool",
   "block.strawberry.indigo_stained_glass": "Indigo Stained Glass",
   "block.strawberry.indigo_stained_glass_pane": "Indigo Stained Glass Pane",
-  "block.strawberry.indigo_carpet": "Indigo Carpet"
-
+  "block.strawberry.indigo_carpet": "Indigo Carpet",
+  "item.strawberry.moobloom_spawn_egg": "Moobloom Spawn Egg",
+  "block.strawberry.schist": "Schist",
+  "block.strawberry.gneiss": "Gneiss",
+  "block.strawberry.bloodwood_fungus": "Bloodwood Fungus",
+  "block.strawberry.night_terria": "Night Terria"
 }

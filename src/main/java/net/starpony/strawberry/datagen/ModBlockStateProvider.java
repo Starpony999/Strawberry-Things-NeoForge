@@ -48,9 +48,16 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockWithItem(ModBlocks.NETHERTHYST_ORE);
         blockWithItem(ModBlocks.RAW_ROSE_QUARTZ_BLOCK);
         blockWithItem(ModBlocks.ROSE_QUARTZ_BLOCK);
+        blockWithItem(ModBlocks.HELLSHROOM_LIGHT);
+        blockWithItem(ModBlocks.BUDDING_THULITE_CRYSTAL_BLOCK);
+        blockWithItem(ModBlocks.SMALL_THULITE_BUD);
+        blockWithItem(ModBlocks.MEDIUM_THULITE_BUD);
+        blockWithItem(ModBlocks.LARGE_THULITE_BUD);
+        blockWithItem(ModBlocks.THULITE_CLUSTER);
 
         blockWithItem(ModBlocks.GNEISS);
         blockWithItem(ModBlocks.SCHIST);
+        blockWithItem(ModBlocks.NIGHT_TERRIA);
 
         registerSimpleStoneSet(ModBlocks.WASHED_DIORITE_BRICKS);
         registerSimpleStoneSet(ModBlocks.DIORITE_BRICKS);
@@ -84,13 +91,14 @@ public class ModBlockStateProvider extends BlockStateProvider {
         makeCrop(ModBlocks.CAULIFLOWER_CROP.get(), "cauliflower_stage_", "cauliflower_");
         makeCrop(ModBlocks.GRAPE_CROP.get(), "grape_stage_", "grape_");
 
-        makeBush(((SweetBerryBushBlock) ModBlocks.BLUEBERRY_BUSH.get()), "blueberry_bush_stage", "blueberry_bush_stage");
+        makeBush(ModBlocks.STRAWBERRY_BUSH.get(), "strawberry_stage_", "strawberry_");
+        makeBush(ModBlocks.BLUEBERRY_BUSH.get(), "blueberry_stage_", "blueberry_");
     }
 
 //Bushes
-public void makeBush(SweetBerryBushBlock block, String modelName, String textureName) {
-    getVariantBuilder(block).forAllStates(state -> {
-        int age = state.getValue(SweetBerryBushBlock.AGE);
+    public void makeBush(Block block, String modelName, String textureName) {
+        getVariantBuilder(block).forAllStates(state -> {
+         int age = state.getValue(SweetBerryBushBlock.AGE);
 
         ConfiguredModel model = new ConfiguredModel(
                 models().cross(modelName + age,
@@ -102,7 +110,7 @@ public void makeBush(SweetBerryBushBlock block, String modelName, String texture
     });
 }
 //Crops
-public void makeCrop(CropBlock block, String modelName, String textureName) {
+    public void makeCrop(CropBlock block, String modelName, String textureName) {
     Function<BlockState, ConfiguredModel[]> function = state -> {
         IntegerProperty ageProp = getAgeProperty(block);
         int age = state.getValue(ageProp);
@@ -118,8 +126,6 @@ public void makeCrop(CropBlock block, String modelName, String textureName) {
 
     getVariantBuilder(block).forAllStates(function);
 }
-
-
     private IntegerProperty getAgeProperty(CropBlock block) {
         try {
             // Uses reflection to call getAgeProperty() on any subclass

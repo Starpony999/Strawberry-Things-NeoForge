@@ -13,6 +13,8 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.WoodType;
+import net.minecraft.world.level.material.MapColor;
+import net.minecraft.world.level.material.PushReaction;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -37,11 +39,20 @@ public class ModBlocks {
     public static final DeferredBlock<Block> RAW_ALUMINUM_BLOCK = registerBlock("raw_aluminum_block", () -> new Block(BlockBehaviour.Properties.of().strength(5f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
     public static final DeferredBlock<Block> RAW_ROSE_QUARTZ_BLOCK = registerBlock("raw_rose_quartz_block", () -> new Block(BlockBehaviour.Properties.of().strength(5f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
     public static final DeferredBlock<Block> ROSE_QUARTZ_BLOCK = registerBlock("rose_quartz_block", () -> new Block(BlockBehaviour.Properties.of().strength(5f).requiresCorrectToolForDrops().sound(SoundType.METAL)));
-    public static final DeferredBlock<Block> THULITE_CRYSTAL_BLOCK = registerBlock("thulite_crystal_block", () -> new Block(BlockBehaviour.Properties.of().strength(1.5f).requiresCorrectToolForDrops().sound(SoundType.AMETHYST)));
     public static final DeferredBlock<Block> OTHERWORLDLY_AMETHYST_BLOCK = registerBlock("otherworldly_amethyst_block", () -> new Block(BlockBehaviour.Properties.of().strength(50f).requiresCorrectToolForDrops().sound(SoundType.AMETHYST)));
-    public static final DeferredBlock<Block> GNEISS = registerBlock("gneiss", () -> new Block(BlockBehaviour.Properties.of().strength(1.25f).requiresCorrectToolForDrops().sound(SoundType.BASALT)));
-    public static final DeferredBlock<Block> SCHIST = registerBlock("schist", () -> new Block(BlockBehaviour.Properties.of().strength(0.75f).requiresCorrectToolForDrops().sound(SoundType.CALCITE)));
+    public static final DeferredBlock<Block> HELLSHROOM_LIGHT = registerBlock("hellshroom_light", () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_RED).strength(1.0F).sound(SoundType.SHROOMLIGHT).lightLevel(p_152663_ -> 15)));
+    public static final DeferredBlock<Block> NIGHT_TERRIA = registerBlock("night_terria", () -> new Block(BlockBehaviour.Properties.of().strength(0.5f).sound(SoundType.GRAVEL)));
 
+    //Thulite Geodes
+    public static final DeferredBlock<Block> GNEISS = registerBlock("gneiss", () -> new Block(BlockBehaviour.Properties.of().strength(1.25f).requiresCorrectToolForDrops().sound(SoundType.BASALT)));
+    public static final DeferredBlock<Block> SCHIST = registerBlock("schist", () -> new RotatedPillarBlock(BlockBehaviour.Properties.of().strength(0.75f).requiresCorrectToolForDrops().sound(SoundType.CALCITE)));
+
+    public static final DeferredBlock<Block> THULITE_CRYSTAL_BLOCK = registerBlock("thulite_crystal_block", () -> new Block(BlockBehaviour.Properties.of().strength(1.5f).requiresCorrectToolForDrops().sound(SoundType.AMETHYST)));
+    public static final DeferredBlock<Block> BUDDING_THULITE_CRYSTAL_BLOCK = registerBlock("budding_thulite_crystal_block", () -> new BuddingThuliteBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_PINK).randomTicks().strength(1.5F).sound(SoundType.AMETHYST).requiresCorrectToolForDrops().pushReaction(PushReaction.DESTROY)));
+    public static final DeferredBlock<Block> THULITE_CLUSTER = registerBlock("thulite_cluster", () -> new  AmethystClusterBlock(7.0F, 3.0F, BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_PINK).forceSolidOn().noOcclusion().sound(SoundType.AMETHYST_CLUSTER).strength(1.5F).lightLevel(p_152632_ -> 5).pushReaction(PushReaction.DESTROY)));
+    public static final DeferredBlock<Block> LARGE_THULITE_BUD = registerBlock("large_thulite_bud", () -> new AmethystClusterBlock(5.0F, 3.0F, BlockBehaviour.Properties.of().sound(SoundType.MEDIUM_AMETHYST_BUD).lightLevel(p_152629_ -> 4)));
+    public static final DeferredBlock<Block> MEDIUM_THULITE_BUD = registerBlock("medium_thulite_bud", () -> new AmethystClusterBlock(4.0F, 3.0F, BlockBehaviour.Properties.of().sound(SoundType.LARGE_AMETHYST_BUD).lightLevel(p_152617_ -> 2)));
+    public static final DeferredBlock<Block> SMALL_THULITE_BUD = registerBlock("small_thulite_bud", () -> new AmethystClusterBlock(3.0F, 4.0F, BlockBehaviour.Properties.of().sound(SoundType.SMALL_AMETHYST_BUD).lightLevel(p_187409_ -> 1)));
     // Ores
     public static final DeferredBlock<Block> ALUMINUM_ORE = registerBlock("aluminum_ore", () -> new DropExperienceBlock(UniformInt.of(1, 3), BlockBehaviour.Properties.of().strength(3f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
     public static final DeferredBlock<Block> DEEPSLATE_ALUMINUM_ORE = registerBlock("deepslate_aluminum_ore", () -> new DropExperienceBlock(UniformInt.of(2, 4), BlockBehaviour.Properties.of().strength(4.5f).requiresCorrectToolForDrops().sound(SoundType.DEEPSLATE)));
@@ -490,7 +501,7 @@ public class ModBlocks {
                 () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.WARPED_PLANKS)));
 
         DeferredBlock<Block> wartBlock = registerBlock(name + "_wart_block",
-                () -> new NetherWartBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.WARPED_WART_BLOCK)) );
+                () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.WARPED_WART_BLOCK)) );
 
         DeferredBlock<Block> sapling = registerBlock(name + "_fungus",
                 () -> new ModSaplingBlock(grower, BlockBehaviour.Properties.ofFullCopy(Blocks.WARPED_FUNGUS), ModBlocks.NIGHTSTONE.base));

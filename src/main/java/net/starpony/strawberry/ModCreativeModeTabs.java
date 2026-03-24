@@ -64,9 +64,12 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.LEMON_LIME_SODA);
                         output.accept(ModItems.DIRT_SODA);
                         output.accept(ModItems.LEMONADE);
-                      //  output.accept(ModDyes.CERISE_DYE);
-                     //   output.accept(ModDyes.TURQUOISE_DYE);
+                        output.accept(ModItems.CERISE_DYE);
+                        output.accept(ModItems.TURQUOISE_DYE);
+                        output.accept(ModItems.INDIGO_DYE);
+                        output.accept(ModItems.LAVENDER_DYE);
                         output.accept(ModItems.MOOBLOOM_SPAWN_EGG);
+
 
                     }).build());
 
@@ -87,12 +90,19 @@ public class ModCreativeModeTabs {
                         output.accept(ModBlocks.DEEPSLATE_ALUMINUM_ORE);
                         output.accept(ModBlocks.ROSE_QUARTZ_ORE);
                         output.accept(ModBlocks.END_ROSE_QUARTZ_ORE);
-                        output.accept(ModBlocks.THULITE_CRYSTAL_BLOCK);
-                        output.accept(ModBlocks.OTHERWORLDLY_AMETHYST_BLOCK);
-                        output.accept(ModBlocks.ENDERTHYST_ORE);
-                        output.accept(ModBlocks.NETHERTHYST_ORE);
                         output.accept(ModBlocks.RAW_ROSE_QUARTZ_BLOCK);
                         output.accept(ModBlocks.ROSE_QUARTZ_BLOCK);
+                        output.accept(ModBlocks.ENDERTHYST_ORE);
+                        output.accept(ModBlocks.NETHERTHYST_ORE);
+                        output.accept(ModBlocks.OTHERWORLDLY_AMETHYST_BLOCK);
+                        output.accept(ModBlocks.THULITE_CRYSTAL_BLOCK);
+                        output.accept(ModBlocks.BUDDING_THULITE_CRYSTAL_BLOCK);
+                        output.accept(ModBlocks.SMALL_THULITE_BUD);
+                        output.accept(ModBlocks.MEDIUM_THULITE_BUD);
+                        output.accept(ModBlocks.LARGE_THULITE_BUD);
+                        output.accept(ModBlocks.THULITE_CLUSTER);
+                        output.accept(ModBlocks.SCHIST);
+                        output.accept(ModBlocks.GNEISS);
                         output.accept(ModBlocks.CRYSTAL_LANTERN_BLOCK);
 
                         SetUtils.addSimpleStoneSet(output, ModBlocks.ANDESITE_BRICKS);
@@ -112,13 +122,18 @@ public class ModCreativeModeTabs {
 
                         SetUtils.addStoneSet(output, ModBlocks.GRIMSTONE);
                         SetUtils.addStoneSet(output, ModBlocks.NIGHTSTONE);
+                        output.accept(ModBlocks.NIGHT_TERRIA);
 
                         SetUtils.addWoodSet(output, ModBlocks.SYCAMORE);
                         SetUtils.addWoodSet(output, ModBlocks.PLUM);
                         SetUtils.addNightmareWoodSet(output, ModBlocks.BLOODWOOD);
+                        output.accept(ModBlocks.HELLSHROOM_LIGHT);
 
-                        /*SetUtils.addColorSet(output, ModBlocks.CERISE);
-                        SetUtils.addColorSet(output, ModBlocks.TURQUOISE); */
+                        SetUtils.addColorSet(output, ModBlocks.CERISE);
+                        SetUtils.addColorSet(output, ModBlocks.TURQUOISE);
+                        SetUtils.addColorSet(output, ModBlocks.LAVENDER);
+                        SetUtils.addColorSet(output, ModBlocks.CERISE);
+
                     }).build());
     public static final Supplier<CreativeModeTab> STRAWBERRY_TOOLS_ARMOR_TAB = CREATIVE_MODE_TAB.register("strawberry_tools_armor_tab",
             () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.RUBY.getPickaxe().get()))

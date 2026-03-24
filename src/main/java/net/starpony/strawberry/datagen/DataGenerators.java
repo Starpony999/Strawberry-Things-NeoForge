@@ -24,6 +24,7 @@ public class DataGenerators {
         PackOutput packOutput = generator.getPackOutput();
         ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
         CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
+        //Generators
         generator.addProvider(event.includeServer(), new ModDatapackProvider(packOutput, lookupProvider));
       //  generator.addProvider(event.includeClient(), new ModBiomeDataProvider(packOutput, existingFileHelper));
      //   generator.addProvider(event.includeServer(), new LootTableProvider(packOutput, Collections.emptySet(),
