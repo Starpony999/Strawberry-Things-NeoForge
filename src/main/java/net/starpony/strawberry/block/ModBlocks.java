@@ -399,7 +399,7 @@ public class ModBlocks {
         DeferredBlock<Block> stainedGlassPane = registerBlock(name + "_stained_glass_pane",
                 () -> new StainedGlassPaneBlock(dyeColor, BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_STAINED_GLASS_PANE)));
         DeferredBlock<Block> carpet = registerBlock(name + "_carpet",
-                () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_CARPET)));
+                () -> new CarpetBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_CARPET)));
 
         return new ColorSet(name, concrete, concretePowder, terracotta, glazedTerracotta, wool,
                 stainedGlass, stainedGlassPane, carpet);

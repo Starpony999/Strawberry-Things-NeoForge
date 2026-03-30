@@ -74,6 +74,12 @@ public class Strawberry {
     // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
     @EventBusSubscriber(modid = MOD_ID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
     public static class ClientModEvents {
+        private static void registerColorSetRenderLayers(net.starpony.strawberry.util.sets.ColorSet set) {
+            ItemBlockRenderTypes.setRenderLayer(set.getStainedGlass().get(), RenderType.translucent());
+            ItemBlockRenderTypes.setRenderLayer(set.getStainedGlassPane().get(), RenderType.translucent());
+            ItemBlockRenderTypes.setRenderLayer(set.getCarpet().get(), RenderType.cutout());
+        }
+
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
             event.enqueueWork(() -> {
@@ -84,6 +90,10 @@ public class Strawberry {
                 ItemBlockRenderTypes.setRenderLayer(ModBlocks.SYCAMORE.sapling.get(), RenderType.cutout());
                 ItemBlockRenderTypes.setRenderLayer(ModBlocks.PLUM.sapling.get(), RenderType.cutout());
                 ItemBlockRenderTypes.setRenderLayer(ModBlocks.BLOODWOOD.sapling.get(), RenderType.cutout());
+                registerColorSetRenderLayers(ModBlocks.CERISE);
+                registerColorSetRenderLayers(ModBlocks.TURQUOISE);
+                registerColorSetRenderLayers(ModBlocks.LAVENDER);
+                registerColorSetRenderLayers(ModBlocks.INDIGO);
                 EntityRenderers.register(ModEntities.MOOBLOOM.get(), MoobloomRenderer::new);
             });
         }
