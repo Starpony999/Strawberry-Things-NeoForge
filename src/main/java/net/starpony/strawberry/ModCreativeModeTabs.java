@@ -131,8 +131,8 @@ public class ModCreativeModeTabs {
 
                         SetUtils.addColorSet(output, ModBlocks.CERISE);
                         SetUtils.addColorSet(output, ModBlocks.TURQUOISE);
+                        SetUtils.addColorSet(output, ModBlocks.INDIGO);
                         SetUtils.addColorSet(output, ModBlocks.LAVENDER);
-                        SetUtils.addColorSet(output, ModBlocks.CERISE);
 
                     }).build());
     public static final Supplier<CreativeModeTab> STRAWBERRY_TOOLS_ARMOR_TAB = CREATIVE_MODE_TAB.register("strawberry_tools_armor_tab",

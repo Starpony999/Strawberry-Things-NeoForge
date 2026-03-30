@@ -384,21 +384,21 @@ public class ModBlocks {
         );
     }
     private static ColorSet registerColorSet(String name, DyeColor dyeColor) {
-        DeferredBlock<Block> concrete = BLOCKS.register(name + "_concrete",
+        DeferredBlock<Block> concrete = registerBlock(name + "_concrete",
                 () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_CONCRETE)));
-        DeferredBlock<Block> concretePowder = BLOCKS.register(name + "_concrete_powder",
+        DeferredBlock<Block> concretePowder = registerBlock(name + "_concrete_powder",
                 () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_CONCRETE_POWDER)));
-        DeferredBlock<Block> terracotta = BLOCKS.register(name + "_terracotta",
+        DeferredBlock<Block> terracotta = registerBlock(name + "_terracotta",
                 () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.TERRACOTTA)));
-        DeferredBlock<Block> glazedTerracotta = BLOCKS.register(name + "_glazed_terracotta",
+        DeferredBlock<Block> glazedTerracotta = registerBlock(name + "_glazed_terracotta",
                 () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_GLAZED_TERRACOTTA)));
-        DeferredBlock<Block> wool = BLOCKS.register(name + "_wool",
+        DeferredBlock<Block> wool = registerBlock(name + "_wool",
                 () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_WOOL)));
-        DeferredBlock<Block> stainedGlass = BLOCKS.register(name + "_stained_glass",
+        DeferredBlock<Block> stainedGlass = registerBlock(name + "_stained_glass",
                 () -> new StainedGlassBlock(dyeColor, BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_STAINED_GLASS)));
-        DeferredBlock<Block> stainedGlassPane = BLOCKS.register(name + "_stained_glass_pane",
+        DeferredBlock<Block> stainedGlassPane = registerBlock(name + "_stained_glass_pane",
                 () -> new StainedGlassPaneBlock(dyeColor, BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_STAINED_GLASS_PANE)));
-        DeferredBlock<Block> carpet = BLOCKS.register(name + "_carpet",
+        DeferredBlock<Block> carpet = registerBlock(name + "_carpet",
                 () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_CARPET)));
 
         return new ColorSet(name, concrete, concretePowder, terracotta, glazedTerracotta, wool,
