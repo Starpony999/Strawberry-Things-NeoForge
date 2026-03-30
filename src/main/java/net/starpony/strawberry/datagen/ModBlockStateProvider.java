@@ -55,7 +55,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         thuliteClusterBlock(ModBlocks.LARGE_THULITE_BUD, "large_amethyst_bud");
         thuliteClusterBlock(ModBlocks.THULITE_CLUSTER, "amethyst_cluster");
 
-        blockWithItem(ModBlocks.GNEISS);
+        doubleTextureBlock(ModBlocks.GNEISS);
         blockWithItem(ModBlocks.SCHIST);
         blockWithItem(ModBlocks.NIGHT_TERRIA);
 
@@ -350,5 +350,32 @@ public class ModBlockStateProvider extends BlockStateProvider {
             case EAST -> 90;
             default -> 0;
         };
+    }
+    public void doubleTextureBlock(DeferredBlock<Block> block) {
+        String name = block.getId().getPath();
+        ModelFile topLeft = models().cubeAll(name + "_top_left",
+                modLoc("block/" + name + "_top_left"));
+
+        ModelFile topRight = models().cubeAll(name + "_top_right",
+                modLoc("block/" + name + "_top_right"));
+
+        ModelFile bottomLeft = models().cubeAll(name + "_bottom_left",
+                modLoc("block/" + name + "_bottom_left"));
+
+        ModelFile bottomRight = models().cubeAll(name + "_bottom_right",
+                modLoc("block/" + name + "_bottom_right"));
+
+        getVariantBuilder(block.get())
+                .partialState().with(DoubleTextureBlock.QUADRANT, DoubleTextureBlock.Quadrant.TOP_LEFT)
+                .modelForState().modelFile(topLeft).addModel()
+
+                .partialState().with(DoubleTextureBlock.QUADRANT, DoubleTextureBlock.Quadrant.TOP_RIGHT)
+                .modelForState().modelFile(topRight).addModel()
+
+                .partialState().with(DoubleTextureBlock.QUADRANT, DoubleTextureBlock.Quadrant.BOTTOM_LEFT)
+                .modelForState().modelFile(bottomLeft).addModel()
+
+                .partialState().with(DoubleTextureBlock.QUADRANT, DoubleTextureBlock.Quadrant.BOTTOM_RIGHT)
+                .modelForState().modelFile(bottomRight).addModel();
     }
 }
