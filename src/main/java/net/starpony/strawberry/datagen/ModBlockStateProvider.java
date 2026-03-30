@@ -161,7 +161,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         pressurePlateBlock(set.getPressurePlate().get(), blockTexture(set.getStone().get()));
         blockItem(set.getPressurePlate());
         wallBlock(set.getWall().get(), blockTexture(set.getStone().get()));
-        blockItem(set.getWall());
+        blockItem(set.getWall(), "_inventory");
     }
     public void registerWoodSet(WoodSet set) {
         logBlock((RotatedPillarBlock) set.getLog().get());
@@ -245,8 +245,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
             // Register block items
             blockItem(variant.stairs);
             blockItem(variant.slab);
-            blockItem(variant.wall);
-            blockItem(variant.button);
+            blockItem(variant.wall, "_inventory");
+            blockItem(variant.button, "_inventory");
             blockItem(variant.pressurePlate);
         };
         registerVariant.accept(new StoneVariant(set.getBase(), set.getStairs(), set.getSlab(), set.getWall(), set.getButton(), set.getPressurePlate()));
@@ -276,19 +276,22 @@ public class ModBlockStateProvider extends BlockStateProvider {
         }
     }
     public void registerColorSet(ColorSet set) {
-        blockItem(set.getConcrete());
-        blockItem(set.getConcretePowder());
-        blockItem(set.getTerracotta());
-        blockItem(set.getGlazedTerracotta());
-        blockItem(set.getWool());
-        blockItem(set.getStainedGlass());
+        simpleBlockWithItem(set.getConcrete().get(), cubeAll(set.getConcrete().get()));
+        simpleBlockWithItem(set.getConcretePowder().get(), cubeAll(set.getConcretePowder().get()));
+        simpleBlockWithItem(set.getTerracotta().get(), cubeAll(set.getTerracotta().get()));
+        simpleBlockWithItem(set.getGlazedTerracotta().get(), new ModelFile.UncheckedModelFile(modLoc("block/" + set.getName() + "_glazed_terracotta")));
+        simpleBlockWithItem(set.getWool().get(), cubeAll(set.getWool().get()));
+        simpleBlockWithItem(set.getStainedGlass().get(), models().cubeAll(set.getName() + "_stained_glass", blockTexture(set.getStainedGlass().get())).renderType("translucent"));
+
         glassPaneBlock(
                 (StainedGlassPaneBlock) set.getStainedGlassPane().get(),
                 blockTexture(set.getStainedGlass().get()),
                 blockTexture(set.getStainedGlass().get())
         );
+        blockItem(set.getStainedGlassPane(), "_inventory");
 
         simpleBlock(set.getCarpet().get(), models().carpet(set.getName() + "_carpet", blockTexture(set.getWool().get())));
+        blockItem(set.getCarpet());
     }
     private void saplingBlock(DeferredBlock<Block> blockRegistryObject) {
         simpleBlock(blockRegistryObject.get(),
