@@ -276,12 +276,12 @@ public class ModBlockStateProvider extends BlockStateProvider {
         }
     }
     public void registerColorSet(ColorSet set) {
-        simpleBlockWithItem(set.getConcrete().get(), cubeAll(set.getConcrete().get()));
-        simpleBlockWithItem(set.getConcretePowder().get(), cubeAll(set.getConcretePowder().get()));
-        simpleBlockWithItem(set.getTerracotta().get(), cubeAll(set.getTerracotta().get()));
-        simpleBlockWithItem(set.getGlazedTerracotta().get(), new ModelFile.UncheckedModelFile(modLoc("block/" + set.getName() + "_glazed_terracotta")));
-        simpleBlockWithItem(set.getWool().get(), cubeAll(set.getWool().get()));
-        simpleBlockWithItem(set.getStainedGlass().get(), models().cubeAll(set.getName() + "_stained_glass", blockTexture(set.getStainedGlass().get())).renderType("translucent"));
+        blockWithItem(set.getConcrete());
+        blockWithItem(set.getConcretePowder());
+        blockWithItem(set.getTerracotta());
+        blockWithItem(set.getGlazedTerracotta());
+        blockWithItem(set.getWool());
+        blockWithItem(set.getStainedGlass());
 
         glassPaneBlock(
                 (StainedGlassPaneBlock) set.getStainedGlassPane().get(),

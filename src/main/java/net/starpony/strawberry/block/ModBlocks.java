@@ -43,8 +43,9 @@ public class ModBlocks {
     public static final DeferredBlock<Block> HELLSHROOM_LIGHT = registerBlock("hellshroom_light", () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_RED).strength(1.0F).sound(SoundType.SHROOMLIGHT).lightLevel(p_152663_ -> 15)));
     public static final DeferredBlock<Block> NIGHT_TERRIA = registerBlock("night_terria", () -> new Block(BlockBehaviour.Properties.of().strength(0.5f).sound(SoundType.GRAVEL)));
 
+
     //Thulite Geodes
-    public static final DeferredBlock<Block> GNEISS = registerBlock("gneiss", () -> new Block(BlockBehaviour.Properties.of().strength(1.25f).requiresCorrectToolForDrops().sound(SoundType.BASALT)));
+    public static final DeferredBlock<Block> GNEISS = registerBlock("gneiss", () -> new DoubleTextureBlock(BlockBehaviour.Properties.of().strength(1.25f).requiresCorrectToolForDrops().sound(SoundType.BASALT)));
     public static final DeferredBlock<Block> SCHIST = registerBlock("schist", () -> new RotatedPillarBlock(BlockBehaviour.Properties.of().strength(0.75f).requiresCorrectToolForDrops().sound(SoundType.CALCITE)));
 
     public static final DeferredBlock<Block> THULITE_CRYSTAL_BLOCK = registerBlock("thulite_crystal_block", () -> new Block(BlockBehaviour.Properties.of().strength(1.5f).requiresCorrectToolForDrops().sound(SoundType.AMETHYST)));
@@ -101,6 +102,10 @@ public class ModBlocks {
     public static final SimpleStoneSet AGED_COBBLESTONE_BRICKS = registerSimpleStoneSet("aged_cobblestone_bricks");
     public static final SimpleStoneSet EXPOSED_COBBLESTONE = registerSimpleStoneSet("exposed_cobblestone");
     public static final SimpleStoneSet EXPOSED_COBBLESTONE_BRICKS = registerSimpleStoneSet("exposed_cobblestone_bricks");
+
+   // public static final SimpleStoneSet BLUE_ICE = registerIceSet("blue_ice", Blocks.BLUE_ICE, 2.8f);
+   // public static final SimpleStoneSet PACKED_ICE = registerIceSet("packed_ice", Blocks.PACKED_ICE, 0.5f);
+   // public static final SimpleStoneSet ICE = registerIceSet("packed_ice", Blocks.ICE, 0.5f);
 
     public static final StoneSet GRIMSTONE = registerStoneSet("grimstone");
     public static final StoneSet NIGHTSTONE = registerStoneSet("nightstone");
@@ -534,6 +539,27 @@ public class ModBlocks {
         return new WoodSet(name, log, strippedLog, wood, strippedWood, planks, null, wartBlock, sapling,
                 stairs, slab, button, pressurePlate, fence, fenceGate, door, trapdoor);
     }  //Wood Set for Nightmare Dimension
+    private static SimpleStoneSet registerIceSet(String name, Block block, Float strength){
+        DeferredBlock<StairBlock> stairs = registerBlock(name + "_stairs",
+                () -> new StairBlock(block.defaultBlockState(),
+                        BlockBehaviour.Properties.of()
+                                .strength(strength)
+                                .requiresCorrectToolForDrops()
+                                .sound(SoundType.GLASS)));
+
+        DeferredBlock<SlabBlock> slab = registerBlock(name + "_slab",
+                () -> new SlabBlock(BlockBehaviour.Properties.of()
+                        .strength(strength)
+                        .requiresCorrectToolForDrops()
+                        .sound(SoundType.GLASS)));
+
+        DeferredBlock<WallBlock> wall = registerBlock(name + "_wall",
+                () -> new WallBlock(BlockBehaviour.Properties.of()
+                        .strength(strength)
+                        .requiresCorrectToolForDrops()
+                        .sound(SoundType.GLASS)));
+        return new SimpleStoneSet(null, stairs, slab, wall, null, null);
+    }
     public static void register(IEventBus eventBus) {
         BLOCKS.register(eventBus);
     }
