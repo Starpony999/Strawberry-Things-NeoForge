@@ -1,7 +1,9 @@
 package net.starpony.strawberry;
 
 import net.minecraft.client.renderer.entity.EntityRenderers;
+import net.minecraft.world.level.block.Blocks;
 import net.starpony.strawberry.block.ModBlocks;
+import net.starpony.strawberry.block.weathering_blocks.ModWeathering;
 import net.starpony.strawberry.effect.ModEffects;
 import net.starpony.strawberry.entity.ModEntities;
 import net.starpony.strawberry.entity.client.MoobloomRenderer;
@@ -51,6 +53,7 @@ public class Strawberry {
         ModEntities.register(modEventBus);
 
 
+
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
         // Register our mod's ModConfigSpec so that FML can create and load the config file for us
@@ -58,7 +61,15 @@ public class Strawberry {
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
-
+        event.enqueueWork(() -> {
+            ModWeathering.registerChain(
+                    Blocks.COBBLESTONE,
+                    ModBlocks.WASHED_COBBLESTONE.getStone().get(),
+                    ModBlocks.EXPOSED_COBBLESTONE.getStone().get(),
+                    ModBlocks.WEATHERED_COBBLESTONE.getStone().get(),
+                    ModBlocks.AGED_COBBLESTONE.getStone().get()
+            );
+        });
     }
 
     // Add the example block item to the building blocks tab

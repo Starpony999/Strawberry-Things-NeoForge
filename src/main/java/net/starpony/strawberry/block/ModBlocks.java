@@ -45,7 +45,7 @@ public class ModBlocks {
 
 
     //Thulite Geodes
-    public static final DeferredBlock<Block> GNEISS = registerBlock("gneiss", () -> new DoubleTextureBlock(BlockBehaviour.Properties.of().strength(1.25f).requiresCorrectToolForDrops().sound(SoundType.BASALT)));
+    public static final DeferredBlock<Block> GNEISS = registerBlock("gneiss", () -> new RandomTextureBlock(BlockBehaviour.Properties.of().strength(1.25f).requiresCorrectToolForDrops().sound(SoundType.BASALT)));
     public static final DeferredBlock<Block> SCHIST = registerBlock("schist", () -> new RotatedPillarBlock(BlockBehaviour.Properties.of().strength(0.75f).requiresCorrectToolForDrops().sound(SoundType.CALCITE)));
 
     public static final DeferredBlock<Block> THULITE_CRYSTAL_BLOCK = registerBlock("thulite_crystal_block", () -> new Block(BlockBehaviour.Properties.of().strength(1.5f).requiresCorrectToolForDrops().sound(SoundType.AMETHYST)));
@@ -84,6 +84,8 @@ public class ModBlocks {
     public static final DeferredBlock<Block> REDSTONE_LANTERN = registerBlock("redstone_lantern",
             () -> new RedstoneLanternBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LANTERN).lightLevel(state -> 15)));
     public static final DeferredBlock<Block> CRYSTAL_LANTERN = registerBlock("crystal_lantern",
+            () -> new ColoredLanternBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LANTERN).lightLevel(state -> 15)));
+    public static final DeferredBlock<Block> THULITE_LANTERN = registerBlock("thulite_lantern",
             () -> new ColoredLanternBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LANTERN).lightLevel(state -> 15)));
 
 

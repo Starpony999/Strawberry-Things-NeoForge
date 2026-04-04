@@ -1,8 +1,11 @@
 package net.starpony.strawberry.worldgen;
 
+import net.minecraft.data.worldgen.features.CaveFeatures;
+import net.minecraft.data.worldgen.placement.CavePlacements;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.data.worldgen.placement.VegetationPlacements;
 import net.minecraft.world.level.levelgen.VerticalAnchor;
+import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.placement.*;
 import net.starpony.strawberry.Strawberry;
 import net.minecraft.core.Holder;
@@ -27,6 +30,8 @@ public class ModPlacedFeatures {
 
     public static final ResourceKey<PlacedFeature> SYCAMORE_PLACED_KEY = registerKey("sycamore_placed");
     public static final ResourceKey<PlacedFeature> PLUM_PLACED_KEY = registerKey("plum_placed");
+
+    public static final ResourceKey<PlacedFeature> THULITE_GEODE_PLACED_KEY = registerKey("thulite_geode_placed");
 
     public static final ResourceKey<PlacedFeature> STRAWBERRY_BUSH_PLACED_KEY = registerKey("strawberry_bush_placed");
     public static final ResourceKey<PlacedFeature> BLUEBERRY_BUSH_PLACED_KEY = registerKey("blueberry_bush_placed");
@@ -59,6 +64,10 @@ public class ModPlacedFeatures {
                 VegetationPlacements.treePlacement(
                         PlacementUtils.countExtra(2, 0.1f, 2), ModBlocks.PLUM.sapling.get()));
 
+        register(context, THULITE_GEODE_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.THULITE_GEODE_KEY),
+                List.of(RarityFilter.onAverageOnceEvery(50), InSquarePlacement.spread(),
+                        HeightRangePlacement.uniform(VerticalAnchor.aboveBottom(6), VerticalAnchor.absolute(50)
+                        ), BiomeFilter.biome()));
 
         register(context, STRAWBERRY_BUSH_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.STRAWBERRY_BUSH_KEY),
                 List.of(RarityFilter.onAverageOnceEvery(32), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome()));

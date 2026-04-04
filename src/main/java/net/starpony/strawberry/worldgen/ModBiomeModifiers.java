@@ -24,6 +24,8 @@ public class ModBiomeModifiers {
     public static final ResourceKey<BiomeModifier> ADD_TREE_SYCAMORE = registerKey("add_tree_sycamore");
     public static final ResourceKey<BiomeModifier> ADD_TREE_PLUM = registerKey("add_tree_plum");
 
+    public static final ResourceKey<BiomeModifier> ADD_THULITE_GEODE = registerKey("add_thulite_geode");
+
     public static final ResourceKey<BiomeModifier> ADD_STRAWBERRY_BUSH = registerKey("add_strawberry_berry_bush");
     public static final ResourceKey<BiomeModifier> ADD_BLUEBERRY_BUSH = registerKey("add_blueberry_berry_bush");
 
@@ -73,6 +75,11 @@ public class ModBiomeModifiers {
                 HolderSet.direct(biomes.getOrThrow(Biomes.SAVANNA), biomes.getOrThrow(Biomes.SAVANNA_PLATEAU), biomes.getOrThrow(Biomes.WINDSWEPT_SAVANNA)),
                 HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.PLUM_PLACED_KEY)),
                 GenerationStep.Decoration.VEGETAL_DECORATION));
+
+        context.register(ADD_THULITE_GEODE, new BiomeModifiers.AddFeaturesBiomeModifier(
+                biomes.getOrThrow(BiomeTags.IS_OVERWORLD),
+                HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.THULITE_GEODE_PLACED_KEY)),
+                GenerationStep.Decoration.UNDERGROUND_ORES));
 
         context.register(ADD_STRAWBERRY_BUSH, new BiomeModifiers.AddFeaturesBiomeModifier(
                 HolderSet.direct(

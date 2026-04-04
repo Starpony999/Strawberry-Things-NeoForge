@@ -109,6 +109,11 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.TURQUOISE_DYE.get());
         basicItem(ModItems.INDIGO_DYE.get());
         basicItem(ModItems.LAVENDER_DYE.get());
+        stainedGlassPaneItem(ModBlocks.CERISE.getStainedGlassPane());
+        stainedGlassPaneItem(ModBlocks.TURQUOISE.getStainedGlassPane());
+        stainedGlassPaneItem(ModBlocks.INDIGO.getStainedGlassPane());
+        stainedGlassPaneItem(ModBlocks.LAVENDER.getStainedGlassPane());
+
 
         // ---- Wood Sets ----
         woodSetItem(ModBlocks.SYCAMORE);
@@ -137,8 +142,14 @@ public class ModItemModelProvider extends ItemModelProvider {
         stoneSetItem(ModBlocks.NIGHTSTONE);
         stoneSetItem(ModBlocks.GRIMSTONE);
 
+        // ---- Flat Block Items ----
+        flatBlockItem(ModBlocks.SMALL_THULITE_BUD);
+        flatBlockItem(ModBlocks.MEDIUM_THULITE_BUD);
+        flatBlockItem(ModBlocks.LARGE_THULITE_BUD);
+        flatBlockItem(ModBlocks.THULITE_CLUSTER);
+
     }
-    private void stoneSetItem (StoneSet set) {
+    private void stoneSetItem(StoneSet set) {
         buttonItem(set.getButton(), set.getBase());
         wallItem(set.getWall(), set.getBase());
         buttonItem(set.getCobbledButton(), set.getCobbled());
@@ -182,6 +193,19 @@ public class ModItemModelProvider extends ItemModelProvider {
                 ResourceLocation.parse("item/generated")).texture("layer0",
                 ResourceLocation.fromNamespaceAndPath(Strawberry.MOD_ID,
                         "block/" + item.getId().getPath()));
+    }
+    private ItemModelBuilder flatBlockItem(DeferredBlock<Block> block) {
+        return withExistingParent(block.getId().getPath(), mcLoc("item/generated"))
+                .texture("layer0", modLoc("block/" + block.getId().getPath()));
+    }
+    private ItemModelBuilder stainedGlassPaneItem(DeferredBlock<Block> paneBlock) {
+        String path = paneBlock.getId().getPath();
+
+        // Convert "red_stained_glass_pane" -> "red_stained_glass"
+        String glassPath = path.replace("_pane", "");
+
+        return withExistingParent(path, mcLoc("item/generated"))
+                .texture("layer0", modLoc("block/" + glassPath));
     }
     // Shoutout to El_Redstoniano for making this
     private void trimmedArmorItem(DeferredItem<ArmorItem> itemDeferredItem) {
@@ -236,7 +260,7 @@ public class ModItemModelProvider extends ItemModelProvider {
                                 "item/" + item.getId().getPath()));
     }
     public void buttonItem(DeferredBlock<?> block, DeferredBlock<Block> baseBlock) {
-        this.withExistingParent(block.getId().getPath(), mcLoc("block/button_inventory"))
+        this.withExistingParent(block.getId().getPath(), modLoc("block/button_inventory"))
                 .texture("texture",  ResourceLocation.fromNamespaceAndPath(Strawberry.MOD_ID,
                         "block/" + baseBlock.getId().getPath()));
     }
@@ -246,8 +270,8 @@ public class ModItemModelProvider extends ItemModelProvider {
                         "block/" + baseBlock.getId().getPath()));
     }
     public void wallItem(DeferredBlock<?> block, DeferredBlock<Block> baseBlock) {
-        this.withExistingParent(block.getId().getPath(), mcLoc("block/wall_inventory"))
-                .texture("wall",  ResourceLocation.fromNamespaceAndPath(Strawberry.MOD_ID,
-                        "block/" + baseBlock.getId().getPath()));
+        this.withExistingParent(block.getId().getPath(), modLoc("wall_inventory"))
+                .texture("wall", modLoc("block/" + baseBlock.getId().getPath()))
+                .texture("particle", modLoc("block/" + baseBlock.getId().getPath()));
     }
 }

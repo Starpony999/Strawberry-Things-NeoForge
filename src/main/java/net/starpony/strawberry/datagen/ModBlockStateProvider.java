@@ -2,6 +2,7 @@ package net.starpony.strawberry.datagen;
 
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.neoforged.neoforge.client.model.generators.MultiPartBlockStateBuilder;
 import net.starpony.strawberry.Strawberry;
@@ -49,15 +50,19 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockWithItem(ModBlocks.RAW_ROSE_QUARTZ_BLOCK);
         blockWithItem(ModBlocks.ROSE_QUARTZ_BLOCK);
         blockWithItem(ModBlocks.HELLSHROOM_LIGHT);
+        blockWithItem(ModBlocks.NIGHT_TERRIA);
+
         blockWithItem(ModBlocks.BUDDING_THULITE_CRYSTAL_BLOCK);
         thuliteClusterBlock(ModBlocks.SMALL_THULITE_BUD, "small_amethyst_bud");
         thuliteClusterBlock(ModBlocks.MEDIUM_THULITE_BUD, "medium_amethyst_bud");
         thuliteClusterBlock(ModBlocks.LARGE_THULITE_BUD, "large_amethyst_bud");
         thuliteClusterBlock(ModBlocks.THULITE_CLUSTER, "amethyst_cluster");
-
-        doubleTextureBlock(ModBlocks.GNEISS);
+        randomTextureBlock(ModBlocks.GNEISS);
         blockWithItem(ModBlocks.SCHIST);
-        blockWithItem(ModBlocks.NIGHT_TERRIA);
+
+        lanternBlock(ModBlocks.CRYSTAL_LANTERN);
+        lanternBlock(ModBlocks.REDSTONE_LANTERN);
+        lanternBlock(ModBlocks.THULITE_LANTERN);
 
         registerSimpleStoneSet(ModBlocks.WASHED_DIORITE_BRICKS);
         registerSimpleStoneSet(ModBlocks.DIORITE_BRICKS);
@@ -322,7 +327,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
     private void thuliteClusterBlock(DeferredBlock<Block> block, String parentModel) {
         String name = BuiltInRegistries.BLOCK.getKey(block.get()).getPath();
         ModelFile model = models().withExistingParent(name, mcLoc("block/" + parentModel))
-                .texture("amethyst", modLoc("block/thulite_crystal_block"))
+                .texture("cross", modLoc("block/" + name))
                 .renderType("cutout");
 
         getVariantBuilder(block.get()).forAllStates(state -> {
@@ -333,10 +338,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
                     .rotationY(getYRotation(direction))
                     .build();
         });
-
-        simpleBlockItem(block.get(), model);
     }
-
     private int getXRotation(Direction direction) {
         return switch (direction) {
             case DOWN -> 180;
@@ -344,7 +346,6 @@ public class ModBlockStateProvider extends BlockStateProvider {
             default -> 90;
         };
     }
-
     private int getYRotation(Direction direction) {
         return switch (direction) {
             case NORTH -> 0;
@@ -354,31 +355,41 @@ public class ModBlockStateProvider extends BlockStateProvider {
             default -> 0;
         };
     }
-    public void doubleTextureBlock(DeferredBlock<Block> block) {
+
+    public void randomTextureBlock(DeferredBlock<Block> block) {
         String name = block.getId().getPath();
-        ModelFile topLeft = models().cubeAll(name + "_top_left",
-                modLoc("block/" + name + "_top_left"));
+        ModelFile model0 = models().cubeAll(name + "_0", modLoc("block/" + name + "_0"));
+        ModelFile model1 = models().cubeAll(name + "_1", modLoc("block/" + name + "_1"));
+        ModelFile model2 = models().cubeAll(name + "_2", modLoc("block/" + name + "_2"));
+        ModelFile model3 = models().cubeAll(name + "_3", modLoc("block/" + name + "_3"));
+        getVariantBuilder(block.get())
+                .partialState().with(RandomTextureBlock.VARIANT, 0).modelForState().modelFile(model0).addModel()
+                .partialState().with(RandomTextureBlock.VARIANT, 1).modelForState().modelFile(model1).addModel()
+                .partialState().with(RandomTextureBlock.VARIANT, 2).modelForState().modelFile(model2).addModel()
+                .partialState().with(RandomTextureBlock.VARIANT, 3).modelForState().modelFile(model3).addModel();
 
-        ModelFile topRight = models().cubeAll(name + "_top_right",
-                modLoc("block/" + name + "_top_right"));
+        // Item model → ALWAYS texture 3
+        simpleBlockItem(block.get(), model3);
+    }
+    public void lanternBlock(DeferredBlock<Block> block) {
+        String name = block.getId().getPath();
 
-        ModelFile bottomLeft = models().cubeAll(name + "_bottom_left",
-                modLoc("block/" + name + "_bottom_left"));
+        ModelFile standing = models().withExistingParent(name,
+                        mcLoc("block/template_lantern"))
+                .texture("lantern", modLoc("block/" + name));
 
-        ModelFile bottomRight = models().cubeAll(name + "_bottom_right",
-                modLoc("block/" + name + "_bottom_right"));
+        ModelFile hanging = models().withExistingParent(name + "_hanging",
+                        mcLoc("block/template_hanging_lantern"))
+                .texture("lantern", modLoc("block/" + name));
 
         getVariantBuilder(block.get())
-                .partialState().with(DoubleTextureBlock.QUADRANT, DoubleTextureBlock.Quadrant.TOP_LEFT)
-                .modelForState().modelFile(topLeft).addModel()
+                .partialState().with(BlockStateProperties.HANGING, false)
+                .modelForState().modelFile(standing).addModel()
+                .partialState().with(BlockStateProperties.HANGING, true)
+                .modelForState().modelFile(hanging).addModel();
 
-                .partialState().with(DoubleTextureBlock.QUADRANT, DoubleTextureBlock.Quadrant.TOP_RIGHT)
-                .modelForState().modelFile(topRight).addModel()
-
-                .partialState().with(DoubleTextureBlock.QUADRANT, DoubleTextureBlock.Quadrant.BOTTOM_LEFT)
-                .modelForState().modelFile(bottomLeft).addModel()
-
-                .partialState().with(DoubleTextureBlock.QUADRANT, DoubleTextureBlock.Quadrant.BOTTOM_RIGHT)
-                .modelForState().modelFile(bottomRight).addModel();
+        itemModels().withExistingParent(name,
+                        mcLoc("item/generated"))
+                .texture("layer0", modLoc("item/" + name));
     }
 }
