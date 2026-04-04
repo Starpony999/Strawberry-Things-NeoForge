@@ -223,7 +223,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         registerToolAndArmorSmithingRecipe(exporter, ModItems.SHINING_UPGRADE_SMITHING_TEMPLATE.get(),
                 ModItems.ROSE_QUARTZ, ModBlocks.OTHERWORLDLY_AMETHYST_BLOCK.asItem(),
                 ModItems.OTHERWORLDLY_AMETHYST);
-        registerToolAndArmorSmithingRecipeVanilla(exporter, ModItems.SHINING_UPGRADE_SMITHING_TEMPLATE.get(),
+        registerToolAndArmorSmithingRecipe(exporter, ModItems.SHINING_UPGRADE_SMITHING_TEMPLATE.get(),
                 VanillaSets.NETHERITE, ModItems.ROSE_QUARTZ.getGem().get(),
                 ModItems.ROSE_QUARTZ);
 

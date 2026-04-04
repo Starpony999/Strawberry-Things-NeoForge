@@ -3,7 +3,7 @@ package net.starpony.strawberry.util.sets;
 import net.minecraft.world.item.*;
 import net.neoforged.neoforge.registries.DeferredItem;
 
-public class GemSet {
+public class GemSet implements SmithingBaseSet {
 
     private final String name;
 
@@ -71,36 +71,81 @@ public class GemSet {
         return hoe;
     }
 
+    @Override
+    public Item getHoeItem() {
+        return hoe.get();
+    }
+
     public DeferredItem<Item> getAxe() {
         return axe;
+    }
+
+    @Override
+    public Item getAxeItem() {
+        return axe.get();
     }
 
     public DeferredItem<Item> getPickaxe() {
         return pickaxe;
     }
 
+    @Override
+    public Item getPickaxeItem() {
+        return pickaxe.get();
+    }
+
     public DeferredItem<Item> getSword() {
         return sword;
+    }
+
+    @Override
+    public Item getSwordItem() {
+        return sword.get();
     }
 
     public DeferredItem<Item> getShovel() {
         return shovel;
     }
 
+    @Override
+    public Item getShovelItem() {
+        return shovel.get();
+    }
+
     public DeferredItem<ArmorItem> getHelmet() {
         return helmet;
+    }
+
+    @Override
+    public Item getHelmetItem() {
+        return helmet.get();
     }
 
     public DeferredItem<ArmorItem> getChestplate() {
         return chestplate;
     }
 
+    @Override
+    public Item getChestplateItem() {
+        return chestplate.get();
+    }
+
     public DeferredItem<ArmorItem> getLeggings() {
         return leggings;
     }
 
+    @Override
+    public Item getLeggingsItem() {
+        return leggings.get();
+    }
+
     public DeferredItem<ArmorItem> getBoots() {
         return boots;
+    }
+
+    @Override
+    public Item getBootsItem() {
+        return boots.get();
     }
 
     public DeferredItem<ArmorItem> getHorseArmor() {
