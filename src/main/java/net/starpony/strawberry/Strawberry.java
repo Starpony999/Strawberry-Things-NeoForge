@@ -3,7 +3,7 @@ package net.starpony.strawberry;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.world.level.block.Blocks;
 import net.starpony.strawberry.block.ModBlocks;
-import net.starpony.strawberry.block.weathering_blocks.ModWeathering;
+import net.starpony.strawberry.block.ModWeathering;
 import net.starpony.strawberry.effect.ModEffects;
 import net.starpony.strawberry.entity.ModEntities;
 import net.starpony.strawberry.entity.client.MoobloomRenderer;
