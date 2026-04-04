@@ -2,6 +2,7 @@ package net.starpony.strawberry;
 
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.world.level.block.Blocks;
+import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
 import net.starpony.strawberry.block.ModBlocks;
 import net.starpony.strawberry.block.ModWeathering;
 import net.starpony.strawberry.effect.ModEffects;
@@ -11,6 +12,11 @@ import net.starpony.strawberry.item.ModItems;
 import net.starpony.strawberry.item.ModArmorMaterials;
 import net.starpony.strawberry.potion.ModPotions;
 import net.starpony.strawberry.sound.ModSounds;
+import net.minecraft.client.renderer.BiomeColors;
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.world.level.FoliageColor;
+
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -69,6 +75,12 @@ public class Strawberry {
                     ModBlocks.WEATHERED_COBBLESTONE.getStone().get(),
                     ModBlocks.AGED_COBBLESTONE.getStone().get()
             );
+            ModWeathering.registerChain(
+                    ModBlocks.WASHED_COBBLESTONE_BRICKS.getStone().get(),
+                    ModBlocks.EXPOSED_COBBLESTONE_BRICKS.getStone().get(),
+                    ModBlocks.WEATHERED_COBBLESTONE_BRICKS.getStone().get(),
+                    ModBlocks.AGED_COBBLESTONE_BRICKS.getStone().get()
+            );
         });
     }
 
@@ -107,6 +119,25 @@ public class Strawberry {
                 registerColorSetRenderLayers(ModBlocks.INDIGO);
                 EntityRenderers.register(ModEntities.MOOBLOOM.get(), MoobloomRenderer::new);
             });
+        }
+
+        @SubscribeEvent
+        public static void registerBlockColors(RegisterColorHandlersEvent.Block event) {
+            event.register((state, level, pos, tintIndex) ->
+                            level != null && pos != null
+                                    ? BiomeColors.getAverageFoliageColor(level, pos)
+                                    : FoliageColor.getDefaultColor(),
+                    ModBlocks.SYCAMORE.getLeaves().get()
+                    //ModBlocks.PLUM.getLeaves().get()
+            );
+        }
+
+        @SubscribeEvent
+        public static void registerItemColors(RegisterColorHandlersEvent.Item event) {
+            event.register((stack, tintIndex) -> FoliageColor.getDefaultColor(),
+                    ModBlocks.SYCAMORE.getLeaves().get().asItem()
+                    // ModBlocks.PLUM.getLeaves().get().asItem()
+            );
         }
     }
 }
