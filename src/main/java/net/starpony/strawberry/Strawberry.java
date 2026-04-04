@@ -4,12 +4,12 @@ import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
 import net.starpony.strawberry.block.ModBlocks;
-import net.starpony.strawberry.block.ModWeathering;
 import net.starpony.strawberry.effect.ModEffects;
 import net.starpony.strawberry.entity.ModEntities;
 import net.starpony.strawberry.entity.client.MoobloomRenderer;
 import net.starpony.strawberry.item.ModItems;
 import net.starpony.strawberry.item.ModArmorMaterials;
+import net.starpony.strawberry.event.ModCommonSetup;
 import net.starpony.strawberry.potion.ModPotions;
 import net.starpony.strawberry.sound.ModSounds;
 import net.minecraft.client.renderer.BiomeColors;
@@ -29,7 +29,6 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
-import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
@@ -46,7 +45,7 @@ public class Strawberry {
     // FML will recognize some parameter types like IEventBus or ModContainer and pass them in automatically.
     public Strawberry(IEventBus modEventBus, ModContainer modContainer) {
         // Register the commonSetup method for modloading
-        modEventBus.addListener(this::commonSetup);
+        modEventBus.addListener(ModCommonSetup::onCommonSetup);
 
         NeoForge.EVENT_BUS.register(this);
         ModCreativeModeTabs.register(modEventBus);
@@ -65,25 +64,7 @@ public class Strawberry {
         // Register our mod's ModConfigSpec so that FML can create and load the config file for us
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
     }
-
-    private void commonSetup(final FMLCommonSetupEvent event) {
-        event.enqueueWork(() -> {
-            ModWeathering.registerChain(
-                    Blocks.COBBLESTONE,
-                    ModBlocks.WASHED_COBBLESTONE.getStone().get(),
-                    ModBlocks.EXPOSED_COBBLESTONE.getStone().get(),
-                    ModBlocks.WEATHERED_COBBLESTONE.getStone().get(),
-                    ModBlocks.AGED_COBBLESTONE.getStone().get()
-            );
-            ModWeathering.registerChain(
-                    ModBlocks.WASHED_COBBLESTONE_BRICKS.getStone().get(),
-                    ModBlocks.EXPOSED_COBBLESTONE_BRICKS.getStone().get(),
-                    ModBlocks.WEATHERED_COBBLESTONE_BRICKS.getStone().get(),
-                    ModBlocks.AGED_COBBLESTONE_BRICKS.getStone().get()
-            );
-        });
-    }
-
+  
     // Add the example block item to the building blocks tab
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
     }
