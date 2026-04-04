@@ -1,14 +1,15 @@
 package net.starpony.strawberry.event;
 
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.starpony.strawberry.block.ModBlocks;
 import net.starpony.strawberry.block.ModWeathering;
-import net.starpony.strawberry.util.sets.SimpleStoneSet;
+import net.starpony.strawberry.util.sets.SimpleStoneBaseSet;
+import net.starpony.strawberry.util.sets.VanillaSets;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Function;
 
 public final class ModCommonSetup {
@@ -16,37 +17,37 @@ public final class ModCommonSetup {
     }
 
     public static void onCommonSetup(final FMLCommonSetupEvent event) {
-        event.enqueueWork(() -> ModWeathering.registerChain(
-                Blocks.COBBLESTONE,
-                ModBlocks.WASHED_COBBLESTONE.getStone().get(),
-                ModBlocks.EXPOSED_COBBLESTONE.getStone().get(),
-                ModBlocks.WEATHERED_COBBLESTONE.getStone().get(),
-                ModBlocks.AGED_COBBLESTONE.getStone().get()
+        event.enqueueWork(() -> registerSetChain(
+                VanillaSets.COBBLESTONE,
+                ModBlocks.WASHED_COBBLESTONE,
+                ModBlocks.EXPOSED_COBBLESTONE,
+                ModBlocks.WEATHERED_COBBLESTONE,
+                ModBlocks.AGED_COBBLESTONE
         ));
-        event.enqueueWork(() -> ModWeathering.registerChain(
-                ModBlocks.WASHED_COBBLESTONE_BRICKS.getStone().get(),
-                ModBlocks.EXPOSED_COBBLESTONE_BRICKS.getStone().get(),
-                ModBlocks.WEATHERED_COBBLESTONE_BRICKS.getStone().get(),
-                ModBlocks.AGED_COBBLESTONE_BRICKS.getStone().get()
+        event.enqueueWork(() -> registerSetChain(
+                ModBlocks.WASHED_COBBLESTONE_BRICKS,
+                ModBlocks.EXPOSED_COBBLESTONE_BRICKS,
+                ModBlocks.WEATHERED_COBBLESTONE_BRICKS,
+                ModBlocks.AGED_COBBLESTONE_BRICKS
         ));
     }
-    private static void registerSetChain(SimpleStoneSet... sets) {
-        List<Function<SimpleStoneSet, ? extends Block>> variants = List.of(
-                s -> s.getStone().get(),
-                s -> s.getSlab().get(),
-                s -> s.getStairs().get(),
-                s -> s.getWall().get(),
-                s -> s.getButton().get(),
-                s -> s.getPressurePlate().get()
+    private static void registerSetChain(SimpleStoneBaseSet... sets) {
+        List<Function<SimpleStoneBaseSet, ? extends Block>> variants = List.of(
+                SimpleStoneBaseSet::getStoneBlock,
+                SimpleStoneBaseSet::getSlabBlock,
+                SimpleStoneBaseSet::getStairsBlock,
+                SimpleStoneBaseSet::getWallBlock,
+                SimpleStoneBaseSet::getButtonBlock,
+                SimpleStoneBaseSet::getPressurePlateBlock
         );
 
         for (var getter : variants) {
-            ModWeathering.registerChain(
-                    Arrays.stream(sets)
-                            .map(getter)
-                            .toArray(Block[]::new)
-            );
+            Block[] chain = Arrays.stream(sets)
+                    .map(getter)
+                    .toArray(Block[]::new);
+            if (Arrays.stream(chain).allMatch(Objects::nonNull)) {
+                ModWeathering.registerChain(chain);
+            }
         }
     }
 }
-

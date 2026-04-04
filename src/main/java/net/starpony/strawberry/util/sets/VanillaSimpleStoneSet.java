@@ -4,7 +4,7 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.Block;
 
 
-public class VanillaSimpleStoneSet {
+public class VanillaSimpleStoneSet implements SimpleStoneBaseSet {
     public final Block block;
     public final Block slab;
     public final Block stairs;
@@ -30,7 +30,17 @@ public class VanillaSimpleStoneSet {
         return block;
     }
 
+    @Override
+    public Block getStoneBlock() {
+        return block;
+    }
+
     public Block getWall() {
+        return wall;
+    }
+
+    @Override
+    public Block getWallBlock() {
         return wall;
     }
 
@@ -38,7 +48,17 @@ public class VanillaSimpleStoneSet {
         return slab;
     }
 
+    @Override
+    public Block getSlabBlock() {
+        return slab;
+    }
+
     public Block getStairs() {
+        return stairs;
+    }
+
+    @Override
+    public Block getStairsBlock() {
         return stairs;
     }
 
@@ -46,7 +66,17 @@ public class VanillaSimpleStoneSet {
         return button;
     }
 
+    @Override
+    public Block getButtonBlock() {
+        return button;
+    }
+
     public Block getPressurePlate() {
+        return pressurePlate;
+    }
+
+    @Override
+    public Block getPressurePlateBlock() {
         return pressurePlate;
     }
 }

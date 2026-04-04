@@ -3,7 +3,7 @@ package net.starpony.strawberry.util.sets;
 import net.minecraft.world.level.block.*;
 import net.neoforged.neoforge.registries.DeferredBlock;
 
-public class SimpleStoneSet {
+public class SimpleStoneSet implements SimpleStoneBaseSet {
     public final DeferredBlock<Block> block;
     public final DeferredBlock<SlabBlock> slab;
     public final DeferredBlock<StairBlock> stairs;
@@ -29,23 +29,53 @@ public class SimpleStoneSet {
         return block;
     }
 
+    @Override
+    public Block getStoneBlock() {
+        return block == null ? null : block.get();
+    }
+
     public DeferredBlock<WallBlock> getWall() {
         return wall;
+    }
+
+    @Override
+    public Block getWallBlock() {
+        return wall == null ? null : wall.get();
     }
 
     public DeferredBlock<SlabBlock> getSlab() {
         return slab;
     }
 
+    @Override
+    public Block getSlabBlock() {
+        return slab == null ? null : slab.get();
+    }
+
     public DeferredBlock<StairBlock> getStairs() {
         return stairs;
+    }
+
+    @Override
+    public Block getStairsBlock() {
+        return stairs == null ? null : stairs.get();
     }
 
     public DeferredBlock<ButtonBlock> getButton() {
         return button;
     }
 
+    @Override
+    public Block getButtonBlock() {
+        return button == null ? null : button.get();
+    }
+
     public DeferredBlock<PressurePlateBlock> getPressurePlate() {
         return pressurePlate;
+    }
+
+    @Override
+    public Block getPressurePlateBlock() {
+        return pressurePlate == null ? null : pressurePlate.get();
     }
 }
