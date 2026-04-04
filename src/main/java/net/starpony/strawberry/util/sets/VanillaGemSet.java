@@ -2,7 +2,7 @@ package net.starpony.strawberry.util.sets;
 
 import net.minecraft.world.item.Item;
 
-public class VanillaGemSet {
+public class VanillaGemSet implements SmithingBaseSet {
 
     private final String name;
 
@@ -70,7 +70,17 @@ public class VanillaGemSet {
         return hoe;
     }
 
+    @Override
+    public Item getHoeItem() {
+        return hoe;
+    }
+
     public Item getAxe() {
+        return axe;
+    }
+
+    @Override
+    public Item getAxeItem() {
         return axe;
     }
 
@@ -78,7 +88,17 @@ public class VanillaGemSet {
         return pickaxe;
     }
 
+    @Override
+    public Item getPickaxeItem() {
+        return pickaxe;
+    }
+
     public Item getSword() {
+        return sword;
+    }
+
+    @Override
+    public Item getSwordItem() {
         return sword;
     }
 
@@ -86,7 +106,17 @@ public class VanillaGemSet {
         return shovel;
     }
 
+    @Override
+    public Item getShovelItem() {
+        return shovel;
+    }
+
     public Item getHelmet() {
+        return helmet;
+    }
+
+    @Override
+    public Item getHelmetItem() {
         return helmet;
     }
 
@@ -94,11 +124,26 @@ public class VanillaGemSet {
         return chestplate;
     }
 
+    @Override
+    public Item getChestplateItem() {
+        return chestplate;
+    }
+
     public Item getLeggings() {
         return leggings;
     }
 
+    @Override
+    public Item getLeggingsItem() {
+        return leggings;
+    }
+
     public Item getBoots() {
+        return boots;
+    }
+
+    @Override
+    public Item getBootsItem() {
         return boots;
     }
 

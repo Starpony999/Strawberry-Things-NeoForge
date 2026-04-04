@@ -297,33 +297,22 @@ public class RecipeMethodProvider extends RecipeProvider implements IConditionBu
                 .unlockedBy("has_" + (inputA), has(inputA))
                 .save(output, RecipeIdHelper.between(inputA, outputItem, ""));
     }
-    public static void registerToolAndArmorSmithingRecipe(RecipeOutput output, Item template, GemSet baseSet, Item addition, GemSet resultSet) {
+    public static void registerToolAndArmorSmithingRecipe(RecipeOutput output, Item template, SmithingBaseSet baseSet, Item addition, GemSet resultSet) {
 
         String name = resultSet.getName();
 
-        registerSmithing(output, template, baseSet.getSword().get(), addition, resultSet.getSword().get(), "smithing_" + name + "_sword", RecipeCategory.TOOLS);
-        registerSmithing(output, template, baseSet.getShovel().get(), addition, resultSet.getShovel().get(), "smithing_" + name + "_shovel", RecipeCategory.TOOLS);
-        registerSmithing(output, template, baseSet.getPickaxe().get(), addition, resultSet.getPickaxe().get(), "smithing_" + name + "_pickaxe", RecipeCategory.TOOLS);
-        registerSmithing(output, template, baseSet.getAxe().get(), addition, resultSet.getAxe().get(), "smithing_" + name + "_axe", RecipeCategory.TOOLS);
-        registerSmithing(output, template, baseSet.getHoe().get(), addition, resultSet.getHoe().get(), "smithing_" + name + "_hoe", RecipeCategory.TOOLS);
-        registerSmithing(output, template, baseSet.getHelmet().get(), addition, resultSet.getHelmet().get(), "smithing_" + name + "_helmet", RecipeCategory.COMBAT);
-        registerSmithing(output, template, baseSet.getChestplate().get(), addition, resultSet.getChestplate().get(), "smithing_" + name + "_chestplate", RecipeCategory.COMBAT);
-        registerSmithing(output, template, baseSet.getLeggings().get(), addition, resultSet.getLeggings().get(), "smithing_" + name + "_leggings", RecipeCategory.COMBAT);
-        registerSmithing(output, template, baseSet.getBoots().get(), addition, resultSet.getBoots().get(), "smithing_" + name + "_boots", RecipeCategory.COMBAT);
+        registerSmithing(output, template, baseSet.getSwordItem(), addition, resultSet.getSword().get(), "smithing_" + name + "_sword", RecipeCategory.TOOLS);
+        registerSmithing(output, template, baseSet.getShovelItem(), addition, resultSet.getShovel().get(), "smithing_" + name + "_shovel", RecipeCategory.TOOLS);
+        registerSmithing(output, template, baseSet.getPickaxeItem(), addition, resultSet.getPickaxe().get(), "smithing_" + name + "_pickaxe", RecipeCategory.TOOLS);
+        registerSmithing(output, template, baseSet.getAxeItem(), addition, resultSet.getAxe().get(), "smithing_" + name + "_axe", RecipeCategory.TOOLS);
+        registerSmithing(output, template, baseSet.getHoeItem(), addition, resultSet.getHoe().get(), "smithing_" + name + "_hoe", RecipeCategory.TOOLS);
+        registerSmithing(output, template, baseSet.getHelmetItem(), addition, resultSet.getHelmet().get(), "smithing_" + name + "_helmet", RecipeCategory.COMBAT);
+        registerSmithing(output, template, baseSet.getChestplateItem(), addition, resultSet.getChestplate().get(), "smithing_" + name + "_chestplate", RecipeCategory.COMBAT);
+        registerSmithing(output, template, baseSet.getLeggingsItem(), addition, resultSet.getLeggings().get(), "smithing_" + name + "_leggings", RecipeCategory.COMBAT);
+        registerSmithing(output, template, baseSet.getBootsItem(), addition, resultSet.getBoots().get(), "smithing_" + name + "_boots", RecipeCategory.COMBAT);
     }
     public static void registerToolAndArmorSmithingRecipeVanilla(RecipeOutput output, Item template, VanillaGemSet baseSet, Item addition, GemSet resultSet) {
-
-        String name = resultSet.getName();
-
-        registerSmithing(output, template, baseSet.getSword(), addition, resultSet.getSword().get(), "smithing_" + name + "_sword", RecipeCategory.TOOLS);
-        registerSmithing(output, template, baseSet.getShovel(), addition, resultSet.getShovel().get(), "smithing_" + name + "_shovel", RecipeCategory.TOOLS);
-        registerSmithing(output, template, baseSet.getPickaxe(), addition, resultSet.getPickaxe().get(), "smithing_" + name + "_pickaxe", RecipeCategory.TOOLS);
-        registerSmithing(output, template, baseSet.getAxe(), addition, resultSet.getAxe().get(), "smithing_" + name + "_axe", RecipeCategory.TOOLS);
-        registerSmithing(output, template, baseSet.getHoe(), addition, resultSet.getHoe().get(), "smithing_" + name + "_hoe", RecipeCategory.TOOLS);
-        registerSmithing(output, template, baseSet.getHelmet(), addition, resultSet.getHelmet().get(), "smithing_" + name + "_helmet", RecipeCategory.COMBAT);
-        registerSmithing(output, template, baseSet.getChestplate(), addition, resultSet.getChestplate().get(), "smithing_" + name + "_chestplate", RecipeCategory.COMBAT);
-        registerSmithing(output, template, baseSet.getLeggings(), addition, resultSet.getLeggings().get(), "smithing_" + name + "_leggings", RecipeCategory.COMBAT);
-        registerSmithing(output, template, baseSet.getBoots(), addition, resultSet.getBoots().get(), "smithing_" + name + "_boots", RecipeCategory.COMBAT);
+        registerToolAndArmorSmithingRecipe(output, template, baseSet, addition, resultSet);
     }
     public static void registerSmithing(RecipeOutput output, Item template, Item base, Item addition, Item result, String recipename, RecipeCategory category) {
         SmithingTransformRecipeBuilder.smithing(Ingredient.of(template), Ingredient.of(base), Ingredient.of(addition), category, result)
@@ -475,6 +464,5 @@ public class RecipeMethodProvider extends RecipeProvider implements IConditionBu
 
     }
 }
-
 
 
