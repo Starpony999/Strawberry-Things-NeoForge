@@ -137,6 +137,11 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleStoneSetItem(ModBlocks.AGED_COBBLESTONE_BRICKS);
         simpleStoneSetItem(ModBlocks.EXPOSED_COBBLESTONE);
         simpleStoneSetItem(ModBlocks.EXPOSED_COBBLESTONE_BRICKS);
+        simpleStoneSetItem(ModBlocks.SEALED_COBBLESTONE);
+        simpleStoneSetItem(ModBlocks.SEALED_WASHED_COBBLESTONE);
+        simpleStoneSetItem(ModBlocks.SEALED_EXPOSED_COBBLESTONE);
+        simpleStoneSetItem(ModBlocks.SEALED_WEATHERED_COBBLESTONE);
+        simpleStoneSetItem(ModBlocks.SEALED_AGED_COBBLESTONE);
 
                 // ---- Stone Sets ----
         stoneSetItem(ModBlocks.NIGHTSTONE);
@@ -270,7 +275,7 @@ public class ModItemModelProvider extends ItemModelProvider {
                         "block/" + baseBlock.getId().getPath()));
     }
     public void wallItem(DeferredBlock<?> block, DeferredBlock<Block> baseBlock) {
-        this.withExistingParent(block.getId().getPath(), modLoc("wall_inventory"))
+        this.withExistingParent(block.getId().getPath(), modLoc("item/wall_inventory"))
                 .texture("wall", modLoc("block/" + baseBlock.getId().getPath()))
                 .texture("particle", modLoc("block/" + baseBlock.getId().getPath()));
     }

@@ -254,6 +254,15 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         registerFullSimpleStoneSet(exporter, ModBlocks.WASHED_COBBLESTONE_BRICKS, "washed_cobblestone_bricks");
         registerFullSimpleStoneSet(exporter, ModBlocks.WEATHERED_COBBLESTONE, "weathered_cobblestone");
         registerFullSimpleStoneSet(exporter, ModBlocks.WEATHERED_COBBLESTONE_BRICKS, "weathered_cobblestone_bricks");
+        registerFullSimpleStoneSet(exporter, ModBlocks.SEALED_AGED_COBBLESTONE, "sealed_aged_cobblestone");
+        registerFullSimpleStoneSet(exporter, ModBlocks.SEALED_AGED_COBBLESTONE_BRICKS, "sealed_aged_cobblestone_bricks");
+        registerFullSimpleStoneSet(exporter, ModBlocks.SEALED_EXPOSED_COBBLESTONE, "sealed_exposed_cobblestone");
+        registerFullSimpleStoneSet(exporter, ModBlocks.SEALED_EXPOSED_COBBLESTONE_BRICKS, "sealed_exposed_cobblestone_bricks");
+        registerFullSimpleStoneSet(exporter, ModBlocks.SEALED_WASHED_COBBLESTONE, "sealed_washed_cobblestone");
+        registerFullSimpleStoneSet(exporter, ModBlocks.SEALED_WASHED_COBBLESTONE_BRICKS, "sealed_washed_cobblestone_bricks");
+        registerFullSimpleStoneSet(exporter, ModBlocks.SEALED_WEATHERED_COBBLESTONE, "sealed_weathered_cobblestone");
+        registerFullSimpleStoneSet(exporter, ModBlocks.SEALED_WEATHERED_COBBLESTONE_BRICKS, "sealed_weathered_cobblestone_bricks");
+
 
         registerColorSetRecipes(exporter, ModItems.CERISE_DYE.get(), ModBlocks.CERISE, "cerise");
         registerColorSetRecipes(exporter, ModItems.TURQUOISE_DYE.get(), ModBlocks.TURQUOISE, "turquoise");
@@ -262,6 +271,11 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         registerSmallSquareBlockRecipe(exporter, ModBlocks.WEATHERED_COBBLESTONE.getStone().get(), ModBlocks.WEATHERED_COBBLESTONE_BRICKS.getStone().get());
         registerSmallSquareBlockRecipe(exporter, ModBlocks.AGED_COBBLESTONE.getStone().get(), ModBlocks.AGED_COBBLESTONE_BRICKS.getStone().get());
         registerSmallSquareBlockRecipe(exporter, ModBlocks.EXPOSED_COBBLESTONE.getStone().get(), ModBlocks.EXPOSED_COBBLESTONE_BRICKS.getStone().get());
+
+        registerSmallSquareBlockRecipe(exporter, ModBlocks.SEALED_WASHED_COBBLESTONE.getStone().get(), ModBlocks.SEALED_WASHED_COBBLESTONE_BRICKS.getStone().get());
+        registerSmallSquareBlockRecipe(exporter, ModBlocks.SEALED_WEATHERED_COBBLESTONE.getStone().get(), ModBlocks.SEALED_WEATHERED_COBBLESTONE_BRICKS.getStone().get());
+        registerSmallSquareBlockRecipe(exporter, ModBlocks.SEALED_AGED_COBBLESTONE.getStone().get(), ModBlocks.SEALED_AGED_COBBLESTONE_BRICKS.getStone().get());
+        registerSmallSquareBlockRecipe(exporter, ModBlocks.SEALED_EXPOSED_COBBLESTONE.getStone().get(), ModBlocks.SEALED_EXPOSED_COBBLESTONE_BRICKS.getStone().get());
 
     }
 }

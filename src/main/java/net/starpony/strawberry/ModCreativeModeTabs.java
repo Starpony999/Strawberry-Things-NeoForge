@@ -120,6 +120,14 @@ public class ModCreativeModeTabs {
                         SetUtils.addSimpleStoneSet(output, ModBlocks.AGED_COBBLESTONE_BRICKS);
                         SetUtils.addSimpleStoneSet(output, ModBlocks.EXPOSED_COBBLESTONE);
                         SetUtils.addSimpleStoneSet(output, ModBlocks.EXPOSED_COBBLESTONE_BRICKS);
+                        SetUtils.addSimpleStoneSet(output, ModBlocks.SEALED_WASHED_COBBLESTONE);
+                        SetUtils.addSimpleStoneSet(output, ModBlocks.SEALED_WASHED_COBBLESTONE_BRICKS);
+                        SetUtils.addSimpleStoneSet(output, ModBlocks.SEALED_WEATHERED_COBBLESTONE);
+                        SetUtils.addSimpleStoneSet(output, ModBlocks.SEALED_WEATHERED_COBBLESTONE_BRICKS);
+                        SetUtils.addSimpleStoneSet(output, ModBlocks.SEALED_AGED_COBBLESTONE);
+                        SetUtils.addSimpleStoneSet(output, ModBlocks.SEALED_AGED_COBBLESTONE_BRICKS);
+                        SetUtils.addSimpleStoneSet(output, ModBlocks.SEALED_EXPOSED_COBBLESTONE);
+                        SetUtils.addSimpleStoneSet(output, ModBlocks.SEALED_EXPOSED_COBBLESTONE_BRICKS);
 
                         SetUtils.addStoneSet(output, ModBlocks.GRIMSTONE);
                         SetUtils.addStoneSet(output, ModBlocks.NIGHTSTONE);

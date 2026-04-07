@@ -7,16 +7,16 @@ import net.minecraft.tags.FluidTags;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.level.LevelEvent;
-import net.minecraft.world.level.GameEvent;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.LevelEvent;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.level.gameevent.GameEvent;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
@@ -121,6 +121,10 @@ public class ModWeathering {
     @SubscribeEvent
     public static void onRightClickBlock(PlayerInteractEvent.RightClickBlock event) {
         var level = event.getLevel();
+        if (level.isClientSide) {
+            return;
+        }
+
         var player = event.getEntity();
         var heldItem = event.getItemStack();
         BlockPos pos = event.getPos();
@@ -144,14 +148,9 @@ public class ModWeathering {
             return;
         }
 
-        if (level.isClientSide) {
-            event.setCancellationResult(InteractionResult.SUCCESS);
-            event.setCanceled(true);
-            return;
-        }
-
-        level.setBlock(pos, sealedBlock.defaultBlockState(), Block.UPDATE_ALL);
-        SoundType sound = sealedBlock.defaultBlockState().getSoundType();
+        BlockState sealedState = copySharedProperties(state, sealedBlock.defaultBlockState());
+        level.setBlock(pos, sealedState, Block.UPDATE_ALL);
+        SoundType sound = sealedState.getSoundType();
         level.playSound(null, pos, sound.getPlaceSound(), SoundSource.BLOCKS, 1.0F, 1.0F);
         level.gameEvent(player, GameEvent.BLOCK_CHANGE, pos);
 
@@ -171,13 +170,8 @@ public class ModWeathering {
             return;
         }
 
-        if (level.isClientSide) {
-            event.setCancellationResult(InteractionResult.SUCCESS);
-            event.setCanceled(true);
-            return;
-        }
-
-        level.setBlock(pos, originalBlock.defaultBlockState(), Block.UPDATE_ALL);
+        BlockState originalState = copySharedProperties(state, originalBlock.defaultBlockState());
+        level.setBlock(pos, originalState, Block.UPDATE_ALL);
         level.playSound(null, pos, SoundEvents.AXE_SCRAPE, SoundSource.BLOCKS, 1.0F, 1.0F);
         level.levelEvent(player, LevelEvent.PARTICLES_SCRAPE, pos, 0);
         level.gameEvent(player, GameEvent.BLOCK_CHANGE, pos);
