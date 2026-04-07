@@ -32,14 +32,10 @@ public final class ModCommonSetup {
         ));
         event.enqueueWork(() -> {
             registerClaySealSet(VanillaSets.COBBLESTONE, ModBlocks.SEALED_COBBLESTONE);
-            registerClaySealSet(ModBlocks.WASHED_COBBLESTONE, ModBlocks.SEALED_COBBLESTONE);
-            registerClaySealSet(ModBlocks.EXPOSED_COBBLESTONE, ModBlocks.SEALED_COBBLESTONE);
-            registerClaySealSet(ModBlocks.WEATHERED_COBBLESTONE, ModBlocks.SEALED_COBBLESTONE);
-            registerClaySealSet(ModBlocks.AGED_COBBLESTONE, ModBlocks.SEALED_COBBLESTONE);
-            registerClaySealSet(ModBlocks.WASHED_COBBLESTONE_BRICKS, ModBlocks.SEALED_COBBLESTONE_BRICKS);
-            registerClaySealSet(ModBlocks.EXPOSED_COBBLESTONE_BRICKS, ModBlocks.SEALED_COBBLESTONE_BRICKS);
-            registerClaySealSet(ModBlocks.WEATHERED_COBBLESTONE_BRICKS, ModBlocks.SEALED_COBBLESTONE_BRICKS);
-            registerClaySealSet(ModBlocks.AGED_COBBLESTONE_BRICKS, ModBlocks.SEALED_COBBLESTONE_BRICKS);
+            registerClaySealSet(ModBlocks.WASHED_COBBLESTONE, ModBlocks.SEALED_WASHED_COBBLESTONE);
+            registerClaySealSet(ModBlocks.EXPOSED_COBBLESTONE, ModBlocks.SEALED_EXPOSED_COBBLESTONE);
+            registerClaySealSet(ModBlocks.WEATHERED_COBBLESTONE, ModBlocks.SEALED_WEATHERED_COBBLESTONE);
+            registerClaySealSet(ModBlocks.AGED_COBBLESTONE, ModBlocks.SEALED_AGED_COBBLESTONE);
         });
     }
     private static void registerSetChain(SimpleStoneBaseSet... sets) {
