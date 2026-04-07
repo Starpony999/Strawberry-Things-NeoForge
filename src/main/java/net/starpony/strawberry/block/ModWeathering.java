@@ -2,15 +2,21 @@ package net.starpony.strawberry.block;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.level.LevelEvent;
 import net.minecraft.world.level.GameEvent;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
@@ -25,6 +31,7 @@ import java.util.Map;
 public class ModWeathering {
     private static final Map<Block, Block> NEXT_BLOCK_BY_BLOCK = new HashMap<>();
     private static final Map<Block, Block> CLAY_SEALED_BLOCK_BY_BLOCK = new HashMap<>();
+    private static final Map<Block, Block> ORIGINAL_BLOCK_BY_SEALED_BLOCK = new HashMap<>();
     private static final float AGE_CHANCE = 0.04F;
 
     private ModWeathering() {
@@ -38,6 +45,7 @@ public class ModWeathering {
 
     public static void registerClaySeal(Block source, Block sealed) {
         CLAY_SEALED_BLOCK_BY_BLOCK.put(source, sealed);
+        ORIGINAL_BLOCK_BY_SEALED_BLOCK.putIfAbsent(sealed, source);
     }
 
     @SubscribeEvent
@@ -99,13 +107,22 @@ public class ModWeathering {
         var level = event.getLevel();
         var player = event.getEntity();
         var heldItem = event.getItemStack();
+        BlockPos pos = event.getPos();
+        BlockState state = level.getBlockState(pos);
 
-        if (!heldItem.is(Items.CLAY_BALL)) {
+        if (heldItem.is(Items.CLAY_BALL)) {
+            sealWithClay(event, level, player, heldItem, pos, state);
             return;
         }
 
-        BlockPos pos = event.getPos();
-        BlockState state = level.getBlockState(pos);
+        if (heldItem.is(ItemTags.AXES)) {
+            scrapeSealed(event, level, player, heldItem, pos, state);
+        }
+    }
+
+    private static void sealWithClay(PlayerInteractEvent.RightClickBlock event, Level level,
+                                     net.minecraft.world.entity.player.Player player, ItemStack heldItem,
+                                     BlockPos pos, BlockState state) {
         Block sealedBlock = CLAY_SEALED_BLOCK_BY_BLOCK.get(state.getBlock());
         if (sealedBlock == null || state.is(sealedBlock)) {
             return;
@@ -119,12 +136,38 @@ public class ModWeathering {
 
         level.setBlock(pos, sealedBlock.defaultBlockState(), Block.UPDATE_ALL);
         SoundType sound = sealedBlock.defaultBlockState().getSoundType();
-        level.playSound(null, pos, sound.getPlaceSound(), net.minecraft.sounds.SoundSource.BLOCKS, 1.0F, 1.0F);
+        level.playSound(null, pos, sound.getPlaceSound(), SoundSource.BLOCKS, 1.0F, 1.0F);
         level.gameEvent(player, GameEvent.BLOCK_CHANGE, pos);
 
         if (!player.getAbilities().instabuild) {
             heldItem.shrink(1);
         }
+
+        event.setCancellationResult(InteractionResult.SUCCESS);
+        event.setCanceled(true);
+    }
+
+    private static void scrapeSealed(PlayerInteractEvent.RightClickBlock event, Level level,
+                                     net.minecraft.world.entity.player.Player player, ItemStack heldItem,
+                                     BlockPos pos, BlockState state) {
+        Block originalBlock = ORIGINAL_BLOCK_BY_SEALED_BLOCK.get(state.getBlock());
+        if (originalBlock == null) {
+            return;
+        }
+
+        if (level.isClientSide) {
+            event.setCancellationResult(InteractionResult.SUCCESS);
+            event.setCanceled(true);
+            return;
+        }
+
+        level.setBlock(pos, originalBlock.defaultBlockState(), Block.UPDATE_ALL);
+        level.playSound(null, pos, SoundEvents.AXE_SCRAPE, SoundSource.BLOCKS, 1.0F, 1.0F);
+        level.levelEvent(player, LevelEvent.PARTICLES_SCRAPE, pos, 0);
+        level.gameEvent(player, GameEvent.BLOCK_CHANGE, pos);
+
+        heldItem.hurtAndBreak(1, ((ServerLevel) level), player,
+                item -> player.onEquippedItemBroken(item, net.minecraft.world.entity.LivingEntity.getSlotForHand(event.getHand())));
 
         event.setCancellationResult(InteractionResult.SUCCESS);
         event.setCanceled(true);
