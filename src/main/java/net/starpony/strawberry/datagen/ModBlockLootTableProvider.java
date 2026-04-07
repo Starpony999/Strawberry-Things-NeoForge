@@ -92,6 +92,8 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         handleSimpleStoneSet(ModBlocks.AGED_COBBLESTONE_BRICKS);
         handleSimpleStoneSet(ModBlocks.EXPOSED_COBBLESTONE);
         handleSimpleStoneSet(ModBlocks.EXPOSED_COBBLESTONE_BRICKS);
+        handleSimpleStoneSet(ModBlocks.SEALED_COBBLESTONE);
+        handleSimpleStoneSet(ModBlocks.SEALED_COBBLESTONE_BRICKS);
 
         handleColorSet(ModBlocks.CERISE);
         handleColorSet(ModBlocks.TURQUOISE);

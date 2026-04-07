@@ -3,12 +3,17 @@ package net.starpony.strawberry.block;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.tags.FluidTags;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.GameEvent;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import net.neoforged.neoforge.event.tick.LevelTickEvent;
 import net.starpony.strawberry.Strawberry;
 
@@ -19,6 +24,7 @@ import java.util.Map;
 @EventBusSubscriber(modid = Strawberry.MOD_ID, bus = EventBusSubscriber.Bus.GAME)
 public class ModWeathering {
     private static final Map<Block, Block> NEXT_BLOCK_BY_BLOCK = new HashMap<>();
+    private static final Map<Block, Block> CLAY_SEALED_BLOCK_BY_BLOCK = new HashMap<>();
     private static final float AGE_CHANCE = 0.04F;
 
     private ModWeathering() {
@@ -28,6 +34,10 @@ public class ModWeathering {
         for (int i = 0; i < blocks.length - 1; i++) {
             NEXT_BLOCK_BY_BLOCK.put(blocks[i], blocks[i + 1]);
         }
+    }
+
+    public static void registerClaySeal(Block source, Block sealed) {
+        CLAY_SEALED_BLOCK_BY_BLOCK.put(source, sealed);
     }
 
     @SubscribeEvent
@@ -82,5 +92,41 @@ public class ModWeathering {
         }
 
         return false;
+    }
+
+    @SubscribeEvent
+    public static void onRightClickBlock(PlayerInteractEvent.RightClickBlock event) {
+        var level = event.getLevel();
+        var player = event.getEntity();
+        var heldItem = event.getItemStack();
+
+        if (!heldItem.is(Items.CLAY_BALL)) {
+            return;
+        }
+
+        BlockPos pos = event.getPos();
+        BlockState state = level.getBlockState(pos);
+        Block sealedBlock = CLAY_SEALED_BLOCK_BY_BLOCK.get(state.getBlock());
+        if (sealedBlock == null || state.is(sealedBlock)) {
+            return;
+        }
+
+        if (level.isClientSide) {
+            event.setCancellationResult(InteractionResult.SUCCESS);
+            event.setCanceled(true);
+            return;
+        }
+
+        level.setBlock(pos, sealedBlock.defaultBlockState(), Block.UPDATE_ALL);
+        SoundType sound = sealedBlock.defaultBlockState().getSoundType();
+        level.playSound(null, pos, sound.getPlaceSound(), net.minecraft.sounds.SoundSource.BLOCKS, 1.0F, 1.0F);
+        level.gameEvent(player, GameEvent.BLOCK_CHANGE, pos);
+
+        if (!player.getAbilities().instabuild) {
+            heldItem.shrink(1);
+        }
+
+        event.setCancellationResult(InteractionResult.SUCCESS);
+        event.setCanceled(true);
     }
 }
