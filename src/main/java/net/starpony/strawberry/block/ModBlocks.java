@@ -104,6 +104,9 @@ public class ModBlocks {
     public static final SimpleStoneSet AGED_COBBLESTONE_BRICKS = registerSimpleStoneSet("aged_cobblestone_bricks");
     public static final SimpleStoneSet EXPOSED_COBBLESTONE = registerSimpleStoneSet("exposed_cobblestone");
     public static final SimpleStoneSet EXPOSED_COBBLESTONE_BRICKS = registerSimpleStoneSet("exposed_cobblestone_bricks");
+    public static final SimpleStoneSet SEALED_COBBLESTONE = registerSimpleStoneSet("sealed_cobblestone");
+    public static final SimpleStoneSet SEALED_COBBLESTONE_BRICKS = registerSimpleStoneSet("sealed_cobblestone_bricks");
+
 
    // public static final SimpleStoneSet BLUE_ICE = registerIceSet("blue_ice", Blocks.BLUE_ICE, 2.8f);
    // public static final SimpleStoneSet PACKED_ICE = registerIceSet("packed_ice", Blocks.PACKED_ICE, 0.5f);

@@ -11,6 +11,7 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.tick.LevelTickEvent;
 import net.starpony.strawberry.Strawberry;
+import net.minecraft.world.level.block.state.properties.Property;
 
 import java.util.HashMap;
 import java.util.List;
@@ -67,7 +68,22 @@ public class ModWeathering {
             return;
         }
 
-        level.setBlock(pos, nextBlock.defaultBlockState(), Block.UPDATE_CLIENTS);
+        level.setBlock(pos, copySharedProperties(state, nextBlock.defaultBlockState()), Block.UPDATE_CLIENTS);
+    }
+
+    private static BlockState copySharedProperties(BlockState source, BlockState target) {
+        BlockState result = target;
+        for (Property<?> property : source.getProperties()) {
+            if (target.hasProperty(property)) {
+                result = copyProperty(source, result, property);
+            }
+        }
+
+        return result;
+    }
+
+    private static <T extends Comparable<T>> BlockState copyProperty(BlockState source, BlockState target, Property<T> property) {
+        return target.setValue(property, source.getValue(property));
     }
 
     private static boolean isExposedToWater(Level level, BlockPos pos) {
