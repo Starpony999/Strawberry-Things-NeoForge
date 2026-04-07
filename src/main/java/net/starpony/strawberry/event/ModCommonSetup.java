@@ -30,6 +30,13 @@ public final class ModCommonSetup {
                 ModBlocks.WEATHERED_COBBLESTONE_BRICKS,
                 ModBlocks.AGED_COBBLESTONE_BRICKS
         ));
+        event.enqueueWork(() -> {
+            registerClaySealSet(VanillaSets.COBBLESTONE, ModBlocks.SEALED_COBBLESTONE);
+            registerClaySealSet(ModBlocks.WASHED_COBBLESTONE, ModBlocks.SEALED_WASHED_COBBLESTONE);
+            registerClaySealSet(ModBlocks.EXPOSED_COBBLESTONE, ModBlocks.SEALED_EXPOSED_COBBLESTONE);
+            registerClaySealSet(ModBlocks.WEATHERED_COBBLESTONE, ModBlocks.SEALED_WEATHERED_COBBLESTONE);
+            registerClaySealSet(ModBlocks.AGED_COBBLESTONE, ModBlocks.SEALED_AGED_COBBLESTONE);
+        });
     }
     private static void registerSetChain(SimpleStoneBaseSet... sets) {
         List<Function<SimpleStoneBaseSet, ? extends Block>> variants = List.of(
@@ -47,6 +54,25 @@ public final class ModCommonSetup {
                     .toArray(Block[]::new);
             if (Arrays.stream(chain).allMatch(Objects::nonNull)) {
                 ModWeathering.registerChain(chain);
+            }
+        }
+    }
+
+    private static void registerClaySealSet(SimpleStoneBaseSet source, SimpleStoneBaseSet sealed) {
+        List<Function<SimpleStoneBaseSet, ? extends Block>> variants = List.of(
+                SimpleStoneBaseSet::getStoneBlock,
+                SimpleStoneBaseSet::getSlabBlock,
+                SimpleStoneBaseSet::getStairsBlock,
+                SimpleStoneBaseSet::getWallBlock,
+                SimpleStoneBaseSet::getButtonBlock,
+                SimpleStoneBaseSet::getPressurePlateBlock
+        );
+
+        for (var getter : variants) {
+            Block sourceBlock = getter.apply(source);
+            Block sealedBlock = getter.apply(sealed);
+            if (sourceBlock != null && sealedBlock != null) {
+                ModWeathering.registerClaySeal(sourceBlock, sealedBlock);
             }
         }
     }

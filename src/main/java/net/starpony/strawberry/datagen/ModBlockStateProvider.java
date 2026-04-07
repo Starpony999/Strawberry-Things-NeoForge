@@ -78,6 +78,11 @@ public class ModBlockStateProvider extends BlockStateProvider {
         registerSimpleStoneSet(ModBlocks.AGED_COBBLESTONE_BRICKS);
         registerSimpleStoneSet(ModBlocks.EXPOSED_COBBLESTONE);
         registerSimpleStoneSet(ModBlocks.EXPOSED_COBBLESTONE_BRICKS);
+        registerSimpleStoneSet(ModBlocks.SEALED_COBBLESTONE);
+        registerSimpleStoneSet(ModBlocks.SEALED_WASHED_COBBLESTONE);
+        registerSimpleStoneSet(ModBlocks.SEALED_EXPOSED_COBBLESTONE);
+        registerSimpleStoneSet(ModBlocks.SEALED_WEATHERED_COBBLESTONE);
+        registerSimpleStoneSet(ModBlocks.SEALED_AGED_COBBLESTONE);
 
         registerWoodSet(ModBlocks.SYCAMORE);
         registerWoodSet(ModBlocks.PLUM);
