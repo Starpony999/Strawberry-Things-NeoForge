@@ -106,6 +106,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_" + (Items.SUGAR_CANE), has(Items.SUGAR_CANE))
                 .save(exporter, "toilet_paper");
         registerSmallSquareRecipe(exporter, ModItems.THULITE_SHARD.get(), ModBlocks.THULITE_CRYSTAL_BLOCK.get().asItem(), 1);
+        registerFarmersDelightCuttingRecipe(ModBlocks.THULITE_CRYSTAL_BLOCK.get().asItem(), ModItems.THULITE_SHARD.get(), 4, "pickaxe_dig");
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.CHISEL)
                 .pattern("A")
                 .pattern("S")

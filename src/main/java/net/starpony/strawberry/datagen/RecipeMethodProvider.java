@@ -19,8 +19,14 @@ import net.minecraft.data.PackOutput;
 import net.neoforged.neoforge.common.conditions.IConditionBuilder;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 
 import java.util.List;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardOpenOption;
 import java.util.concurrent.CompletableFuture;
 
 public class RecipeMethodProvider extends RecipeProvider implements IConditionBuilder {
@@ -297,6 +303,42 @@ public class RecipeMethodProvider extends RecipeProvider implements IConditionBu
                 .unlockedBy("has_" + (inputA), has(inputA))
                 .save(output, RecipeIdHelper.between(inputA, outputItem, ""));
     }
+
+    public static void registerFarmersDelightCuttingRecipe(Item input, Item result, int count, String action) {
+        ResourceLocation recipeId = RecipeIdHelper.between(input, result, "_cutting");
+        Path recipePath = Path.of("src/generated/resources/data", recipeId.getNamespace(), "recipes", recipeId.getPath() + ".json");
+
+        JsonObject root = new JsonObject();
+        root.addProperty("type", "farmersdelight:cutting");
+
+        JsonArray ingredients = new JsonArray();
+        JsonObject ingredient = new JsonObject();
+        ingredient.addProperty("item", BuiltInRegistries.ITEM.getKey(input).toString());
+        ingredients.add(ingredient);
+        root.add("ingredients", ingredients);
+
+        JsonArray resultArray = new JsonArray();
+        JsonObject resultEntry = new JsonObject();
+        JsonObject resultItem = new JsonObject();
+        resultItem.addProperty("count", count);
+        resultItem.addProperty("id", BuiltInRegistries.ITEM.getKey(result).toString());
+        resultEntry.add("item", resultItem);
+        resultArray.add(resultEntry);
+        root.add("result", resultArray);
+
+        JsonObject tool = new JsonObject();
+        tool.addProperty("type", "farmersdelight:item_ability");
+        tool.addProperty("action", action);
+        root.add("tool", tool);
+
+        try {
+            Files.createDirectories(recipePath.getParent());
+            Files.writeString(recipePath, root.toString(), StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
+        } catch (IOException e) {
+            throw new RuntimeException("Failed to write recipe json for " + recipeId, e);
+        }
+    }
+
     public static void registerToolAndArmorSmithingRecipe(RecipeOutput output, Item template, SmithingBaseSet baseSet, Item addition, GemSet resultSet) {
 
         String name = resultSet.getName();
