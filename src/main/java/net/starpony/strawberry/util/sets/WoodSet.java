@@ -30,8 +30,8 @@ public class WoodSet {
     public final DeferredBlock<Block> wallSign;
     public final DeferredBlock<Block> hangingSign;
     public final DeferredBlock<Block> wallHangingSign;
-    public final DeferredItem<Item> signItem;
-    public final DeferredItem<Item> hangingSignItem;
+    private DeferredItem<Item> signItem;
+    private DeferredItem<Item> hangingSignItem;
 
     public WoodSet(String name,
                    DeferredBlock<Block> log,
@@ -168,5 +168,11 @@ public class WoodSet {
     public DeferredItem<Item> getSignItem() {return signItem;}
 
     public DeferredItem<Item> getHangingSignItem() {return hangingSignItem;}
+
+    public WoodSet setSignItems(DeferredItem<Item> signItem, DeferredItem<Item> hangingSignItem) {
+        this.signItem = signItem;
+        this.hangingSignItem = hangingSignItem;
+        return this;
+    }
 
 }

@@ -149,9 +149,7 @@ public class ModItems {
         DeferredItem<Item> hangingSign = ITEMS.register(name + "_hanging_sign_item",
                 () -> new HangingSignItem(woodSet.getHangingSign().get(), woodSet.getWallHangingSign().get(), new Item.Properties().stacksTo(16)));
 
-        return new WoodSet(null, null, null, null, null, null, null, null, null, null,
-                null, null, null, null, null, null, null, null, null,null, null,
-                sign, hangingSign);
+        return woodSet.setSignItems(sign, hangingSign);
     }
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
