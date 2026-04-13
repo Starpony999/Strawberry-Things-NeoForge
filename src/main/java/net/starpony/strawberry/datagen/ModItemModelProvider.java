@@ -176,7 +176,10 @@ public class ModItemModelProvider extends ItemModelProvider {
         buttonItem(set.getButton(), set.getPlanks());
         fenceItem(set.getFence(), set.getPlanks());
         basicItem(set.getDoor().asItem());
-        saplingItem(set.getSapling());}
+        saplingItem(set.getSapling());
+        basicItem(set.getSignItem().asItem());
+        basicItem(set.getHangingSignItem().asItem());
+    }
     private void gemSetItem(GemSet set) {
         basicItem(set.getGem().get());
         if(set.getShard() != null) basicItem(set.getShard().get());

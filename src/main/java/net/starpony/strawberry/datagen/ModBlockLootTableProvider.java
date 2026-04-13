@@ -212,6 +212,15 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
 
         add(set.getDoor().get(),
                 block -> createDoorTable(set.getDoor().get()));
+
+        add(set.sign.get(), block ->
+                createSingleItemTable(set.signItem.get()));
+        add(set.wallSign.get(), block ->
+                createSingleItemTable(set.signItem.get()));
+        add(set.hangingSign.get(), block ->
+                createSingleItemTable(set.hangingSignItem.get()));
+        add(set.wallHangingSign.get(), block ->
+                createSingleItemTable(set.hangingSignItem.get()));
     }
     private void handleNightmareWoodSet(WoodSet set) {
         dropSelf(set.getLog().get());

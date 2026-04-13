@@ -71,6 +71,10 @@ public class SetUtils {
         output.accept(woodSet.getFenceGate());
         output.accept(woodSet.getDoor());
         output.accept(woodSet.getTrapdoor());
+
+        // Signs and Boats
+        output.accept(woodSet.getSignItem());
+        output.accept(woodSet.getHangingSignItem());
     }
     public static void addNightmareWoodSet(CreativeModeTab.Output output, WoodSet woodSet) {
         // Logs and wood

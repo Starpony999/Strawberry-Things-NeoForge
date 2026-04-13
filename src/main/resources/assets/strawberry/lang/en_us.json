@@ -391,6 +391,8 @@
   "block.strawberry.sycamore_fence_gate": "Sycamore Fence Gate",
   "block.strawberry.sycamore_door": "Sycamore Door",
   "block.strawberry.sycamore_trapdoor": "Sycamore Trapdoor",
+  "block.strawberry.sycamore_sign": "Sycamore Sign",
+  "block.strawberry.sycamore_hanging_sign": "Sycamore Hanging Sign",
 
   "block.strawberry.plum_log": "Plum Log",
   "block.strawberry.plum_stripped_log": "Stripped Plum Log",
@@ -407,6 +409,8 @@
   "block.strawberry.plum_fence_gate": "Plum Fence Gate",
   "block.strawberry.plum_door": "Plum Door",
   "block.strawberry.plum_trapdoor": "Plum Trapdoor",
+  "block.strawberry.plum_sign": "Plum Sign",
+  "block.strawberry.plum_hanging_sign": "Plum Hanging Sign",
 
   "block.strawberry.bloodwood_stem": "Bloodwood Stem",
   "block.strawberry.bloodwood_stripped_stem": "Stripped Bloodwood Stem",
@@ -424,6 +428,10 @@
   "block.strawberry.bloodwood_door": "Bloodwood Door",
   "block.strawberry.bloodwood_trapdoor": "Bloodwood Trapdoor",
   "block.strawberry.hellshroom_light": "Hellshroom Light",
+  "block.strawberry.bloodwood_sign": "Bloodwood Sign",
+  "block.strawberry.bloodwood_hanging_sign": "Bloodwood Hanging Sign",
+
+
 
   "block.strawberry.andesite_bricks": "Andesite Bricks",
   "block.strawberry.andesite_bricks_stairs": "Andesite Brick Stairs",

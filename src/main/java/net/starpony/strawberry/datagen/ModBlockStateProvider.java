@@ -208,6 +208,10 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockItem(set.getPressurePlate());
         blockItem(set.getFenceGate());
         blockItem(set.getTrapdoor(), "_bottom");
+        signBlock(((StandingSignBlock) set.getSign().get()), ((WallSignBlock) set.getWallSign().get()),
+                blockTexture(set.planks.get()));
+        hangingSignBlock(set.getHangingSign().get(), set.getWallHangingSign().get(),
+                blockTexture(set.planks.get()));
     }
     public void registerNightmareWoodSet(WoodSet set) {
         logBlock((RotatedPillarBlock) set.getLog().get());
@@ -400,5 +404,20 @@ public class ModBlockStateProvider extends BlockStateProvider {
         itemModels().withExistingParent(name,
                         mcLoc("item/generated"))
                 .texture("layer0", modLoc("item/" + name));
+    }
+
+    public void hangingSignBlock(Block signBlock, Block wallSignBlock, ResourceLocation texture) {
+        ModelFile sign = models().sign(name(signBlock), texture);
+        hangingSignBlock(signBlock, wallSignBlock, sign);
+    }
+    public void hangingSignBlock(Block signBlock, Block wallSignBlock, ModelFile sign) {
+        simpleBlock(signBlock, sign);
+        simpleBlock(wallSignBlock, sign);
+    }
+    private String name(Block block) {
+        return key(block).getPath();
+    }
+    private ResourceLocation key(Block block) {
+        return BuiltInRegistries.BLOCK.getKey(block);
     }
 }

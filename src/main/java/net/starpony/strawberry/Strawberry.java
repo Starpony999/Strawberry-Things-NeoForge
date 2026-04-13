@@ -1,5 +1,6 @@
 package net.starpony.strawberry;
 
+import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
@@ -12,11 +13,9 @@ import net.starpony.strawberry.item.ModArmorMaterials;
 import net.starpony.strawberry.event.ModCommonSetup;
 import net.starpony.strawberry.potion.ModPotions;
 import net.starpony.strawberry.sound.ModSounds;
-import net.minecraft.client.renderer.BiomeColors;
-import net.minecraft.client.renderer.ItemBlockRenderTypes;
-import net.minecraft.client.renderer.RenderType;
 import net.minecraft.world.level.FoliageColor;
 
+import net.starpony.strawberry.util.ModWoodTypes;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -86,6 +85,9 @@ public class Strawberry {
 
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
+            Sheets.addWoodType(ModWoodTypes.SYCAMORE);
+            Sheets.addWoodType(ModWoodTypes.PLUM);
+            Sheets.addWoodType(ModWoodTypes.BLOODWOOD);
             event.enqueueWork(() -> {
                 ItemBlockRenderTypes.setRenderLayer(ModBlocks.CAULIFLOWER_CROP.get(), RenderType.cutout());
                 ItemBlockRenderTypes.setRenderLayer(ModBlocks.GRAPE_CROP.get(), RenderType.cutout());

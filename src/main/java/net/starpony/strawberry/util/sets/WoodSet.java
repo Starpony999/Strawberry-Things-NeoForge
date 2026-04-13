@@ -1,7 +1,9 @@
 package net.starpony.strawberry.util.sets;
 
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.*;
 import net.neoforged.neoforge.registries.DeferredBlock;
+import net.neoforged.neoforge.registries.DeferredItem;
 import net.starpony.strawberry.block.ModFlammableRotatedPillarBlock;
 import net.starpony.strawberry.block.ModNonFlammableRotatedPillarBlock;
 
@@ -24,6 +26,12 @@ public class WoodSet {
     public final DeferredBlock<FenceGateBlock> fenceGate;
     public final DeferredBlock<DoorBlock> door;
     public final DeferredBlock<TrapDoorBlock> trapdoor;
+    public final DeferredBlock<Block> sign;
+    public final DeferredBlock<Block> wallSign;
+    public final DeferredBlock<Block> hangingSign;
+    public final DeferredBlock<Block> wallHangingSign;
+    public final DeferredItem<Item> signItem;
+    public final DeferredItem<Item> hangingSignItem;
 
     public WoodSet(String name,
                    DeferredBlock<Block> log,
@@ -41,7 +49,14 @@ public class WoodSet {
                    DeferredBlock<FenceBlock> fence,
                    DeferredBlock<FenceGateBlock> fenceGate,
                    DeferredBlock<DoorBlock> door,
-                   DeferredBlock<TrapDoorBlock> trapdoor) {
+                   DeferredBlock<TrapDoorBlock> trapdoor,
+                   DeferredBlock<Block> sign,
+                   DeferredBlock<Block> wallSign,
+                   DeferredBlock<Block> hangingSign,
+                   DeferredBlock<Block> wallHangingSign,
+                   DeferredItem<Item> signItem,
+                   DeferredItem<Item> hangingSignItem
+    ) {
 
         this.name = name;
         this.log = log;
@@ -60,6 +75,12 @@ public class WoodSet {
         this.fenceGate = fenceGate;
         this.door = door;
         this.trapdoor = trapdoor;
+        this.sign = sign;
+        this.wallSign = wallSign;
+        this.hangingSign = hangingSign;
+        this.wallHangingSign = wallHangingSign;
+        this.signItem = signItem;
+        this.hangingSignItem = hangingSignItem;
 
         ModFlammableRotatedPillarBlock.registerStrippable(log, strippedLog);
         ModFlammableRotatedPillarBlock.registerStrippable(wood, strippedWood);
@@ -135,4 +156,17 @@ public class WoodSet {
     public DeferredBlock<TrapDoorBlock> getTrapdoor() {
         return trapdoor;
     }
+
+    public DeferredBlock<Block> getSign() {return sign;}
+
+    public DeferredBlock<Block> getWallSign() {return wallSign;}
+
+    public DeferredBlock<Block> getHangingSign() {return hangingSign;}
+
+    public DeferredBlock<Block> getWallHangingSign() {return wallHangingSign;}
+
+    public DeferredItem<Item> getSignItem() {return signItem;}
+
+    public DeferredItem<Item> getHangingSignItem() {return hangingSignItem;}
+
 }

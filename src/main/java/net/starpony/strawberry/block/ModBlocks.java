@@ -19,7 +19,9 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.starpony.strawberry.Strawberry;
+import net.starpony.strawberry.block.signs.ModStandingSignBlock;
 import net.starpony.strawberry.item.ModItems;
+import net.starpony.strawberry.util.ModWoodTypes;
 import net.starpony.strawberry.util.sets.ColorSet;
 import net.starpony.strawberry.util.sets.SimpleStoneSet;
 import net.starpony.strawberry.util.sets.StoneSet;
@@ -122,9 +124,9 @@ public class ModBlocks {
     public static final StoneSet GRIMSTONE = registerStoneSet("grimstone");
     public static final StoneSet NIGHTSTONE = registerStoneSet("nightstone");
 
-    public static final WoodSet SYCAMORE = registerWoodSet("sycamore", ModTreeGrowers.SYCAMORE);
-    public static final WoodSet PLUM = registerWoodSet("plum", ModTreeGrowers.PLUM);
-    public static final WoodSet BLOODWOOD = registerNightmareWoodSet("bloodwood", ModTreeGrowers.BLOODWOOD);
+    public static final WoodSet SYCAMORE = registerWoodSet("sycamore", ModTreeGrowers.SYCAMORE, ModWoodTypes.SYCAMORE);
+    public static final WoodSet PLUM = registerWoodSet("plum", ModTreeGrowers.PLUM, ModWoodTypes.PLUM);
+    public static final WoodSet BLOODWOOD = registerNightmareWoodSet("bloodwood", ModTreeGrowers.BLOODWOOD, ModWoodTypes.BLOODWOOD);
 
     public static final ColorSet CERISE = registerColorSet("cerise", DyeColor.RED);
     public static final ColorSet TURQUOISE = registerColorSet("turquoise", DyeColor.CYAN);
@@ -421,7 +423,7 @@ public class ModBlocks {
         return new ColorSet(name, concrete, concretePowder, terracotta, glazedTerracotta, wool,
                 stainedGlass, stainedGlassPane, carpet);
     }
-    private static WoodSet registerWoodSet(String name, TreeGrower grower) {
+    private static WoodSet registerWoodSet(String name, TreeGrower grower, WoodType woodType) {
         DeferredBlock<Block> log = registerBlock(name + "_log",
                 () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LOG)));
 
@@ -498,10 +500,23 @@ public class ModBlocks {
         DeferredBlock<TrapDoorBlock> trapdoor = registerBlock(name + "_trapdoor",
                 () -> new TrapDoorBlock(BlockSetType.OAK, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_TRAPDOOR).noOcclusion()));
 
+        DeferredBlock<Block> sign = registerBlock(name + "_sign",
+                () -> new ModStandingSignBlock(woodType, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SIGN)));
+
+        DeferredBlock<Block> wallSign = registerBlock(name + "_wall_sign",
+                () -> new ModStandingSignBlock(woodType, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_WALL_SIGN)));
+
+        DeferredBlock<Block> hangingSign = registerBlock(name + "_hanging_sign",
+                () -> new ModStandingSignBlock(woodType, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_HANGING_SIGN)));
+
+        DeferredBlock<Block> wallHangingSign = registerBlock(name + "_wall_hanging_sign",
+                () -> new ModStandingSignBlock(woodType, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_WALL_HANGING_SIGN)));
+
+
         return new WoodSet(name, log, strippedLog, wood, strippedWood, planks, leaves, null, sapling,
-                stairs, slab, button, pressurePlate, fence, fenceGate, door, trapdoor);
+                stairs, slab, button, pressurePlate, fence, fenceGate, door, trapdoor, sign, wallSign, hangingSign, wallHangingSign, null, null);
     }  //Wood Set
-    private static WoodSet registerNightmareWoodSet(String name, TreeGrower grower) {
+    private static WoodSet registerNightmareWoodSet(String name, TreeGrower grower, WoodType woodType) {
         DeferredBlock<Block> log = registerBlock(name + "_stem",
                 () -> new ModNonFlammableRotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.WARPED_STEM)));
 
@@ -548,8 +563,20 @@ public class ModBlocks {
         DeferredBlock<TrapDoorBlock> trapdoor = registerBlock(name + "_trapdoor",
                 () -> new TrapDoorBlock(BlockSetType.WARPED, BlockBehaviour.Properties.ofFullCopy(Blocks.WARPED_TRAPDOOR).noOcclusion()));
 
+        DeferredBlock<Block> sign = registerBlock(name + "_sign",
+                () -> new ModStandingSignBlock(woodType, BlockBehaviour.Properties.ofFullCopy(Blocks.WARPED_SIGN)));
+
+        DeferredBlock<Block> wallSign = registerBlock(name + "_wall_sign",
+                () -> new ModStandingSignBlock(woodType, BlockBehaviour.Properties.ofFullCopy(Blocks.WARPED_WALL_SIGN)));
+
+        DeferredBlock<Block> hangingSign = registerBlock(name + "_hanging_sign",
+                () -> new ModStandingSignBlock(woodType, BlockBehaviour.Properties.ofFullCopy(Blocks.WARPED_HANGING_SIGN)));
+
+        DeferredBlock<Block> wallHangingSign = registerBlock(name + "_wall_hanging_sign",
+                () -> new ModStandingSignBlock(woodType, BlockBehaviour.Properties.ofFullCopy(Blocks.WARPED_WALL_HANGING_SIGN)));
+
         return new WoodSet(name, log, strippedLog, wood, strippedWood, planks, null, wartBlock, sapling,
-                stairs, slab, button, pressurePlate, fence, fenceGate, door, trapdoor);
+                stairs, slab, button, pressurePlate, fence, fenceGate, door, trapdoor, sign, wallSign, hangingSign, wallHangingSign, null, null);
     }  //Wood Set for Nightmare Dimension
     private static SimpleStoneSet registerIceSet(String name, Block block, Float strength){
         DeferredBlock<StairBlock> stairs = registerBlock(name + "_stairs",

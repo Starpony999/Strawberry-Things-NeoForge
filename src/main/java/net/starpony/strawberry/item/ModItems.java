@@ -17,6 +17,7 @@ import net.starpony.strawberry.item.custom.*;
 import net.starpony.strawberry.item.custom.BottleItem;
 import net.starpony.strawberry.sound.ModSounds;
 import net.starpony.strawberry.util.sets.GemSet;
+import net.starpony.strawberry.util.sets.WoodSet;
 
 public class ModItems {
 
@@ -89,6 +90,11 @@ public class ModItems {
     public static final DeferredItem<Item> SHINING_UPGRADE_SMITHING_TEMPLATE = ITEMS.register("shining_upgrade_smithing_template", SmithingTemplateItem::createNetheriteUpgradeTemplate);
     public static final DeferredItem<Item> SIMPLE_UPGRADE_SMITHING_TEMPLATE = ITEMS.register("simple_upgrade_smithing_template", SmithingTemplateItem::createNetheriteUpgradeTemplate);
 
+    //Wood Set
+    public static final WoodSet SYCAMORE = registerWoodSet("sycamore", ModBlocks.SYCAMORE);
+    public static final WoodSet PLUM = registerWoodSet("plum", ModBlocks.PLUM);
+    public static final WoodSet BLOODWOOD = registerWoodSet("bloodwood", ModBlocks.BLOODWOOD);
+
     //Registry Helpers
     public static GemSet registerGemSet(String name, Tier toolMaterial, Holder armorMaterial, boolean withShard) {
 
@@ -136,7 +142,17 @@ public class ModItems {
         return new GemSet(name, gem, shard, hoe, axe, pickaxe, sword, shovel,
                 helmet, chestplate, leggings, boots, horseArmor);
     }
+    public static WoodSet registerWoodSet(String name, WoodSet woodSet) {
+        DeferredItem<Item> sign = ITEMS.register(name + "_sign_item",
+                () -> new SignItem(new Item.Properties().stacksTo(16), woodSet.getSign().get(), woodSet.getWallSign().get()));
 
+        DeferredItem<Item> hangingSign = ITEMS.register(name + "_hanging_sign_item",
+                () -> new HangingSignItem(woodSet.getHangingSign().get(), woodSet.getWallHangingSign().get(), new Item.Properties().stacksTo(16)));
+
+        return new WoodSet(null, null, null, null, null, null, null, null, null, null,
+                null, null, null, null, null, null, null, null, null,null, null,
+                sign, hangingSign);
+    }
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
     }

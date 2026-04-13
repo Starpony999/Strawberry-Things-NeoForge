@@ -91,6 +91,13 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         offerReversibleCompactingRecipes(exporter, RecipeCategory.BUILDING_BLOCKS, ModItems.ROSE_QUARTZ.getGem().get(), RecipeCategory.MISC, ModBlocks.ROSE_QUARTZ_BLOCK.get().asItem());
         offerReversibleCompactingRecipes(exporter, RecipeCategory.BUILDING_BLOCKS, ModItems.OTHERWORLDLY_AMETHYST.getGem().get(), RecipeCategory.MISC, ModBlocks.OTHERWORLDLY_AMETHYST_BLOCK.get().asItem());
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, Items.BUCKET)
+                .pattern("I I")
+                .pattern(" I ")
+                .define('I', ModItems.ALUMINUM_INGOT)
+                .unlockedBy("has_" + (ModItems.ALUMINUM_INGOT), has(ModItems.ALUMINUM_INGOT))
+                .save(exporter, "aluminum_ingot_bucket");
+
         ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.CRYSTAL_LANTERN_BLOCK)
                 .pattern("III")
                 .pattern("IAI")
@@ -106,7 +113,9 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_" + (Items.SUGAR_CANE), has(Items.SUGAR_CANE))
                 .save(exporter, "toilet_paper");
         registerSmallSquareRecipe(exporter, ModItems.THULITE_SHARD.get(), ModBlocks.THULITE_CRYSTAL_BLOCK.get().asItem(), 1);
+
         registerFarmersDelightCuttingRecipe(ModBlocks.THULITE_CRYSTAL_BLOCK.get().asItem(), ModItems.THULITE_SHARD.get(), 4, "pickaxe_dig");
+
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.CHISEL)
                 .pattern("A")
                 .pattern("S")
