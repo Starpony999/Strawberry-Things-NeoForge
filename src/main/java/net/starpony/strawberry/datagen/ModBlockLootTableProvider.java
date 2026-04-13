@@ -214,13 +214,13 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
                 block -> createDoorTable(set.getDoor().get()));
 
         add(set.sign.get(), block ->
-                createSingleItemTable(set.signItem.get()));
+                createSingleItemTable(set.getSignItem().get()));
         add(set.wallSign.get(), block ->
-                createSingleItemTable(set.signItem.get()));
+                createSingleItemTable(set.getSignItem().get()));
         add(set.hangingSign.get(), block ->
-                createSingleItemTable(set.hangingSignItem.get()));
+                createSingleItemTable(set.getHangingSignItem().get()));
         add(set.wallHangingSign.get(), block ->
-                createSingleItemTable(set.hangingSignItem.get()));
+                createSingleItemTable(set.getHangingSignItem().get()));
     }
     private void handleNightmareWoodSet(WoodSet set) {
         dropSelf(set.getLog().get());
@@ -242,6 +242,14 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
 
         add(set.getDoor().get(),
                 block -> createDoorTable(set.getDoor().get()));
+        add(set.sign.get(), block ->
+                createSingleItemTable(set.getSignItem().get()));
+        add(set.wallSign.get(), block ->
+                createSingleItemTable(set.getSignItem().get()));
+        add(set.hangingSign.get(), block ->
+                createSingleItemTable(set.getHangingSignItem().get()));
+        add(set.wallHangingSign.get(), block ->
+                createSingleItemTable(set.getHangingSignItem().get()));
     }
     private void handleColorSet (ColorSet set){
         dropSelf(set.getCarpet().get());
