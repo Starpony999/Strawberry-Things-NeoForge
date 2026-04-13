@@ -442,6 +442,40 @@ public class RecipeMethodProvider extends RecipeProvider implements IConditionBu
 
 
     }
+    public static void registerClaySealSetRecipes(RecipeOutput output, SimpleStoneBaseSet source, SimpleStoneBaseSet sealed) {
+        List<Block> sourceVariants = List.of(
+                source.getStoneBlock(),
+                source.getSlabBlock(),
+                source.getStairsBlock(),
+                source.getWallBlock(),
+                source.getButtonBlock(),
+                source.getPressurePlateBlock()
+        );
+        List<Block> sealedVariants = List.of(
+                sealed.getStoneBlock(),
+                sealed.getSlabBlock(),
+                sealed.getStairsBlock(),
+                sealed.getWallBlock(),
+                sealed.getButtonBlock(),
+                sealed.getPressurePlateBlock()
+        );
+
+        for (int i = 0; i < sourceVariants.size(); i++) {
+            Block sourceBlock = sourceVariants.get(i);
+            Block sealedBlock = sealedVariants.get(i);
+            if (sourceBlock != null && sealedBlock != null) {
+                offerClaySealRecipe(output, sealedBlock.asItem(), sourceBlock.asItem());
+            }
+        }
+
+    }
+    public static void offerClaySealRecipe(RecipeOutput output, Item result, Item inputA) {
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, result)
+                .requires(inputA)
+                .requires(Items.CLAY_BALL)
+                .unlockedBy("has_" + (inputA), has(inputA))
+                .save(output, RecipeIdHelper.between(inputA, result, "_clay_sealing"));
+    }
 
 
     public static class RecipeIdHelper {

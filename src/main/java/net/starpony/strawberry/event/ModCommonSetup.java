@@ -36,6 +36,10 @@ public final class ModCommonSetup {
             registerClaySealSet(ModBlocks.EXPOSED_COBBLESTONE, ModBlocks.SEALED_EXPOSED_COBBLESTONE);
             registerClaySealSet(ModBlocks.WEATHERED_COBBLESTONE, ModBlocks.SEALED_WEATHERED_COBBLESTONE);
             registerClaySealSet(ModBlocks.AGED_COBBLESTONE, ModBlocks.SEALED_AGED_COBBLESTONE);
+            registerClaySealSet(ModBlocks.WASHED_COBBLESTONE_BRICKS, ModBlocks.SEALED_WASHED_COBBLESTONE_BRICKS);
+            registerClaySealSet(ModBlocks.EXPOSED_COBBLESTONE_BRICKS, ModBlocks.SEALED_EXPOSED_COBBLESTONE_BRICKS);
+            registerClaySealSet(ModBlocks.WEATHERED_COBBLESTONE_BRICKS, ModBlocks.SEALED_WEATHERED_COBBLESTONE_BRICKS);
+            registerClaySealSet(ModBlocks.AGED_COBBLESTONE_BRICKS, ModBlocks.SEALED_AGED_COBBLESTONE_BRICKS);
         });
     }
     private static void registerSetChain(SimpleStoneBaseSet... sets) {

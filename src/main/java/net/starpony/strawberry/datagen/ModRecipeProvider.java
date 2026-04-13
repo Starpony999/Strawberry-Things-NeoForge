@@ -277,5 +277,14 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         registerSmallSquareBlockRecipe(exporter, ModBlocks.SEALED_AGED_COBBLESTONE.getStone().get(), ModBlocks.SEALED_AGED_COBBLESTONE_BRICKS.getStone().get());
         registerSmallSquareBlockRecipe(exporter, ModBlocks.SEALED_EXPOSED_COBBLESTONE.getStone().get(), ModBlocks.SEALED_EXPOSED_COBBLESTONE_BRICKS.getStone().get());
 
+        registerClaySealSetRecipes(exporter, VanillaSets.COBBLESTONE, ModBlocks.SEALED_COBBLESTONE);
+        registerClaySealSetRecipes(exporter, ModBlocks.WASHED_COBBLESTONE, ModBlocks.SEALED_WASHED_COBBLESTONE);
+        registerClaySealSetRecipes(exporter, ModBlocks.EXPOSED_COBBLESTONE, ModBlocks.SEALED_EXPOSED_COBBLESTONE);
+        registerClaySealSetRecipes(exporter, ModBlocks.WEATHERED_COBBLESTONE, ModBlocks.SEALED_WEATHERED_COBBLESTONE);
+        registerClaySealSetRecipes(exporter, ModBlocks.AGED_COBBLESTONE, ModBlocks.SEALED_AGED_COBBLESTONE);
+        registerClaySealSetRecipes(exporter, ModBlocks.WASHED_COBBLESTONE_BRICKS, ModBlocks.SEALED_WASHED_COBBLESTONE_BRICKS);
+        registerClaySealSetRecipes(exporter, ModBlocks.EXPOSED_COBBLESTONE_BRICKS, ModBlocks.SEALED_EXPOSED_COBBLESTONE_BRICKS);
+        registerClaySealSetRecipes(exporter, ModBlocks.WEATHERED_COBBLESTONE_BRICKS, ModBlocks.SEALED_WEATHERED_COBBLESTONE_BRICKS);
+        registerClaySealSetRecipes(exporter, ModBlocks.AGED_COBBLESTONE_BRICKS, ModBlocks.SEALED_AGED_COBBLESTONE_BRICKS);
     }
 }

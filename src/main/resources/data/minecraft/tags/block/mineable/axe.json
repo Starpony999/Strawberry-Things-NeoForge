@@ -1,0 +1,30 @@
+{
+  "values": [
+    "strawberry:plum_log",
+    "strawberry:plum_stripped_log",
+    "strawberry:plum_wood",
+    "strawberry:plum_stripped_wood",
+    "strawberry:plum_planks",
+    "strawberry:plum_stairs",
+    "strawberry:plum_slab",
+    "strawberry:plum_button",
+    "strawberry:plum_pressure_plate",
+    "strawberry:plum_fence",
+    "strawberry:plum_fence_gate",
+    "strawberry:plum_door",
+    "strawberry:plum_trapdoor",
+    "strawberry:sycamore_log",
+    "strawberry:sycamore_stripped_log",
+    "strawberry:sycamore_wood",
+    "strawberry:sycamore_stripped_wood",
+    "strawberry:sycamore_planks",
+    "strawberry:sycamore_stairs",
+    "strawberry:sycamore_slab",
+    "strawberry:sycamore_button",
+    "strawberry:sycamore_pressure_plate",
+    "strawberry:sycamore_fence",
+    "strawberry:sycamore_fence_gate",
+    "strawberry:sycamore_door",
+    "strawberry:sycamore_trapdoor"
+  ]
+}

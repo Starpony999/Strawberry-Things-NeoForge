@@ -37,6 +37,12 @@
     "strawberry:washed_granite_bricks",
     "strawberry:washed_granite_bricks_wall",
     "strawberry:washed_granite_bricks_slab",
-    "strawberry:washed_granite_bricks_stairs"
+    "strawberry:washed_granite_bricks_stairs",
+    "strawberry:schist",
+    "strawberry:gneiss",
+    "strawberry:thulite_cluster",
+    "strawberry:large_thulite_bud",
+    "strawberry:medium_thulite_bud",
+    "strawberry:small_thulite_bud"
   ]
 }
