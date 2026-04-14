@@ -54,8 +54,8 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
 
         dropSelf(ModBlocks.CRYSTAL_LANTERN_BLOCK.get());
         dropSelf(ModBlocks.REDSTONE_LANTERN.get());
-        dropSelf(ModBlocks.CRYSTAL_LANTERN.get());
-        dropSelf(ModBlocks.THULITE_LANTERN.get());
+        dropSelf(ModBlocks.CRYSTAL.lantern.get());
+        dropSelf(ModBlocks.THULITE.lantern.get());
 
         dropSelf(ModBlocks.NIGHT_TERRIA.get());
         dropSelf(ModBlocks.GNEISS.get());

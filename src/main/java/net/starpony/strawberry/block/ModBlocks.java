@@ -2,6 +2,8 @@ package net.starpony.strawberry.block;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.DyeColor;
@@ -21,11 +23,9 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 import net.starpony.strawberry.Strawberry;
 import net.starpony.strawberry.block.signs.ModStandingSignBlock;
 import net.starpony.strawberry.item.ModItems;
+import net.starpony.strawberry.util.ModParticleTypes;
 import net.starpony.strawberry.util.ModWoodTypes;
-import net.starpony.strawberry.util.sets.ColorSet;
-import net.starpony.strawberry.util.sets.SimpleStoneSet;
-import net.starpony.strawberry.util.sets.StoneSet;
-import net.starpony.strawberry.util.sets.WoodSet;
+import net.starpony.strawberry.util.sets.*;
 import net.starpony.strawberry.worldgen.tree.ModTreeGrowers;
 
 import java.awt.*;
@@ -73,6 +73,8 @@ public class ModBlocks {
             () -> new CauliflowerCropBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.WHEAT)));
     public static final DeferredBlock<CropBlock> GRAPE_CROP = registerBlockWithoutItem("grape_crop",
             () -> new GrapeCropBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.WHEAT)));
+    public static final DeferredBlock<CropBlock> CORN_CROP = BLOCKS.register("corn_crop",
+            () -> new CauliflowerCropBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.WHEAT)));
     public static final DeferredBlock<Block> STRAWBERRY_BUSH = registerBlockWithoutItem("strawberry_bush",
             () -> new StrawberryBushBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SWEET_BERRY_BUSH)));
     public static final DeferredBlock<Block> BLUEBERRY_BUSH = registerBlockWithoutItem("blueberry_bush",
@@ -85,13 +87,10 @@ public class ModBlocks {
                     .lightLevel(state -> state.getValue(CrystalLanternBlock.CLICKED) ? 15 : 0)));
     public static final DeferredBlock<Block> REDSTONE_LANTERN = registerBlock("redstone_lantern",
             () -> new RedstoneLanternBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LANTERN).lightLevel(state -> 15)));
-    public static final DeferredBlock<Block> CRYSTAL_LANTERN = registerBlock("crystal_lantern",
-            () -> new ColoredLanternBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LANTERN).lightLevel(state -> 15)));
-    public static final DeferredBlock<Block> THULITE_LANTERN = registerBlock("thulite_lantern",
-            () -> new ColoredLanternBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LANTERN).lightLevel(state -> 15)));
+    public static final TorchSet CRYSTAL = registerTorchSet("crystal", ModParticleTypes.CRYSTAL_FLAME);
+    public static final TorchSet THULITE = registerTorchSet("thulite", ModParticleTypes.THULITE_FLAME);
 
-
-    // Sets
+     // Sets
     public static final SimpleStoneSet ANDESITE_BRICKS = registerSimpleStoneSet("andesite_bricks");
     public static final SimpleStoneSet WASHED_ANDESITE_BRICKS = registerSimpleStoneSet("washed_andesite_bricks");
     public static final SimpleStoneSet DIORITE_BRICKS = registerSimpleStoneSet("diorite_bricks");
@@ -127,11 +126,13 @@ public class ModBlocks {
     public static final WoodSet SYCAMORE = registerWoodSet("sycamore", ModTreeGrowers.SYCAMORE, ModWoodTypes.SYCAMORE);
     public static final WoodSet PLUM = registerWoodSet("plum", ModTreeGrowers.PLUM, ModWoodTypes.PLUM);
     public static final WoodSet BLOODWOOD = registerNightmareWoodSet("bloodwood", ModTreeGrowers.BLOODWOOD, ModWoodTypes.BLOODWOOD);
+    public static final WoodSet VOID = registerNightmareWoodSet("void", ModTreeGrowers.VOID, ModWoodTypes.VOID);
 
     public static final ColorSet CERISE = registerColorSet("cerise", DyeColor.RED);
     public static final ColorSet TURQUOISE = registerColorSet("turquoise", DyeColor.CYAN);
     public static final ColorSet INDIGO = registerColorSet("indigo", DyeColor.BLUE);
     public static final ColorSet LAVENDER = registerColorSet("lavender", DyeColor.PURPLE);
+    public static final ColorSet TAN = registerColorSet("tan", DyeColor.BROWN);
 
     // Registry helpers
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {DeferredBlock<T> deferred = BLOCKS.register(name, block);registerBlockItem(name, deferred);return deferred;}
@@ -598,6 +599,42 @@ public class ModBlocks {
                         .requiresCorrectToolForDrops()
                         .sound(SoundType.GLASS)));
         return new SimpleStoneSet(null, stairs, slab, wall, null, null);
+    }
+    private static TorchSet registerTorchSet(String name, SimpleParticleType particle) {
+
+        DeferredBlock<Block> torch = registerBlock(name + "_torch",
+                () -> new TorchBlock(
+                        particle,
+                        BlockBehaviour.Properties.of()
+                                .noCollission()
+                                .instabreak()
+                                .lightLevel(state -> 15)
+                                .sound(SoundType.WOOD)
+                                .pushReaction(PushReaction.DESTROY)
+                )
+        );
+
+        DeferredBlock<Block> wallTorch = registerBlock(name + "_wall_torch",
+                () -> new WallTorchBlock(
+                        particle,
+                        BlockBehaviour.Properties.of()
+                                .noCollission()
+                                .instabreak()
+                                .lightLevel(state -> 15)
+                                .sound(SoundType.WOOD)
+                                .dropsLike(torch.get())
+                                .pushReaction(PushReaction.DESTROY)
+                )
+        );
+
+        DeferredBlock<Block> lantern = registerBlock(name + "_lantern",
+                () -> new ColoredLanternBlock(
+                        BlockBehaviour.Properties.ofFullCopy(Blocks.LANTERN)
+                                .lightLevel(state -> 15)
+                )
+        );
+
+        return new TorchSet(name, torch, wallTorch, lantern);
     }
     public static void register(IEventBus eventBus) {
         BLOCKS.register(eventBus);

@@ -60,9 +60,9 @@ public class ModBlockStateProvider extends BlockStateProvider {
         randomTextureBlock(ModBlocks.GNEISS);
         blockWithItem(ModBlocks.SCHIST);
 
-        lanternBlock(ModBlocks.CRYSTAL_LANTERN);
+        lanternBlock(ModBlocks.CRYSTAL.lantern);
         lanternBlock(ModBlocks.REDSTONE_LANTERN);
-        lanternBlock(ModBlocks.THULITE_LANTERN);
+        lanternBlock(ModBlocks.THULITE.lantern);
 
         registerSimpleStoneSet(ModBlocks.WASHED_DIORITE_BRICKS);
         registerSimpleStoneSet(ModBlocks.DIORITE_BRICKS);

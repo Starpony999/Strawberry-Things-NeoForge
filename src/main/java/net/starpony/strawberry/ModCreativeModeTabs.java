@@ -41,13 +41,15 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.STARS_SMITHING_TEMPLATE);
                         output.accept(ModItems.SHINING_UPGRADE_SMITHING_TEMPLATE);
                         output.accept(ModItems.SIMPLE_UPGRADE_SMITHING_TEMPLATE);
-                        output.accept(ModBlocks.CRYSTAL_LANTERN);
+                        output.accept(ModBlocks.CRYSTAL.lantern);
                         output.accept(ModBlocks.REDSTONE_LANTERN);
-                        output.accept(ModBlocks.THULITE_LANTERN);
+                        output.accept(ModBlocks.THULITE.lantern);
                         output.accept(ModItems.SMALL_LIGHT);
                         output.accept(ModItems.TOILET_PAPER);
                         output.accept(ModItems.BRIQUETTE);
                         output.accept(ModItems.SUNSET_VIBES_MUSIC_DISC);
+
+                        //fruit
                         output.accept(ModItems.STRAWBERRY);
                         output.accept(ModItems.BLUEBERRY);
                         output.accept(ModItems.GRAPES);
@@ -55,8 +57,16 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.ORANGE);
                         output.accept(ModItems.LIME);
                         output.accept(ModItems.LEMON);
+                        output.accept(ModItems.PLUM_FRUIT);
+                        output.accept(ModItems.CHERRY);
+
+                        //veggies
                         output.accept(ModItems.CAULIFLOWER);
                         output.accept(ModItems.CAULIFLOWER_SEEDS);
+                        output.accept(ModItems.CORN);
+                        output.accept(ModItems.CORN_SEEDS);
+
+                        //drinks
                         output.accept(ModItems.SODA_CAN);
                         output.accept(ModItems.STRAWBERRY_SODA);
                         output.accept(ModItems.BLUEBERRY_SODA);
@@ -65,10 +75,22 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.LEMON_LIME_SODA);
                         output.accept(ModItems.DIRT_SODA);
                         output.accept(ModItems.LEMONADE);
+                        output.accept(ModItems.COLA_SODA);
+                        output.accept(ModItems.PLUM_SODA);
+                        output.accept(ModItems.CHERRY_SODA);
+
+                        //weird not exactly fluids
+                        output.accept(ModItems.VANILLA);
+                        output.accept(ModItems.CHOCOLATE_SYRUP);
+                        //output.accept(ModItems.CHOCOLATE_MILK);
+                        output.accept(ModItems.CHOCOLATE);
+
+                        //dyes
                         output.accept(ModItems.CERISE_DYE);
                         output.accept(ModItems.TURQUOISE_DYE);
                         output.accept(ModItems.INDIGO_DYE);
                         output.accept(ModItems.LAVENDER_DYE);
+                        output.accept(ModItems.TAN_DYE);
                         output.accept(ModItems.MOOBLOOM_SPAWN_EGG);
 
 
@@ -142,6 +164,7 @@ public class ModCreativeModeTabs {
                         SetUtils.addColorSet(output, ModBlocks.TURQUOISE);
                         SetUtils.addColorSet(output, ModBlocks.INDIGO);
                         SetUtils.addColorSet(output, ModBlocks.LAVENDER);
+                        SetUtils.addColorSet(output, ModBlocks.TAN);
 
                     }).build());
     public static final Supplier<CreativeModeTab> STRAWBERRY_TOOLS_ARMOR_TAB = CREATIVE_MODE_TAB.register("strawberry_tools_armor_tab",

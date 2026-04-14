@@ -372,6 +372,24 @@ public class RecipeMethodProvider extends RecipeProvider implements IConditionBu
                 .unlockedBy("has_" + (inputA), has(inputA))
                 .save(output, RecipeIdHelper.between(inputA, result, ""));
     }
+    public static void registerCrystaTorchRecipe(RecipeOutput output, Item inputA, Item result) {
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, result)
+                .pattern("A")
+                .pattern("C")
+                .pattern("S")
+                .define('A', inputA)
+                .define('C', Items.COAL)
+                .define('S', Items.STICK)
+                .unlockedBy("has_" + (inputA), has(inputA))
+                .save(output, RecipeIdHelper.between(inputA, result, ""));
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, result)
+                .pattern("A")
+                .pattern("T")
+                .define('A', inputA)
+                .define('T', Items.TORCH)
+                .unlockedBy("has_" + (inputA), has(inputA))
+                .save(output, RecipeIdHelper.between(inputA, result, ""));
+    }
     public static void offerReversibleCompactingRecipes(RecipeOutput output, RecipeCategory blockCategory, Item item, RecipeCategory itemCategory, Item block) {
 
         ShapedRecipeBuilder.shaped(blockCategory, block)

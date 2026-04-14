@@ -165,10 +165,13 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_" + (ModItems.ALUMINUM_INGOT), has(ModItems.ALUMINUM_INGOT))
                 .save(exporter, "soda_can");
 //CrystalLanterns
-        registerCrystalLanternRecipe(exporter, Items.AMETHYST_CLUSTER, ModBlocks.CRYSTAL_LANTERN.get().asItem());
+        registerCrystalLanternRecipe(exporter, Items.AMETHYST_CLUSTER, ModBlocks.CRYSTAL.lantern.get().asItem());
+        registerCrystalLanternRecipe(exporter, ModBlocks.CRYSTAL.torch.get().asItem(), ModBlocks.CRYSTAL.lantern.get().asItem());
         registerCrystalLanternRecipe(exporter, Items.REDSTONE_TORCH, ModBlocks.REDSTONE_LANTERN.get().asItem());
-        registerCrystalLanternRecipe(exporter, ModBlocks.THULITE_CLUSTER.get().asItem(), ModBlocks.THULITE_LANTERN.get().asItem());
-
+        registerCrystalLanternRecipe(exporter, ModBlocks.THULITE_CLUSTER.get().asItem(), ModBlocks.THULITE.lantern.get().asItem());
+        registerCrystalLanternRecipe(exporter, ModBlocks.THULITE.torch.get().asItem(), ModBlocks.THULITE.lantern.get().asItem());
+        registerCrystaTorchRecipe(exporter, ModItems.THULITE_SHARD.get(), ModBlocks.THULITE.torch.get().asItem());
+        registerCrystaTorchRecipe(exporter, Items.AMETHYST_SHARD, ModBlocks.CRYSTAL.torch.get().asItem());
 
         //Gems
 

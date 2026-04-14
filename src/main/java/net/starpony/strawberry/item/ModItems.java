@@ -3,6 +3,7 @@ package net.starpony.strawberry.item;
 import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.*;
+import net.minecraft.world.level.material.Fluid;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.common.DeferredSpawnEggItem;
 import net.neoforged.neoforge.registries.DeferredItem;
@@ -44,6 +45,7 @@ public class ModItems {
     public static final DeferredItem<Item> TURQUOISE_DYE = ITEMS.register("turquoise_dye", () -> new Item(new Item.Properties()));
     public static final DeferredItem<Item> INDIGO_DYE = ITEMS.register("indigo_dye", () -> new Item(new Item.Properties()));
     public static final DeferredItem<Item> LAVENDER_DYE = ITEMS.register("lavender_dye", () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> TAN_DYE = ITEMS.register("tan_dye", () -> new Item(new Item.Properties()));
 
     // MISC
     public static final DeferredItem<Item> CHISEL = ITEMS.register("chisel", () -> new ChiselItem(new Item.Properties().durability(32)));
@@ -62,6 +64,8 @@ public class ModItems {
     // Food
     public static final DeferredItem<Item> CAULIFLOWER = ITEMS.register("cauliflower", () -> new Item(new Item.Properties().food(ModFoodProperties.CAULIFLOWER)));
     public static final DeferredItem<Item> CAULIFLOWER_SEEDS = ITEMS.register("cauliflower_seeds", () -> new BlockItem(ModBlocks.CAULIFLOWER_CROP.get(), new Item.Properties()));
+    public static final DeferredItem<Item> CORN = ITEMS.register("corn", () -> new Item(new Item.Properties().food(ModFoodProperties.CORN)));
+    public static final DeferredItem<Item> CORN_SEEDS = ITEMS.register("corn_seeds", () -> new BlockItem(ModBlocks.CORN_CROP.get(), new Item.Properties()));
     public static final DeferredItem<Item> STRAWBERRY = ITEMS.register("strawberry", () -> new BlockItem(ModBlocks.STRAWBERRY_BUSH.get(), new Item.Properties().food(ModFoodProperties.STRAWBERRY)));
     public static final DeferredItem<Item> LIME = ITEMS.register("lime", () -> new Item(new Item.Properties().food(ModFoodProperties.LIME)));
     public static final DeferredItem<Item> LEMON = ITEMS.register("lemon", () -> new Item(new Item.Properties().food(ModFoodProperties.LEMON)));
@@ -69,8 +73,11 @@ public class ModItems {
     public static final DeferredItem<Item> GRAPE_SEEDS = ITEMS.register("grape_seeds", () -> new BlockItem(ModBlocks.GRAPE_CROP.get(), new Item.Properties()));
     public static final DeferredItem<Item> BLUEBERRY = ITEMS.register("blueberry", () -> new BlockItem(ModBlocks.BLUEBERRY_BUSH.get(), new Item.Properties().food(ModFoodProperties.BLUEBERRY)));
     public static final DeferredItem<Item> ORANGE = ITEMS.register("orange", () -> new Item(new Item.Properties().food(ModFoodProperties.ORANGE)));
+    public static final DeferredItem<Item> PLUM_FRUIT = ITEMS.register("plum_fruit", () -> new Item(new Item.Properties().food(ModFoodProperties.PLUM)));
+    public static final DeferredItem<Item> CHERRY = ITEMS.register("cherry", () -> new Item(new Item.Properties().food(ModFoodProperties.CHERRY)));
+    public static final DeferredItem<Item> CHOCOLATE = ITEMS.register("chocolate", () -> new Item(new Item.Properties().food(ModFoodProperties.CHOCOLATE)));
 
-    // Sodas
+    // Sodas/Liquids/Drinks
     public static final DeferredItem<Item> DIRT_SODA = ITEMS.register("dirt_soda", () -> new SodaItem(new Item.Properties().stacksTo(1).food(ModFoodProperties.DIRT_SODA)));
     public static final DeferredItem<Item> STRAWBERRY_SODA = ITEMS.register("strawberry_soda", () -> new SodaItem(new Item.Properties().stacksTo(1).food(ModFoodProperties.STRAWBERRY_SODA)));
     public static final DeferredItem<Item> LEMON_LIME_SODA = ITEMS.register("lemon_lime_soda", () -> new SodaItem(new Item.Properties().stacksTo(1).food(ModFoodProperties.LEMON_LIME_SODA)));
@@ -78,6 +85,13 @@ public class ModItems {
     public static final DeferredItem<Item> BLUEBERRY_SODA = ITEMS.register("blueberry_soda", () -> new SodaItem(new Item.Properties().stacksTo(1).food(ModFoodProperties.BLUEBERRY_SODA)));
     public static final DeferredItem<Item> ORANGE_SODA = ITEMS.register("orange_soda", () -> new SodaItem(new Item.Properties().stacksTo(1).food(ModFoodProperties.ORANGE_SODA)));
     public static final DeferredItem<Item> LEMONADE = ITEMS.register("lemonade", () -> new BottleItem(new Item.Properties().stacksTo(1).food(ModFoodProperties.LEMONADE)));
+    public static final DeferredItem<Item> VANILLA = ITEMS.register("vanilla", () -> new BottleItem(new Item.Properties().stacksTo(16).food(ModFoodProperties.VANILLA)));
+    public static final DeferredItem<Item> COLA_SODA = ITEMS.register("cola_soda", () -> new SodaItem(new Item.Properties().stacksTo(1).food(ModFoodProperties.COLA_SODA)));
+    public static final DeferredItem<Item> PLUM_SODA = ITEMS.register("plum_soda", () -> new SodaItem(new Item.Properties().stacksTo(1).food(ModFoodProperties.PLUM_SODA)));
+    public static final DeferredItem<Item> CHERRY_SODA = ITEMS.register("cherry_soda", () -> new SodaItem(new Item.Properties().stacksTo(1).food(ModFoodProperties.CHERRY_SODA)));
+    public static final DeferredItem<Item> CHOCOLATE_SYRUP = ITEMS.register("chocolate_syrup", () -> new BottleItem(new Item.Properties().stacksTo(16).food(ModFoodProperties.CHOCOLATE_SYRUP)));
+    //public static final DeferredItem<Item> CHOCOLATE_MILK = ITEMS.register("chocolate_milk", () -> new BucketItem(CHOCOLATE_MILK_FLUID, new Item.Properties().stacksTo(1).food(ModFoodProperties.CHOCOLATE_SYRUP)));
+    //public static final Fluid CHOCOLATE_MILK_FLUID =
 
     // Individual GemSet Items
     public static final DeferredItem<Item> ROSE_QUARTZ_HAMMER = ITEMS.register("rose_quartz_hammer", () -> new HammerItem(ModToolTiers.ROSE_QUARTZ, new Item.Properties()));
@@ -94,6 +108,7 @@ public class ModItems {
     public static final WoodSet SYCAMORE = registerWoodSet("sycamore", ModBlocks.SYCAMORE);
     public static final WoodSet PLUM = registerWoodSet("plum", ModBlocks.PLUM);
     public static final WoodSet BLOODWOOD = registerWoodSet("bloodwood", ModBlocks.BLOODWOOD);
+    public static final WoodSet VOID = registerWoodSet("void", ModBlocks.VOID);
 
     //Registry Helpers
     public static GemSet registerGemSet(String name, Tier toolMaterial, Holder armorMaterial, boolean withShard) {

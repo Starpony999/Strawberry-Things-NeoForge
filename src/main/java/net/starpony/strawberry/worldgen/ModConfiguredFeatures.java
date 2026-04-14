@@ -12,6 +12,7 @@ import net.minecraft.world.level.levelgen.GeodeLayerSettings;
 import net.minecraft.world.level.levelgen.feature.configurations.*;
 import net.minecraft.world.level.levelgen.feature.featuresize.TwoLayersFeatureSize;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.BlobFoliagePlacer;
+import net.minecraft.world.level.levelgen.feature.trunkplacers.FancyTrunkPlacer;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.StraightTrunkPlacer;
 import net.minecraft.world.level.levelgen.structure.templatesystem.BlockMatchTest;
 import net.minecraft.world.level.levelgen.structure.templatesystem.RuleTest;
@@ -40,6 +41,7 @@ public class ModConfiguredFeatures {
     public static final ResourceKey<ConfiguredFeature<?, ?>> SYCAMORE_KEY = registerKey("sycamore");
     public static final ResourceKey<ConfiguredFeature<?, ?>> PLUM_KEY = registerKey("plum");
     public static final ResourceKey<ConfiguredFeature<?, ?>> BLOODWOOD_KEY = registerKey("bloodwood");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> VOID_KEY = registerKey("void");
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> THULITE_GEODE_KEY = registerKey("thulite_geode");
 
@@ -109,6 +111,19 @@ public class ModConfiguredFeatures {
                 ),
                 new TwoLayersFeatureSize(1, 0, 2))   // trunk/foliage size shaping
                 .dirt(BlockStateProvider.simple(ModBlocks.NIGHTSTONE.getBase().get()))
+                .build());
+
+        register(context, VOID_KEY, Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
+                BlockStateProvider.simple(ModBlocks.VOID.getLog().get()),
+                new FancyTrunkPlacer(7, 2, 0),
+                BlockStateProvider.simple(Blocks.AIR),
+                new BlobFoliagePlacer(
+                        ConstantInt.of(2),  // radius
+                        ConstantInt.of(0),  // offset
+                        3                               // height
+                ),
+                new TwoLayersFeatureSize(1, 0, 2))   // trunk/foliage size shaping
+                .dirt(BlockStateProvider.simple(Blocks.END_STONE))
                 .build());
 
         register(context, THULITE_GEODE_KEY, Feature.GEODE,

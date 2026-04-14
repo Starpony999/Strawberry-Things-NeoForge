@@ -13,5 +13,7 @@ public class ModTreeGrowers {
             Optional.empty(), Optional.of(ModConfiguredFeatures.PLUM_KEY), Optional.empty());
     public static final TreeGrower BLOODWOOD = new TreeGrower(Strawberry.MOD_ID + ":bloodwood",
             Optional.empty(), Optional.of(ModConfiguredFeatures.BLOODWOOD_KEY), Optional.empty());
+    public static final TreeGrower VOID = new TreeGrower(Strawberry.MOD_ID + ":void",
+            Optional.empty(), Optional.of(ModConfiguredFeatures.VOID_KEY), Optional.empty());
 
 }
