@@ -243,6 +243,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         registerFullWoodSet(exporter, ModBlocks.PLUM);
         registerFullWoodSet(exporter, ModBlocks.SYCAMORE);
         registerFullWoodSet(exporter, ModBlocks.BLOODWOOD);
+        registerFullWoodSet(exporter, ModBlocks.VOID);
 
         registerFullStoneSet(exporter, ModBlocks.NIGHTSTONE);
         registerFullStoneSet(exporter, ModBlocks.GRIMSTONE);

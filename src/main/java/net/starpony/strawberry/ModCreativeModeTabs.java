@@ -82,7 +82,7 @@ public class ModCreativeModeTabs {
                         //weird not exactly fluids
                         output.accept(ModItems.VANILLA);
                         output.accept(ModItems.CHOCOLATE_SYRUP);
-                        //output.accept(ModItems.CHOCOLATE_MILK);
+                        output.accept(ModItems.CHOCOLATE_MILK);
                         output.accept(ModItems.CHOCOLATE);
 
                         //dyes
@@ -158,6 +158,7 @@ public class ModCreativeModeTabs {
                         SetUtils.addWoodSet(output, ModBlocks.SYCAMORE);
                         SetUtils.addWoodSet(output, ModBlocks.PLUM);
                         SetUtils.addNightmareWoodSet(output, ModBlocks.BLOODWOOD);
+                        SetUtils.addNightmareWoodSet(output, ModBlocks.VOID);
                         output.accept(ModBlocks.HELLSHROOM_LIGHT);
 
                         SetUtils.addColorSet(output, ModBlocks.CERISE);

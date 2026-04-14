@@ -3,7 +3,6 @@ package net.starpony.strawberry.item;
 import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.*;
-import net.minecraft.world.level.material.Fluid;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.common.DeferredSpawnEggItem;
 import net.neoforged.neoforge.registries.DeferredItem;
@@ -90,8 +89,7 @@ public class ModItems {
     public static final DeferredItem<Item> PLUM_SODA = ITEMS.register("plum_soda", () -> new SodaItem(new Item.Properties().stacksTo(1).food(ModFoodProperties.PLUM_SODA)));
     public static final DeferredItem<Item> CHERRY_SODA = ITEMS.register("cherry_soda", () -> new SodaItem(new Item.Properties().stacksTo(1).food(ModFoodProperties.CHERRY_SODA)));
     public static final DeferredItem<Item> CHOCOLATE_SYRUP = ITEMS.register("chocolate_syrup", () -> new BottleItem(new Item.Properties().stacksTo(16).food(ModFoodProperties.CHOCOLATE_SYRUP)));
-    //public static final DeferredItem<Item> CHOCOLATE_MILK = ITEMS.register("chocolate_milk", () -> new BucketItem(CHOCOLATE_MILK_FLUID, new Item.Properties().stacksTo(1).food(ModFoodProperties.CHOCOLATE_SYRUP)));
-    //public static final Fluid CHOCOLATE_MILK_FLUID =
+    public static final DeferredItem<Item> CHOCOLATE_MILK = ITEMS.register("chocolate_milk", () -> new ChocolateMilkItem(new Item.Properties().stacksTo(1).food(ModFoodProperties.CHOCOLATE_MILK)));
 
     // Individual GemSet Items
     public static final DeferredItem<Item> ROSE_QUARTZ_HAMMER = ITEMS.register("rose_quartz_hammer", () -> new HammerItem(ModToolTiers.ROSE_QUARTZ, new Item.Properties()));

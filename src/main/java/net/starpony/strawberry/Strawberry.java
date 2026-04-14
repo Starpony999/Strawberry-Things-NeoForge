@@ -15,6 +15,7 @@ import net.starpony.strawberry.potion.ModPotions;
 import net.starpony.strawberry.sound.ModSounds;
 import net.minecraft.world.level.FoliageColor;
 
+import net.starpony.strawberry.util.ModParticleTypes;
 import net.starpony.strawberry.util.ModWoodTypes;
 import org.slf4j.Logger;
 
@@ -52,6 +53,7 @@ public class Strawberry {
         ModEffects.register(modEventBus);
         ModPotions.register(modEventBus);
         ModSounds.register(modEventBus);
+        ModParticleTypes.register(modEventBus);
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
         ModEntities.register(modEventBus);
@@ -88,14 +90,17 @@ public class Strawberry {
             Sheets.addWoodType(ModWoodTypes.SYCAMORE);
             Sheets.addWoodType(ModWoodTypes.PLUM);
             Sheets.addWoodType(ModWoodTypes.BLOODWOOD);
+            Sheets.addWoodType(ModWoodTypes.VOID);
             event.enqueueWork(() -> {
                 ItemBlockRenderTypes.setRenderLayer(ModBlocks.CAULIFLOWER_CROP.get(), RenderType.cutout());
                 ItemBlockRenderTypes.setRenderLayer(ModBlocks.GRAPE_CROP.get(), RenderType.cutout());
+                ItemBlockRenderTypes.setRenderLayer(ModBlocks.CORN_CROP.get(), RenderType.cutout());
                 ItemBlockRenderTypes.setRenderLayer(ModBlocks.STRAWBERRY_BUSH.get(), RenderType.cutout());
                 ItemBlockRenderTypes.setRenderLayer(ModBlocks.BLUEBERRY_BUSH.get(), RenderType.cutout());
                 ItemBlockRenderTypes.setRenderLayer(ModBlocks.SYCAMORE.sapling.get(), RenderType.cutout());
                 ItemBlockRenderTypes.setRenderLayer(ModBlocks.PLUM.sapling.get(), RenderType.cutout());
                 ItemBlockRenderTypes.setRenderLayer(ModBlocks.BLOODWOOD.sapling.get(), RenderType.cutout());
+                ItemBlockRenderTypes.setRenderLayer(ModBlocks.VOID.sapling.get(), RenderType.cutout());
                 registerColorSetRenderLayers(ModBlocks.CERISE);
                 registerColorSetRenderLayers(ModBlocks.TURQUOISE);
                 registerColorSetRenderLayers(ModBlocks.LAVENDER);
