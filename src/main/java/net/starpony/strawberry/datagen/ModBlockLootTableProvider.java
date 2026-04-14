@@ -56,6 +56,8 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.REDSTONE_LANTERN.get());
         dropSelf(ModBlocks.CRYSTAL.lantern.get());
         dropSelf(ModBlocks.THULITE.lantern.get());
+        dropSelf(ModBlocks.CRYSTAL.torch.get());
+        dropSelf(ModBlocks.THULITE.torch.get());
 
         dropSelf(ModBlocks.NIGHT_TERRIA.get());
         dropSelf(ModBlocks.GNEISS.get());
@@ -106,6 +108,7 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         handleColorSet(ModBlocks.TURQUOISE);
         handleColorSet(ModBlocks.LAVENDER);
         handleColorSet(ModBlocks.INDIGO);
+        handleColorSet(ModBlocks.TAN);
 
         handleWoodSet(ModBlocks.SYCAMORE);
         handleWoodSet(ModBlocks.PLUM);

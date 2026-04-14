@@ -388,7 +388,7 @@ public class RecipeMethodProvider extends RecipeProvider implements IConditionBu
                 .define('A', inputA)
                 .define('T', Items.TORCH)
                 .unlockedBy("has_" + (inputA), has(inputA))
-                .save(output, RecipeIdHelper.between(inputA, result, ""));
+                .save(output, RecipeIdHelper.between(inputA, result, "1"));
     }
     public static void offerReversibleCompactingRecipes(RecipeOutput output, RecipeCategory blockCategory, Item item, RecipeCategory itemCategory, Item block) {
 
