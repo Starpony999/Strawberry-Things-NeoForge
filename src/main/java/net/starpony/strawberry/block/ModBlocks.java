@@ -21,7 +21,10 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.starpony.strawberry.Strawberry;
+import net.starpony.strawberry.block.signs.ModHangingSignBlock;
 import net.starpony.strawberry.block.signs.ModStandingSignBlock;
+import net.starpony.strawberry.block.signs.ModWallHangingSignBlock;
+import net.starpony.strawberry.block.signs.ModWallSignBlock;
 import net.starpony.strawberry.item.ModItems;
 import net.starpony.strawberry.util.ModParticleTypes;
 import net.starpony.strawberry.util.ModWoodTypes;
@@ -505,13 +508,13 @@ public class ModBlocks {
                 () -> new ModStandingSignBlock(woodType, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SIGN)));
 
         DeferredBlock<Block> wallSign = registerBlock(name + "_wall_sign",
-                () -> new ModStandingSignBlock(woodType, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_WALL_SIGN)));
+                () -> new ModWallSignBlock(woodType, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_WALL_SIGN)));
 
         DeferredBlock<Block> hangingSign = registerBlock(name + "_hanging_sign",
-                () -> new ModStandingSignBlock(woodType, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_HANGING_SIGN)));
+                () -> new ModHangingSignBlock(woodType, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_HANGING_SIGN)));
 
         DeferredBlock<Block> wallHangingSign = registerBlock(name + "_wall_hanging_sign",
-                () -> new ModStandingSignBlock(woodType, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_WALL_HANGING_SIGN)));
+                () -> new ModWallHangingSignBlock(woodType, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_WALL_HANGING_SIGN)));
 
 
         return new WoodSet(name, log, strippedLog, wood, strippedWood, planks, leaves, null, sapling,
@@ -568,13 +571,13 @@ public class ModBlocks {
                 () -> new ModStandingSignBlock(woodType, BlockBehaviour.Properties.ofFullCopy(Blocks.WARPED_SIGN)));
 
         DeferredBlock<Block> wallSign = registerBlock(name + "_wall_sign",
-                () -> new ModStandingSignBlock(woodType, BlockBehaviour.Properties.ofFullCopy(Blocks.WARPED_WALL_SIGN)));
+                () -> new ModWallSignBlock(woodType, BlockBehaviour.Properties.ofFullCopy(Blocks.WARPED_WALL_SIGN)));
 
         DeferredBlock<Block> hangingSign = registerBlock(name + "_hanging_sign",
-                () -> new ModStandingSignBlock(woodType, BlockBehaviour.Properties.ofFullCopy(Blocks.WARPED_HANGING_SIGN)));
+                () -> new ModHangingSignBlock(woodType, BlockBehaviour.Properties.ofFullCopy(Blocks.WARPED_HANGING_SIGN)));
 
         DeferredBlock<Block> wallHangingSign = registerBlock(name + "_wall_hanging_sign",
-                () -> new ModStandingSignBlock(woodType, BlockBehaviour.Properties.ofFullCopy(Blocks.WARPED_WALL_HANGING_SIGN)));
+                () -> new ModWallHangingSignBlock(woodType, BlockBehaviour.Properties.ofFullCopy(Blocks.WARPED_WALL_HANGING_SIGN)));
 
         return new WoodSet(name, log, strippedLog, wood, strippedWood, planks, null, wartBlock, sapling,
                 stairs, slab, button, pressurePlate, fence, fenceGate, door, trapdoor, sign, wallSign, hangingSign, wallHangingSign, null, null);
