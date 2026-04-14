@@ -87,8 +87,8 @@ public class ModBlocks {
                     .lightLevel(state -> state.getValue(CrystalLanternBlock.CLICKED) ? 15 : 0)));
     public static final DeferredBlock<Block> REDSTONE_LANTERN = registerBlock("redstone_lantern",
             () -> new RedstoneLanternBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LANTERN).lightLevel(state -> 15)));
-    public static final TorchSet CRYSTAL = registerTorchSet("crystal", ModParticleTypes.CRYSTAL_FLAME.get());
-    public static final TorchSet THULITE = registerTorchSet("thulite", ModParticleTypes.THULITE_FLAME.get());
+    public static final TorchSet CRYSTAL = registerTorchSet("crystal", ModParticleTypes.CRYSTAL_FLAME);
+    public static final TorchSet THULITE = registerTorchSet("thulite", ModParticleTypes.THULITE_FLAME);
 
      // Sets
     public static final SimpleStoneSet ANDESITE_BRICKS = registerSimpleStoneSet("andesite_bricks");
@@ -600,10 +600,10 @@ public class ModBlocks {
                         .sound(SoundType.GLASS)));
         return new SimpleStoneSet(null, stairs, slab, wall, null, null);
     }
-    private static TorchSet registerTorchSet(String name, SimpleParticleType particle) {
+    private static TorchSet registerTorchSet(String name, Supplier<SimpleParticleType> particle) {
 
         DeferredBlock<Block> torch = registerBlock(name + "_torch",
-                () -> new TorchBlock(
+                () -> new DeferredParticleTorchBlock(
                         particle,
                         BlockBehaviour.Properties.of()
                                 .noCollission()
@@ -615,7 +615,7 @@ public class ModBlocks {
         );
 
         DeferredBlock<Block> wallTorch = registerBlockWithoutItem(name + "_wall_torch",
-                () -> new WallTorchBlock(
+                () -> new DeferredParticleWallTorchBlock(
                         particle,
                         BlockBehaviour.Properties.of()
                                 .noCollission()
