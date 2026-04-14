@@ -394,6 +394,24 @@ public class ModBlockStateProvider extends BlockStateProvider {
         simpleBlockItem(set.torch.get(), models().singleTexture(set.name + "_torch", mcLoc("item/generated"), "layer0", modLoc("block/" + set.name + "_torch")));
         lanternBlock(set.lantern);
     }
+    private void torchBlock(TorchBlock block, ResourceLocation texture) {
+        String name = key(block).getPath();
+        ModelFile model = models().torch(name, texture).renderType("cutout");
+        simpleBlock(block, model);
+    }
+
+    private void wallTorchBlock(WallTorchBlock block, ResourceLocation texture) {
+        String name = key(block).getPath();
+        ModelFile model = models().torchWall(name, texture).renderType("cutout");
+
+        getVariantBuilder(block).forAllStates(state -> {
+            Direction direction = state.getValue(WallTorchBlock.FACING);
+            return ConfiguredModel.builder()
+                    .modelFile(model)
+                    .rotationY(getYRotation(direction))
+                    .build();
+        });
+    }
 
     public void lanternBlock(DeferredBlock<Block> block) {
         String name = block.getId().getPath();

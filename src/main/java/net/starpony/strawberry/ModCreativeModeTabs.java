@@ -9,6 +9,7 @@ import net.minecraft.world.item.ItemStack;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.starpony.strawberry.item.ModItems;
+import net.starpony.strawberry.potion.ModPotions;
 import net.starpony.strawberry.util.sets.SetUtils;
 
 import java.util.function.Supplier;

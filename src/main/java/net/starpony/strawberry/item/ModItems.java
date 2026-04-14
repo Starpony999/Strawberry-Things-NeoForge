@@ -84,7 +84,7 @@ public class ModItems {
     public static final DeferredItem<Item> BLUEBERRY_SODA = ITEMS.register("blueberry_soda", () -> new SodaItem(new Item.Properties().stacksTo(1).food(ModFoodProperties.BLUEBERRY_SODA)));
     public static final DeferredItem<Item> ORANGE_SODA = ITEMS.register("orange_soda", () -> new SodaItem(new Item.Properties().stacksTo(1).food(ModFoodProperties.ORANGE_SODA)));
     public static final DeferredItem<Item> LEMONADE = ITEMS.register("lemonade", () -> new BottleItem(new Item.Properties().stacksTo(1).food(ModFoodProperties.LEMONADE)));
-    public static final DeferredItem<Item> VANILLA = ITEMS.register("vanilla", () -> new BottleItem(new Item.Properties().stacksTo(16).food(ModFoodProperties.VANILLA)));
+    public static final DeferredItem<Item> VANILLA = ITEMS.register("vanilla", () -> new PotionItem(new Item.Properties().stacksTo(16).food(ModFoodProperties.VANILLA)));
     public static final DeferredItem<Item> COLA_SODA = ITEMS.register("cola_soda", () -> new SodaItem(new Item.Properties().stacksTo(1).food(ModFoodProperties.COLA_SODA)));
     public static final DeferredItem<Item> PLUM_SODA = ITEMS.register("plum_soda", () -> new SodaItem(new Item.Properties().stacksTo(1).food(ModFoodProperties.PLUM_SODA)));
     public static final DeferredItem<Item> CHERRY_SODA = ITEMS.register("cherry_soda", () -> new SodaItem(new Item.Properties().stacksTo(1).food(ModFoodProperties.CHERRY_SODA)));
