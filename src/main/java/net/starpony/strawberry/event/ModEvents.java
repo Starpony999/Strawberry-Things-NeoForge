@@ -1,6 +1,7 @@
 package net.starpony.strawberry.event;
 
 import net.minecraft.world.item.Items;
+import net.starpony.strawberry.item.ModItems;
 import net.minecraft.world.item.alchemy.PotionBrewing;
 import net.minecraft.world.item.alchemy.Potions;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -16,5 +17,6 @@ public class ModEvents {
         PotionBrewing.Builder builder = event.getBuilder();
 
         builder.addMix(Potions.FIRE_RESISTANCE, Items.BLAZE_POWDER, ModPotions.DRAGONS_GRACE_POTION);
+        builder.addMix(Potions.WATER, Items.LILY_OF_THE_VALLEY, ModItems.VANILLA.get());
     }
 }

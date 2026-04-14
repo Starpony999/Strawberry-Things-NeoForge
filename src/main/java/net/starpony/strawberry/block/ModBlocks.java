@@ -74,7 +74,7 @@ public class ModBlocks {
     public static final DeferredBlock<CropBlock> GRAPE_CROP = registerBlockWithoutItem("grape_crop",
             () -> new GrapeCropBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.WHEAT)));
     public static final DeferredBlock<CropBlock> CORN_CROP = BLOCKS.register("corn_crop",
-            () -> new CauliflowerCropBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.WHEAT)));
+            () -> new CornCropBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.WHEAT)));
     public static final DeferredBlock<Block> STRAWBERRY_BUSH = registerBlockWithoutItem("strawberry_bush",
             () -> new StrawberryBushBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SWEET_BERRY_BUSH)));
     public static final DeferredBlock<Block> BLUEBERRY_BUSH = registerBlockWithoutItem("blueberry_bush",
@@ -87,8 +87,8 @@ public class ModBlocks {
                     .lightLevel(state -> state.getValue(CrystalLanternBlock.CLICKED) ? 15 : 0)));
     public static final DeferredBlock<Block> REDSTONE_LANTERN = registerBlock("redstone_lantern",
             () -> new RedstoneLanternBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LANTERN).lightLevel(state -> 15)));
-    public static final TorchSet CRYSTAL = registerTorchSet("crystal", ModParticleTypes.CRYSTAL_FLAME);
-    public static final TorchSet THULITE = registerTorchSet("thulite", ModParticleTypes.THULITE_FLAME);
+    public static final TorchSet CRYSTAL = registerTorchSet("crystal", ModParticleTypes.CRYSTAL_FLAME.get());
+    public static final TorchSet THULITE = registerTorchSet("thulite", ModParticleTypes.THULITE_FLAME.get());
 
      // Sets
     public static final SimpleStoneSet ANDESITE_BRICKS = registerSimpleStoneSet("andesite_bricks");
@@ -614,7 +614,7 @@ public class ModBlocks {
                 )
         );
 
-        DeferredBlock<Block> wallTorch = registerBlock(name + "_wall_torch",
+        DeferredBlock<Block> wallTorch = registerBlockWithoutItem(name + "_wall_torch",
                 () -> new WallTorchBlock(
                         particle,
                         BlockBehaviour.Properties.of()

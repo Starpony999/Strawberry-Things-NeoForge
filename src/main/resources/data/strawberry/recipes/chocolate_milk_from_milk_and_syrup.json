@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    { "item": "minecraft:milk_bucket" },
+    { "item": "strawberry:chocolate_syrup" }
+  ],
+  "result": {
+    "id": "strawberry:chocolate_milk",
+    "count": 1
+  }
+}

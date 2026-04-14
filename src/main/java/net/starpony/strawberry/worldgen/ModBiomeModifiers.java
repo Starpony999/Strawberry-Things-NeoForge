@@ -23,6 +23,7 @@ public class ModBiomeModifiers {
 
     public static final ResourceKey<BiomeModifier> ADD_TREE_SYCAMORE = registerKey("add_tree_sycamore");
     public static final ResourceKey<BiomeModifier> ADD_TREE_PLUM = registerKey("add_tree_plum");
+    public static final ResourceKey<BiomeModifier> ADD_TREE_VOID = registerKey("add_tree_void");
 
     public static final ResourceKey<BiomeModifier> ADD_THULITE_GEODE = registerKey("add_thulite_geode");
 
@@ -74,6 +75,11 @@ public class ModBiomeModifiers {
         context.register(ADD_TREE_PLUM, new BiomeModifiers.AddFeaturesBiomeModifier(
                 HolderSet.direct(biomes.getOrThrow(Biomes.SAVANNA), biomes.getOrThrow(Biomes.SAVANNA_PLATEAU), biomes.getOrThrow(Biomes.WINDSWEPT_SAVANNA)),
                 HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.PLUM_PLACED_KEY)),
+                GenerationStep.Decoration.VEGETAL_DECORATION));
+
+        context.register(ADD_TREE_VOID, new BiomeModifiers.AddFeaturesBiomeModifier(
+                biomes.getOrThrow(BiomeTags.IS_END),
+                HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.VOID_PLACED_KEY)),
                 GenerationStep.Decoration.VEGETAL_DECORATION));
 
         context.register(ADD_THULITE_GEODE, new BiomeModifiers.AddFeaturesBiomeModifier(

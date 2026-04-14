@@ -1,9 +1,11 @@
 package net.starpony.strawberry.block;
 
-
 import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.state.BlockState;
@@ -23,8 +25,9 @@ public class CornCropBlock extends CropBlock {
             Block.box(1, 0, 1, 15, 10, 15),
             Block.box(0, 0, 0, 16, 11, 16),
             Block.box(0, 0, 0, 16, 13, 16),
-            Block.box(0, 0, 0, 16, 14, 16)
+            Block.box(0, 0, 0, 16, 16, 16)
     };
+
     public CornCropBlock(Properties properties) {
         super(properties);
     }
@@ -47,6 +50,24 @@ public class CornCropBlock extends CropBlock {
     @Override
     public int getMaxAge() {
         return MAX_AGE;
+    }
+
+    @Override
+    public boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
+        BlockState below = level.getBlockState(pos.below());
+        if (below.is(this) && below.getValue(AGE) == MAX_AGE) {
+            return true;
+        }
+        return super.canSurvive(state, level, pos);
+    }
+
+    @Override
+    protected void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
+        super.randomTick(state, level, pos, random);
+
+        if (state.getValue(AGE) == MAX_AGE && level.getBlockState(pos.above()).isAir()) {
+            level.setBlock(pos.above(), defaultBlockState().setValue(AGE, MAX_AGE), Block.UPDATE_ALL);
+        }
     }
 
     @Override

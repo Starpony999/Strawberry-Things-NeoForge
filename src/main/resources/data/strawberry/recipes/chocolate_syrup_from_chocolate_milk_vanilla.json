@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    { "item": "strawberry:chocolate" },
+    { "item": "minecraft:milk_bucket" },
+    { "item": "strawberry:vanilla" }
+  ],
+  "result": {
+    "id": "strawberry:chocolate_syrup",
+    "count": 1
+  }
+}

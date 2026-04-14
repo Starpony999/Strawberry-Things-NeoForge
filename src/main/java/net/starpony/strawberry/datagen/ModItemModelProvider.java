@@ -84,6 +84,17 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.BLUEBERRY_SODA.get());
         basicItem(ModItems.ORANGE.get());
         basicItem(ModItems.ORANGE_SODA.get());
+        basicItem(ModItems.CORN.get());
+        basicItem(ModItems.CORN_SEEDS.get());
+        basicItem(ModItems.PLUM_FRUIT.get());
+        basicItem(ModItems.CHERRY.get());
+        basicItem(ModItems.VANILLA.get());
+        basicItem(ModItems.COLA_SODA.get());
+        basicItem(ModItems.PLUM_SODA.get());
+        basicItem(ModItems.CHERRY_SODA.get());
+        basicItem(ModItems.CHOCOLATE.get());
+        basicItem(ModItems.CHOCOLATE_SYRUP.get());
+        basicItem(ModItems.CHOCOLATE_MILK.get());
 
 
         // ---- MISC ----
@@ -109,6 +120,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.TURQUOISE_DYE.get());
         basicItem(ModItems.INDIGO_DYE.get());
         basicItem(ModItems.LAVENDER_DYE.get());
+        basicItem(ModItems.TAN_DYE.get());
         stainedGlassPaneItem(ModBlocks.CERISE.getStainedGlassPane());
         stainedGlassPaneItem(ModBlocks.TURQUOISE.getStainedGlassPane());
         stainedGlassPaneItem(ModBlocks.INDIGO.getStainedGlassPane());
@@ -119,6 +131,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         woodSetItem(ModBlocks.SYCAMORE);
         woodSetItem(ModBlocks.PLUM);
         woodSetItem(ModBlocks.BLOODWOOD);
+        woodSetItem(ModBlocks.VOID);
 
         // ---- Simple Stone Sets ----
         simpleStoneSetItem(ModBlocks.GRANITE_BRICKS);

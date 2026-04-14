@@ -30,6 +30,7 @@ public class ModPlacedFeatures {
 
     public static final ResourceKey<PlacedFeature> SYCAMORE_PLACED_KEY = registerKey("sycamore_placed");
     public static final ResourceKey<PlacedFeature> PLUM_PLACED_KEY = registerKey("plum_placed");
+    public static final ResourceKey<PlacedFeature> VOID_PLACED_KEY = registerKey("void_placed");
 
     public static final ResourceKey<PlacedFeature> THULITE_GEODE_PLACED_KEY = registerKey("thulite_geode_placed");
 
@@ -63,6 +64,10 @@ public class ModPlacedFeatures {
         register(context, PLUM_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.PLUM_KEY),
                 VegetationPlacements.treePlacement(
                         PlacementUtils.countExtra(2, 0.1f, 2), ModBlocks.PLUM.sapling.get()));
+        register(context, VOID_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.VOID_KEY),
+                List.of(CountPlacement.of(1), InSquarePlacement.spread(),
+                        HeightRangePlacement.uniform(VerticalAnchor.absolute(-32), VerticalAnchor.absolute(48)),
+                        BiomeFilter.biome()));
 
         register(context, THULITE_GEODE_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.THULITE_GEODE_KEY),
                 List.of(RarityFilter.onAverageOnceEvery(50), InSquarePlacement.spread(),

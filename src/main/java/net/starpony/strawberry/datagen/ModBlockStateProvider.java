@@ -19,6 +19,7 @@ import net.neoforged.neoforge.registries.DeferredBlock;
 import net.starpony.strawberry.util.sets.ColorSet;
 import net.starpony.strawberry.util.sets.SimpleStoneSet;
 import net.starpony.strawberry.util.sets.StoneSet;
+import net.starpony.strawberry.util.sets.TorchSet;
 import net.starpony.strawberry.util.sets.WoodSet;
 
 import java.util.function.Consumer;
@@ -60,9 +61,9 @@ public class ModBlockStateProvider extends BlockStateProvider {
         randomTextureBlock(ModBlocks.GNEISS);
         blockWithItem(ModBlocks.SCHIST);
 
-        lanternBlock(ModBlocks.CRYSTAL.lantern);
+        registerTorchSet(ModBlocks.CRYSTAL);
         lanternBlock(ModBlocks.REDSTONE_LANTERN);
-        lanternBlock(ModBlocks.THULITE.lantern);
+        registerTorchSet(ModBlocks.THULITE);
 
         registerSimpleStoneSet(ModBlocks.WASHED_DIORITE_BRICKS);
         registerSimpleStoneSet(ModBlocks.DIORITE_BRICKS);
@@ -91,6 +92,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         registerWoodSet(ModBlocks.SYCAMORE);
         registerWoodSet(ModBlocks.PLUM);
         registerNightmareWoodSet(ModBlocks.BLOODWOOD);
+        registerNightmareWoodSet(ModBlocks.VOID);
 
         registerFullStoneSet(ModBlocks.NIGHTSTONE);
         registerFullStoneSet(ModBlocks.GRIMSTONE);
@@ -104,6 +106,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
         makeCrop(ModBlocks.CAULIFLOWER_CROP.get(), "cauliflower_stage_", "cauliflower_");
         makeCrop(ModBlocks.GRAPE_CROP.get(), "grape_stage_", "grape_");
+        makeCrop(ModBlocks.CORN_CROP.get(), "corn_stage_", "corn_");
 
         makeBush(ModBlocks.STRAWBERRY_BUSH.get(), "strawberry_stage_", "strawberry_");
         makeBush(ModBlocks.BLUEBERRY_BUSH.get(), "blueberry_stage_", "blueberry_");
@@ -384,6 +387,14 @@ public class ModBlockStateProvider extends BlockStateProvider {
         // Item model → ALWAYS texture 3
         simpleBlockItem(block.get(), model3);
     }
+
+    public void registerTorchSet(TorchSet set) {
+        torchBlock((TorchBlock) set.torch.get(), modLoc("block/" + set.name + "_torch"));
+        wallTorchBlock((WallTorchBlock) set.wallTorch.get(), modLoc("block/" + set.name + "_torch"));
+        simpleBlockItem(set.torch.get(), models().singleTexture(set.name + "_torch", mcLoc("item/generated"), "layer0", modLoc("block/" + set.name + "_torch")));
+        lanternBlock(set.lantern);
+    }
+
     public void lanternBlock(DeferredBlock<Block> block) {
         String name = block.getId().getPath();
 

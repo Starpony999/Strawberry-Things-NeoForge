@@ -110,6 +110,7 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         handleWoodSet(ModBlocks.SYCAMORE);
         handleWoodSet(ModBlocks.PLUM);
         handleNightmareWoodSet(ModBlocks.BLOODWOOD);
+        handleNightmareWoodSet(ModBlocks.VOID);
         this.dropSelf(ModBlocks.HELLSHROOM_LIGHT.get());
 
         this.add(ModBlocks.THULITE_CLUSTER.get(), block -> this.createSilkTouchDispatchTable(block, LootItem.lootTableItem(ModItems.THULITE_SHARD).apply(SetItemCountFunction.setCount(ConstantValue.exactly(4.0F))).apply(ApplyBonusCount.addUniformBonusCount(enchants.getOrThrow(Enchantments.FORTUNE))).when(MatchTool.toolMatches(ItemPredicate.Builder.item().of(ItemTags.CLUSTER_MAX_HARVESTABLES))).otherwise((LootPoolEntryContainer.Builder<?>)this.applyExplosionDecay(block, LootItem.lootTableItem(ModItems.THULITE_SHARD).apply(SetItemCountFunction.setCount(ConstantValue.exactly(2.0F)))))));
@@ -119,6 +120,7 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
 
         this.add(ModBlocks.CAULIFLOWER_CROP.get(), createCropDrops(ModBlocks.CAULIFLOWER_CROP.get(), ModItems.CAULIFLOWER.get(), ModItems.CAULIFLOWER_SEEDS.get(), LootItemBlockStatePropertyCondition.hasBlockStateProperties(ModBlocks.CAULIFLOWER_CROP.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CauliflowerCropBlock.AGE, CauliflowerCropBlock.MAX_AGE))));
         this.add(ModBlocks.GRAPE_CROP.get(), createCropDrops(ModBlocks.GRAPE_CROP.get(), ModItems.GRAPES.get(), ModItems.GRAPE_SEEDS.get(), LootItemBlockStatePropertyCondition.hasBlockStateProperties(ModBlocks.GRAPE_CROP.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(GrapeCropBlock.AGE, GrapeCropBlock.MAX_AGE))));
+        this.add(ModBlocks.CORN_CROP.get(), createCropDrops(ModBlocks.CORN_CROP.get(), ModItems.CORN.get(), ModItems.CORN_SEEDS.get(), LootItemBlockStatePropertyCondition.hasBlockStateProperties(ModBlocks.CORN_CROP.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CornCropBlock.AGE, CornCropBlock.MAX_AGE))));
 
         addBerryBush(ModBlocks.STRAWBERRY_BUSH.get(), ModItems.STRAWBERRY.get(), StrawberryBushBlock.AGE, enchants);
         addBerryBush(ModBlocks.BLUEBERRY_BUSH.get(), ModItems.BLUEBERRY.get(), BlueberryBushBlock.AGE, enchants);
