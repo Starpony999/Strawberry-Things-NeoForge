@@ -17,8 +17,11 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.storage.loot.*;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.entries.LootPoolEntryContainer;
+import net.minecraft.world.level.storage.loot.entries.LootPoolSingletonContainer;
 import net.minecraft.world.level.storage.loot.functions.*;
+import net.minecraft.world.level.storage.loot.predicates.BonusLevelTableCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
+import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraft.world.level.storage.loot.predicates.MatchTool;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
@@ -114,9 +117,17 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         handleColorSet(ModBlocks.TAN);
 
         handleWoodSet(ModBlocks.SYCAMORE);
+            add(ModBlocks.SYCAMORE.getLeaves().get(),
+                block -> createLeavesDrops(block, ModBlocks.SYCAMORE.getSapling().get(), NORMAL_LEAVES_SAPLING_CHANCES));
         handleWoodSet(ModBlocks.PLUM);
+            add(ModBlocks.PLUM.getLeaves().get(),
+                block -> createFruitLeavesDrops(block, ModBlocks.PLUM.getSapling().get(), ModItems.PLUM_FRUIT.get(), NORMAL_LEAVES_SAPLING_CHANCES));
         handleNightmareWoodSet(ModBlocks.BLOODWOOD);
         handleWoodSet(ModBlocks.VOID);
+            add(ModBlocks.VOID.getLeaves().get(),
+                block -> createLeavesDrops(block, ModBlocks.VOID.getSapling().get(), NORMAL_LEAVES_SAPLING_CHANCES));
+
+
         this.dropSelf(ModBlocks.HELLSHROOM_LIGHT.get());
 
         this.add(ModBlocks.THULITE_CLUSTER.get(), block -> this.createSilkTouchDispatchTable(block, LootItem.lootTableItem(ModItems.THULITE_SHARD).apply(SetItemCountFunction.setCount(ConstantValue.exactly(4.0F))).apply(ApplyBonusCount.addUniformBonusCount(enchants.getOrThrow(Enchantments.FORTUNE))).when(MatchTool.toolMatches(ItemPredicate.Builder.item().of(ItemTags.CLUSTER_MAX_HARVESTABLES))).otherwise((LootPoolEntryContainer.Builder<?>)this.applyExplosionDecay(block, LootItem.lootTableItem(ModItems.THULITE_SHARD).apply(SetItemCountFunction.setCount(ConstantValue.exactly(2.0F)))))));
@@ -204,9 +215,6 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         dropSelf(set.getStrippedLog().get());
         dropSelf(set.getStrippedWood().get());
         dropSelf(set.getSapling().get());
-
-        add(set.getLeaves().get(),
-                block -> createLeavesDrops(block, set.getSapling().get(), NORMAL_LEAVES_SAPLING_CHANCES));
 
         dropSelf(set.getStairs().get());
         dropSelf(set.getButton().get());
@@ -297,6 +305,17 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
                                 .apply(SetItemCountFunction.setCount(UniformGenerator.between(min, max)))
                                 .apply(ApplyBonusCount.addOreBonusCount(enchants.getOrThrow(Enchantments.FORTUNE)))
                 ));
+    }
+
+    protected LootTable.Builder createFruitLeavesDrops(Block oakLeavesBlock, Block saplingBlock, Item fruit, float... chances) {
+        HolderLookup.RegistryLookup<Enchantment> registrylookup = this.registries.lookupOrThrow(Registries.ENCHANTMENT);
+        return this.createLeavesDrops(oakLeavesBlock, saplingBlock, chances).withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).when(this.doesNotHaveShearsOrSilkTouch()).add(((LootPoolSingletonContainer.Builder)this.applyExplosionCondition(oakLeavesBlock, LootItem.lootTableItem(fruit))).when(BonusLevelTableCondition.bonusLevelFlatChance(registrylookup.getOrThrow(Enchantments.FORTUNE), new float[]{0.005F, 0.0055555557F, 0.00625F, 0.008333334F, 0.025F}))));
+    }
+    private LootItemCondition.Builder doesNotHaveShearsOrSilkTouch() {
+        return this.hasShearsOrSilkTouch().invert();
+    }
+    private LootItemCondition.Builder hasShearsOrSilkTouch() {
+        return HAS_SHEARS.or(this.hasSilkTouch());
     }
 
     @Override

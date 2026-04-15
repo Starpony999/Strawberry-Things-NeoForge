@@ -71,8 +71,8 @@ public class ModConfiguredFeatures {
         List<OreConfiguration.TargetBlockState> endRoseQuartzOres =
                 List.of(OreConfiguration.target(endReplaceables, ModBlocks.END_ROSE_QUARTZ_ORE.get().defaultBlockState()));
 
-        register(context, RUBY_ORE_KEY, Feature.ORE, new OreConfiguration(overworldRubyOres, 4));
-        register(context, SAPPHIRE_ORE_KEY, Feature.ORE, new OreConfiguration(overworldSapphireOres, 5));
+        register(context, RUBY_ORE_KEY, Feature.ORE, new OreConfiguration(overworldRubyOres, 8));
+        register(context, SAPPHIRE_ORE_KEY, Feature.ORE, new OreConfiguration(overworldSapphireOres, 10));
         register(context, ALUMINUM_ORE_KEY, Feature.ORE, new OreConfiguration(overworldAluminumOres, 10));
         register(context, NETHERTHYST_ORE_KEY, Feature.ORE, new OreConfiguration(netherNetherthystOres, 4));
         register(context, ENDERTHYST_ORE_KEY, Feature.ORE, new OreConfiguration(endEnderthystOres, 4));

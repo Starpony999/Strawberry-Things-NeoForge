@@ -135,7 +135,7 @@ public class MoobloomEntity extends Animal {
             return;
         }
 
-        Cow cow = EntityType.COW.create(serverLevel, EntitySpawnReason.CONVERSION);
+        Cow cow = EntityType.COW.create(serverLevel);
         if (cow == null) {
             return;
         }
