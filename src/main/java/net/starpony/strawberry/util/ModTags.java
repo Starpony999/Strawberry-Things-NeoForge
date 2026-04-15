@@ -48,6 +48,8 @@ public class ModTags {
         public static final TagKey<Item> TERRACOTTA = createTag("terracotta");
         public static final TagKey<Item> WOOL = createTag("wool");
         public static final TagKey<Item> WOOL_CARPETS = createTag("wool_carpets");
+        public static final TagKey<Item> FRUITS = createTag("fruits");
+        public static final TagKey<Item> COOKED_FISH = createTag("cooked_fish");
 
         private static TagKey<Item> createTag(String name) {
             return ItemTags.create(ResourceLocation.fromNamespaceAndPath(Strawberry.MOD_ID, name));

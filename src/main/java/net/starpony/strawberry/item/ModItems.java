@@ -75,6 +75,9 @@ public class ModItems {
     public static final DeferredItem<Item> PLUM_FRUIT = ITEMS.register("plum_fruit", () -> new Item(new Item.Properties().food(ModFoodProperties.PLUM)));
     public static final DeferredItem<Item> CHERRY = ITEMS.register("cherry", () -> new Item(new Item.Properties().food(ModFoodProperties.CHERRY)));
     public static final DeferredItem<Item> CHOCOLATE = ITEMS.register("chocolate", () -> new Item(new Item.Properties().food(ModFoodProperties.CHOCOLATE)));
+    public static final DeferredItem<Item> FRUIT_SALAD = ITEMS.register("fruit_salad", () -> new Item(new Item.Properties().stacksTo(1).food(ModFoodProperties.FRUIT_SALAD).usingConvertsTo(Items.BOWL)));
+    public static final DeferredItem<Item> VEGGIE_STIR_FRY = ITEMS.register("veggie_stir_fry", () -> new Item(new Item.Properties().stacksTo(1).food(ModFoodProperties.VEGGIE_STIR_FRY).usingConvertsTo(Items.BOWL)));
+    public static final DeferredItem<Item> SEAFOOD_STIR_FRY = ITEMS.register("seafood_stir_fry", () -> new Item(new Item.Properties().stacksTo(1).food(ModFoodProperties.SEAFOOD_STIR_FRY).usingConvertsTo(Items.BOWL)));
 
     // Sodas/Liquids/Drinks
     public static final DeferredItem<Item> DIRT_SODA = ITEMS.register("dirt_soda", () -> new SodaItem(new Item.Properties().stacksTo(1).food(ModFoodProperties.DIRT_SODA)));

@@ -2,6 +2,7 @@ package net.starpony.strawberry.worldgen;
 
 import net.minecraft.core.HolderSet;
 import net.minecraft.tags.BiomeTags;
+import net.minecraft.world.level.biome.MobSpawnSettings;
 import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.neoforged.neoforge.common.world.BiomeModifiers;
@@ -12,6 +13,9 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.neoforge.common.world.BiomeModifier;
 import net.neoforged.neoforge.registries.NeoForgeRegistries;
+import net.starpony.strawberry.entity.ModEntities;
+
+import java.util.List;
 
 public class ModBiomeModifiers {
     public static final ResourceKey<BiomeModifier> ADD_RUBY_ORE = registerKey("add_ruby_ore");
@@ -29,6 +33,7 @@ public class ModBiomeModifiers {
 
     public static final ResourceKey<BiomeModifier> ADD_STRAWBERRY_BUSH = registerKey("add_strawberry_berry_bush");
     public static final ResourceKey<BiomeModifier> ADD_BLUEBERRY_BUSH = registerKey("add_blueberry_berry_bush");
+    public static final ResourceKey<BiomeModifier> ADD_MOOBLOOM_SPAWN = registerKey("add_moobloom_spawn");
 
     public static void bootstrap(BootstrapContext<BiomeModifier> context) {
         var placedFeatures = context.lookup(Registries.PLACED_FEATURE);
@@ -102,6 +107,11 @@ public class ModBiomeModifiers {
                 ),
                 HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.BLUEBERRY_BUSH_PLACED_KEY)),
                 GenerationStep.Decoration.VEGETAL_DECORATION));
+
+        context.register(ADD_MOOBLOOM_SPAWN, new BiomeModifiers.AddSpawnsBiomeModifier(
+                HolderSet.direct(biomes.getOrThrow(Biomes.FLOWER_FOREST)),
+                List.of(new MobSpawnSettings.SpawnerData(ModEntities.MOOBLOOM.get(), 8, 2, 4))
+        ));
 
     }
 
