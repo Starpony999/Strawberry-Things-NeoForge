@@ -43,6 +43,8 @@
     "strawberry:thulite_cluster",
     "strawberry:large_thulite_bud",
     "strawberry:medium_thulite_bud",
-    "strawberry:small_thulite_bud"
+    "strawberry:small_thulite_bud",
+    "strawberry:cobblestone_button",
+    "strawberry:cobblestone_pressure_plate"
   ]
 }

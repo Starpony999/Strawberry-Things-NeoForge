@@ -118,6 +118,8 @@ public class ModBlocks {
     public static final SimpleStoneSet SEALED_WEATHERED_COBBLESTONE_BRICKS = registerSimpleStoneSet("sealed_weathered_cobblestone_bricks");
     public static final SimpleStoneSet SEALED_AGED_COBBLESTONE_BRICKS = registerSimpleStoneSet("sealed_aged_cobblestone_bricks");
 
+    public static final DeferredBlock<Block> COBBLESTONE_BUTTON = registerBlock("cobblestone_button", () -> new ButtonBlock(BlockSetType.STONE, 30, BlockBehaviour.Properties.of().noCollission()));
+    public static final DeferredBlock<Block> COBBLESTONE_PRESSURE_PLATE = registerBlock("cobblestone_pressure_plate", () -> new PressurePlateBlock(BlockSetType.STONE, BlockBehaviour.Properties.of().strength(3f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
 
    // public static final SimpleStoneSet BLUE_ICE = registerIceSet("blue_ice", Blocks.BLUE_ICE, 2.8f);
    // public static final SimpleStoneSet PACKED_ICE = registerIceSet("packed_ice", Blocks.PACKED_ICE, 0.5f);
@@ -129,7 +131,7 @@ public class ModBlocks {
     public static final WoodSet SYCAMORE = registerWoodSet("sycamore", ModTreeGrowers.SYCAMORE, ModWoodTypes.SYCAMORE);
     public static final WoodSet PLUM = registerWoodSet("plum", ModTreeGrowers.PLUM, ModWoodTypes.PLUM);
     public static final WoodSet BLOODWOOD = registerNightmareWoodSet("bloodwood", ModTreeGrowers.BLOODWOOD, ModWoodTypes.BLOODWOOD);
-    public static final WoodSet VOID = registerNightmareWoodSet("void", ModTreeGrowers.VOID, ModWoodTypes.VOID);
+    public static final WoodSet VOID = registerEndWoodSet("void", ModTreeGrowers.VOID, ModWoodTypes.VOID);
 
     public static final ColorSet CERISE = registerColorSet("cerise", DyeColor.RED);
     public static final ColorSet TURQUOISE = registerColorSet("turquoise", DyeColor.CYAN);
@@ -582,6 +584,68 @@ public class ModBlocks {
         return new WoodSet(name, log, strippedLog, wood, strippedWood, planks, null, wartBlock, sapling,
                 stairs, slab, button, pressurePlate, fence, fenceGate, door, trapdoor, sign, wallSign, hangingSign, wallHangingSign, null, null);
     }  //Wood Set for Nightmare Dimension
+    private static WoodSet registerEndWoodSet(String name, TreeGrower grower, WoodType woodType) {
+        DeferredBlock<Block> log = registerBlock(name + "_log",
+                () -> new ModNonFlammableRotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.WARPED_STEM)));
+
+        DeferredBlock<Block> strippedLog = registerBlock(name + "_stripped_log",
+                () -> new ModNonFlammableRotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_WARPED_STEM)));
+
+        DeferredBlock<Block> wood = registerBlock(name + "_wood",
+                () -> new ModNonFlammableRotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.WARPED_HYPHAE)));
+
+        DeferredBlock<Block> strippedWood = registerBlock(name + "_stripped_wood",
+                () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_WARPED_HYPHAE)));
+
+        DeferredBlock<Block> planks = registerBlock(name + "_planks",
+                () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.WARPED_PLANKS)));
+
+        DeferredBlock<Block> leaves = registerBlock(name + "_leaves",
+                () -> new LeavesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LEAVES)) {        });
+
+        DeferredBlock<Block> sapling = registerBlock(name + "_sapling",
+                () -> new ModSaplingBlock(grower, BlockBehaviour.Properties.ofFullCopy(Blocks.WARPED_FUNGUS), ModBlocks.NIGHTSTONE.base));
+
+        DeferredBlock<StairBlock> stairs = registerBlock(name + "_stairs",
+                () -> new StairBlock(planks.get().defaultBlockState(),
+                        BlockBehaviour.Properties.ofFullCopy(Blocks.WARPED_STAIRS)));
+
+        DeferredBlock<SlabBlock> slab = registerBlock(name + "_slab",
+                () -> new SlabBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.WARPED_SLAB)));
+
+        DeferredBlock<ButtonBlock> button = registerBlock(name + "_button",
+                () -> new ButtonBlock(BlockSetType.WARPED, 30, BlockBehaviour.Properties.ofFullCopy(Blocks.WARPED_BUTTON).noCollission()));
+
+        DeferredBlock<PressurePlateBlock> pressurePlate = registerBlock(name + "_pressure_plate",
+                () -> new PressurePlateBlock(BlockSetType.WARPED, BlockBehaviour.Properties.ofFullCopy(Blocks.WARPED_PRESSURE_PLATE)));
+
+        DeferredBlock<FenceBlock> fence = registerBlock(name + "_fence",
+                () -> new FenceBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.WARPED_FENCE)));
+
+        DeferredBlock<FenceGateBlock> fenceGate = registerBlock(name + "_fence_gate",
+                () -> new FenceGateBlock(WoodType.WARPED, BlockBehaviour.Properties.ofFullCopy(Blocks.WARPED_FENCE_GATE)));
+
+        DeferredBlock<DoorBlock> door = registerBlock(name + "_door",
+                () -> new DoorBlock(BlockSetType.WARPED, BlockBehaviour.Properties.ofFullCopy(Blocks.WARPED_DOOR).noOcclusion()));
+
+        DeferredBlock<TrapDoorBlock> trapdoor = registerBlock(name + "_trapdoor",
+                () -> new TrapDoorBlock(BlockSetType.WARPED, BlockBehaviour.Properties.ofFullCopy(Blocks.WARPED_TRAPDOOR).noOcclusion()));
+
+        DeferredBlock<Block> sign = registerBlock(name + "_sign",
+                () -> new ModStandingSignBlock(woodType, BlockBehaviour.Properties.ofFullCopy(Blocks.WARPED_SIGN)));
+
+        DeferredBlock<Block> wallSign = registerBlock(name + "_wall_sign",
+                () -> new ModWallSignBlock(woodType, BlockBehaviour.Properties.ofFullCopy(Blocks.WARPED_WALL_SIGN)));
+
+        DeferredBlock<Block> hangingSign = registerBlock(name + "_hanging_sign",
+                () -> new ModHangingSignBlock(woodType, BlockBehaviour.Properties.ofFullCopy(Blocks.WARPED_HANGING_SIGN)));
+
+        DeferredBlock<Block> wallHangingSign = registerBlock(name + "_wall_hanging_sign",
+                () -> new ModWallHangingSignBlock(woodType, BlockBehaviour.Properties.ofFullCopy(Blocks.WARPED_WALL_HANGING_SIGN)));
+
+        return new WoodSet(name, log, strippedLog, wood, strippedWood, planks, leaves, null, sapling,
+                stairs, slab, button, pressurePlate, fence, fenceGate, door, trapdoor, sign, wallSign, hangingSign, wallHangingSign, null, null);
+    }
     private static SimpleStoneSet registerIceSet(String name, Block block, Float strength){
         DeferredBlock<StairBlock> stairs = registerBlock(name + "_stairs",
                 () -> new StairBlock(block.defaultBlockState(),

@@ -5,6 +5,7 @@ import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
 import net.starpony.strawberry.block.ModBlocks;
+import net.starpony.strawberry.block.entity.ModBlockEntities;
 import net.starpony.strawberry.effect.ModEffects;
 import net.starpony.strawberry.entity.ModEntities;
 import net.starpony.strawberry.entity.client.MoobloomRenderer;
@@ -57,6 +58,7 @@ public class Strawberry {
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
         ModEntities.register(modEventBus);
+        ModBlockEntities.register(modEventBus);
 
 
 

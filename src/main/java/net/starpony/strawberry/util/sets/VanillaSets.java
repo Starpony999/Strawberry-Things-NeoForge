@@ -3,6 +3,7 @@ package net.starpony.strawberry.util.sets;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.starpony.strawberry.block.ModBlocks;
 import net.starpony.strawberry.item.ModItems;
 
 public class VanillaSets {
@@ -117,8 +118,8 @@ public class VanillaSets {
             Blocks.COBBLESTONE_STAIRS,
             Blocks.COBBLESTONE_SLAB,
             Blocks.COBBLESTONE_WALL,
-            null,
-            null
+            ModBlocks.COBBLESTONE_BUTTON.get(),
+            ModBlocks.COBBLESTONE_PRESSURE_PLATE.get()
     );
 }
 

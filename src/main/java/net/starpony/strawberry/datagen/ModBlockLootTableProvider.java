@@ -104,6 +104,9 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         handleSimpleStoneSet(ModBlocks.SEALED_WEATHERED_COBBLESTONE_BRICKS);
         handleSimpleStoneSet(ModBlocks.SEALED_AGED_COBBLESTONE_BRICKS);
 
+        dropSelf(ModBlocks.COBBLESTONE_PRESSURE_PLATE.get());
+        dropSelf(ModBlocks.COBBLESTONE_BUTTON.get());
+
         handleColorSet(ModBlocks.CERISE);
         handleColorSet(ModBlocks.TURQUOISE);
         handleColorSet(ModBlocks.LAVENDER);
@@ -113,7 +116,7 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         handleWoodSet(ModBlocks.SYCAMORE);
         handleWoodSet(ModBlocks.PLUM);
         handleNightmareWoodSet(ModBlocks.BLOODWOOD);
-        handleNightmareWoodSet(ModBlocks.VOID);
+        handleWoodSet(ModBlocks.VOID);
         this.dropSelf(ModBlocks.HELLSHROOM_LIGHT.get());
 
         this.add(ModBlocks.THULITE_CLUSTER.get(), block -> this.createSilkTouchDispatchTable(block, LootItem.lootTableItem(ModItems.THULITE_SHARD).apply(SetItemCountFunction.setCount(ConstantValue.exactly(4.0F))).apply(ApplyBonusCount.addUniformBonusCount(enchants.getOrThrow(Enchantments.FORTUNE))).when(MatchTool.toolMatches(ItemPredicate.Builder.item().of(ItemTags.CLUSTER_MAX_HARVESTABLES))).otherwise((LootPoolEntryContainer.Builder<?>)this.applyExplosionDecay(block, LootItem.lootTableItem(ModItems.THULITE_SHARD).apply(SetItemCountFunction.setCount(ConstantValue.exactly(2.0F)))))));

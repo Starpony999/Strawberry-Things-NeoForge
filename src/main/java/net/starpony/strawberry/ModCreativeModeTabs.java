@@ -159,7 +159,7 @@ public class ModCreativeModeTabs {
                         SetUtils.addWoodSet(output, ModBlocks.SYCAMORE);
                         SetUtils.addWoodSet(output, ModBlocks.PLUM);
                         SetUtils.addNightmareWoodSet(output, ModBlocks.BLOODWOOD);
-                        SetUtils.addNightmareWoodSet(output, ModBlocks.VOID);
+                        SetUtils.addWoodSet(output, ModBlocks.VOID);
                         output.accept(ModBlocks.HELLSHROOM_LIGHT);
 
                         SetUtils.addColorSet(output, ModBlocks.CERISE);

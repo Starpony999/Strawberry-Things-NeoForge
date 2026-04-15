@@ -92,7 +92,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         registerWoodSet(ModBlocks.SYCAMORE);
         registerWoodSet(ModBlocks.PLUM);
         registerNightmareWoodSet(ModBlocks.BLOODWOOD);
-        registerNightmareWoodSet(ModBlocks.VOID);
+        registerWoodSet(ModBlocks.VOID);
 
         registerFullStoneSet(ModBlocks.NIGHTSTONE);
         registerFullStoneSet(ModBlocks.GRIMSTONE);
