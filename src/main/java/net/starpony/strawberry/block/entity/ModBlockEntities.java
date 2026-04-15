@@ -22,7 +22,8 @@ public class ModBlockEntities {
                     BlockEntityType.Builder.of(ModSignBlockEntity::new,
                             ModBlocks.SYCAMORE.getSign().get(), ModBlocks.SYCAMORE.getWallSign().get(),
                             ModBlocks.PLUM.getSign().get(), ModBlocks.PLUM.getWallSign().get(),
-                            ModBlocks.BLOODWOOD.getSign().get(), ModBlocks.BLOODWOOD.getWallSign().get()
+                            ModBlocks.BLOODWOOD.getSign().get(), ModBlocks.BLOODWOOD.getWallSign().get(),
+                            ModBlocks.VOID.getSign().get(), ModBlocks.VOID.getWallSign().get()
                     ).build(null));
 
     public static final Supplier<BlockEntityType<ModHangingSignBlockEntity>> MOD_HANGING_SIGN =
@@ -30,7 +31,8 @@ public class ModBlockEntities {
                     BlockEntityType.Builder.of(ModHangingSignBlockEntity::new,
                             ModBlocks.SYCAMORE.getHangingSign().get(), ModBlocks.SYCAMORE.getWallHangingSign().get(),
                             ModBlocks.PLUM.getHangingSign().get(), ModBlocks.PLUM.getWallHangingSign().get(),
-                            ModBlocks.BLOODWOOD.getHangingSign().get(), ModBlocks.BLOODWOOD.getWallHangingSign().get()
+                            ModBlocks.BLOODWOOD.getHangingSign().get(), ModBlocks.BLOODWOOD.getWallHangingSign().get(),
+                            ModBlocks.VOID.getHangingSign().get(), ModBlocks.VOID.getWallHangingSign().get()
                     ).build(null));
 
     public static void register(IEventBus eventBus) {

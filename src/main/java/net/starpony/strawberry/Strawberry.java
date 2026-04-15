@@ -107,6 +107,7 @@ public class Strawberry {
                 registerColorSetRenderLayers(ModBlocks.TURQUOISE);
                 registerColorSetRenderLayers(ModBlocks.LAVENDER);
                 registerColorSetRenderLayers(ModBlocks.INDIGO);
+                registerColorSetRenderLayers(ModBlocks.TAN);
                 EntityRenderers.register(ModEntities.MOOBLOOM.get(), MoobloomRenderer::new);
             });
         }
