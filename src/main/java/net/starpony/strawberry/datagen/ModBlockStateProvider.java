@@ -398,19 +398,23 @@ public class ModBlockStateProvider extends BlockStateProvider {
     }
     private void torchBlock(TorchBlock block, ResourceLocation texture) {
         String name = key(block).getPath();
-        ModelFile model = models().torch(name, texture).renderType("cutout");
+        ModelFile model = models().withExistingParent(name, mcLoc("block/template_torch"))
+                .texture("torch", texture)
+                .renderType("cutout");
         simpleBlock(block, model);
     }
 
     private void wallTorchBlock(WallTorchBlock block, ResourceLocation texture) {
         String name = key(block).getPath();
-        ModelFile model = models().torchWall(name, texture).renderType("cutout");
+        ModelFile model = models().withExistingParent(name, mcLoc("block/template_torch_wall"))
+                .texture("torch", texture)
+                .renderType("cutout");
 
         getVariantBuilder(block).forAllStates(state -> {
             Direction direction = state.getValue(WallTorchBlock.FACING);
             return ConfiguredModel.builder()
                     .modelFile(model)
-                    .rotationY(getYRotation(direction))
+                    .rotationY(getYRotation(direction.getOpposite()))
                     .build();
         });
     }
