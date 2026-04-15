@@ -41,6 +41,16 @@ public class ModFoodProperties {
             .effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 600, 2), .5f)
             .build();
 
+
+    public static final FoodProperties FRUIT_SALAD = new FoodProperties.Builder()
+            .nutrition(6).saturationModifier(0.6f).build();
+
+    public static final FoodProperties VEGGIE_STIR_FRY = new FoodProperties.Builder()
+            .nutrition(7).saturationModifier(0.8f).build();
+
+    public static final FoodProperties SEAFOOD_STIR_FRY = new FoodProperties.Builder()
+            .nutrition(10).saturationModifier(1.2f).build();
+
     // Sodas give twice the nutrition, but half the saturation
     // Sprite gets the same amount of saturation since it uses lemons and limes
 

@@ -16,6 +16,7 @@ import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.animal.Animal;
+import net.minecraft.world.entity.animal.Cow;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ItemUtils;
@@ -117,9 +118,46 @@ public class MoobloomEntity extends Animal {
             player.setItemInHand(hand, result);
 
             return InteractionResult.sidedSuccess(this.level().isClientSide);
+        } else if (itemstack.is(Items.SHEARS) && this.isAlive() && !this.isBaby()) {
+            if (!this.level().isClientSide()) {
+                this.shearAndConvert();
+                itemstack.hurtAndBreak(1, player, getSlotForHand(hand));
+                this.playSound(SoundEvents.MOOSHROOM_SHEAR, 1.0F, 1.0F);
+            }
+            return InteractionResult.sidedSuccess(this.level().isClientSide);
         } else {
             return super.mobInteract(player, hand);
         }
+    }
+
+    private void shearAndConvert() {
+        if (!(this.level() instanceof ServerLevel serverLevel)) {
+            return;
+        }
+
+        Cow cow = EntityType.COW.create(serverLevel, EntitySpawnReason.CONVERSION);
+        if (cow == null) {
+            return;
+        }
+
+        cow.moveTo(this.getX(), this.getY(), this.getZ(), this.getYRot(), this.getXRot());
+        cow.setHealth(this.getHealth());
+        cow.yBodyRot = this.yBodyRot;
+        if (this.hasCustomName()) {
+            cow.setCustomName(this.getCustomName());
+            cow.setCustomNameVisible(this.isCustomNameVisible());
+        }
+        if (this.isPersistenceRequired()) {
+            cow.setPersistenceRequired();
+        }
+        cow.setInvulnerable(this.isInvulnerable());
+        cow.setNoAi(this.isNoAi());
+
+        serverLevel.addFreshEntity(cow);
+        for (int i = 0; i < 5; i++) {
+            this.spawnAtLocation(Items.DANDELION);
+        }
+        this.discard();
     }
 
     private SuspiciousStewEffects.Entry getRandomEffect() {

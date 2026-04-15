@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "food",
+  "ingredients": [
+    { "tag": "strawberry:cooked_fish" },
+    { "item": "strawberry:corn" },
+    { "item": "strawberry:cauliflower" },
+    [
+      { "item": "minecraft:brown_mushroom" },
+      { "item": "minecraft:red_mushroom" }
+    ],
+    { "item": "minecraft:carrot" },
+    { "item": "minecraft:bowl" }
+  ],
+  "result": {
+    "id": "strawberry:seafood_stir_fry",
+    "count": 1
+  }
+}

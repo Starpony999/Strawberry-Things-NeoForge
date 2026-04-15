@@ -93,6 +93,9 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.PLUM_SODA.get());
         basicItem(ModItems.CHERRY_SODA.get());
         basicItem(ModItems.CHOCOLATE.get());
+        basicItem(ModItems.FRUIT_SALAD.get());
+        basicItem(ModItems.VEGGIE_STIR_FRY.get());
+        basicItem(ModItems.SEAFOOD_STIR_FRY.get());
         basicItem(ModItems.CHOCOLATE_SYRUP.get());
         basicItem(ModItems.CHOCOLATE_MILK.get());
 

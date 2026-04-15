@@ -1,0 +1,18 @@
+{
+  "replace": false,
+  "values": [
+    "strawberry:grapes",
+    "strawberry:lemon",
+    "strawberry:lime",
+    "strawberry:orange",
+    "strawberry:strawberry",
+    "strawberry:blueberry",
+    "strawberry:cherry",
+    "strawberry:plum_fruit",
+    "minecraft:apple",
+    "minecraft:melon_slice",
+    "minecraft:chorus_fruit",
+    "minecraft:glow_berries",
+    "minecraft:sweet_berries"
+  ]
+}

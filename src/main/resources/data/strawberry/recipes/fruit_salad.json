@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "food",
+  "ingredients": [
+    { "tag": "strawberry:fruits" },
+    { "tag": "strawberry:fruits" },
+    { "tag": "strawberry:fruits" },
+    { "item": "minecraft:bowl" }
+  ],
+  "result": {
+    "id": "strawberry:fruit_salad",
+    "count": 1
+  }
+}

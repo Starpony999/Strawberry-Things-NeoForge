@@ -60,12 +60,15 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.LEMON);
                         output.accept(ModItems.PLUM_FRUIT);
                         output.accept(ModItems.CHERRY);
+                        output.accept(ModItems.FRUIT_SALAD);
 
                         //veggies
                         output.accept(ModItems.CAULIFLOWER);
                         output.accept(ModItems.CAULIFLOWER_SEEDS);
                         output.accept(ModItems.CORN);
                         output.accept(ModItems.CORN_SEEDS);
+                        output.accept(ModItems.VEGGIE_STIR_FRY);
+                        output.accept(ModItems.SEAFOOD_STIR_FRY);
 
                         //drinks
                         output.accept(ModItems.SODA_CAN);
