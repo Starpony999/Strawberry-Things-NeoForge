@@ -8,6 +8,7 @@ import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.StandingAndWallBlockItem;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.grower.TreeGrower;
@@ -669,7 +670,7 @@ public class ModBlocks {
     }
     private static TorchSet registerTorchSet(String name, Supplier<SimpleParticleType> particle) {
 
-        DeferredBlock<Block> torch = registerBlock(name + "_torch",
+        DeferredBlock<Block> torch = registerBlockWithoutItem(name + "_torch",
                 () -> new DeferredParticleTorchBlock(
                         particle,
                         BlockBehaviour.Properties.of()
@@ -693,6 +694,13 @@ public class ModBlocks {
                                 .pushReaction(PushReaction.DESTROY)
                 )
         );
+
+        ModItems.ITEMS.register(name + "_torch", () -> new StandingAndWallBlockItem(
+                torch.get(),
+                wallTorch.get(),
+                new Item.Properties(),
+                Direction.DOWN
+        ));
 
         DeferredBlock<Block> lantern = registerBlock(name + "_lantern",
                 () -> new ColoredLanternBlock(
