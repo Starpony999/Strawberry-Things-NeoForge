@@ -253,6 +253,7 @@ public class ModCreativeModeTabs {
                         SetUtils.addRedWoodSet(output, ModBlocks.SYCAMORE);
                         SetUtils.addRedWoodSet(output, ModBlocks.PLUM);
                         SetUtils.addRedWoodSet(output, ModBlocks.BLOODWOOD);
+                        SetUtils.addRedWoodSet(output, ModBlocks.VOID);
 
                     }).build());
     public static void register(IEventBus eventBus) {

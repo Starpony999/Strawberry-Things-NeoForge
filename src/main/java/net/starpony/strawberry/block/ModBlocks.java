@@ -416,7 +416,7 @@ public class ModBlocks {
         DeferredBlock<Block> terracotta = registerBlock(name + "_terracotta",
                 () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.TERRACOTTA)));
         DeferredBlock<Block> glazedTerracotta = registerBlock(name + "_glazed_terracotta",
-                () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_GLAZED_TERRACOTTA)));
+                () -> new GlazedTerracottaBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_GLAZED_TERRACOTTA)));
         DeferredBlock<Block> wool = registerBlock(name + "_wool",
                 () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_WOOL)));
         DeferredBlock<Block> stainedGlass = registerBlock(name + "_stained_glass",

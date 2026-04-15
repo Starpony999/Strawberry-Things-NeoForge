@@ -101,6 +101,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         registerColorSet(ModBlocks.TURQUOISE);
         registerColorSet(ModBlocks.LAVENDER);
         registerColorSet(ModBlocks.INDIGO);
+        registerColorSet(ModBlocks.TAN);
 
         customLamp();
 
@@ -300,7 +301,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockWithItem(set.getConcrete());
         blockWithItem(set.getConcretePowder());
         blockWithItem(set.getTerracotta());
-        blockWithItem(set.getGlazedTerracotta());
+        horizontalBlock(set.getGlazedTerracotta().get(), cubeAll(set.getGlazedTerracotta().get()));
+        blockItem(set.getGlazedTerracotta());
         blockWithItem(set.getWool());
         blockWithItem(set.getStainedGlass());
 
