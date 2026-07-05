@@ -29,15 +29,15 @@ public class ModItems {
     public static final DeferredItem<Item> ALUMINUM_INGOT = ITEMS.register("aluminum_ingot", () -> new Item(new Item.Properties()));
     public static final DeferredItem<Item> RAW_ALUMINUM = ITEMS.register("raw_aluminum", () -> new Item(new Item.Properties()));
     public static final DeferredItem<Item> DIAMOND_SHARD = ITEMS.register("diamond_shard", () -> new Item(new Item.Properties()));
-    public static final DeferredItem<Item> NETHERITE_NUGGET = ITEMS.register("netherite_nugget", () -> new Item(new Item.Properties()));
-    public static final DeferredItem<Item> NETHERTHYST = ITEMS.register("netherthyst", () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> NETHERITE_NUGGET = ITEMS.register("netherite_nugget", () -> new Item(new Item.Properties().fireResistant()));
+    public static final DeferredItem<Item> NETHERTHYST = ITEMS.register("netherthyst", () -> new Item(new Item.Properties().fireResistant()));
     public static final DeferredItem<Item> ENDERTHYST = ITEMS.register("enderthyst", () -> new Item(new Item.Properties()));
     public static final DeferredItem<Item> THULITE_SHARD = ITEMS.register("thulite_shard", () -> new Item(new Item.Properties()));
     public static final DeferredItem<Item> RAW_ROSE_QUARTZ = ITEMS.register("raw_rose_quartz", () -> new Item(new Item.Properties()));
-    public static final GemSet RUBY = registerGemSet("ruby", ModToolTiers.RUBY, ModArmorMaterials.RUBY_ARMOR_MATERIAL, true);
-    public static final GemSet SAPPHIRE = registerGemSet("sapphire", ModToolTiers.SAPPHIRE, ModArmorMaterials.SAPPHIRE_ARMOR_MATERIAL, true);
-    public static final GemSet ROSE_QUARTZ = registerGemSet("rose_quartz", ModToolTiers.ROSE_QUARTZ, ModArmorMaterials.ROSE_QUARTZ_ARMOR_MATERIAL, true);
-    public static final GemSet OTHERWORLDLY_AMETHYST = registerGemSet("otherworldly_amethyst", ModToolTiers.OTHERWORLDLY_AMETHYST, ModArmorMaterials.OTHERWORLDLY_AMETHYST_ARMOR_MATERIAL, false);
+    public static final GemSet RUBY = registerGemSet("ruby", ModToolTiers.RUBY, ModArmorMaterials.RUBY_ARMOR_MATERIAL, true, true);
+    public static final GemSet SAPPHIRE = registerGemSet("sapphire", ModToolTiers.SAPPHIRE, ModArmorMaterials.SAPPHIRE_ARMOR_MATERIAL, true, false);
+    public static final GemSet ROSE_QUARTZ = registerGemSet("rose_quartz", ModToolTiers.ROSE_QUARTZ, ModArmorMaterials.ROSE_QUARTZ_ARMOR_MATERIAL, true, false);
+    public static final GemSet OTHERWORLDLY_AMETHYST = registerGemSet("otherworldly_amethyst", ModToolTiers.OTHERWORLDLY_AMETHYST, ModArmorMaterials.OTHERWORLDLY_AMETHYST_ARMOR_MATERIAL, false, true);
 
     //Dyes
     public static final DeferredItem<Item> CERISE_DYE = ITEMS.register("cerise_dye", () -> new Item(new Item.Properties()));
@@ -95,9 +95,9 @@ public class ModItems {
     public static final DeferredItem<Item> CHOCOLATE_MILK = ITEMS.register("chocolate_milk", () -> new ChocolateMilkItem(new Item.Properties().stacksTo(1).food(ModFoodProperties.CHOCOLATE_MILK)));
 
     // Individual GemSet Items
-    public static final DeferredItem<Item> ROSE_QUARTZ_HAMMER = ITEMS.register("rose_quartz_hammer", () -> new HammerItem(ModToolTiers.ROSE_QUARTZ, new Item.Properties()));
-    public static final DeferredItem<Item> OTHERWORLDLY_AMETHYST_HAMMER = ITEMS.register("otherworldly_amethyst_hammer", () -> new HammerItem(ModToolTiers.OTHERWORLDLY_AMETHYST, new Item.Properties()));
-    public static final DeferredItem<ArmorItem> NETHERITE_HORSE_ARMOR = ITEMS.register("netherite_horse_armor", () -> new AnimalArmorItem(ArmorMaterials.NETHERITE, AnimalArmorItem.BodyType.EQUESTRIAN, false, new Item.Properties().stacksTo(1)));
+    public static final DeferredItem<Item> ROSE_QUARTZ_HAMMER = ITEMS.register("rose_quartz_hammer", () -> new HammerItem(ModToolTiers.ROSE_QUARTZ, new Item.Properties().fireResistant()));
+    public static final DeferredItem<Item> OTHERWORLDLY_AMETHYST_HAMMER = ITEMS.register("otherworldly_amethyst_hammer", () -> new HammerItem(ModToolTiers.OTHERWORLDLY_AMETHYST, new Item.Properties().fireResistant()));
+    public static final DeferredItem<ArmorItem> NETHERITE_HORSE_ARMOR = ITEMS.register("netherite_horse_armor", () -> new AnimalArmorItem(ArmorMaterials.NETHERITE, AnimalArmorItem.BodyType.EQUESTRIAN, false, new Item.Properties().fireResistant().stacksTo(1)));
 
     //Smithing
     public static final DeferredItem<Item> COVER_SMITHING_TEMPLATE = ITEMS.register("cover_armor_trim_smithing_template", () -> SmithingTemplateItem.createArmorTrimTemplate(ResourceLocation.fromNamespaceAndPath(Strawberry.MOD_ID, "cover")));
@@ -112,51 +112,60 @@ public class ModItems {
     public static final WoodSet VOID = registerWoodSet("void", ModBlocks.VOID);
 
     //Registry Helpers
-    public static GemSet registerGemSet(String name, Tier toolMaterial, Holder armorMaterial, boolean withShard) {
+    public static GemSet registerGemSet(String name, Tier toolMaterial, Holder armorMaterial, boolean withShard, boolean fireproof) {
 
         String lower = name.toLowerCase();
 
         DeferredItem<Item> sword = ITEMS.register(lower + "_sword",
-                () -> new SwordItem(toolMaterial, new Item.Properties()));
+                () -> new SwordItem(toolMaterial, props(fireproof)));
 
         DeferredItem<Item> pickaxe = ITEMS.register(lower + "_pickaxe",
-                () -> new PickaxeItem(toolMaterial, new Item.Properties()));
+                () -> new PickaxeItem(toolMaterial, props(fireproof)));
 
         DeferredItem<Item> shovel = ITEMS.register(lower + "_shovel",
-                () -> new ShovelItem(toolMaterial, new Item.Properties()));
+                () -> new ShovelItem(toolMaterial, props(fireproof)));
 
         DeferredItem<Item> axe = ITEMS.register(lower + "_axe",
-                () -> new AxeItem(toolMaterial, new Item.Properties()));
+                () -> new AxeItem(toolMaterial, props(fireproof)));
 
         DeferredItem<Item> hoe = ITEMS.register(lower + "_hoe",
-                () -> new HoeItem(toolMaterial, new Item.Properties()));
+                () -> new HoeItem(toolMaterial, props(fireproof)));
 
         DeferredItem<ArmorItem> helmet = ITEMS.register(lower + "_helmet",
                 () -> new ModArmorItem(armorMaterial, ArmorItem.Type.HELMET,
-                        new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(19))));
+                        props(fireproof).durability(ArmorItem.Type.HELMET.getDurability(19))));
+
         DeferredItem<ArmorItem> chestplate = ITEMS.register(lower + "_chestplate",
                 () -> new ModArmorItem(armorMaterial, ArmorItem.Type.CHESTPLATE,
-                        new Item.Properties().durability(ArmorItem.Type.CHESTPLATE.getDurability(19))));
+                        props(fireproof).durability(ArmorItem.Type.CHESTPLATE.getDurability(19))));
+
         DeferredItem<ArmorItem> leggings = ITEMS.register(lower + "_leggings",
-                (          () -> new ModArmorItem(armorMaterial, ArmorItem.Type.LEGGINGS,
-                        new Item.Properties().durability(ArmorItem.Type.LEGGINGS.getDurability(19)))));
+                () -> new ModArmorItem(armorMaterial, ArmorItem.Type.LEGGINGS,
+                        props(fireproof).durability(ArmorItem.Type.LEGGINGS.getDurability(19))));
+
         DeferredItem<ArmorItem> boots = ITEMS.register(lower + "_boots",
                 () -> new ModArmorItem(armorMaterial, ArmorItem.Type.BOOTS,
-                        new Item.Properties().durability(ArmorItem.Type.BOOTS.getDurability(19))));
+                        props(fireproof).durability(ArmorItem.Type.BOOTS.getDurability(19))));
 
         DeferredItem<ArmorItem> horseArmor = ITEMS.register(lower + "_horse_armor",
                 () -> new AnimalArmorItem(armorMaterial, AnimalArmorItem.BodyType.EQUESTRIAN, false,
-                        new Item.Properties().stacksTo(1)));
+                        props(fireproof).stacksTo(1)));
 
         DeferredItem<Item> gem = ITEMS.register(lower,
-                () -> new Item(new Item.Properties()));
+                () -> new Item(props(fireproof)));
 
         DeferredItem<Item> shard = withShard
-                ? ITEMS.register(lower + "_shard", () -> new Item(new Item.Properties()))
+                ? ITEMS.register(lower + "_shard", () -> new Item(props(fireproof)))
                 : null;
 
         return new GemSet(name, gem, shard, hoe, axe, pickaxe, sword, shovel,
                 helmet, chestplate, leggings, boots, horseArmor);
+    }
+
+    // Helper method for properties
+    private static Item.Properties props(boolean fireproof) {
+        Item.Properties props = new Item.Properties();
+        return fireproof ? props.fireResistant() : props;
     }
     public static WoodSet registerWoodSet(String name, WoodSet woodSet) {
         DeferredItem<Item> sign = ITEMS.register(name + "_sign_item",

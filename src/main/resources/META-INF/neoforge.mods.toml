@@ -4,9 +4,9 @@ license="MIT"
 
 [[mods]]
 modId="strawberry"
-version="1.0.0"
+version="1.0.1"
 displayName="Strawberry Things"
-authors="Your Name"
+authors="Starpony999 and RalfiShores"
 description='''
 Strawberry Things
 '''

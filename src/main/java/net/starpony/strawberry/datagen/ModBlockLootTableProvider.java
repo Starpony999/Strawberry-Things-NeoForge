@@ -207,6 +207,23 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         dropSelf(set.getSmoothWall().get());
         dropSelf(set.getSmoothButton().get());
         dropSelf(set.getSmoothPressurePlate().get());
+
+        // ===== TILES =====
+        dropSelf(set.getTiles().get());
+        dropSelf(set.getTilesStairs().get());
+        add(set.getTilesSlab().get(), block -> createSlabItemTable(set.getTilesSlab().get()));
+        dropSelf(set.getTilesWall().get());
+        dropSelf(set.getTilesButton().get());
+        dropSelf(set.getTilesPressurePlate().get());
+
+        // ===== CRACKED TILES =====
+        dropSelf(set.getCrackedTiles().get());
+        dropSelf(set.getCrackedTilesStairs().get());
+        add(set.getCrackedTilesSlab().get(), block -> createSlabItemTable(set.getCrackedTilesSlab().get()));
+        dropSelf(set.getCrackedTilesWall().get());
+        dropSelf(set.getCrackedTilesButton().get());
+        dropSelf(set.getCrackedTilesPressurePlate().get());
+
     }
     private void handleWoodSet(WoodSet set) {
         dropSelf(set.getLog().get());

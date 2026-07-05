@@ -41,6 +41,19 @@ public class SetUtils {
         output.accept(stone.getChiseledWall());
         output.accept(stone.getChiseledStairs());
         output.accept(stone.getChiseledSlab());
+
+        // Tiles
+        output.accept(stone.getTiles());
+        output.accept(stone.getTilesWall());
+        output.accept(stone.getTilesStairs());
+        output.accept(stone.getTilesSlab());
+
+        // Cracked Tiles
+        output.accept(stone.getCrackedTiles());
+        output.accept(stone.getCrackedTilesWall());
+        output.accept(stone.getCrackedTilesStairs());
+        output.accept(stone.getCrackedTilesSlab());
+
     }
     public static void addSimpleStoneSet(CreativeModeTab.Output output, SimpleStoneSet stoneSet) {
         output.accept(stoneSet.getStone());
@@ -113,6 +126,11 @@ public class SetUtils {
         output.accept(stone.getCrackedBricksPressurePlate());
         output.accept(stone.getChiseledButton());
         output.accept(stone.getChiseledPressurePlate());
+        output.accept(stone.getTilesButton());
+        output.accept(stone.getTilesPressurePlate());
+        output.accept(stone.getCrackedTilesButton());
+        output.accept(stone.getCrackedTilesPressurePlate());
+
     }
     public static void addSimpleRedStoneSet(CreativeModeTab.Output output, SimpleStoneSet stoneSet) {
         output.accept(stoneSet.getButton());

@@ -54,6 +54,23 @@ public class StoneSet {
     public final DeferredBlock<ButtonBlock> smoothButton;
     public final DeferredBlock<PressurePlateBlock> smoothPressurePlate;
 
+    // Tiles
+    public final DeferredBlock<Block> tiles;
+    public final DeferredBlock<StairBlock> tilesStairs;
+    public final DeferredBlock<SlabBlock> tilesSlab;
+    public final DeferredBlock<WallBlock> tilesWall;
+    public final DeferredBlock<ButtonBlock> tilesButton;
+    public final DeferredBlock<PressurePlateBlock> tilesPressurePlate;
+
+    // Cracked Tiles
+    public final DeferredBlock<Block> crackedTiles;
+    public final DeferredBlock<StairBlock> crackedTilesStairs;
+    public final DeferredBlock<SlabBlock> crackedTilesSlab;
+    public final DeferredBlock<WallBlock> crackedTilesWall;
+    public final DeferredBlock<ButtonBlock> crackedTilesButton;
+    public final DeferredBlock<PressurePlateBlock> crackedTilesPressurePlate;
+
+
     public StoneSet(
             String baseName,
             DeferredBlock<Block> base, DeferredBlock<StairBlock> stairs, DeferredBlock<SlabBlock> slab, DeferredBlock<WallBlock> wall, DeferredBlock<ButtonBlock> button, DeferredBlock<PressurePlateBlock> pressurePlate,
@@ -61,8 +78,10 @@ public class StoneSet {
             DeferredBlock<Block> chiseled, DeferredBlock<StairBlock> chiseledStairs, DeferredBlock<SlabBlock> chiseledSlab, DeferredBlock<WallBlock> chiseledWall, DeferredBlock<ButtonBlock> chiseledButton, DeferredBlock<PressurePlateBlock> chiseledPressurePlate,
             DeferredBlock<Block> bricks, DeferredBlock<StairBlock> bricksStairs, DeferredBlock<SlabBlock> bricksSlab, DeferredBlock<WallBlock> bricksWall, DeferredBlock<ButtonBlock> bricksButton, DeferredBlock<PressurePlateBlock> bricksPressurePlate,
             DeferredBlock<Block> crackedBricks, DeferredBlock<StairBlock> crackedBricksStairs, DeferredBlock<SlabBlock> crackedBricksSlab, DeferredBlock<WallBlock> crackedBricksWall, DeferredBlock<ButtonBlock> crackedBricksButton, DeferredBlock<PressurePlateBlock> crackedBricksPressurePlate,
-            DeferredBlock<Block> smooth, DeferredBlock<StairBlock> smoothStairs, DeferredBlock<SlabBlock> smoothSlab, DeferredBlock<WallBlock> smoothWall, DeferredBlock<ButtonBlock> smoothButton, DeferredBlock<PressurePlateBlock> smoothPressurePlate
-    ) {
+            DeferredBlock<Block> smooth, DeferredBlock<StairBlock> smoothStairs, DeferredBlock<SlabBlock> smoothSlab, DeferredBlock<WallBlock> smoothWall, DeferredBlock<ButtonBlock> smoothButton, DeferredBlock<PressurePlateBlock> smoothPressurePlate,
+            DeferredBlock<Block> tiles, DeferredBlock<StairBlock> tilesStairs, DeferredBlock<SlabBlock> tilesSlab, DeferredBlock<WallBlock> tilesWall, DeferredBlock<ButtonBlock> tilesButton, DeferredBlock<PressurePlateBlock> tilesPressurePlate,
+            DeferredBlock<Block> crackedTiles, DeferredBlock<StairBlock> crackedTilesStairs, DeferredBlock<SlabBlock> crackedTilesSlab, DeferredBlock<WallBlock> crackedTilesWall, DeferredBlock<ButtonBlock> crackedTilesButton, DeferredBlock<PressurePlateBlock> crackedTilesPressurePlate
+            ) {
         this.baseName = baseName;
 
         this.base = base;
@@ -106,6 +125,21 @@ public class StoneSet {
         this.smoothWall = smoothWall;
         this.smoothButton = smoothButton;
         this.smoothPressurePlate = smoothPressurePlate;
+
+        this.tiles = tiles;
+        this.tilesStairs = tilesStairs;
+        this.tilesSlab = tilesSlab;
+        this.tilesWall = tilesWall;
+        this.tilesButton = tilesButton;
+        this.tilesPressurePlate = tilesPressurePlate;
+
+        this.crackedTiles = crackedTiles;
+        this.crackedTilesStairs = crackedTilesStairs;
+        this.crackedTilesSlab = crackedTilesSlab;
+        this.crackedTilesWall = crackedTilesWall;
+        this.crackedTilesButton = crackedTilesButton;
+        this.crackedTilesPressurePlate = crackedTilesPressurePlate;
+
     }
 
     public DeferredBlock<Block> getBase() { return base; }
@@ -149,4 +183,18 @@ public class StoneSet {
     public DeferredBlock<WallBlock> getSmoothWall() { return smoothWall; }
     public DeferredBlock<ButtonBlock> getSmoothButton() { return smoothButton; }
     public DeferredBlock<PressurePlateBlock> getSmoothPressurePlate() { return smoothPressurePlate; }
+
+    public DeferredBlock<Block> getTiles() { return tiles; }
+    public DeferredBlock<StairBlock> getTilesStairs() { return tilesStairs; }
+    public DeferredBlock<SlabBlock> getTilesSlab() { return tilesSlab; }
+    public DeferredBlock<WallBlock> getTilesWall() { return tilesWall; }
+    public DeferredBlock<ButtonBlock> getTilesButton() { return tilesButton; }
+    public DeferredBlock<PressurePlateBlock> getTilesPressurePlate() { return tilesPressurePlate; }
+
+    public DeferredBlock<Block> getCrackedTiles() { return crackedTiles; }
+    public DeferredBlock<StairBlock> getCrackedTilesStairs() { return crackedTilesStairs; }
+    public DeferredBlock<SlabBlock> getCrackedTilesSlab() { return crackedTilesSlab; }
+    public DeferredBlock<WallBlock> getCrackedTilesWall() { return crackedTilesWall; }
+    public DeferredBlock<ButtonBlock> getCrackedTilesButton() { return crackedTilesButton; }
+    public DeferredBlock<PressurePlateBlock> getCrackedTilesPressurePlate() { return crackedTilesPressurePlate; }
 }

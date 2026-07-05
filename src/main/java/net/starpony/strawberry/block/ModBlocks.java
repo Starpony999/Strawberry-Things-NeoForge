@@ -39,16 +39,20 @@ public class ModBlocks {
     public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(Strawberry.MOD_ID);
 
     // Blocks
-    public static final DeferredBlock<Block> RUBY_BLOCK = registerBlock("ruby_block", () -> new Block(BlockBehaviour.Properties.of().strength(6f).requiresCorrectToolForDrops().sound(SoundType.METAL)));
+    public static final DeferredBlock<Block> RUBY_BLOCK = registerFireProofBlock("ruby_block", () -> new Block(BlockBehaviour.Properties.of().strength(6f).requiresCorrectToolForDrops().sound(SoundType.METAL)));
     public static final DeferredBlock<Block> SAPPHIRE_BLOCK = registerBlock("sapphire_block", () -> new Block(BlockBehaviour.Properties.of().strength(5f).requiresCorrectToolForDrops().sound(SoundType.METAL)));
-    public static final DeferredBlock<Block> ALUMINUM_BLOCK = registerBlock("aluminum_block", () -> new Block(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops().sound(SoundType.METAL)));
+    static public final DeferredBlock<Block> ALUMINUM_BLOCK = registerBlock("aluminum_block", () -> new Block(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops().sound(SoundType.METAL)));
     public static final DeferredBlock<Block> RAW_ALUMINUM_BLOCK = registerBlock("raw_aluminum_block", () -> new Block(BlockBehaviour.Properties.of().strength(5f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
     public static final DeferredBlock<Block> RAW_ROSE_QUARTZ_BLOCK = registerBlock("raw_rose_quartz_block", () -> new Block(BlockBehaviour.Properties.of().strength(5f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
     public static final DeferredBlock<Block> ROSE_QUARTZ_BLOCK = registerBlock("rose_quartz_block", () -> new Block(BlockBehaviour.Properties.of().strength(5f).requiresCorrectToolForDrops().sound(SoundType.METAL)));
-    public static final DeferredBlock<Block> OTHERWORLDLY_AMETHYST_BLOCK = registerBlock("otherworldly_amethyst_block", () -> new Block(BlockBehaviour.Properties.of().strength(50f).requiresCorrectToolForDrops().sound(SoundType.AMETHYST)));
+    public static final DeferredBlock<Block> OTHERWORLDLY_AMETHYST_BLOCK = registerFireProofBlock("otherworldly_amethyst_block", () -> new Block(BlockBehaviour.Properties.of().strength(50f).requiresCorrectToolForDrops().sound(SoundType.AMETHYST)));
     public static final DeferredBlock<Block> HELLSHROOM_LIGHT = registerBlock("hellshroom_light", () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_RED).strength(1.0F).sound(SoundType.SHROOMLIGHT).lightLevel(p_152663_ -> 15)));
     public static final DeferredBlock<Block> NIGHT_TERRIA = registerBlock("night_terria", () -> new Block(BlockBehaviour.Properties.of().strength(0.5f).sound(SoundType.GRAVEL)));
 
+    public static final DeferredBlock<DoorBlock> ALUMINUM_DOOR = registerBlock("aluminum_door", () -> new DoorBlock(BlockSetType.COPPER, BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_DOOR).noOcclusion()));
+    public static final DeferredBlock<TrapDoorBlock> ALUMINUM_TRAPDOOR = registerBlock("aluminum_trapdoor", () -> new TrapDoorBlock(BlockSetType.COPPER, BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_TRAPDOOR).noOcclusion()));
+    public static final DeferredBlock<Block> ALUMINUM_GRATE = registerBlock("aluminum_grate", () -> new Block(BlockBehaviour.Properties.of().strength(3.0F, 6.0F).sound(SoundType.COPPER_GRATE).noOcclusion().requiresCorrectToolForDrops().isValidSpawn(Blocks::never)));
+    static public final DeferredBlock<Block> CHISELED_ALUMINUM = registerBlock("chiseled_aluminum", () -> new Block(BlockBehaviour.Properties.of().strength(4f).requiresCorrectToolForDrops().sound(SoundType.METAL)));
 
     //Thulite Geodes
     public static final DeferredBlock<Block> GNEISS = registerBlock("gneiss", () -> new RandomTextureBlock(BlockBehaviour.Properties.of().strength(1.25f).requiresCorrectToolForDrops().sound(SoundType.BASALT)));
@@ -63,14 +67,14 @@ public class ModBlocks {
     // Ores
     public static final DeferredBlock<Block> ALUMINUM_ORE = registerBlock("aluminum_ore", () -> new DropExperienceBlock(UniformInt.of(1, 3), BlockBehaviour.Properties.of().strength(3f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
     public static final DeferredBlock<Block> DEEPSLATE_ALUMINUM_ORE = registerBlock("deepslate_aluminum_ore", () -> new DropExperienceBlock(UniformInt.of(2, 4), BlockBehaviour.Properties.of().strength(4.5f).requiresCorrectToolForDrops().sound(SoundType.DEEPSLATE)));
-    public static final DeferredBlock<Block> RUBY_ORE = registerBlock("ruby_ore", () -> new DropExperienceBlock(UniformInt.of(2, 5), BlockBehaviour.Properties.of().strength(3f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
-    public static final DeferredBlock<Block> DEEPSLATE_RUBY_ORE = registerBlock("deepslate_ruby_ore", () -> new DropExperienceBlock(UniformInt.of(3, 6), BlockBehaviour.Properties.of().strength(4.5f).requiresCorrectToolForDrops().sound(SoundType.DEEPSLATE)));
+    public static final DeferredBlock<Block> RUBY_ORE = registerFireProofBlock("ruby_ore", () -> new DropExperienceBlock(UniformInt.of(2, 5), BlockBehaviour.Properties.of().strength(3f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+    public static final DeferredBlock<Block> DEEPSLATE_RUBY_ORE = registerFireProofBlock("deepslate_ruby_ore", () -> new DropExperienceBlock(UniformInt.of(3, 6), BlockBehaviour.Properties.of().strength(4.5f).requiresCorrectToolForDrops().sound(SoundType.DEEPSLATE)));
     public static final DeferredBlock<Block> SAPPHIRE_ORE = registerBlock("sapphire_ore", () -> new DropExperienceBlock(UniformInt.of(2, 5), BlockBehaviour.Properties.of().strength(3f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
     public static final DeferredBlock<Block> DEEPSLATE_SAPPHIRE_ORE = registerBlock("deepslate_sapphire_ore", () -> new DropExperienceBlock(UniformInt.of(3, 6), BlockBehaviour.Properties.of().strength(4.5f).requiresCorrectToolForDrops().sound(SoundType.DEEPSLATE)));
     public static final DeferredBlock<Block> ROSE_QUARTZ_ORE = registerBlock("rose_quartz_ore", () -> new DropExperienceBlock(UniformInt.of(2, 6), BlockBehaviour.Properties.of().strength(5f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
     public static final DeferredBlock<Block> END_ROSE_QUARTZ_ORE = registerBlock("end_rose_quartz_ore", () -> new DropExperienceBlock(UniformInt.of(4, 8), BlockBehaviour.Properties.of().strength(5f).requiresCorrectToolForDrops()));
     public static final DeferredBlock<Block> ENDERTHYST_ORE = registerBlock("enderthyst_ore", () -> new Block(BlockBehaviour.Properties.of().strength(30f).requiresCorrectToolForDrops()));
-    public static final DeferredBlock<Block> NETHERTHYST_ORE = registerBlock("netherthyst_ore", () -> new Block(BlockBehaviour.Properties.of().strength(30f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+    public static final DeferredBlock<Block> NETHERTHYST_ORE = registerFireProofBlock("netherthyst_ore", () -> new Block(BlockBehaviour.Properties.of().strength(30f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
 
     // Crops
     public static final DeferredBlock<CropBlock> CAULIFLOWER_CROP = BLOCKS.register("cauliflower_crop",
@@ -118,6 +122,13 @@ public class ModBlocks {
     public static final SimpleStoneSet SEALED_EXPOSED_COBBLESTONE_BRICKS = registerSimpleStoneSet("sealed_exposed_cobblestone_bricks");
     public static final SimpleStoneSet SEALED_WEATHERED_COBBLESTONE_BRICKS = registerSimpleStoneSet("sealed_weathered_cobblestone_bricks");
     public static final SimpleStoneSet SEALED_AGED_COBBLESTONE_BRICKS = registerSimpleStoneSet("sealed_aged_cobblestone_bricks");
+    public static final SimpleStoneSet STONE_TILES = registerSimpleStoneSet("stone_tiles");
+    public static final SimpleStoneSet CRACKED_STONE_TILES = registerSimpleStoneSet("cracked_stone_tiles");
+    public static final SimpleStoneSet BLACKSTONE_TILES = registerSimpleStoneSet("blackstone_tiles");
+    public static final SimpleStoneSet CRACKED_BLACKSTONE_TILES = registerSimpleStoneSet("cracked_blackstone_tiles");
+    public static final SimpleStoneSet TUFF_TILES = registerSimpleStoneSet("tuff_tiles");
+    public static final SimpleStoneSet CRACKED_TUFF_TILES = registerSimpleStoneSet("cracked_tuff_tiles");
+
 
     public static final DeferredBlock<Block> COBBLESTONE_BUTTON = registerBlock("cobblestone_button", () -> new ButtonBlock(BlockSetType.STONE, 30, BlockBehaviour.Properties.of().noCollission()));
     public static final DeferredBlock<Block> COBBLESTONE_PRESSURE_PLATE = registerBlock("cobblestone_pressure_plate", () -> new PressurePlateBlock(BlockSetType.STONE, BlockBehaviour.Properties.of().strength(3f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
@@ -142,6 +153,8 @@ public class ModBlocks {
 
     // Registry helpers
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {DeferredBlock<T> deferred = BLOCKS.register(name, block);registerBlockItem(name, deferred);return deferred;}
+    private static <T extends Block> DeferredBlock<T> registerFireProofBlock(String name, Supplier<T> block) {DeferredBlock<T> deferred = BLOCKS.register(name, block);registerFireProofBlockItem(name, deferred);return deferred;}
+    private static <T extends Block> void registerFireProofBlockItem(String name, DeferredBlock<T> block) {ModItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties().fireResistant()));}
     private static <T extends Block> void registerBlockItem(String name, DeferredBlock<T> block) {ModItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));}
     private static <T extends Block> DeferredBlock<T> registerBlockWithoutItem(String name, Supplier<T> block) {return BLOCKS.register(name, block);}
 
@@ -398,6 +411,78 @@ public class ModBlocks {
                                 .strength(3f)
                                 .requiresCorrectToolForDrops()
                                 .sound(SoundType.STONE)));
+        // Tiles
+        DeferredBlock<Block> tiles = registerBlock(name + "_tiles",
+                () -> new Block(BlockBehaviour.Properties.of()
+                        .strength(3f)
+                        .requiresCorrectToolForDrops()
+                        .sound(SoundType.STONE)));
+
+        DeferredBlock<StairBlock> tilesStairs = registerBlock(name + "_tiles_stairs",
+                () -> new StairBlock(bricks.get().defaultBlockState(),
+                        BlockBehaviour.Properties.of()
+                                .strength(3f)
+                                .requiresCorrectToolForDrops()
+                                .sound(SoundType.STONE)));
+
+        DeferredBlock<SlabBlock> tilesSlab = registerBlock(name + "_tiles_slab",
+                () -> new SlabBlock(BlockBehaviour.Properties.of()
+                        .strength(2f)
+                        .sound(SoundType.STONE)));
+
+        DeferredBlock<WallBlock> tilesWall = registerBlock(name + "_tiles_wall",
+                () -> new WallBlock(BlockBehaviour.Properties.of()
+                        .strength(3f)
+                        .requiresCorrectToolForDrops()
+                        .sound(SoundType.STONE)));
+
+        DeferredBlock<ButtonBlock> tilesButton = registerBlock(name + "_tiles_button",
+                () -> new ButtonBlock(BlockSetType.STONE, 30,
+                        BlockBehaviour.Properties.of().noCollission()));
+
+        DeferredBlock<PressurePlateBlock> tilesPressurePlate = registerBlock(name + "_tiles_pressure_plate",
+                () -> new PressurePlateBlock(BlockSetType.STONE,
+                        BlockBehaviour.Properties.of()
+                                .strength(3f)
+                                .requiresCorrectToolForDrops()
+                                .sound(SoundType.STONE)));
+
+// Cracked Tiles
+        DeferredBlock<Block> crackedTiles = registerBlock("cracked_" + name + "_tiles",
+                () -> new Block(BlockBehaviour.Properties.of()
+                        .strength(3f)
+                        .requiresCorrectToolForDrops()
+                        .sound(SoundType.STONE)));
+
+        DeferredBlock<StairBlock> crackedTilesStairs = registerBlock("cracked_" + name + "_tiles_stairs",
+                () -> new StairBlock(crackedBricks.get().defaultBlockState(),
+                        BlockBehaviour.Properties.of()
+                                .strength(3f)
+                                .requiresCorrectToolForDrops()
+                                .sound(SoundType.STONE)));
+
+        DeferredBlock<SlabBlock> crackedTilesSlab = registerBlock("cracked_" + name + "_tiles_slab",
+                () -> new SlabBlock(BlockBehaviour.Properties.of()
+                        .strength(2f)
+                        .sound(SoundType.STONE)));
+
+        DeferredBlock<WallBlock> crackedTilesWall = registerBlock("cracked_" + name + "_tiles_wall",
+                () -> new WallBlock(BlockBehaviour.Properties.of()
+                        .strength(3f)
+                        .requiresCorrectToolForDrops()
+                        .sound(SoundType.STONE)));
+
+        DeferredBlock<ButtonBlock> crackedTilesButton = registerBlock("cracked_" + name + "_tiles_button",
+                () -> new ButtonBlock(BlockSetType.STONE, 30,
+                        BlockBehaviour.Properties.of().noCollission()));
+
+        DeferredBlock<PressurePlateBlock> crackedTilesPressurePlate = registerBlock("cracked_" + name + "_tiles_pressure_plate",
+                () -> new PressurePlateBlock(BlockSetType.STONE,
+                        BlockBehaviour.Properties.of()
+                                .strength(3f)
+                                .requiresCorrectToolForDrops()
+                                .sound(SoundType.STONE)));
+
 
         return new StoneSet(
                 name,
@@ -406,8 +491,10 @@ public class ModBlocks {
                 chiseled, chiseledStairs, chiseledSlab, chiseledWall, chiseledButton, chiseledPressurePlate,
                 bricks, bricksStairs, bricksSlab, bricksWall, bricksButton, bricksPressurePlate,
                 crackedBricks, crackedBricksStairs, crackedBricksSlab, crackedBricksWall, crackedBricksButton, crackedBricksPressurePlate,
-                smooth, smoothStairs, smoothSlab, smoothWall, smoothButton, smoothPressurePlate
-        );
+                smooth, smoothStairs, smoothSlab, smoothWall, smoothButton, smoothPressurePlate,
+                tiles, tilesStairs, tilesSlab, tilesWall, tilesButton, tilesPressurePlate,
+                crackedTiles, crackedTilesStairs, crackedTilesSlab, crackedTilesWall, crackedTilesButton, crackedTilesPressurePlate
+                );
     }
     private static ColorSet registerColorSet(String name, DyeColor dyeColor) {
         DeferredBlock<Block> concrete = registerBlock(name + "_concrete",

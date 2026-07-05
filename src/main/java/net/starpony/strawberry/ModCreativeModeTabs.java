@@ -154,6 +154,12 @@ public class ModCreativeModeTabs {
                         SetUtils.addSimpleStoneSet(output, ModBlocks.SEALED_AGED_COBBLESTONE_BRICKS);
                         SetUtils.addSimpleStoneSet(output, ModBlocks.SEALED_EXPOSED_COBBLESTONE);
                         SetUtils.addSimpleStoneSet(output, ModBlocks.SEALED_EXPOSED_COBBLESTONE_BRICKS);
+                        SetUtils.addSimpleStoneSet(output, ModBlocks.STONE_TILES);
+                        SetUtils.addSimpleStoneSet(output, ModBlocks.CRACKED_STONE_TILES);
+                        SetUtils.addSimpleStoneSet(output, ModBlocks.BLACKSTONE_TILES);
+                        SetUtils.addSimpleStoneSet(output, ModBlocks.CRACKED_BLACKSTONE_TILES);
+                        SetUtils.addSimpleStoneSet(output, ModBlocks.TUFF_TILES);
+                        SetUtils.addSimpleStoneSet(output, ModBlocks.CRACKED_TUFF_TILES);
 
                         SetUtils.addStoneSet(output, ModBlocks.GRIMSTONE);
                         SetUtils.addStoneSet(output, ModBlocks.NIGHTSTONE);
@@ -249,6 +255,13 @@ public class ModCreativeModeTabs {
                         SetUtils.addSimpleRedStoneSet(output, ModBlocks.AGED_COBBLESTONE_BRICKS);
                         SetUtils.addSimpleRedStoneSet(output, ModBlocks.EXPOSED_COBBLESTONE);
                         SetUtils.addSimpleRedStoneSet(output, ModBlocks.EXPOSED_COBBLESTONE_BRICKS);
+                        SetUtils.addSimpleRedStoneSet(output, ModBlocks.STONE_TILES);
+                        SetUtils.addSimpleRedStoneSet(output, ModBlocks.CRACKED_STONE_TILES);
+                        SetUtils.addSimpleRedStoneSet(output, ModBlocks.BLACKSTONE_TILES);
+                        SetUtils.addSimpleRedStoneSet(output, ModBlocks.CRACKED_BLACKSTONE_TILES);
+                        SetUtils.addSimpleRedStoneSet(output, ModBlocks.TUFF_TILES);
+                        SetUtils.addSimpleRedStoneSet(output, ModBlocks.CRACKED_TUFF_TILES);
+
 
                         SetUtils.addRedStoneSet(output, ModBlocks.GRIMSTONE);
                         SetUtils.addRedStoneSet(output, ModBlocks.NIGHTSTONE);

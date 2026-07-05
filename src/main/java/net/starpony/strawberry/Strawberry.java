@@ -8,6 +8,7 @@ import net.starpony.strawberry.block.ModBlocks;
 import net.starpony.strawberry.block.entity.ModBlockEntities;
 import net.starpony.strawberry.effect.ModEffects;
 import net.starpony.strawberry.entity.ModEntities;
+import net.starpony.strawberry.entity.client.ModBoatRenderer;
 import net.starpony.strawberry.entity.client.MoobloomRenderer;
 import net.starpony.strawberry.item.ModItems;
 import net.starpony.strawberry.item.ModArmorMaterials;
@@ -109,6 +110,8 @@ public class Strawberry {
                 registerColorSetRenderLayers(ModBlocks.INDIGO);
                 registerColorSetRenderLayers(ModBlocks.TAN);
                 EntityRenderers.register(ModEntities.MOOBLOOM.get(), MoobloomRenderer::new);
+                EntityRenderers.register(ModEntities.MOD_BOAT.get(), pContext -> new ModBoatRenderer(pContext, false));
+                EntityRenderers.register(ModEntities.MOD_CHEST_BOAT.get(), pContext -> new ModBoatRenderer(pContext, true));
             });
         }
 

@@ -91,6 +91,24 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         offerReversibleCompactingRecipes(exporter, RecipeCategory.BUILDING_BLOCKS, ModItems.ROSE_QUARTZ.getGem().get(), RecipeCategory.MISC, ModBlocks.ROSE_QUARTZ_BLOCK.get().asItem());
         offerReversibleCompactingRecipes(exporter, RecipeCategory.BUILDING_BLOCKS, ModItems.OTHERWORLDLY_AMETHYST.getGem().get(), RecipeCategory.MISC, ModBlocks.OTHERWORLDLY_AMETHYST_BLOCK.get().asItem());
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.ALUMINUM_DOOR)
+                .pattern("II")
+                .pattern("II")
+                .pattern("II")
+                .define('I', ModItems.ALUMINUM_INGOT)
+                .unlockedBy("has_" + (ModItems.ALUMINUM_INGOT), has(ModItems.ALUMINUM_INGOT))
+                .save(exporter, "aluminum_door_recipe_1");
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.ALUMINUM_GRATE)
+                .pattern(" I ")
+                .pattern("I I")
+                .pattern(" I ")
+                .define('I', ModBlocks.ALUMINUM_BLOCK)
+                .unlockedBy("has_" + (ModBlocks.ALUMINUM_BLOCK), has(ModBlocks.ALUMINUM_BLOCK))
+                .save(exporter, "aluminum_grate_recipe_1");
+
+        stonecutterResultFromBase(exporter, RecipeCategory.BUILDING_BLOCKS, ModBlocks.ALUMINUM_GRATE, ModBlocks.ALUMINUM_BLOCK, 4);
+
         ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, Items.BUCKET)
                 .pattern("I I")
                 .pattern(" I ")
@@ -128,7 +146,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .requires(ModItems.BLUEBERRY, 1)
                 .unlockedBy("has_" + (ModItems.BLUEBERRY), has(ModItems.BLUEBERRY))
                 .save(exporter, "dye_from_blueberry");
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, Items.PURPLE_DYE, 1)
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.INDIGO_DYE, 1)
                 .requires(ModItems.GRAPES, 1)
                 .unlockedBy("has_" + (ModItems.GRAPES), has(ModItems.GRAPES))
                 .save(exporter, "dye_from_grapes");
@@ -136,6 +154,10 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .requires(ModItems.STRAWBERRY, 1)
                 .unlockedBy("has_" + (ModItems.STRAWBERRY), has(ModItems.STRAWBERRY))
                 .save(exporter, "dye_from_strawberry");
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.TAN_DYE, 1)
+                .requires(ModItems.VANILLA, 1)
+                .unlockedBy("has_" + (ModItems.VANILLA), has(ModItems.VANILLA))
+                .save(exporter, "dye_from_vanilla");
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.CERISE_DYE, 2)
                 .requires(Items.RED_DYE, 1)
                 .requires(Items.PINK_DYE, 1)
@@ -148,6 +170,21 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_" + (Items.BLUE_DYE), has(Items.BLUE_DYE))
                 .unlockedBy("has_" + (Items.CYAN_DYE), has(Items.CYAN_DYE))
                 .save(exporter, "turquoise_from_dyes");
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.INDIGO_DYE, 2)
+                .requires(Items.BLUE_DYE, 1)
+                .requires(Items.PURPLE_DYE, 1)
+                .unlockedBy("has_" + (Items.BLUE_DYE), has(Items.BLUE_DYE))
+                .unlockedBy("has_" + (Items.PURPLE_DYE), has(Items.PURPLE_DYE))
+                .save(exporter, "indigo_from_dyes");
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.TAN_DYE, 2)
+                .requires(Items.BROWN_DYE, 1)
+                .requires(Items.WHITE_DYE, 1)
+                .unlockedBy("has_" + (Items.BROWN_DYE), has(Items.BROWN_DYE))
+                .unlockedBy("has_" + (Items.WHITE_DYE), has(Items.WHITE_DYE))
+                .save(exporter, "tan_from_dyes");
+
+
+        //food recipes
 
         //Soda Recipes
         offerSodaRecipeDirt(exporter, ModItems.DIRT_SODA.get(), Items.DIRT);
@@ -280,6 +317,9 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 
         registerColorSetRecipes(exporter, ModItems.CERISE_DYE.get(), ModBlocks.CERISE, "cerise");
         registerColorSetRecipes(exporter, ModItems.TURQUOISE_DYE.get(), ModBlocks.TURQUOISE, "turquoise");
+        registerColorSetRecipes(exporter, ModItems.LAVENDER_DYE.get(), ModBlocks.LAVENDER, "lavender");
+        registerColorSetRecipes(exporter, ModItems.INDIGO_DYE.get(), ModBlocks.INDIGO, "indigo");
+        registerColorSetRecipes(exporter, ModItems.TAN_DYE.get(), ModBlocks.TAN, "tan");
 
         registerSmallSquareBlockRecipe(exporter, ModBlocks.WASHED_COBBLESTONE.getStone().get(), ModBlocks.WASHED_COBBLESTONE_BRICKS.getStone().get());
         registerSmallSquareBlockRecipe(exporter, ModBlocks.WEATHERED_COBBLESTONE.getStone().get(), ModBlocks.WEATHERED_COBBLESTONE_BRICKS.getStone().get());
@@ -300,5 +340,19 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         registerClaySealSetRecipes(exporter, ModBlocks.EXPOSED_COBBLESTONE_BRICKS, ModBlocks.SEALED_EXPOSED_COBBLESTONE_BRICKS);
         registerClaySealSetRecipes(exporter, ModBlocks.WEATHERED_COBBLESTONE_BRICKS, ModBlocks.SEALED_WEATHERED_COBBLESTONE_BRICKS);
         registerClaySealSetRecipes(exporter, ModBlocks.AGED_COBBLESTONE_BRICKS, ModBlocks.SEALED_AGED_COBBLESTONE_BRICKS);
+
+        //Bricks -> Tiles
+        registerSmallSquareBlockRecipe(exporter, Blocks.STONE_BRICKS, ModBlocks.STONE_TILES.block.get());
+        registerSmallSquareBlockRecipe(exporter, Blocks.TUFF_BRICKS, ModBlocks.TUFF_TILES.block.get());
+        registerSmallSquareBlockRecipe(exporter, Blocks.POLISHED_BLACKSTONE_BRICKS, ModBlocks.BLACKSTONE_TILES.block.get());
+        stonecutterResultFromBase(exporter, RecipeCategory.BUILDING_BLOCKS, ModBlocks.STONE_TILES.getStone(), Blocks.STONE_BRICKS);
+        stonecutterResultFromBase(exporter, RecipeCategory.BUILDING_BLOCKS, ModBlocks.TUFF_TILES.getStone(), Blocks.TUFF_BRICKS);
+        stonecutterResultFromBase(exporter, RecipeCategory.BUILDING_BLOCKS, ModBlocks.BLACKSTONE_TILES.getStone(), Blocks.POLISHED_BLACKSTONE_BRICKS);
+        stonecutterResultFromBase(exporter, RecipeCategory.BUILDING_BLOCKS, ModBlocks.STONE_TILES.getStone(), Blocks.STONE);
+        stonecutterResultFromBase(exporter, RecipeCategory.BUILDING_BLOCKS, ModBlocks.TUFF_TILES.getStone(), Blocks.TUFF);
+        stonecutterResultFromBase(exporter, RecipeCategory.BUILDING_BLOCKS, ModBlocks.BLACKSTONE_TILES.getStone(), Blocks.BLACKSTONE);
+        stonecutterResultFromBase(exporter, RecipeCategory.BUILDING_BLOCKS, ModBlocks.STONE_TILES.getStone(), Blocks.COBBLESTONE);
+        stonecutterResultFromBase(exporter, RecipeCategory.BUILDING_BLOCKS, ModBlocks.TUFF_TILES.getStone(), Blocks.POLISHED_TUFF);
+        stonecutterResultFromBase(exporter, RecipeCategory.BUILDING_BLOCKS, ModBlocks.BLACKSTONE_TILES.getStone(), Blocks.POLISHED_BLACKSTONE);
     }
 }

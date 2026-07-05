@@ -124,8 +124,23 @@ public class RecipeMethodProvider extends RecipeProvider implements IConditionBu
         registerStoneVariant(output, set,
                 set.smooth.get(), set.smoothStairs.get(), set.smoothSlab.get(), set.smoothWall.get(), set.smoothButton.get(), set.smoothPressurePlate.get(),
                 set.baseName + "_smooth");
-        
-        List<DeferredBlock> variants = List.of(set.getCobbled(), set.getChiseled(), set.getBricks(), set.getSmooth());
+
+        // Tiles
+        registerStoneVariant(output, set,
+                set.tiles.get(), set.tilesStairs.get(), set.tilesSlab.get(), set.tilesWall.get(), set.tilesButton.get(), set.tilesPressurePlate.get(),
+                set.baseName + "_tiles");
+        // Cracked Tiles
+        registerStoneVariant(output, set,
+                set.crackedTiles.get(), set.crackedTilesStairs.get(), set.crackedTilesSlab.get(), set.crackedTilesWall.get(), set.crackedTilesButton.get(), set.crackedTilesPressurePlate.get(),
+                set.baseName + "_cracked_tiles");
+
+        //4x Base -> Polished/Smooth -> Bricks -> Tiles
+        registerSmallSquareBlockRecipe(output, set.base.get(), set.smooth.get());
+        registerSmallSquareBlockRecipe(output, set.smooth.get(), set.bricks.get());
+        registerSmallSquareBlockRecipe(output, set.bricks.get(), set.tiles.get());
+
+
+        List<DeferredBlock> variants = List.of(set.getCobbled(), set.getChiseled(), set.getBricks(), set.getSmooth(), set.getTiles());
         for (DeferredBlock variant : variants) {
             stonecutterResultFromBase(output, RecipeCategory.BUILDING_BLOCKS, variant, set.getBase());
         }
@@ -135,6 +150,14 @@ public class RecipeMethodProvider extends RecipeProvider implements IConditionBu
         smeltBricks(output, set.getBricksWall(), set.getCrackedBricksWall(), "bricks_wall");
         smeltBricks(output, set.getBricksButton(), set.getCrackedBricksButton(), "bricks_button");
         smeltBricks(output, set.getBricksPressurePlate(), set.getCrackedBricksPressurePlate(), "bricks_pressure_plate");
+        smeltBricks(output, set.getTiles(), set.getCrackedTiles(), "tiles");
+        smeltBricks(output, set.getTilesStairs(), set.getCrackedTilesStairs(), "tiles_stairs");
+        smeltBricks(output, set.getTilesSlab(), set.getCrackedTilesSlab(), "tiles_slab");
+        smeltBricks(output, set.getTilesWall(), set.getCrackedTilesWall(), "tiles_wall");
+        smeltBricks(output, set.getTilesButton(), set.getCrackedTilesButton(), "tiles_button");
+        smeltBricks(output, set.getTilesPressurePlate(), set.getCrackedTilesPressurePlate(), "tiles_pressure_plate");
+
+
 
     }
     public static void smeltBricks(RecipeOutput output, DeferredBlock input, DeferredBlock result, String suffix) {

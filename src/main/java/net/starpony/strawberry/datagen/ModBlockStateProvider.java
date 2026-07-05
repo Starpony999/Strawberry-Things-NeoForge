@@ -277,6 +277,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
         registerVariant.accept(new StoneVariant(set.getBricks(), set.getBricksStairs(), set.getBricksSlab(), set.getBricksWall(), set.getBricksButton(), set.getBricksPressurePlate()));
         registerVariant.accept(new StoneVariant(set.getCrackedBricks(), set.getCrackedBricksStairs(), set.getCrackedBricksSlab(), set.getCrackedBricksWall(), set.getCrackedBricksButton(), set.getCrackedBricksPressurePlate()));
         registerVariant.accept(new StoneVariant(set.getSmooth(), set.getSmoothStairs(), set.getSmoothSlab(), set.getSmoothWall(), set.getSmoothButton(), set.getSmoothPressurePlate()));
+        registerVariant.accept(new StoneVariant(set.getTiles(), set.getTilesStairs(), set.getTilesSlab(), set.getTilesWall(), set.getTilesButton(), set.getTilesPressurePlate()));
+        registerVariant.accept(new StoneVariant(set.getCrackedTiles(), set.getCrackedTilesStairs(), set.getCrackedTilesSlab(), set.getCrackedTilesWall(), set.getCrackedTilesButton(), set.getCrackedTilesPressurePlate()));
     }
     private static class StoneVariant {
         public final DeferredBlock<Block> base;
@@ -366,10 +368,10 @@ public class ModBlockStateProvider extends BlockStateProvider {
     }
     private int getYRotation(Direction direction) {
         return switch (direction) {
-            case NORTH -> 0;
-            case SOUTH -> 180;
-            case WEST -> 270;
-            case EAST -> 90;
+            case NORTH -> 90;
+            case SOUTH -> 270;
+            case WEST -> 0;
+            case EAST -> 180;
             default -> 0;
         };
     }
