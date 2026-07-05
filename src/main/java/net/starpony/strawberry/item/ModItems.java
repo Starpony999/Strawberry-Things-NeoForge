@@ -12,8 +12,10 @@ import net.starpony.strawberry.Strawberry;
 import net.starpony.strawberry.item.custom.HammerItem;
 import net.starpony.strawberry.item.custom.SodaItem;*/
 import net.starpony.strawberry.block.ModBlocks;
+import net.starpony.strawberry.entity.ModBoatEntity;
 import net.starpony.strawberry.entity.ModEntities;
 import net.starpony.strawberry.item.custom.*;
+import net.starpony.strawberry.item.custom.BoatItem;
 import net.starpony.strawberry.item.custom.BottleItem;
 import net.starpony.strawberry.sound.ModSounds;
 import net.starpony.strawberry.util.sets.GemSet;
@@ -106,10 +108,10 @@ public class ModItems {
     public static final DeferredItem<Item> SIMPLE_UPGRADE_SMITHING_TEMPLATE = ITEMS.register("simple_upgrade_smithing_template", SmithingTemplateItem::createNetheriteUpgradeTemplate);
 
     //Wood Set
-    public static final WoodSet SYCAMORE = registerWoodSet("sycamore", ModBlocks.SYCAMORE);
-    public static final WoodSet PLUM = registerWoodSet("plum", ModBlocks.PLUM);
-    public static final WoodSet BLOODWOOD = registerWoodSet("bloodwood", ModBlocks.BLOODWOOD);
-    public static final WoodSet VOID = registerWoodSet("void", ModBlocks.VOID);
+    public static final WoodSet SYCAMORE = registerWoodSet("sycamore", ModBlocks.SYCAMORE, ModBoatEntity.Type.SYCAMORE);
+    public static final WoodSet PLUM = registerWoodSet("plum", ModBlocks.PLUM, ModBoatEntity.Type.PLUM);
+    public static final WoodSet BLOODWOOD = registerWoodSet("bloodwood", ModBlocks.BLOODWOOD, ModBoatEntity.Type.BLOODWOOD);
+    public static final WoodSet VOID = registerWoodSet("void", ModBlocks.VOID, ModBoatEntity.Type.VOID);
 
     //Registry Helpers
     public static GemSet registerGemSet(String name, Tier toolMaterial, Holder armorMaterial, boolean withShard, boolean fireproof) {
@@ -167,14 +169,19 @@ public class ModItems {
         Item.Properties props = new Item.Properties();
         return fireproof ? props.fireResistant() : props;
     }
-    public static WoodSet registerWoodSet(String name, WoodSet woodSet) {
+    public static WoodSet registerWoodSet(String name, WoodSet woodSet, ModBoatEntity.Type type) {
         DeferredItem<Item> sign = ITEMS.register(name + "_sign_item",
                 () -> new SignItem(new Item.Properties().stacksTo(16), woodSet.getSign().get(), woodSet.getWallSign().get()));
 
         DeferredItem<Item> hangingSign = ITEMS.register(name + "_hanging_sign_item",
                 () -> new HangingSignItem(woodSet.getHangingSign().get(), woodSet.getWallHangingSign().get(), new Item.Properties().stacksTo(16)));
 
-        return woodSet.setSignItems(sign, hangingSign);
+        DeferredItem<Item> boat = ITEMS.register(name + "_boat",
+                () -> new BoatItem(false, type, new Item.Properties()));
+        DeferredItem<Item> chestBoat = ITEMS.register(name + "_chest_boat",
+                () -> new BoatItem(true, type, new Item.Properties()));
+
+        return woodSet.setItems(sign, hangingSign, boat, chestBoat);
     }
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

@@ -32,6 +32,8 @@ public class WoodSet {
     public final DeferredBlock<Block> wallHangingSign;
     private DeferredItem<Item> signItem;
     private DeferredItem<Item> hangingSignItem;
+    private DeferredItem<Item> boat;
+    private DeferredItem<Item> chestBoat;
 
     public WoodSet(String name,
                    DeferredBlock<Block> log,
@@ -55,7 +57,9 @@ public class WoodSet {
                    DeferredBlock<Block> hangingSign,
                    DeferredBlock<Block> wallHangingSign,
                    DeferredItem<Item> signItem,
-                   DeferredItem<Item> hangingSignItem
+                   DeferredItem<Item> hangingSignItem,
+                   DeferredItem<Item> boat,
+                   DeferredItem<Item> chestBoat
     ) {
 
         this.name = name;
@@ -81,6 +85,8 @@ public class WoodSet {
         this.wallHangingSign = wallHangingSign;
         this.signItem = signItem;
         this.hangingSignItem = hangingSignItem;
+        this.boat = boat;
+        this.chestBoat = chestBoat;
 
         ModFlammableRotatedPillarBlock.registerStrippable(log, strippedLog);
         ModFlammableRotatedPillarBlock.registerStrippable(wood, strippedWood);
@@ -169,10 +175,15 @@ public class WoodSet {
 
     public DeferredItem<Item> getHangingSignItem() {return hangingSignItem;}
 
-    public WoodSet setSignItems(DeferredItem<Item> signItem, DeferredItem<Item> hangingSignItem) {
+    public DeferredItem<Item> getBoat() {return boat;}
+
+    public DeferredItem<Item> getChestBoat() {return chestBoat;}
+
+    public WoodSet setItems(DeferredItem<Item> sign, DeferredItem<Item> hangingSign, DeferredItem<Item> boat, DeferredItem<Item> chestBoat) {
         this.signItem = signItem;
         this.hangingSignItem = hangingSignItem;
+        this.boat = boat;
+        this.chestBoat = chestBoat;
         return this;
     }
-
 }

@@ -608,7 +608,8 @@ public class ModBlocks {
 
 
         return new WoodSet(name, log, strippedLog, wood, strippedWood, planks, leaves, null, sapling,
-                stairs, slab, button, pressurePlate, fence, fenceGate, door, trapdoor, sign, wallSign, hangingSign, wallHangingSign, null, null);
+                stairs, slab, button, pressurePlate, fence, fenceGate, door, trapdoor, sign, wallSign, hangingSign, wallHangingSign,
+                null, null, null, null);
     }  //Wood Set
     private static WoodSet registerNightmareWoodSet(String name, TreeGrower grower, WoodType woodType) {
         DeferredBlock<Block> log = registerBlock(name + "_stem",
@@ -670,7 +671,8 @@ public class ModBlocks {
                 () -> new ModWallHangingSignBlock(woodType, BlockBehaviour.Properties.ofFullCopy(Blocks.WARPED_WALL_HANGING_SIGN)));
 
         return new WoodSet(name, log, strippedLog, wood, strippedWood, planks, null, wartBlock, sapling,
-                stairs, slab, button, pressurePlate, fence, fenceGate, door, trapdoor, sign, wallSign, hangingSign, wallHangingSign, null, null);
+                stairs, slab, button, pressurePlate, fence, fenceGate, door, trapdoor, sign, wallSign, hangingSign, wallHangingSign,
+                null, null, null, null);
     }  //Wood Set for Nightmare Dimension
     private static WoodSet registerEndWoodSet(String name, TreeGrower grower, WoodType woodType) {
         DeferredBlock<Block> log = registerBlock(name + "_log",
@@ -732,7 +734,8 @@ public class ModBlocks {
                 () -> new ModWallHangingSignBlock(woodType, BlockBehaviour.Properties.ofFullCopy(Blocks.WARPED_WALL_HANGING_SIGN)));
 
         return new WoodSet(name, log, strippedLog, wood, strippedWood, planks, leaves, null, sapling,
-                stairs, slab, button, pressurePlate, fence, fenceGate, door, trapdoor, sign, wallSign, hangingSign, wallHangingSign, null, null);
+                stairs, slab, button, pressurePlate, fence, fenceGate, door, trapdoor, sign, wallSign, hangingSign, wallHangingSign,
+                null, null, null, null);
     }
     private static SimpleStoneSet registerIceSet(String name, Block block, Float strength){
         DeferredBlock<StairBlock> stairs = registerBlock(name + "_stairs",
