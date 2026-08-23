@@ -29,10 +29,10 @@ public class ModChestBoatEntity extends ChestBoat {
     @Override
     public Item getDropItem() {
         switch (getModVariant()) {
-            case SYCAMORE -> {return ModItems.SYCAMORE.chest_boat.get();}
-            case PLUM -> {return ModItems.PLUM.chest_boat.get();}
-            case BLOODWOOD -> {return ModItems.BLOODWOOD.chest_boat.get();}
-            case VOID -> {return ModItems.VOID.chest_boat.get();}
+            case SYCAMORE -> {return ModItems.SYCAMORE.getChestBoat().get();}
+            case PLUM -> {return ModItems.PLUM.getChestBoat().get();}
+            case BLOODWOOD -> {return ModItems.BLOODWOOD.getChestBoat().get();}
+            case VOID -> {return ModItems.VOID.getChestBoat().get();}
         }
         return super.getDropItem();
     }

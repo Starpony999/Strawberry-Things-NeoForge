@@ -32,10 +32,10 @@ public class ModBoatEntity extends Boat {
     @Override
     public Item getDropItem() {
         return switch (getModVariant()) {
-            case SYCAMORE -> ModItems.SYCAMORE.boat.get();
-            case PLUM -> ModItems.PLUM.boat.get();
-            case BLOODWOOD -> ModItems.BLOODWOOD.boat.get();
-            case VOID -> ModItems.VOID.boat.get();
+            case SYCAMORE -> ModItems.SYCAMORE.getBoat().get();
+            case PLUM -> ModItems.PLUM.getBoat().get();
+            case BLOODWOOD -> ModItems.BLOODWOOD.getBoat().get();
+            case VOID -> ModItems.VOID.getBoat().get();
         };
     }
 
