@@ -1,5 +1,9 @@
 package net.starpony.strawberry.entity;
 
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.util.ByIdMap;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.entity.EntityType;
@@ -17,6 +21,8 @@ import java.util.function.IntFunction;
 import java.util.function.Supplier;
 
 public class ModBoatEntity extends Boat {
+    private static final EntityDataAccessor<Integer> DATA_ID_TYPE = SynchedEntityData.defineId(ModBoatEntity.class, EntityDataSerializers.INT);
+
     public ModBoatEntity(EntityType<? extends Boat> entityType, Level level) {
         super(entityType, level);
     }
@@ -47,15 +53,18 @@ public class ModBoatEntity extends Boat {
         return Type.byId(this.entityData.get(DATA_ID_TYPE));
     }
 
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(DATA_ID_TYPE, Type.PINE.ordinal());
+    @Override
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(DATA_ID_TYPE, Type.SYCAMORE.ordinal());
     }
 
+    @Override
     protected void addAdditionalSaveData(CompoundTag pCompound) {
         pCompound.putString("Type", this.getModVariant().getSerializedName());
     }
 
+    @Override
     protected void readAdditionalSaveData(CompoundTag pCompound) {
         if (pCompound.contains("Type", 8)) {
             this.setVariant(Type.byName(pCompound.getString("Type")));
