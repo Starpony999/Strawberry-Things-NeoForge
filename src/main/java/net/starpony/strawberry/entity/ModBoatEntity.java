@@ -73,10 +73,10 @@ public class ModBoatEntity extends Boat {
     @NetworkedEnum(NetworkedEnum.NetworkCheck.CLIENTBOUND)
     @NamedEnum(1)
     public static enum Type implements StringRepresentable, IExtensibleEnum {
-        SYCAMORE(ModBlocks.SYCAMORE.planks.get(), "sycamore"),
-        PLUM(ModBlocks.PLUM.planks.get(), "plum"),
-        BLOODWOOD(ModBlocks.BLOODWOOD.planks.get(), "bloodwood"),
-        VOID(ModBlocks.VOID.planks.get(), "void");
+        SYCAMORE(() -> ModBlocks.SYCAMORE.planks.get(), "sycamore"),
+        PLUM(() -> ModBlocks.PLUM.planks.get(), "plum"),
+        BLOODWOOD(() -> ModBlocks.BLOODWOOD.planks.get(), "bloodwood"),
+        VOID(() -> ModBlocks.VOID.planks.get(), "void");
 
 
         private final String name;
@@ -94,6 +94,10 @@ public class ModBoatEntity extends Boat {
         @ReservedConstructor
         private Type(Block planks, String name) {
             this(planks, name, false);
+        }
+
+        private Type(Supplier<Block> planks, String name) {
+            this(planks, name, () -> Items.AIR, () -> Items.AIR, () -> Items.STICK, false);
         }
 
         @ReservedConstructor
