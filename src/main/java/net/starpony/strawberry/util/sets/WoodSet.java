@@ -179,7 +179,7 @@ public class WoodSet {
 
     public DeferredItem<Item> getChestBoat() {return chestBoat;}
 
-    public WoodSet setItems(DeferredItem<Item> sign, DeferredItem<Item> hangingSign, DeferredItem<Item> boat, DeferredItem<Item> chestBoat) {
+    public WoodSet setItems(DeferredItem<Item> signItem, DeferredItem<Item> hangingSignItem, DeferredItem<Item> boat, DeferredItem<Item> chestBoat) {
         this.signItem = signItem;
         this.hangingSignItem = hangingSignItem;
         this.boat = boat;

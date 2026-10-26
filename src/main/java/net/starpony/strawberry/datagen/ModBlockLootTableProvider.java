@@ -25,13 +25,10 @@ import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraft.world.level.storage.loot.predicates.MatchTool;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
-import net.neoforged.fml.common.Mod;
+//import net.neoforged.fml.common.Mod;
 import net.starpony.strawberry.block.*;
 import net.starpony.strawberry.item.ModItems;
-import net.starpony.strawberry.util.sets.ColorSet;
-import net.starpony.strawberry.util.sets.SimpleStoneSet;
-import net.starpony.strawberry.util.sets.StoneSet;
-import net.starpony.strawberry.util.sets.WoodSet;
+import net.starpony.strawberry.util.sets.*;
 
 import java.util.Set;
 
@@ -54,6 +51,13 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.OTHERWORLDLY_AMETHYST_BLOCK.get());
         dropSelf(ModBlocks.RAW_ROSE_QUARTZ_BLOCK.get());
         dropSelf(ModBlocks.ROSE_QUARTZ_BLOCK.get());
+
+        add(ModBlocks.ALUMINUM_DOOR.get(),
+                block -> createDoorTable(ModBlocks.ALUMINUM_DOOR.get()));
+        dropSelf(ModBlocks.ALUMINUM_TRAPDOOR.get());
+        dropSelf(ModBlocks.ALUMINUM_GRATE.get());
+        dropSelf(ModBlocks.CHISELED_ALUMINUM.get());
+
 
         dropSelf(ModBlocks.CRYSTAL_LANTERN_BLOCK.get());
         dropSelf(ModBlocks.REDSTONE_LANTERN.get());
@@ -85,6 +89,12 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         handleSimpleStoneSet(ModBlocks.DIORITE_BRICKS);
         handleSimpleStoneSet(ModBlocks.WASHED_GRANITE_BRICKS);
         handleSimpleStoneSet(ModBlocks.GRANITE_BRICKS);
+        handleSimpleStoneSet(ModBlocks.STONE_TILES);
+        handleSimpleStoneSet(ModBlocks.CRACKED_STONE_TILES);
+        handleSimpleStoneSet(ModBlocks.BLACKSTONE_TILES);
+        handleSimpleStoneSet(ModBlocks.CRACKED_BLACKSTONE_TILES);
+        handleSimpleStoneSet(ModBlocks.TUFF_TILES);
+        handleSimpleStoneSet(ModBlocks.CRACKED_TUFF_TILES);
 
         handleStoneSet(ModBlocks.GRIMSTONE);
         handleStoneSet(ModBlocks.NIGHTSTONE);

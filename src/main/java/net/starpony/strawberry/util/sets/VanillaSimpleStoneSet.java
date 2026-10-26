@@ -71,10 +71,6 @@ public class VanillaSimpleStoneSet implements SimpleStoneBaseSet {
         return button;
     }
 
-    public Block getPressurePlate() {
-        return pressurePlate;
-    }
-
     @Override
     public Block getPressurePlateBlock() {
         return pressurePlate;
